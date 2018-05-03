@@ -1,0 +1,435 @@
+---
+title: "Analysis of MHV RNA to Detect EndoU Cleavage Sites after resequencing"
+author: "Rachel Ancar"
+date: "04/24/2018"
+output: 
+  html_document:
+    code_folding: hide
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+
+```{r, message = F, warning = F}
+
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(valr)
+library(stringr)
+library(cowplot)
+library(RColorBrewer)
+library(purrr)
+library(shiny)
+library(DT)
+
+```
+
+In this analysis, 4 of the original 2´,3´-cyclic phosphate libraries were re-sequenced at a greater depth with the hope that more reads would increase our confidence in the low signal cleavage that we have observed in in the intial analysis. 
+
+Samples: MHV Susan WT B6 12 hpi, MHV nsp15 mutant B6 12 hpi, MHV Susan WT RNase L KO 12 hpi, MHV nsp15 mutant RNase L KO 12 hpi
+  
+##Coverage plots for all cell types by type of viral infection
+
+These plots show the normalized counts of captured 2´,3´-cyclic phosphates captured (% of total cDNA reads for each library) per nucleotide position in the the MHV (+) strand reads.
+
+```{r, message = F, warning = F}
+
+#MHV (+) strand coverage plots 
+
+data_dir_neg = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/neg_reseq"
+data_files_neg = list.files(data_dir_neg, full.names = T)
+
+read_file <- function(x) {
+  df <- readr::read_tsv(x, col_names = c("chrom", "start", "end", "count", "normalized_count", "dinuc"))
+  df$name <- basename(x)
+  df
+}
+
+neg_table <- purrr::map_df(data_files_neg, read_file) %>%
+  mutate(name = str_replace(name, ".umi.MHV.normalized.dinuc.neg.bg", "")) %>%
+  separate(name, into = c('cell', 'virus', 'time'), sep = '_')
+
+neg_plot <- ggplot(neg_table, aes(x = start, y = normalized_count)) +
+    geom_line(aes(color = time)) +
+    scale_colour_brewer(palette="Set1") + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    ggtitle("MHV (+) strand coverage plots ")
+neg_plot
+
+#MHV (-) strand coverage plots
+
+data_dir_pos = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/pos_reseq"
+data_files_pos = list.files(data_dir_pos, full.names = T)
+
+pos_table <- purrr::map_df(data_files_pos, read_file) %>%
+  mutate(name = str_replace(name, ".umi.MHV.normalized.dinuc.pos.bg", "")) %>%
+  separate(name, into = c('cell', 'virus', 'time'), sep = '_')
+
+pos_plot <- ggplot(pos_table, aes(x = start, y = normalized_count)) +
+    geom_bar(aes(fill = time), stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    labs(x="Position", y="Counts") +
+    ggtitle("MHV (-) strand coverage plots ")
+pos_plot
+
+```
+
+###Discussion of coverage analysis: 
+
+Overall, most of the patterns observed in the inital analysis are observed in this data. We capture the most cleavage in the MHV (+) strand RNA and this signal decreases in B6 WT samples infected with mutant nsp15 virus. In the RNase L KO samples, we overall capture less signal in the MHV RNA, as initally observed. There are some low freuqency signals in the RNase L KO samples infected with WT virus that do seem to decrease in the nsp15 mutant infection. 
+
+#RNase L substractive coverage plots of MHV (+) strand reads for all cell types by type of viral infection
+
+The normalized counts detected in RNase L KO cells for each type of viral infection were subtracted from the normalized counts detected in WT B6 and IFNAR KO cells. This substractive analysis will emphasize RNase L dependent cleavage events by reporting signals that occur only in the presence of RNase L. 
+
+```{r, message = F, warning = F}
+
+#RNase L substractive analysis to remove signal that occurs in the abscence of RNAse L by cell type 
+
+subtractive_neg <- neg_table %>% 
+  dplyr::select(-count, -dinuc) %>% 
+  spread(cell, normalized_count) 
+subtractive_neg[is.na(subtractive_neg)] <- 0
+
+subtractive_neg <- subtractive_neg %>% 
+  mutate(B6_RNaseLdep = B6 - RNaseL) %>% 
+  dplyr::select(start:end, virus:time, B6_RNaseLdep) %>% 
+  gather(cell, normalized_count, B6_RNaseLdep)
+
+#Plots of RNase L dependent sites 
+
+subneg_plot <- ggplot(subtractive_neg, aes(x = start, y = normalized_count)) +
+    geom_line(aes(color = time)) + 
+    scale_color_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    ylim(0, 0.015) +
+    ggtitle("MHV (+) strand RNase L dependent cleavage analysis ")
+subneg_plot
+
+```
+
+##EndoU mutant (nsp15) substractive coverage analysis of MHV (+) strand for all cell types by type of viral infection
+
+This is very similar to the analysis above, expect it will substract signal occuring in the abscence of nsp15 actviity, which will emphasize sites specific to nsp15 cleavage actviity. 
+
+```{r, message = F, warning = F}
+
+# nsp15 substractive analysis to remove signal that occurs in the abscence of nsp15 activity by viral infection 
+
+subtractive_nsp15 <- neg_table %>% 
+  dplyr::select(-count, -dinuc) %>% 
+  spread(virus, normalized_count)
+subtractive_nsp15[is.na(subtractive_nsp15)] <- 0
+
+subtractive_nsp15 <- subtractive_nsp15 %>% 
+  mutate(MHVS_nsp15dep = MHVS - nsp15) %>% 
+  dplyr::select(start:end, cell:time, MHVS_nsp15dep) %>% 
+  gather(virus, normalized_count, MHVS_nsp15dep)
+
+#Plots of nsp15 dependent sites 
+
+subnsp15_plot <- ggplot(subtractive_nsp15, aes(x = start, y = normalized_count, fill = time)) +
+    geom_line(aes(color = time)) + 
+    scale_colour_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(cell ~ virus) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    ylim(0, 0.015) + 
+    scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+    ggtitle("MHV (+) strand nsp15 dependent cleavage analysis ")
+subnsp15_plot
+
+```
+
+###Discussion of substractive RNase L and Nsp15 analysis: 
+
+Overall, this analysis produces very similar results as the inital analysis. The substratcive nsp15 plots emphasize similar sites that were detected previously, but these signals are still observed at a very low frequency. 
+
+##Examining specific sites of cleavage in MHV (+) strand RNA
+
+Site18645: Previously identified by Dave Barton as potentially a site of interest. Dinucleotide is "GC" at 18645 (GA in reference, but GC in viral RNA). There is also a site of clevage with smaller signal at 18648, which is "UU" 
+
+Site 26080 and 26087: 26080 = UC, 26087 = CU
+
+Site25404: 25404 = UC
+
+Site 26147 and 26148: 26147 = UC, 26147 = UU
+
+```{r, message = F, warning = F}
+
+neg_plot_18645 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette="Set1") + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    xlim(18640, 18660) +
+    ggtitle("MHV (+) strand coverage plot: sites 18645 and 18648")
+neg_plot_18645
+
+#Site 26080 and 26087- identified by visual inspection of the data, 26080 = UC, 26087 = CU
+
+neg_plot_26080 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette="Set1") + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    xlim(26075, 26090) + 
+    ggtitle("MHV (+) strand coverage plot: sites 26080 and 26087")
+neg_plot_26080 
+
+#Site25404 - identified by visual inspection of the data, 25404 = UC
+
+neg_plot_25404 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette="Set1") + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    xlim(25390, 25410) +
+    ggtitle("MHV (+) strand coverage plot: site 25404")
+neg_plot_25404
+
+#Site 26147 and 26148 - identified by visual inspection of the data, 26147 = UC, 26147 = UU
+
+neg_plot_26148 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette="Set1") + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    xlim(26142, 26150) +
+    ggtitle("MHV (+) strand coverage plot: sites 26147 and 26148")
+neg_plot_26148
+
+```
+
+###Discussion of site specific examination: 
+
+These plots are very similar to those from the inital analysis. There seems to be a bit more background cleavage detected around the specific sites of interest, but the main peaks are consistent. However, there is still residual signal at all of these sites in the nsp15 mutant virus infection. 
+
+
+##Identifying "significant" sites of possible nsp15 cleavage
+
+As previously described, this analysis identifies sites with the greatest fold change decrease in signal detected at the same sites in cells infected with WT and mutant nsp15 MHV. 
+
+Calculating "fold change" in cleavage between nsp15 virus infections and WT virus across all cell types
+
+```{r, message = F, warning = F}
+
+change_nsp15 <- neg_table %>% 
+  dplyr::select(-count, -dinuc) %>% 
+  spread(virus, normalized_count)
+
+change_nsp15[is.na(change_nsp15)] <- 0
+
+change_nsp15 <- change_nsp15 %>% 
+  mutate(MHVS_nsp15change = nsp15/MHVS) %>% 
+  gather(viral_comp, fold_change, MHVS_nsp15change) %>%
+  filter(fold_change > 0 & fold_change <= 1) %>%
+  arrange(desc(fold_change))
+
+```
+
+####Ordering fold change values by start position and top 100 decreased sites by fold change by each cell type and time
+
+```{r, message = F, warning = F}
+
+new_changensp15 <- change_nsp15 %>% 
+  group_by(cell, time, viral_comp) %>%
+  arrange(desc(fold_change)) %>% 
+  group_by(chrom, start, end, cell, time, viral_comp) %>%
+  arrange(desc(fold_change)) %>%
+  ungroup() %>%
+  arrange(start) %>%
+  group_by(cell, time) %>%
+  arrange(fold_change) %>%
+  do(head(., n = 100)) %>%
+  mutate(log2foldchange = -log2(fold_change))
+datatable(new_changensp15)
+
+```
+
+####Plotting > 4 foldchange sites 
+
+```{r, message = F, warning = F}
+
+foldchange_graph <- filter(new_changensp15, log2foldchange >= 4) %>%
+  ggplot(aes(x = start, y = log2foldchange, color = cell)) +
+  geom_bar(stat = "identity", position = 'dodge') + 
+  scale_fill_brewer(palette="Set1") +
+  facet_grid(cell ~viral_comp) +
+  theme_cowplot() +
+  labs(x="Position", y="Log2foldchange") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+foldchange_graph
+
+```
+
+####Table: B6 cells at 12 hrs, fold change and dinuc for top 50 sites with the greatest decrease in signal 
+
+```{r, message = F, warning = F}
+
+B6_12 <- new_changensp15 %>% 
+  filter(cell == "B6" & time == "12")
+dinuc_positions <- neg_table %>% 
+  select(chrom, start, end, dinuc)
+B6_12_dinuc <- left_join(B6_12, dinuc_positions) %>% 
+  unique() %>%
+  select(chrom, start, end, log2foldchange, dinuc)
+
+datatable(B6_12_dinuc)
+
+```
+
+####Table: RNase L KO cells at 12 hrs, fold change and dinuc for top 50 sites with the greatest decrease in signal 
+
+```{r, message = F, warning = F}
+
+RNaseL_12 <- new_changensp15 %>% 
+  filter(cell == "RNaseL" & time == "12")
+dinuc_positions <- neg_table %>% 
+  select(chrom, start, end, dinuc)
+RNaseL_12_dinuc <- left_join(RNaseL_12, dinuc_positions) %>% 
+  unique() %>% 
+  select(chrom, start, end, log2foldchange, dinuc)
+
+datatable(RNaseL_12_dinuc)
+
+```
+
+###Discussion of fold change analysis:
+
+Overall, the results are similar to the inital analysis. However, the relative fold change values for each site seem to differ somewhat due to increased or decreased signal capture upon reseuqnecing. In fact, there seem to be some sites that are no longer sigfificantly decreased in this analysis. 
+
+However, in general the dinucleotides observed at the sites with the greatest fold decrease in signal are similar to those initally observed. Additionally, this data continutes to support that observation that site speciifc cleavage seems to differ between cell type signficiantly. In this data, there seems to be less overlap of significnatly decreased sites between the WT B6 and RNase L KO cells. 
+
+##Calculating dinucelotide frequencies for all cell types by infection status 
+
+Performing a dinucleotide frequency analysis will help us to confirm RNaseL signatures as a positive control and investigate a potential sequence preference for nsp15 cleavage.
+
+```{r, message = F, warning = F}
+
+# Calculating freuqency of each dinucleotide for the + strand MHV reads 
+
+dinuc <- c("AA","GA", "CA", "UA","AC", "CC", "GC", "UC", "AG", "CG", "GG", "UG", "AU", "CU", "GU", "UU")
+df_dinuc <- data_frame(dinuc)
+
+frequencies_neg <- function(x) {
+  df <- readr::read_tsv(x, col_names = c("chrom", "start", "end", "count",      "normalized_count", "dinuc"))
+  df <- aggregate(cbind(count) ~ dinuc, data = df, sum)
+  df <- left_join(df_dinuc, df) %>% 
+    replace_na(list(count = 0)) %>% 
+    mutate(freq = count/sum(count)) 
+  df$name <- basename(x)
+  df %>% mutate(name = str_replace(name, ".umi.MHV.normalize.dinuc.neg.bg", "")) %>%
+  separate(name, into = c('cell', 'virus', 'time'))
+}
+
+neg_freq <- purrr::map_df(data_files_neg, frequencies_neg)
+```
+
+##Plotting dinucleotide frequencies for all cell types by type of viral infection
+
+These plots show the freuqency of cleavege at 3´-dinucleotides for the MHV (+) sense RNA from highest to lowest frequency. I removed the mock infected sample data from these graphs.
+
+```{r, message = F, warning = F}
+
+# Dincleotide frequency plots 
+
+neg_freq_plot <- ggplot(neg_freq, aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = 'Set1') + 
+  scale_x_discrete(limits=c("AA","GA", "CA", "UA","AC", "CC", "GC", "UC", "AG", "CG", "GG",   "UG", "AU", "CU", "GU", "UU")) + 
+  geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("MHV (+) strand dinucleotide frequency plots")
+neg_freq_plot
+
+```
+
+## RNase L and Nsp15 substractive dinucleotide analysis of for all cell types by type of viral infection
+
+This is similar to the previous coverage substractive analysis. These plots display dinucleotde cleavage frequencies dependent on RNase L and nsp15 by removing the frequencies detected in the abscence of RNase L or nsp15. 
+
+```{r, message = F, warning = F}
+
+# Subtractive RNaseL dinucleotide analysis
+
+subtractive_neg <- neg_freq %>% 
+  dplyr::select(dinuc, freq:time) %>% 
+  spread(cell, freq) %>% 
+  mutate(B6_RNaseLdep = B6 - RNaseL) %>% 
+  dplyr::select(dinuc:time, B6_RNaseLdep) %>% 
+  gather(cell, freq, B6_RNaseLdep)
+
+# Plots: RNase L dependent 
+
+subneg_freq_plot <- subtractive_neg %>% 
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = 'Set1') + 
+  scale_x_discrete(limits=c("AA","GA", "CA", "UA","AC", "CC", "GC", "UC", "AG", "CG", "GG",     "UG", "AU", "CU", "GU", "UU")) + 
+  geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
+  theme_cowplot() +
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("MHV (+) strand RNase L subtractive dinucleotide frequency analysis")
+  #scale_y_continuous(limits = c(0.00, 0.10))
+subneg_freq_plot
+
+#Subtractive nsp15 dinucleotide analysis
+
+subdinuc_neg_nsp15 <- neg_freq %>% 
+  dplyr::select(dinuc, freq:time) %>% 
+  spread(virus, freq) %>%
+  mutate(MHVS_nsp15dep = MHVS - nsp15) %>% 
+  dplyr::select(dinuc:time, MHVS_nsp15dep) %>% 
+  gather(virus, freq, MHVS_nsp15dep)
+
+# Plots: nsp15 dependent plots 
+
+subnegdinuc_freq_plot <- subdinuc_neg_nsp15 %>% 
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = 'Set1') + 
+  scale_x_discrete(limits=c("AA","GA", "CA", "UA","AC", "CC", "GC", "UC", "AG", "CG", "GG",   "UG", "AU", "CU", "GU", "UU")) + 
+  geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
+  theme_cowplot() +
+  facet_grid(cell ~ virus) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("MHV (+) strand nsp15 subtractive dinucleotide frequency analysis")
+  #scale_y_continuous(limits = c(0.00, 0.10))
+subnegdinuc_freq_plot
+
+```
+
+### Discussion of dinucleotide analysis
+
+Overall, the patterns in this analysis are very similar to those initally described. An increase in RNase L dependent cleavage at UA, UU, and also UG is observed in B6 cells infected with mutant nsp15 virus, which is consitent with the idea of increased RNase L activation in the abscence of nsp15 activity. Conversely, signal at AC, CC, GC, UC, AU, CU, GU decreases in the abscence of nsp15 activity. 
+
+While there appears to be a specific dinucleotide preference pattern in the B6 cells that is altered by loss of nsp15 activity, this pattern is less clear in the RNase L KO cells. In these cells, there is are only small differences in dinucleotide frequencies between cells infected with WT virus and nsp15 virus. The nsp15-depdendent freuqnecies from the substarctive analysis reveal a similar patterning in the B6 cells, but complete loss of this patterning in the RNase L KO samples. 
+

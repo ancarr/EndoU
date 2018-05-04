@@ -749,7 +749,7 @@ endoU_sub5S_freq_plot <- endoU_subtractive_5S %>%
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
   scale_y_continuous(limits = c(0.0, 0.06)) +
-  facet_grid(cell ~ virus) + 
+  facet_grid(virus ~ cell) + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle("5S nsp15 subtractive dinucleotide frequency plots ") 
 endoU_sub5S_freq_plot

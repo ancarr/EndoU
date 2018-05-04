@@ -1,0 +1,174 @@
+---
+title: "Analysis of mRNA to Detect EndoU Cleavage Sites"
+author: "Rachel Ancar"
+date: "4/28/2018"
+output:
+  html_document:
+    code_folding: hide
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+
+```{r, message = F, warning = F}
+
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(valr)
+library(stringr)
+library(cowplot)
+library(RColorBrewer)
+library(purrr)
+library(shiny)
+library(DT)
+
+```
+
+2´,3´-cyclic phosphate RNA-sequencing libraries were prepared from mouse macrophages: B6 (WT), IFNAR KO, RNaseL KO. These cells were either mock infected or infected with WT MHV virus (from Volker or Susan), MHV mutated to inactivate ns2 (phosphodiesterase) activity, or MHV mutated to inactivate nsp15 (endoribonuclease) activity for 9 and 12 hours. 
+
+```{r, message = F, warning = F}
+
+sample_info_table <- read_tsv("sample_info.txt", col_names = c("cell type", "virus type", "time"))
+datatable(sample_info_table)
+
+```
+
+In this analysis, reads from all libraries were aligned to reference file containing Mus musculus sequences of protein coding mRNAs and non-protein-coding transcripts including lncRNAs, structural RNAs, transcribed pseudogenes, and transcripts with unlikely protein-coding potential from protein-coding genes. Bedgraph files containing counts at each  3´-cleavage site were generated for this analysis. 
+
+## Identify RNAs with the most abundant capture of 2´,3´- cyclic phosphates across all samples.
+
+In this analysis, the total and normalized counts per RNA were summed and filtered to exclude RNAs with less than 30 total reads. Additionally, an analysis to detect RNA reads unique to infected samples was performed to interogate RNA cleavage that may be dependent upon nsp15. 
+
+```{r, message = F, warning = F}
+
+data_dir_mRNA = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/mRNA/"
+data_files_mRNA = list.files(data_dir_mRNA, full.names = T)
+
+read_file <- function(x) {
+  df <- readr::read_tsv(x, col_names = c("chrom", "start", "end", "count", "normalized_count"))
+  df$name <- basename(x)
+  df
+}
+
+table_mRNA <- purrr::map_df(data_files_mRNA, read_file) %>%
+  mutate(name = str_replace(name, ".umi.mRNA.normalized.bg", "")) %>%
+  separate(name, into = c('cell', 'virus', 'time'), sep = '_')
+
+mRNA <- table_mRNA %>% 
+  group_by(chrom, cell, virus, time) %>% 
+  summarise(total_count = sum(count), total_normalcount = sum(normalized_count)) %>%
+  arrange(desc(total_count))
+
+top_mRNA <- table_mRNA %>% 
+  group_by(chrom, cell, virus, time) %>% 
+  summarise(total_count = sum(count), total_normalcount = sum(normalized_count)) %>%
+  arrange(desc(total_count)) %>%
+  filter(total_count >= 20)
+
+mock_mRNA <- mRNA %>% filter(virus == "mock") 
+
+virus_mRNA <- mRNA %>% anti_join(mock_mRNA, by = "chrom")
+datatable(virus_mRNA)
+
+```
+
+###Discussion of mRNA cleavage analysis: 
+
+The RNAs with the most abundant 2´3´-cyclic phosphates were RNAs that have been previously noted to be captured at high abundance using this method, including ribosomal RNA repeats, lnRNA Malat1, U6, and other repetative elements. These most abundantly captured RNAs are evident across all infected and mock infected samples, indicated this is a consequence of the method and not a biological phenomenon. 
+
+In order to identify RNAs that may be cleaved specifically during infection with MHV, we filtered out RNAs cleaved in mock infected samples. There are more than 7000 RNA sequence records with counts dectected specifically in infected samples. However, overall the abundance of these reads is in general lower than those captured non-specifically in mock and infected samples. The RNAs captured in the infected samples are most commonly involved in innate immune signalling and the interferon response. Identifying possible RNA targets of nsp15 would require the ability to normalize for mRNA abundance. There is an association between mRNA abundance and 2´3´-cp capture, because RNA breaks, leaving ligatable ends. The more RNA present, the more commonly these events may occur. 
+
+##Plots of some of the most abundant RNAs captured in both mock and infected samples
+
+```{r, message = F, warning = F}
+
+Rn45 <- mRNA %>% filter(chrom == "NR_046233.2") %>%
+    filter(time != "09") %>%
+    filter(time != "012") %>%
+    ggplot(aes(x = chrom, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="mRNA", y="Total normalized counts per mRNA") +
+  ggtitle("45S pre-ribosomal RNA ")
+Rn45
+
+malat1 <- mRNA %>% filter(chrom == "NR_002847.2") %>%
+    filter(time != "09") %>%
+    filter(time != "012") %>%
+    ggplot(aes(x = chrom, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="mRNA", y="Total normalized counts per mRNA") +
+  ggtitle("Malat1")
+malat1
+
+```
+
+##Plots of some of the most abundant RNAs captured enriched in the infected samples
+
+```{r}
+
+Tnfaip3 <- mRNA %>% filter(chrom == "NM_001166402.1") %>%
+    filter(time != "09") %>%
+    filter(time != "012") %>%
+    ggplot(aes(x = chrom, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="mRNA", y="Total counts per mRNA") +
+    ggtitle("TNF Alpha Induced Protein 3")
+Tnfaip3
+
+Il12b <- mRNA %>% filter(chrom == "NM_001303244.1") %>%
+    filter(time != "09") %>%
+    filter(time != "012") %>%
+    ggplot(aes(x = chrom, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="mRNA", y="Total counts per mRNA") +
+    ggtitle("Interleukin 12B")
+Il12b
+
+Gm4070 <- mRNA %>% filter(chrom == "NM_001243039.1") %>%
+    filter(time != "09") %>%
+    filter(time != "012") %>%
+    ggplot(aes(x = chrom, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x="mRNA", y="Total counts per mRNA") +
+    ggtitle("predicted gene 4070: IFN-induced large GTPase")
+Gm4070
+
+
+
+
+```
+
+### Discussion of plots comparing Mus musculus RNA cyclic phosphate capture 
+
+For the RNAs captured in the mock infected and viral infected samples, there are no clear patterns that emerge by cell type or infection status. These RNAs are most likely representative of the background captured by this method. 
+
+The RNA cleavage events enriched in samples infected with virus display a few patterns consistent with abundant capture of RNAs upregulated by innate immune activation. We do observe increased cleavage in WT mouse macrophage's as compared to IFNAR and RNase L KO cells. Furthermore, the predicted gene for the IFN-inducible GTPase has the lowest signal across all viral infection conditions in the IFNAR KO cells. This also suggests that these immune related RNAs were most likely captured due to upregulation by viral infection vs. specific cleavage activity. 
+
+

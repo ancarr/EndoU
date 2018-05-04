@@ -1,0 +1,23 @@
+name: "EndoU Collaboration Data Analysis"
+navbar:
+  title: "EndoU Collaboration Data Analysis"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "MHV RNA analysis"
+      href: MHV_endoU_analysis_final.html
+    - text: "MHV RNA re-seq analysis"
+      href: MHV_endo_analysis_reseq_final.html
+    - text: "rRNA analysis"
+      href: rRNA_endoU_analysis.html
+    - text: "mRNA analysis"
+      href: mRNA_endoU_analysis.html
+    - text: "U6 RNA analysis"
+      href: U6_23-Cyclic_Phosphate_Analysis.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+
+
+  

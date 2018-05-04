@@ -7,8 +7,6 @@ output:
     code_folding: hide
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -595,7 +593,8 @@ freq_5S_plot <- freq_5S %>%
 freq_5S_plot
 
 ```
-### Discussion of dinucleotide analysis: 
+
+### Discussion of dinucleotide analysis:
 
 The significant amount of non-specific rRNA cleavage makes it difficult to draw conclusions about the dinucleotide cleavage patterns. There relative frequencies and patterns of cleavage in the mock samples are very similar to that observed in the treated samples across all rRNAs. There may be some small differences in frequenct for robust RNase L cleavage sites preferences (UA, UU) between B6 and IFNAR/RNase L KO cells, but overall they are not robust or particulally clear. 
 

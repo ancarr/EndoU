@@ -7,8 +7,6 @@ output:
     code_folding: hide
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -297,10 +295,10 @@ foldchange_graph
 B6_12 <- new_changensp15 %>% 
   filter(cell == "B6" & time == "12")
 dinuc_positions <- neg_table %>% 
-  select(chrom, start, end, dinuc)
+  dplyr::select(chrom, start, end, dinuc)
 B6_12_dinuc <- left_join(B6_12, dinuc_positions) %>% 
   unique() %>%
-  select(chrom, start, end, log2foldchange, dinuc)
+  dplyr::select(chrom, start, end, log2foldchange, dinuc)
 
 datatable(B6_12_dinuc)
 
@@ -313,10 +311,10 @@ datatable(B6_12_dinuc)
 RNaseL_12 <- new_changensp15 %>% 
   filter(cell == "RNaseL" & time == "12")
 dinuc_positions <- neg_table %>% 
-  select(chrom, start, end, dinuc)
+  dplyr::select(chrom, start, end, dinuc)
 RNaseL_12_dinuc <- left_join(RNaseL_12, dinuc_positions) %>% 
   unique() %>% 
-  select(chrom, start, end, log2foldchange, dinuc)
+  dplyr::select(chrom, start, end, log2foldchange, dinuc)
 
 datatable(RNaseL_12_dinuc)
 

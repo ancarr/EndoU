@@ -9,7 +9,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Executive Summary"
+    - text: "Executive_Summary"
       href: Executive_Summary.html
     - text: "MHV RNA analysis"
       href: MHV_endoU_analysis_final.html

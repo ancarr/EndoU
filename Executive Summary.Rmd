@@ -1,8 +1,12 @@
 ---
 title: "Executive Summary"
 author: "Rachel Ancar"
-date: "5/16/2018"
-output: html_document
+date: "05/16/2018"
+output: 
+  html_document:
+    code_folding: hide
+    toc: yes
+    toc_float: yes
 ---
 
 #MHV RNA Analysis 

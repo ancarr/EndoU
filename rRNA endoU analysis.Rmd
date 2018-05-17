@@ -64,12 +64,13 @@ plot_18S <- ggplot(table_18S, aes(x = start, y = normalized_count)) +
     scale_color_brewer(palette = 'Set1') + 
     theme_cowplot() +
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    scale_x_continuous(breaks=seq(0, 2000, 250)) + 
     labs(x="Position", y="Normalized counts (counts/total reads)") +
     ggtitle("18S rRNA coverage plots")
 plot_18S
 
-# Previously documented RNaseL cleavage site 542 in 18S rRNA
+# Previously documented RNaseL cleavage site 542 and 771 in 18S rRNA
 
 plot_18S_542 <- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'dodge') +
@@ -77,11 +78,23 @@ plot_18S_542 <- ggplot(table_18S, aes(x = start, y = normalized_count, fill = ti
     scale_fill_brewer(palette = 'Set1') + 
     theme_cowplot() +
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     labs(x="Position", y="Normalized counts (counts/total reads)") +
     xlim(530, 560) +
     ggtitle("RNaseL cleavage site 542 in 18S rRNA")
 plot_18S_542
+
+plot_18S_771 <- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = "identity", position = 'dodge') +
+    #geom_line(aes(color = time)) + 
+    scale_fill_brewer(palette = 'Set1') + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x="Position", y="Normalized counts (counts/total reads)") +
+    xlim(760, 780) +
+    ggtitle("RNaseL cleavage site 771 in 18S rRNA")
+plot_18S_771
 
 #28S rRNA coverage plots
 
@@ -103,7 +116,8 @@ plot_28S <- ggplot(table_28S, aes(x = end, y = normalized_count)) +
     scale_colour_brewer(palette = 'Set1') + 
     theme_cowplot() +
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
     labs(x="Position", y="Normalized counts (counts/total reads)") +
     ggtitle("28S rRNA coverage plots")
 plot_28S
@@ -129,7 +143,8 @@ plot_5S <- ggplot(table_5S, aes(x = end, y = normalized_count)) +
     scale_colour_brewer(palette = 'Set1') + 
     theme_cowplot() + 
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
     labs(x="Position", y="Normalized counts (counts/total reads)") +
     ggtitle("5S rRNA coverage plots")
 plot_5S
@@ -170,9 +185,10 @@ sub18S_plot <- ggplot(subtractive_18S, aes(x = end, y = normalized_count)) +
     scale_color_brewer(palette = 'Set1') + 
     theme_cowplot() +
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     labs(x="Position", y="Normalized counts (counts/total reads)") + 
     scale_y_continuous(limits = c(0 , 0.02)) +
+    scale_x_continuous(breaks=seq(0, 2000, 250)) + 
     ggtitle("18s rRNA RNase L dependent cleavage plots")
 sub18S_plot
 
@@ -197,6 +213,7 @@ sub28S_plot <- ggplot(subtractive_28S, aes(x = end, y = normalized_count)) +
     theme_cowplot() +
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +                  scale_y_continuous(limits = c(0 , 0.02)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
    ggtitle("28s rRNA RNase L dependent cleavage plots")
 sub28S_plot
 
@@ -223,6 +240,7 @@ sub5S_plot <- ggplot(subtractive_5S, aes(x = end, y = normalized_count, fill = t
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +              
     scale_y_continuous(limits = c(0 , 0.005)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
     ggtitle("5s rRNA RNase L dependent cleavage plots")
 sub5S_plot
 
@@ -259,8 +277,9 @@ subnsp15_18S_plot <- ggplot(subtractive_nsp15_18S, aes(x = end, y = normalized_c
     scale_color_brewer(palette = 'Set1') + 
     theme_cowplot() + 
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +  
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +  
     scale_y_continuous(limits = c(0.0, 0.02)) +
+    scale_x_continuous(breaks=seq(0, 2000, 250)) + 
     ggtitle("18S rRNA EndoU substractive analysis ")
 subnsp15_18S_plot
 
@@ -285,6 +304,7 @@ subnsp15_28S_plot <- ggplot(subtractive_nsp15_28S, aes(x = end, y = normalized_c
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +     
     scale_y_continuous(limits = c(0.0, 0.02)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
     ggtitle("28S rRNA EndoU substractive analysis ")
 subnsp15_28S_plot
 
@@ -309,6 +329,7 @@ subnsp15_5S_plot <- ggplot(subtractive_nsp15_5S, aes(x = end, y = normalized_cou
     theme_cowplot() + 
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +                   scale_y_continuous(limits = c(0.0, 0.02)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
     ggtitle("5S rRNA EndoU substractive analysis ")
 subnsp15_5S_plot
 
@@ -347,7 +368,8 @@ submock_18S_plot <- ggplot(subtractive_mock_18S, aes(x = end, y = normalized_cou
     scale_y_continuous(limits = c(0, 0.03)) + 
     labs(x="Position", y="Normalized counts (counts/total reads)") +
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+     scale_x_continuous(breaks=seq(0, 2000, 250)) + 
     ggtitle("18S rRNA baseline coverage plots ") 
 submock_18S_plot
 
@@ -372,6 +394,7 @@ submock_28S_plot <- ggplot(subtractive_mock_28S, aes(x = end, y = normalized_cou
     scale_y_continuous(limits = c(0, 0.03)) + 
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
     ggtitle("28S rRNA baseline coverage plots") 
 submock_28S_plot
 
@@ -399,6 +422,7 @@ submock_5S_plot <- ggplot(subtractive_mock_5S, aes(x = end, y = normalized_count
     scale_y_continuous(limits = c(0, 0.01)) + 
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
     ggtitle("5S rRNA baseline coverage plots") 
 submock_5S_plot
 
@@ -435,7 +459,8 @@ subnsp15_baseline18S_plot <-
     theme_cowplot() + 
     scale_y_continuous(limits = c(0, 0.02)) + 
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+     scale_x_continuous(breaks=seq(0, 2000, 250)) + 
     ggtitle("Baseline 18S rRNA nsp15 dependent analysis") 
 subnsp15_baseline18S_plot
 
@@ -460,6 +485,7 @@ subnsp15_baseline28S_plot <- ggplot(subtractive_nsp15_baseline28S, aes(x = end, 
     scale_y_continuous(limits = c(0, 0.01)) + 
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
     ggtitle("Baseline 28S rRNA nsp15 dependent analysis") 
 subnsp15_baseline28S_plot
 
@@ -484,6 +510,7 @@ subnsp15_baseline5S_plot <- ggplot(subtractive_nsp15_baseline5S, aes(x = end, y 
     scale_y_continuous(limits = c(0, 0.01)) + 
     facet_grid(virus ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
     ggtitle("Baseline 5S rRNA nsp15 dependent analysis") 
 subnsp15_baseline5S_plot
 
@@ -562,7 +589,7 @@ freq_18S_plot <- freq_18S %>%
   geom_bar(stat = "identity", position = 'dodge') + 
   theme_cowplot() +
   facet_grid(virus ~ cell) +  
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("18S dinucleotide frequency plots ") 
 freq_18S_plot
 
@@ -575,7 +602,7 @@ freq_28S_plot <- freq_28S %>%
   geom_bar(stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("28S dinucleotide frequency plots ") 
 freq_28S_plot
 
@@ -588,13 +615,12 @@ freq_5S_plot <- freq_5S %>%
   geom_bar(stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("5S dinucleotide frequency plots ") 
 freq_5S_plot
 
 ```
-
-### Discussion of dinucleotide analysis:
+### Discussion of dinucleotide analysis: 
 
 The significant amount of non-specific rRNA cleavage makes it difficult to draw conclusions about the dinucleotide cleavage patterns. There relative frequencies and patterns of cleavage in the mock samples are very similar to that observed in the treated samples across all rRNAs. There may be some small differences in frequenct for robust RNase L cleavage sites preferences (UA, UU) between B6 and IFNAR/RNase L KO cells, but overall they are not robust or particulally clear. 
 
@@ -622,7 +648,7 @@ sub18S_freq_plot <- subtractive_18S %>%
   theme_cowplot() + 
   facet_grid(virus ~ cell) + 
   scale_y_continuous(limits = c(0.00, 0.04)) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("18S RNase L subtractive dinucleotide frequency plots ") 
 sub18S_freq_plot
 
@@ -643,7 +669,7 @@ sub28S_freq_plot <- subtractive_28S %>%
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) + 
   scale_y_continuous(limits = c(-0.0, 0.06)) +
   ggtitle("28S RNase L subtractive dinucleotide frequency plots ") 
 sub28S_freq_plot
@@ -665,7 +691,7 @@ sub5S_freq_plot <- subtractive_5S %>%
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
     facet_grid(virus ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) + 
     scale_y_continuous(limits = c(-0.0, 0.06)) +
     ggtitle("5S RNase L subtractive dinucleotide frequency plots ") 
 sub5S_freq_plot
@@ -701,7 +727,7 @@ endoU_sub18S_freq_plot <- endoU_subtractive_18S %>%
   theme_cowplot() + 
   scale_y_continuous(limits = c(0.00, 0.06)) +
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("18S nsp15 subtractive dinucleotide frequency plots ") 
 endoU_sub18S_freq_plot
 
@@ -726,7 +752,7 @@ endoU_sub28S_freq_plot <- endoU_subtractive_28S %>%
   theme_cowplot() + 
   scale_y_continuous(limits = c(0.0, 0.06)) +
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("28S nsp15 subtractive dinucleotide frequency plots ") 
 endoU_sub28S_freq_plot
 
@@ -749,8 +775,8 @@ endoU_sub5S_freq_plot <- endoU_subtractive_5S %>%
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
   scale_y_continuous(limits = c(0.0, 0.06)) +
-  facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  facet_grid(cell ~ virus) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("5S nsp15 subtractive dinucleotide frequency plots ") 
 endoU_sub5S_freq_plot
 

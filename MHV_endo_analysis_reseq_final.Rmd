@@ -365,7 +365,7 @@ neg_freq_plot <- ggplot(neg_freq, aes(x = dinuc , y = freq)) +
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() + 
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("MHV (+) strand dinucleotide frequency plots")
 neg_freq_plot
 
@@ -395,7 +395,7 @@ subneg_freq_plot <- subtractive_neg %>%
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() +
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("MHV (+) strand RNase L subtractive dinucleotide frequency analysis")
   #scale_y_continuous(limits = c(0.00, 0.10))
 subneg_freq_plot
@@ -418,7 +418,7 @@ subnegdinuc_freq_plot <- subdinuc_neg_nsp15 %>%
   geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
   theme_cowplot() +
   facet_grid(cell ~ virus) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
   ggtitle("MHV (+) strand nsp15 subtractive dinucleotide frequency analysis")
   #scale_y_continuous(limits = c(0.00, 0.10))
 subnegdinuc_freq_plot

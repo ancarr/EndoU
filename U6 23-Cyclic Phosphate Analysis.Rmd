@@ -60,7 +60,7 @@ plot_U6 <- ggplot(U6_table, aes(x = start, y = count)) +
 
 plot_U6_final <- plot_U6 + 
   facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +  
+  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +  
   labs(x="Position", y="Counts") 
 plot_U6_final
 

@@ -26,49 +26,49 @@ knitr::opts_chunk$set(message = FALSE)
 
 1.c) There are sites of MHV + strand RNA cleavage in the abscence of RNase L, which decrease during infection with mutant nsp15. 
 
-[1.a - 1.c](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
+[MHV RNA: 1.a - 1.c](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
 
 2) There are sites in MHV + strand RNA with signal dependent on active nsp15 and independent of RNase L. These sites decrease relative to infection with mutant nsp15 from 4-32 fold. Some of the most robust sites are: 23823 (AU), 25404 (UC), 26081 (UC), 18645 (GA/U), 11674 (UU). IFNAR KO cells have the lowest-fold change values because they consistently have the most "residual" signal at potential nsp15 target sites in the nsp15 mutant infection conditions. 
 
-[2.1](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
-[2.2](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
-[2.3](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#identifying_“significant”_sites_of_possible_nsp15_cleavage)
+[MHV RNA: 2.1](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
+[MHV RNA: 2.2](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
+[MHV RNA: 2.3](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#identifying_“significant”_sites_of_possible_nsp15_cleavage)
 
 3) There is a clear RNase L cleavage signature in the data. The cleavage preference for endoU is less specific and the pattern is less clear. There does seem to be a preference for U and C cleavage. However, the dinucleotide "UU" is not a prefered nsp15 target, and is dected at a high level of background. 
 
-[3](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#nsp15_substractive_dinucleotide_analysis_of_for_all_cell_types_by_type_of_viral_infection)
+[MHV RNA: 3](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#plotting_dinucleotide_frequencies_for_all_cell_types_by_type_of_viral_infection)
 
 #MHV RNA Re-seq Analysis 
 
 1) The trends and patterns observed in the inital analysis at lower depth are retained in this focused analysis at higher depth with less samples. 
 
-[1](https://ancarr.github.io/EndoU/MHV_endo_analysis_reseq_final.html)
+[MHV RNA re-seq: 1](https://ancarr.github.io/EndoU/MHV_endo_analysis_reseq_final.html)
 
 #rRNA analysis
 
 1) There is significant cleavage signal of 18s, 28s, nd 5s rRNA in mock and infected samples across all cell types. Although there is significant background, the patterns of cleavage seem consistent with previous methods mapping 2´,3´-cyclic phosphate capture in rRNA. Additionally, there is capture of specific known RNAse L cleavage sites in 18s RNA at position 442 and 771 and this signal increases during infection with ns2 and nsp15 mutant MHV. 
 
-[1](https://ancarr.github.io/EndoU/rRNA_endoU_analysis.html#coverage_plots_for_18s,_28s,_and_5s_rrna_by_cell_type_and_type_of_viral_infection)
+[rRNA: 1](https://ancarr.github.io/EndoU/rRNA_endoU_analysis.html#coverage_plots_for_18s,_28s,_and_5s_rrna_by_cell_type_and_type_of_viral_infection)
 
 2) In 18s and 28 rRNA in RNase L KO cells, there is significant nsp15-dependent cleavage  throughout the rRNAs during infection with WT virus, and very little cleavage with infection by ns2 mutant MHV. The lack of cleavage in the ns2 infected cells suggests sometime of interaction with the nsp15 activity putatively contributing to the signal in the WT infection. 
 
-[2](https://ancarr.github.io/EndoU/rRNA_endoU_analysis.html#endou_mutant_(nsp15)_substractive_coverage_analysis_of_mhv_(+)_strand_for_all_cell_types_by_type_of_viral_infection_from_baseline)
+[rRNA: 2](https://ancarr.github.io/EndoU/rRNA_endoU_analysis.html#endou_mutant_(nsp15)_substractive_coverage_analysis_of_mhv_(+)_strand_for_all_cell_types_by_type_of_viral_infection_from_baseline)
 
 3) A dinculeotide preference above background for RNase L is less clear than that detected in the MHV analysis. A preference for UA, UC, and UU is clearest in the B6 cells infected with nsp15 mutant MHV. There isn't a clear dinucleotide preference for putatively endoU cleavage events above background in the rRNA. 
 
-[3](https://ancarr.github.io/EndoU/rRNA_endoU_analysis.html#graphing_dinucleotide_frequencies_for_all_cell_types_by_infection_status)
+[rRNA: 3](https://ancarr.github.io/EndoU/rRNA_endoU_analysis.html#graphing_dinucleotide_frequencies_for_all_cell_types_by_infection_status)
 
 #mRNA analysis
 
 1) The mRNA analysis identified RNAs with significant capture of 2´,3´-cyclic phosphate that are known to contain cyclic phosphates, highly expressed cellular RNAs, or RNA induced by interferon. This suggests that the primary signal from cellular RNAs is related to RNA abundance vs. specific cleavage. For example, TNF alpha induced protein 3 mRNA signal is most abundant in B6 cells with intact innate immune sensing and signalling pathways. Identifying specific cleavage of mRNAs would require a normalization by mRNA abudnance in these samples.  
 
-[1](https://ancarr.github.io/EndoU/mRNA_endoU_analysis.html)
+[mRNA: 1](https://ancarr.github.io/EndoU/mRNA_endoU_analysis.html#plots_of_some_of_the_most_abundant_rnas_captured_in_both_mock_and_infected_samples)
 
 #U6 analysis
 
 1) The snRNA U6 has a cyclic phosphate at its 3´-end produced during RNA processing and is a good postive control for capture of cyclic phosphates in the library. Overall, we see specific capture of U6, cyclic phosphate in all the samples. Although, there were disparities among the relatives amounts of cyclic phosphate captured between library samples.
 
-[1](https://ancarr.github.io/EndoU/U6_23-Cyclic_Phosphate_Analysis.html)
+[U6: 1](https://ancarr.github.io/EndoU/U6_23-Cyclic_Phosphate_Analysis.html)
 
 #Recommended next steps
 

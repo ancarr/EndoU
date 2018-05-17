@@ -2,8 +2,6 @@
 title: "Using 2´,3´-Cyclic Phosphate Sequencing to Identify MHV nsp15 RNA Targets"
 ---
 
-<style type="text/css"> body, td { font-size: 14px; } code.r{ font-size: 12px; } pre { font-size: 12px } </style>
-
 This website contains analysis of mouse macrophage RNAs and MHV RNA in order to identify targets of the MHV endoribonuclease nsp15. We analyzed MHV RNA, ribosomal RNA, and mRNA to identify potential targets. 
 
 The data and brief discussions of the results are organized as seperate pages for each of the types of RNAs analyzed, which can be accessed in the menu at the top of this webpage. It would be best to start with the analysis of the MHV RNA and move down the list. There is a summary outlining the most important findings with links to the data related to each topic discussed. 

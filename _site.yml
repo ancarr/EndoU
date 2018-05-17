@@ -21,7 +21,7 @@ navbar:
       href: mRNA_endoU_analysis.html
     - text: "U6 RNA analysis"
       href: U6_23-Cyclic_Phosphate_Analysis.html
-
-
-
-  
+output:
+  html_document:
+    theme: flatly
+    css: style.css

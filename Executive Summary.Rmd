@@ -9,6 +9,14 @@ output:
     toc_float: yes
 ---
 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+
+```
+
+
 #MHV RNA Analysis 
 
 1.a) Putative cleavage of MHV RNA is restricted to the positive strand MHV RNA. There is signfiicant cleavage of MHV + strand RNA by RNase L, and this activity is increased during infection with ns2 mutant MHV and nsp15 mutant MHV.  

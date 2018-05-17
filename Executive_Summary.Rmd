@@ -20,6 +20,9 @@ knitr::opts_chunk$set(message = FALSE)
 
 #MHV RNA Analysis 
 
+##This is a summary of the key data from this analysis. After each section there are numbered links to the supporting data. 
+
+
 1.a) Putative cleavage of MHV RNA is restricted to the positive strand MHV RNA. There is signfiicant cleavage of MHV + strand RNA by RNase L, and this activity is increased during infection with ns2 mutant MHV and nsp15 mutant MHV.  
 
 1.b) In general, there is more cleavage of MHV RNA at 12 vs. 9 hpi in B6 macrophages. This strend is reversed in IFNAR and RNase L KO cells. There are also less cleavage events in the KO cells, but it is unclear if this is due to less viral transcripts in these cells or fewer overall cleavage events. 

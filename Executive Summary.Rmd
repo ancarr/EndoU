@@ -17,9 +17,9 @@ output: html_document
 
 2) There are sites in MHV + strand RNA with signal dependent on active nsp15 and independent of RNase L. These sites decrease relative to infection with mutant nsp15 from 4-32 fold. Some of the most robust sites are: 23823 (AU), 25404 (UC), 26081 (UC), 18645 (GA/U), 11674 (UU). IFNAR KO cells have the lowest-fold change values because they consistently have the most "residual" signal at potential nsp15 target sites in the nsp15 mutant infection conditions. 
 
-[2](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
-[2](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
-[2](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#identifying_“significant”_sites_of_possible_nsp15_cleavage)
+[2.1](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
+[2.2](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#coverage_plots_for_all_cell_types_by_type_of_viral_infection)
+[2.3](https://ancarr.github.io/EndoU/MHV_endoU_analysis_final.html#identifying_“significant”_sites_of_possible_nsp15_cleavage)
 
 3) There is a clear RNase L cleavage signature in the data. The cleavage preference for endoU is less specific and the pattern is less clear. There does seem to be a preference for U and C cleavage. However, the dinucleotide "UU" is not a prefered nsp15 target, and is dected at a high level of background. 
 

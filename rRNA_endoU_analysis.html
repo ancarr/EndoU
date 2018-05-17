@@ -298,6 +298,9 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="Executive_Summary.html">Executive Summary</a>
+</li>
+<li>
   <a href="MHV_endoU_analysis_final.html">MHV RNA analysis</a>
 </li>
 <li>
@@ -357,8 +360,8 @@ library(DT)</code></pre>
 <p>These plots display coverage across the entire 18S, 28S, and 5s rRNA sequence. Counts are normalized by library size.</p>
 <pre class="r"><code>sample_info_table &lt;- read_tsv(&quot;sample_info.txt&quot;, col_names = c(&quot;cell type&quot;, &quot;virus type&quot;, &quot;time&quot;))
 datatable(sample_info_table)</code></pre>
-<div id="htmlwidget-2a71b7e980901d7ca1d0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2a71b7e980901d7ca1d0">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],["B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","IFNAR","RNaseL","B6","IFNAR","RNaseL"],["Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","mock","mock","mock","mock","mock","mock"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","0/12","0/12","0/12","0/9","0/9","0/9"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cell type<\/th>\n      <th>virus type<\/th>\n      <th>time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f76639b451e9f9288ea0" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f76639b451e9f9288ea0">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],["B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","IFNAR","RNaseL","B6","IFNAR","RNaseL"],["Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","mock","mock","mock","mock","mock","mock"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","0/12","0/12","0/12","0/9","0/9","0/9"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cell type<\/th>\n      <th>virus type<\/th>\n      <th>time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#18S rRNA coverage plots
 
 data_dir_18S = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/rRNA_bg/mm18S/neg/&quot;

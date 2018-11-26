@@ -1,7 +1,7 @@
 ---
-title: "Analysis of MHV RNA to Detect EndoU Cleavage Sites"
+title: "Analysis of MHV RNA to Detect EndoU Cleavage Sites from Exp # 2"
 author: "Rachel Ancar"
-date: "11/03/2018"
+date: "11/11/2018"
 output:
   html_document:
     code_folding: hide
@@ -32,11 +32,11 @@ library(DT)
 
 ```
 
-2´,3´-cyclic phosphate RNA-sequencing libraries were prepared from mouse macrophages: B6 (WT), IFNAR KO, RNaseL KO. These cells were either mock infected or infected with WT MHV virus (from Volker or Susan), MHV mutated to inactivate ns2 (phosphodiesterase) activity, or MHV mutated to inactivate nsp15 (endoribonuclease) activity for 9 and 12 hours. 
+2´,3´-cyclic phosphate RNA-sequencing libraries were prepared from mouse macrophages: B6 (WT) and RNaseL KO. These cells were either mock infected or infected with WT MHV virus (from Volker), MHV mutated to inactivate ns2 (phosphodiesterase) activity, or MHV mutated to inactivate nsp15 (endoribonuclease) activity for 9 and 12 hours. 
 
 ```{r, message = F, warning = F}
 
-sample_info_table <- read_tsv("sample_info.txt", col_names = c("cell type", "virus type", "time"))
+sample_info_table <- read_tsv("sample_info_exp2.txt", col_names = c("cell type", "virus type", "time"))
 datatable(sample_info_table)
 
 ```
@@ -45,13 +45,13 @@ These libraries were processed to generate bedgraph files containing sites of 3�
 
 #Coverage plots for all cell types by type of viral infection
 
-These plots show the normalized counts of captured 2´,3´-cyclic phosphates captured (% of total cDNA reads for each library) per nucleotide position in the the MHV (+) strand reads. The MHV (-) strand reads are displayed using un-normalized counts because there were very few detected cleavage events and those occured at very low frequency. 
+These plots show the normalized counts of captured 2´,3´-cyclic phosphates captured (% of total cDNA reads for each library) per nucleotide position in the the MHV (+) strand reads. 
 
 ```{r, message = F, warning = F}
 
 #MHV (+) strand coverage plots 
 
-data_dir_neg = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/neg"
+data_dir_neg = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/neg_exp2"
 data_files_neg = list.files(data_dir_neg, full.names = T)
 
 read_file <- function(x) {
@@ -64,20 +64,9 @@ neg_table <- purrr::map_df(data_files_neg, read_file) %>%
   mutate(name = str_replace(name, ".mhv.neg.dinuc.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
 
-#neg_plot <- ggplot(neg_table, aes(x = start, y = normalized_count)) +
-    #geom_line(aes(color = time)) +
-    #scale_colour_brewer(palette="Set1") + 
-    #theme_cowplot() + 
-    #facet_grid(virus ~ cell) +
-    #theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    #labs(x="Position", y="Normalized counts") +
-    #scale_x_continuous(breaks=seq(0, 30000, 5000)) + 
-    #ggtitle("MHV (+) strand coverage plots")
-#neg_plot
-
-neg_plot <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time, width = 100)) +
-    geom_bar(stat = "identity", position = 'identity') +
-    scale_fill_brewer(palette="Set1") + 
+neg_plot <- ggplot(neg_table, aes(x = start, y = normalized_count)) +
+    geom_line(aes(color = time)) +
+    scale_colour_brewer(palette="Set1") + 
     theme_cowplot() + 
     facet_grid(virus ~ cell) +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
@@ -88,7 +77,7 @@ neg_plot
 
 #MHV (-) strand coverage plots
 
-data_dir_pos = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/pos"
+data_dir_pos = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/pos_exp2"
 data_files_pos = list.files(data_dir_pos, full.names = T)
 
 pos_table <- purrr::map_df(data_files_pos, read_file) %>%
@@ -111,17 +100,16 @@ pos_plot
 ###Discussion of coverage analysis: 
 
 1. We do not observe significant capture of MHV RNA from any of the mock infected samples
-2. In general, we see more MHV "cleavage" (aka 2´,3´-cyclic phosphate capture) at 12 hpi vs. 9 hpi with WT virus, which may reflect greater viral RNA abundance at the later time point. In the ns2 mutant, which will result in increased RNaseL activation, we see even more robust cleavage, especially at 12 hours.
-3. There is a significant decrease in signal in the viral samples with mutant nsp15, which may reflect decreased viral RNA abundance, adiditonally, we also see a different temporal pattern with the majority of cleavage at 9 vs. 12 hpi which may reflect earlier detection and cleavage of MHV RNA in the absence of nsp15. 
+2. In general, we see more MHV "cleavage" (aka 2´,3´-cyclic phosphate capture) at 12 hpi vs. 9 hpi with WT virus, which may reflect greater viral RNA abundance at the later time point. 
+3. There is less signal in the viral samples infected with mutant nsp15, which may reflect decreased viral RNA abundance.
 4. The IFNAR KO and RNaseL KO samples are similar, but different. This may reflect direct vs. infdirect effects of dsRNA sensing pathways and effectors on MHV detection.
-5. In the IFNAR KO and RNaseL KO samples, there are lower amounts of MHV cleavage events detected, which could be a result of RNaseL activation. A measure of total viral RNA in these samples could provde some clarity. Additionally, the RNA clevaage events are more robust at 9 hpi than observed in the WT B6 samples. 
-6. Although low abundance, the key comparison between WT MHV and mutant MHV across all cell types suggest that there may be some sites of specific nsp15 cleavage. 
+5. Overall, the patterns between experiment 1 and experiment 2 are similar, except that there seems to be more cleavage in RNaseL KO and nsp15 mutant + strand RNA in experiment 2 than experiment 1. This doesn't make a lot of sense considering that in the abscence of both RNaseL and Nsp15 there should be less cleavage of viral RNA and this was observed in experiment 1.
 
 #Identifying endonuclease specific cleavage by subtractive analysis
 
 ##RNaseL substractive coverage plots of MHV (+) strand reads for all cell types by type of viral infection
 
-The normalized counts detected in RNaseL KO cells for each type of viral infection were subtracted from the normalized counts detected in WT B6 and IFNAR KO cells. This substractive analysis will emphasize RNaseL dependent cleavage events by reporting signals that occur only in the presence of 
+The normalized counts detected in RNaseL KO cells for each type of viral infection were subtracted from the normalized counts detected in WT B6 cells. This substractive analysis will emphasize RNaseL dependent cleavage events by reporting signals that occur only in the presence of 
 RNaseL. 
 
 ```{r, message = F, warning = F}
@@ -135,9 +123,8 @@ subtractive_neg[is.na(subtractive_neg)] <- 0
 
 subtractive_neg <- subtractive_neg %>% 
   mutate(B6_RNaseLdep = B6 - RNaseL) %>% 
-  mutate(IFNAR_RNaseLdep = IFNAR - RNaseL) %>% 
-  dplyr::select(start:end, virus:time, B6_RNaseLdep:IFNAR_RNaseLdep) %>% 
-  gather(cell, normalized_count, B6_RNaseLdep:IFNAR_RNaseLdep)
+  dplyr::select(start:end, virus:time, B6_RNaseLdep) %>% 
+  gather(cell, normalized_count, B6_RNaseLdep)
                                       
 #Plots of RNase L dependent sites 
 subneg_plot <- ggplot(subtractive_neg, aes(x = start, y = normalized_count)) +
@@ -168,11 +155,10 @@ subtractive_nsp15 <- neg_table %>%
 subtractive_nsp15[is.na(subtractive_nsp15)] <- 0
 
 subtractive_nsp15 <- subtractive_nsp15 %>% 
-  mutate(MHVS_nsp15dep = MHVS - nsp15) %>% 
   mutate(MHVV_nsp15dep = MHVV - nsp15) %>% 
   mutate(ns2_nsp15dep = ns2 - nsp15) %>% 
-  dplyr::select(start:end, cell:time, MHVS_nsp15dep:ns2_nsp15dep) %>% 
-  gather(virus, normalized_count, MHVS_nsp15dep:ns2_nsp15dep)
+  dplyr::select(start:end, cell:time, MHVV_nsp15dep:ns2_nsp15dep) %>% 
+  gather(virus, normalized_count, MHVV_nsp15dep:ns2_nsp15dep)
 
 #Plots of nsp15 dependent sites 
                          
@@ -194,15 +180,12 @@ subnsp15_plot
 
 We have captured signal specific to RNase L and Nsp15 cleavage of MHV + strand RNA. This is evidenced by the signal that remains in nsp15-mutant RNase L WT cells and RNase L KO cells with WT nsp15. 
 
-We can compare the sites of RNase L cleavage to data previously collected by Dave Barton, but there has been no previously identified sites of cleavge in MHV RNA by nsp15. 
-
-Looking specifically at the nsp15-subtractive analysis, the robust signal in all of the B6 cells is nsp15-dpendent, but not RNaseL independent, because RNaseL could also be responsible for this signal. Looking in the RNaseL KO samples give us the best understanding of nsp15 cleavage of MHV RNA without the confounding effect of RNaseL cleavage. Focusing on this cell type, we 
-see the nsp15-dependent and RNaseL-independent sites in MHV RNA at 12 and 9 hours after infection. There are some clear sites of cleavage.
+Looking specifically at the nsp15-subtractive analysis, the nsp15 dependent sites in experiment 2 are similar to experiment 1, except that there are more pronounced differences between WT infection and ns2 infection in both WT and RNaseL KO cells.
 
 
 #Examining specific sites of cleavage in MHV (+) strand RNA
 
-By visual inspection, the nsp15 substractive analysis data suggests some potential regions of interest in the MHV genome that may be cleaved by endoU. Some specific sites are visualized below. 
+Overall, these sites identified as interest in experiment 1 look similar in location and signal here, except for site 18645 which is captured at a much lower frequency in experiment 2. 
 
 Site18645: Previously identified by Dave Barton as potentially a site of interest. Dinucleotide is "GC" at 18645 (GA in reference, but GC in viral RNA). There is also a site of clevage with smaller signal at 18648, which is "UU" 
 
@@ -216,8 +199,7 @@ Site 26147 and 26148: 26147 = UC, 26147 = UU
 
 #Site18645-Previously identified in unpublished data from Dave Barton as potentially a site of interest. Dinucleotide is "GC" at 18645 (GA in reference, but GC in viral RNA). There is also a site of clevage with smaller signal at 18648, which is "UU" 
 
-neg_plot_18645 <- filter(neg_table, time != "012") %>% filter(time != "09") %>%
-  ggplot(aes(x = start, y = normalized_count, fill = time)) +
+neg_plot_18645 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'dodge') +
     scale_fill_brewer(palette="Set1") + 
     theme_cowplot() + 
@@ -230,8 +212,7 @@ neg_plot_18645
 
 #Site 26080 and 26087- identified by visual inspection of the data, 26080 = UC, 26087 = CU
 
-neg_plot_26080 <- filter(neg_table, time != "012") %>% filter(time != "09") %>%
-    ggplot(aes(x = start, y = normalized_count, fill = time)) +
+neg_plot_26080 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'dodge') +
     scale_fill_brewer(palette="Set1") + 
     theme_cowplot() + 
@@ -244,8 +225,7 @@ neg_plot_26080
   
 #Site25404 - identified by visual inspection of the data, 25404 = UC
 
-neg_plot_25404 <- filter(neg_table, time != "012") %>% filter(time != "09") %>%
-    ggplot(aes(x = start, y = normalized_count, fill = time)) +
+neg_plot_25404 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'dodge') +
     scale_fill_brewer(palette="Set1") + 
     theme_cowplot() + 
@@ -258,8 +238,7 @@ neg_plot_25404
 
 #Site 26147 and 26148 - identified by visual inspection of the data, 26147 = UC, 26147 = UU
 
-neg_plot_26148 <- filter(neg_table, time != "012") %>% filter(time != "09") %>%
-    ggplot(aes(x = start, y = normalized_count, fill = time)) +
+neg_plot_26148 <- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'dodge') +
     scale_fill_brewer(palette="Set1") + 
     theme_cowplot() + 
@@ -272,9 +251,10 @@ neg_plot_26148
 
 ```
 
+
 #Identifying "significant" sites of nsp15 cleavage
 
-Visual inspection of the data indicates that there are some nsp15 cleavage sites in the MHV (+) RNA. This analysis attempts to calculate which potential cleavage sites have the greatest fold change in cleavage singal captured between samples infected with WT virus and samples infected with nsp15 mutant virus. Cleavage sites where signal captured during WT infection decreases the most during infection with nsp15 mutant virus may be "real" sites of MHV endoU cleavage acitivity. 
+This analysis calculates which potential cleavage sites have the greatest fold change in cleavage signal between samples infected with WT virus and samples infected with nsp15 mutant virus. Cleavage sites where signal captured during WT infection decreases the most during infection with nsp15 mutant virus may be "real" sites of MHV endoU cleavage acitivity. 
 
 Calculating "fold change" across all sites is an unbiased approach to identify potential nsp15 cleavage sites. An alternative approach, focuses on fold change at sites with the greatest signal in the libary. 
 
@@ -304,9 +284,11 @@ top_plot
 
 ```
 
+The overall pattern of cleavage for the top 50 sites by normalized count is similar between experiment 1 and experiment 2. However, in experiment 2 there is more signal in nsp15 infections (both WT and RNaseL KO cells) which suggests there is more non-specific cleavage of the viral RNA in this experiment. 
+
 ##Fold-change for RNaseL 
 
-In this analysis, all positions in the MHV positive strand RNA with more than 20 reads were queried to identify sites with equal to or greater than a 5-fold decrease in signal comparing B6 WT cells and IFNAR KO cells to RNaseL KO cells (B6/RNaseL and IFNAR/RNaseL). 
+In this analysis, all positions in the MHV positive strand RNA with more than 20 reads were queried to identify sites with equal to or greater than a 5-fold decrease in signal comparing B6 WT cells to RNaseL KO cells (B6/RNaseL). 
 
 This analysis is independent of viral infection and just asks which sites change the most when RNaseL is absent. 
 
@@ -320,8 +302,7 @@ change_RNaseL[is.na(change_RNaseL)] <- 0
 
 change_RNaseL <- change_RNaseL %>% 
   mutate(B6_change = B6/RNaseL) %>% 
-  mutate(IFNAR_change = IFNAR/RNaseL) %>% 
-  gather(cell_comp, fold_change, B6_change:IFNAR_change) %>%
+  gather(cell_comp, fold_change, B6_change) %>%
   filter(fold_change > 0 & fold_change != Inf) %>%
   filter(fold_change >= 5) %>%
   group_by(start) %>%
@@ -343,10 +324,11 @@ change_RNaseL_graph
 
 ```
 
+There are 2 important observations from this data: 
 
-There are many sites with a greater than 5-fold change in signal when comparing B6 cells to RNaseL KO cells. The top four sites have very robust cleavage in B6 cells under conditions of infection with ns2 mutant virus and significantly decreased cleavage in RNase L KO cells (13423, UU; 30307, UA; 26013, UA; 10945, UU). Curiously, I do not see robust cleavage at these sites in Daphene's data. This inconsistenty is confusing, because these sites would otherwise be consistent with RNaseL targets. 
-
-Interestingly, in B6 cells infected with nsp15 mutant MHV, many of the sites with greater than 5-fold change are lost. This suggests that RNaseL cleavage is decreased in the presence of nsp15 activity so that the overall change in signal in the abscence of RNaseL is less than 5 fold. Or it could suggest that in the absence of nsp15 activity there is more cleavage at these RNaseL sites by another unknown endonuclease, which decreases the fold change in the absence of RNaseL. There are very few sites of cleavage with greater than 5 fold change in signal in IFNAR KO cells, which is not suprising because RNaseL activity will be dependent on IFNAR. 
+1) There are more sites with greater than 5-fold decrease in signal in experiment 2 and the fold-change ranges are generally higher. This relates to the fact that I was able to find many overlapping sites comparing experiment 1 to experiment 2. However, less of these sites in experiment 2 were also captured in exp. 1
+ 
+ 2) In exp.2 there were no sites captured during nsp15 infection with a greater than 5-fold decrease in signal in the abscence of RNaseL. In exp.1, there were very few sites captured. This strongly suggests that abscence of nsp15 leads altered RNaseL activity. 
 
 ##Fold-change for Nsp15 mutant reads
 
@@ -363,10 +345,9 @@ change_nsp15 <- neg_table %>%
 change_nsp15[is.na(change_nsp15)] <- 0
 
 change_nsp15 <- change_nsp15 %>% 
-  mutate(MHVS_change = MHVS/nsp15) %>% 
   mutate(MHVV_change = MHVV/nsp15) %>% 
   mutate(ns2_change = ns2/nsp15) %>% 
-  gather(viral_comp, fold_change, MHVS_change:ns2_change) %>%
+  gather(viral_comp, fold_change, MHVV_change:ns2_change) %>%
   filter(fold_change > 0 & fold_change != Inf) %>%
   filter(fold_change >= 5) %>%
   group_by(start) %>%
@@ -388,12 +369,16 @@ change_nsp15_graph
 
 ```
 
+In this analysis, the patterns of cleavage between experiment 1 and 2 are very similar. There are less sites with greater than 5-fold decrease in cleavage during infection with nsp15. However, 8 of the top 10 sites by fold-change identified in exp.1 were also captured in exp.2. 
+
+Exp.2 also furthur emphasizes that loss of RNaseL results in decreased cleavage by nsp15. Additionally, the ns2 mutant also alters cleavage of MHV RNA as compared to WT virus. 
+
+
 ##Fold-change for Nsp15 muant and RNaseL KO reads
 
 Same analysis as above focused in RNaseL KO cells. 
 
 ```{r}
-
 change_nsp15 <- neg_table %>% 
   filter(count >= 20) %>%
   dplyr::select(-count, -dinuc) %>% 
@@ -401,10 +386,9 @@ change_nsp15 <- neg_table %>%
 change_nsp15[is.na(change_nsp15)] <- 0
 
 change_nsp15RNaseL <- change_nsp15 %>% 
-  mutate(MHVS_change = MHVS/nsp15) %>% 
   mutate(MHVV_change = MHVV/nsp15) %>% 
   mutate(ns2_change = ns2/nsp15) %>% 
-  gather(viral_comp, fold_change, MHVS_change:ns2_change) %>%
+  gather(viral_comp, fold_change, MHVV_change:ns2_change) %>%
   filter(fold_change > 0 & fold_change != Inf) %>%
   filter(fold_change >= 5) %>%
   filter(cell == "RNaseL") %>%
@@ -428,15 +412,7 @@ change_nsp15RNaseL_graph
 
 ```
 
-There are many sites with greater than 5-fold decrease in signal when comparing WT MHV/ ns2 mutant MHV to nsp15 mutant MHV in B6 cells. In IFNAR NO and RNaseL KO cells there are less sites with a greater than 5-fold decrease in signal in the abscence of nsp15 as compared to B6 cells, which suggests that some of those sites are cleave by RNaseL as well. 
-
-Top 3 nsp15-dependent: 29003, UC; 26080, UC; 30260, GC
-
-This is confirmed by looking specifically for sites that decrease by 5-fold or greater with nsp15 infection only in RNaseL KO cells. There are 10 sites that change by 5-fold or greater in RNaseL KO cells. 
-
-Top 3 nsp15-dependent, RNaseL-independent: 26080, UC; 26087, CU; 23645, UC 
-
-Interestingly, most of the significant sites are only identified during infection with ns2 mutant virus. Including the polymorphic site 18646. More sites are detected with WT virus infection with a lower cut-off for fold-change. However, this suggests that ns2 mutant virus increases nsp15 mutant activity or the activity of another endoribunuclease cleaving at the same sites. 
+This analysis reveals some of the biggest differences between exp.1 and exp.2; in experiment 1 there were 35 sites captured in RNaseL KO cells with a greater than 5-fold decrease in signal with nsp15 infection. However, only 5 sites were detected in exp.2 and none of these were captured in experiment 1. This may be related to the higher level of cleavage signal observed in RNaseL KO cells infected with nsp15 in experiment 2 relative to experiment 1. 
 
 ##Top RNaseL-dependent sites
 
@@ -452,9 +428,8 @@ top_RNaseL[is.na(top_RNaseL)] <- 0
 
 top_RNaseL <- top_RNaseL %>% 
   mutate(B6_RNaseLdep = B6 - RNaseL) %>% 
-  mutate(IFNAR_RNaseLdep = IFNAR - RNaseL) %>% 
-  dplyr::select(start:end, virus:time, B6_RNaseLdep:IFNAR_RNaseLdep) %>% 
-  gather(cell, normalized_count, B6_RNaseLdep:IFNAR_RNaseLdep) %>%
+  dplyr::select(start:end, virus:time, B6_RNaseLdep) %>% 
+  gather(cell, normalized_count, B6_RNaseLdep) %>%
   group_by(cell) %>%
   arrange(desc(normalized_count)) %>%
   do(head(., n = 50))
@@ -474,8 +449,6 @@ top_RNaseL_graph
 
 ```
 
-This analysis furthur empahsizez the idea that nsp15 and RNaseL sites have significant overlap. We can see several many sites of robust signal in B6 cells that are dependent on RNaseL, but many are not independent of nsp15 activity. In B6 cells infected with nsp15 virus, many of the most robust cleavage sites are lost. This suggests that nsp15 contributes to the observed signal in many of the RNaseL-dependent top sites in the MHV positive strand RNA. 
-
 ##Fold change for top RNaseL-dependent sites 
 
 Using the top RNaseL-depenendent sites in a fold-change analaysis. This data is also filtered for sites with at least 20 or more reads and with a 5-fold or greater decrease in signal. 
@@ -491,8 +464,7 @@ top_change_RNaseL[is.na(top_change_RNaseL)] <- 0
 
 top_change_RNaseL <- top_change_RNaseL %>% 
   mutate(B6_change = B6/RNaseL) %>% 
-  mutate(IFNAR_change = IFNAR/RNaseL) %>% 
-  gather(cell, fold_change, B6_change:IFNAR_change) %>%
+  gather(cell, fold_change, B6_change) %>%
   filter(fold_change > 0 & fold_change != Inf) %>%
   filter(fold_change >= 5) %>%
   group_by(start) %>%
@@ -515,9 +487,7 @@ top_change_RNaseL_graph
 
 ```
 
-This analysis emphasizes the sites with the greatest fold change in signal when comparing B6 WT and IFNAR KO cells. The sites with the greater fold-change in signal from B6 to RNaseL KO cells were infected with ns2 mutant MHV. The fold change in signal for IFNAR KO cells is significantly lower than B6 cells, which is consistent with the signfiicant loss of RNaseL activity. 
-
-3 of the 4 top sites with the greatest fold change identified in the inital, more unbiased analysis calculating the fold change at all sites independent of a substractive analysis are identified here as well. 
+There is good overlap between experiment 1 and experiment 2 with regard to RNaseL cleavage of MHV RNA by the above analysis. 
 
 ##Top nsp15-dependent sites
 
@@ -533,11 +503,10 @@ top_nsp15 <- neg_table %>%
 top_nsp15[is.na(top_nsp15)] <- 0
 
 top_nsp15 <- top_nsp15 %>% 
-  mutate(MHVS_nsp15dep = MHVS - nsp15) %>% 
   mutate(MHVV_nsp15dep = MHVV - nsp15) %>% 
   mutate(ns2_nsp15dep = ns2 - nsp15) %>% 
-  dplyr::select(start:end, cell:time, MHVS_nsp15dep:ns2_nsp15dep) %>% 
-  gather(virus, normalized_count, MHVS_nsp15dep:ns2_nsp15dep) %>%
+  dplyr::select(start:end, cell:time, MHVV_nsp15dep:ns2_nsp15dep) %>% 
+  gather(virus, normalized_count, MHVV_nsp15dep:ns2_nsp15dep) %>%
   group_by(virus) %>%
   arrange(desc(normalized_count)) %>%
   do(head(., n = 50))
@@ -557,8 +526,6 @@ top_nsp15_graph
 
 ```
 
-If we just look at the top 50 sites by normalized counts by cell type, the most robust signal occurs in B6 cells where RNaseL is still active. There are 2 sites in RNaseL KO cells with robust nsp15-dependent and RNaseL independent signal. There is more signal that is nsp15-dependent in RNaseL KO cells, but these sites are not in the top 50 by normalized counts. The signal at these sites is less robust.
-
 ##Top nsp15-dependent sites fold change 
 
 Using the top nsp15-depenendent sites in a fold-change analaysis. This data is also filtered for sites with at least 20 or more reads and with a 5-fold or greater decrease in signal. 
@@ -573,11 +540,10 @@ top_change_nsp15 <- inner_join(neg_table, top_nsp15, by = "start") %>%
 top_change_nsp15[is.na(top_change_nsp15)] <- 0
 
 top_change_nsp15 <- top_change_nsp15 %>% 
-  mutate(MHVS_change = MHVS/nsp15) %>% 
   mutate(MHVV_change = MHVV/nsp15) %>% 
   mutate(ns2_change = ns2/nsp15) %>% 
   mutate(mock_change = mock/nsp15) %>%
-  gather(virus, fold_change, MHVS_change:mock_change) %>%
+  gather(virus, fold_change, MHVV_change:mock_change) %>%
   filter(fold_change > 0 & fold_change != Inf) %>%
   filter(fold_change >= 5) %>%
   group_by(start) %>%
@@ -600,10 +566,6 @@ top_change_nsp15_graph
 
 ```
 
-This analysis identifies the sites in MHV positive strand RNA with a greater than 5-fold change in signal when comapring virus infection with MHV wt/ns2 mutant MHV to nsp15 mutant MHV infection. The most robust fold-change signal occurs in B6 cells, but there are common sites sites in RNaseL KO cells with 5-fold or greater decrease in signal. 
-
-Again this data suggests that there is overlap between RNaseL and nsp15 cleavage sites. 
-
 ##Top nsp15-dependent and RNaseL-independent sites fold change 
 
 Same analysis as above focused on RNaseL KO cells. 
@@ -611,11 +573,10 @@ Same analysis as above focused on RNaseL KO cells.
 ```{r}
 
 top_change_nsp15RNaseL <- top_change_nsp15 %>% 
-  mutate(MHVS_change = MHVS/nsp15) %>% 
   mutate(MHVV_change = MHVV/nsp15) %>% 
   mutate(ns2_change = ns2/nsp15) %>% 
   mutate(mock_change = mock/nsp15) %>%
-  gather(virus, fold_change, MHVS_change:mock_change) %>%
+  gather(virus, fold_change, MHVV_change:mock_change) %>%
   filter(fold_change > 0 & fold_change != Inf) %>%
   filter(fold_change >= 5) %>%
   group_by(start) %>%
@@ -640,27 +601,7 @@ top_change_nsp15RNaseL_graph
 
 ```
 
-This analysis focuses in on sites that are nsp15-dependent and RNaseL-independent with a greater than 5-fold decrease in signal upon nsp15 infection. 
-
-This analysis identifies the sites in MHV positive strand RNA that are nsp15-dependent and RNaseL-independent with a greater than 5-fold decrease in signal upon infection with nsp15 mutant MHV virus. 
-
-###Overall discussion for identification of Nsp15 and RNaseL cleavage sites in MHV + strand RNA
-
-The fold change analysis is a useful way to screen potential cleavage sites of interest.
-
-Looking at the sites that decrease at least 5-fold, there seems to be more overlap within cell type than between. The table containing the top 50 sites for each cell type and time can be used to investigate specific sites of interest. Additionally, adding dinucleotide data to the top 50 sites per cell and time provides another method to screen in and out potential endoU cleavage sites. 
-
-The sites with the greatest decrease in cleavage in B6 cells at 12 hpi are enriched in the dinucleotides "UC", "UU", "CC", "CU". In this cell line, RNaseL is present so some of these sites are presumably RNaseL dependent. 
-
-In the RNaseL KO cells at 12 hpi, this bias is lost. The sites with the greatest decrease in signal are at the dinucleotides "GA", "UU", "GU", "AG", "CG". 
-
-In addition to screening sites of interest, this analysis also helps to identify cleavage sites. The top changing site in B6 cells is also present in the RNaseL cells at the same position, as illustrated in the last graph above. This site is at a "UC" dinucleotide and may be a good candidtae cleavage site to confirm with other methods. This type of analysis can be expanded on to focus in on specific parameters, such as sites only present across cell type, across viral type, in certain regions of the viral RNA, etc...
-
-The analysis on the top hits from the nsp15-dependent analysis is also revealing. The sites with the greatest nsp15-dependent signal are consistent across cell types and virus infection. There are less significant sites in the IFNAR and RNase L KO cells as compared to B6, which is consistent with some of these sites being acted on by RNase L. Looking at the top nsp15-dependent sites in RNase L cells, there is a clear bias for C and U at the 3´- dinucleotide. Additionally, very few of these sites have signal in the nsp15 mutant infection, suggesting that most of these are specific to nsp15 activity and the abscence of RNase L. The sites with signfiicant signal under infection with nsp15 have "UU", "CA", "AU" dinucleotides. 
-
-The fold change analysis for these top sites identifies sites conistent with the visual inspection of the data, and somewhat consistent with the unbiased approach. There are sited detected independnently in both analysis, which suggest that the unbiased approach is pulling out sites that start out with lowwe signal and decrease furthur in the abscence of nsp15, which may be more difficult to interpret than sites with inital higher signal. 
-
-The sites with the greatest fold change are very similar between the B6 and RNase L KO cells. The IFNAR cells have overall less sites with significant fold change, and this is most likely a result of the resisual signal seen at candidate sites even in nsp15 mutant infection. 
+There are overlapping positions of "significant" nsp15-dependent cleavage by normalized count and fold change analysis between the 2 experiemnts in B6 WT cells. This does not hold true for these analyses in RNaseL KO cells where there are almost no significant cleavages in experiment 2 under infection with WT cells. There are only 5 sites with a greater than 5-fold change in the abscence of nsp15 that are nsp15 dependent and RNaseL independent in exp.2, while experiment 1 had 35. None of the sights from experiment 2 were identified in experiment 1. 
 
 #Calculating dinucelotide frequencies for all cell types by infection status 
 
@@ -721,9 +662,8 @@ subtractive_neg <- neg_freq %>%
   dplyr::select(dinuc, freq:time) %>% 
   spread(cell, freq) %>% 
   mutate(B6_RNaseLdep = B6 - RNaseL) %>% 
-  mutate(IFNAR_RNaseLdep = IFNAR - RNaseL) %>% 
-  dplyr::select(dinuc:time, B6_RNaseLdep:IFNAR_RNaseLdep) %>% 
-  gather(cell, freq, B6_RNaseLdep:IFNAR_RNaseLdep)
+  dplyr::select(dinuc:time, B6_RNaseLdep) %>% 
+  gather(cell, freq, B6_RNaseLdep)
 
 # Plots 
 
@@ -753,18 +693,15 @@ These plots indentify some dinucleotide cleavage events that might be dependent 
 subdinuc_neg_nsp15 <- neg_freq %>% 
   dplyr::select(dinuc, freq:time) %>% 
   spread(virus, freq) %>%
-  mutate(MHVS_nsp15dep = MHVS - nsp15) %>% 
   mutate(MHVV_nsp15dep = MHVV - nsp15) %>% 
   mutate(ns2_nsp15dep = ns2 - nsp15) %>% 
-  dplyr::select(dinuc:time, MHVS_nsp15dep:ns2_nsp15dep) %>% 
-  gather(virus, freq, MHVS_nsp15dep:ns2_nsp15dep)
+  dplyr::select(dinuc:time, MHVV_nsp15dep:ns2_nsp15dep) %>% 
+  gather(virus, freq, MHVV_nsp15dep:ns2_nsp15dep)
 
 # Plots
 
 subnegdinuc_freq_plot <- subdinuc_neg_nsp15 %>% 
   filter(virus != "mock") %>% 
-  filter(time != "012") %>% 
-  filter(time != "09") %>% 
   ggplot(aes(x = dinuc , y = freq)) + 
   scale_fill_brewer(palette = 'Set1') + 
   scale_x_discrete(limits=c("AA","GA", "CA", "UA","AC", "CC", "GC", "UC", "AG", "CG", "GG",   "UG", "AU", "CU", "GU", "UU")) + 
@@ -772,7 +709,7 @@ subnegdinuc_freq_plot <- subdinuc_neg_nsp15 %>%
   theme_cowplot() +
   facet_grid(virus ~ cell) + 
   theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
-  scale_y_continuous(limits = c(0.00, 0.10)) +
+  #scale_y_continuous(limits = c(0.00, 0.10)) +
   ggtitle("MHV (+) strand nsp15 subtractive dinucleotide frequency analysis")
 subnegdinuc_freq_plot
 
@@ -780,84 +717,9 @@ subnegdinuc_freq_plot
 
 ### Discussion of dinucleotide analysis
 
-The most prominent cleavages are consistent with known RNaseL dinucleotide preferences, UA and UU. You can see this predominantly in the ns2 mutant virus infection greater than in the WT MHV and greater still in the samples with mutant ns15, which is a pattern we have also observed in the coverage analysis. 
+Experiment 2 is mostly consistent with the dinuclotide analysis from experiment 1. 
+The most prominent cleavages are still consistent with known RNaseL dinucleotide preferences, UA and UU, especially predomiannt in the ns2 mutant virus infection.
 
-The UA cleavage frequency is significantly decreased in the IFNAR and RNaseL samples, Furthermore, we see a prominent signal at UC, which could represent a endoU preference, but does not much in the nsp15 mutant. Furthermore, we note general lack of cleavage at G, and a similar dearth of cleavage at A residues, a pattern that does seem to shift in the RNaseL KO samples. 
+In the general analysis, there is a overall preference for U >>> C >> A > G. The RNaseL specific analysis identifies UA as the predominantly cleaved dincleotide, which is also consistent with experiment 1. In the nsp15 focused analysis, in the B6 WT cells with WT virus there is a preference for pyrimidine cleavage. But, this pattern is disrupted in the ns2 mutant infection and in the RNaseL KO cells. 
 
-The RNaseL substractive analysis reconfirms that preference for RNaseL cleavage at UA and UU and also suggests that UG may be may also be partially RNaseL dependent. 
 
-The nsp15 substractive analysis in the B6 cells reaveals a clear pattern where dinucleotides where the 3´-position is C and U are favored. However, since RNase L is still active in these cells, we know that RNase L cleavage preferences are contributing to some of this observed pattern. In the IFNAR and RNase L KO cells, this pattern is mostly lost. 
-
-# Single nucleotide analysis of nucleotide enrichement at the 3´-clevaage site
-
-Previous reports have identified that endoU prefers to cleave 3´of U and C with a greater preference for U >> C. This analysis calculates the frequency of capture of each dinucleotide per cell type, virus type, and time point.
-
-```{r, message = F, warning = F}
-
-#Calculating nucleotide freuqnecies for + strand MHV RNA
-
-data_dir_nuc = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/nucleotide_analysis"
-data_files_nuc = list.files(data_dir_nuc, full.names = T)
-
-nuc <- c("A","G", "C", "U")
-df_nuc <- data_frame(nuc)
-
-frequencies_neg <- function(x) {
-  df <- readr::read_tsv(x, col_names = c("chrom", "start", "end", "count", "normalized_count", "nuc"))
-  df <- aggregate(cbind(count) ~ nuc, data = df, sum)
-  df <- left_join(df_nuc, df) %>% 
-    replace_na(list(count = 0)) %>% 
-    mutate(freq = count/sum(count)) 
-  df$name <- basename(x)
-  df %>% mutate(name = str_replace(name, ".umi.nuc.neg.bg", "")) %>%
-  separate(name, into = c('cell', 'virus', 'time'))
-}
-
-neg_nuc_freq <- purrr::map_df(data_files_nuc, frequencies_neg)
-
-# Plots of nucleotide frequency across all cell types and viral infections
-
-neg_nuc_freq_plot <- filter(neg_nuc_freq, virus != "mock") %>%
-  ggplot(aes(x = nuc , y = freq)) + 
-  scale_fill_brewer(palette = 'Set1') + 
-  scale_x_discrete(limits=c("A","G", "C", "U")) + 
-  geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
-  theme_cowplot() + 
-  facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
-  ggtitle("Single nuceltoide frequency analysis")
-neg_nuc_freq_plot
-
-# Calculating nucleotide freuqnecies with nsp15 subtractive analysis 
-
-subnuc_neg_nsp15 <- neg_nuc_freq %>% 
-  dplyr::select(nuc, freq:time) %>% 
-  spread(virus, freq) %>%
-  mutate(MHVS_nsp15dep = MHVS - nsp15) %>% 
-  mutate(MHVV_nsp15dep = MHVV - nsp15) %>% 
-  mutate(ns2_nsp15dep = ns2 - nsp15) %>% 
-  dplyr::select(nuc:time, MHVS_nsp15dep:ns2_nsp15dep) %>% 
-  gather(virus, freq, MHVS_nsp15dep:ns2_nsp15dep)
-
-# Plotting single nucleotide nsp15 substractive analysis 
-
-subneg_nuc_nsp15_plot <- filter(subnuc_neg_nsp15, virus != "mock") %>% 
-  filter(time != "012") %>% 
-  filter(time != "09") %>% 
-  ggplot(aes(x = nuc , y = freq)) + 
-  scale_fill_brewer(palette = 'Set1') + 
-  scale_x_discrete(limits=c("A","G", "C", "U")) + 
-  geom_bar(aes(fill = time), stat = "identity", position = 'dodge') + 
-  theme_cowplot() + 
-  facet_grid(virus ~ cell) + 
-  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
-   ggtitle("nsp15 substractive single nuceltoide frequency analysis")
-subneg_nuc_nsp15_plot
-
-```
-
-### Discussion of single nucleotide analysis: 
-
-This analysis reveals a bias for U and C across all cell types and viral infection conditions. G is counted at the lowest frequency consistently. However, the U bias does not change significantly in the RNase L KO or the nsp15 mutant virus infection. This suggests that there is increased cleavage at U's indepdnent of RNase L or nsp15 or may be a result of overpresentation of U's in the MHV (+) RNA as compared to the other nucelotides. The capture of C's does seem to increase in RNase L KO cells and decrease minimally in the nsp15 mutant infection. 
-
-The nsp15 substractive analysis reveals that in B6 cells, cleavge at C and U is nsp15 dependent. However, this clear signal decreases sigficantly in RNase L KO cells, but there does seem to be some residual U and C signal in the Volker WT virus and Ns2 mutant virus, with the most signal at C residues. It may be useful to perform a motif analysis to determine if a broader sequence context directs nsp15 cleavage. 

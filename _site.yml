@@ -1,5 +1,5 @@
 name: "EndoU Collaboration Data Analysis"
-output_dir: .
+output_dir: "."
 output:
   html_document:
     theme: cosmo
@@ -11,14 +11,20 @@ navbar:
       href: index.html
     - text: "Executive_Summary"
       href: Executive_Summary.html
-    - text: "MHV RNA analysis"
+    - text: "MHV RNA analysis exp.1"
       href: MHV_endoU_analysis_final.html
-    - text: "MHV RNA re-seq analysis"
-      href: MHV_endo_analysis_reseq_final.html
-    - text: "rRNA analysis"
-      href: rRNA_endoU_analysis.html
-    - text: "mRNA analysis"
+    - text: "MHV RNA analysis exp.2"
+      href: MHV_endoU_analysis_experiment2.html
+    - text: "Alignments"
+      href: Alignments.html
+    - text: "rRNA analysis exp.1"
+      href: rRNA_endoU_analysis_final.html
+    - text: "rRNA analysis exp.2"
+      href: rRNA_endoU_analysis_exp2_final.html
+    - text: "mRNA analysis exp.1"
       href: mRNA_endoU_analysis.html
+    - text: "mRNA analysis exp.2"
+      href: mRNA_endoU_exp2_analysis.html
     - text: "U6 RNA analysis"
       href: U6_23-Cyclic_Phosphate_Analysis.html
 output:

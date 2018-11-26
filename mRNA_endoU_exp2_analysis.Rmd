@@ -1,5 +1,5 @@
 ---
-title: "Analysis of mRNA to Detect EndoU Cleavage Sites for experiment 1"
+title: "Analysis of mRNA to Detect EndoU Cleavage Sites for experiment 2"
 author: "Rachel Ancar"
 date: "4/28/2018"
 output:
@@ -34,7 +34,7 @@ library(DT)
 
 ```{r, message = F, warning = F}
 
-sample_info_table <- read_tsv("sample_info.txt", col_names = c("cell type", "virus type", "time"))
+sample_info_table <- read_tsv("sample_info_exp2.txt", col_names = c("cell type", "virus type", "time"))
 datatable(sample_info_table)
 
 ```
@@ -47,7 +47,7 @@ In this analysis, the total and normalized counts per RNA were summed and filter
 
 ```{r, message = F, warning = F}
 
-data_dir_mRNA = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/mRNA/exp1"
+data_dir_mRNA = "~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/mRNA/exp2"
 data_files_mRNA = list.files(data_dir_mRNA, full.names = T)
 
 read_file <- function(x) {
@@ -103,8 +103,7 @@ datatable(top100_mRNA)
 
 ```{r}
 
-top100_virus_mRNA <- virus_mRNA %>% head(n =100)
-datatable(top100_virus_mRNA)
+datatable(virus_mRNA)
 
 ```
 
@@ -120,7 +119,7 @@ datatable(only_virus_mRNA)
 
 ```{r, message = F, warning = F}
 
-Cdk8 <- top_mRNA %>% filter(mRNA == "BC148539") %>%
+Gvin1 <- top_mRNA %>% filter(mRNA == "BC172717") %>%
     filter(time != "09") %>%
     filter(time != "012") %>%
     ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
@@ -130,22 +129,8 @@ Cdk8 <- top_mRNA %>% filter(mRNA == "BC148539") %>%
     facet_grid(time ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
     labs(x="mRNA", y="Total normalized counts per mRNA") +
-  ggtitle("Cdk8")
-Cdk8 
-
-
-Hexb <- top_mRNA %>% filter(mRNA == "BC146503") %>%
-    filter(time != "09") %>%
-    filter(time != "012") %>%
-    ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
-    geom_bar(stat = "identity", position = 'dodge') +
-    scale_fill_brewer(palette = 'Set1') + 
-    theme_cowplot() +
-    facet_grid(time ~ cell) + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
-    labs(x="mRNA", y="Total normalized counts per mRNA") +
-  ggtitle("Hexb")
-Hexb
+  ggtitle("Gvin1")
+Gvin1
 
 Grik3 <- top_mRNA %>% filter(mRNA == "BC160379") %>%
     filter(time != "09") %>%
@@ -167,7 +152,7 @@ Grik3
 
 ```{r}
 
-Gvin1 <- top_mRNA %>% filter(mRNA == "BC172613") %>%
+Gabrg3 <- top_mRNA %>% filter(mRNA == "BC148535") %>%
     filter(time != "09") %>%
     filter(time != "012") %>%
     ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
@@ -177,8 +162,7 @@ Gvin1 <- top_mRNA %>% filter(mRNA == "BC172613") %>%
     facet_grid(time ~ cell) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
     labs(x="mRNA", y="Total normalized counts per mRNA") +
-    ggtitle("Gvin1")
-Gvin1
-
+    ggtitle("Gabrg3")
+Gabrg3
 
 ```

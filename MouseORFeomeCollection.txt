@@ -1,0 +1,1957 @@
+Accession #	IMAGE ID	Stop codon	Gene ID	Symbol	Description
+BC152951	100016137	without	246729	Oas1h	2'-5' oligoadenylate synthetase 1H
+BC148470	100015440	without	15562	Htr4	5 hydroxytryptamine (serotonin) receptor 4
+BC153066	100016411	with	15562	Htr4	5 hydroxytryptamine (serotonin) receptor 4
+BC156133	100062413	without	24127	Xrn1	5'-3' exoribonuclease 1
+BC156976	100062868	with	24127	Xrn1	5'-3' exoribonuclease 1
+BC172705	100069513	with	103466	Nt5dc3	5'-nucleotidase domain containing 3
+BC168390	100068359	with	11487	Adam10	a disintegrin and metallopeptidase domain 10
+BC166020	100066320	with	11489	Adam12	a disintegrin and metallopeptidase domain 12 (meltrin alpha)
+BC148371	100015271	without	11492	Adam19	a disintegrin and metallopeptidase domain 19 (meltrin beta)
+BC148746	100015784	with	11495	Adam2	a disintegrin and metallopeptidase domain 2
+BC146303	100015172	without	11495	Adam2	a disintegrin and metallopeptidase domain 2
+BC160376	100064120	with	11496	Adam22	a disintegrin and metallopeptidase domain 22
+BC165952	100066252	with	13525	Adam26a	a disintegrin and metallopeptidase domain 26A (testase 3)
+BC165951	100066251	with	382007	Adam26b	a disintegrin and metallopeptidase domain 26B
+BC167190	100068090	with	11497	Adam3	a disintegrin and metallopeptidase domain 3 (cyritestin)
+BC166003	100066303	with	546055	Adam39	a disintegrin and metallopeptidase domain 39
+BC141547	100014584	without	11500	Adam7	a disintegrin and metallopeptidase domain 7
+BC156895	100062720	with	224697	Adamts10	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 10"
+BC148362	100015353	without	279028	Adamts13	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 13"
+BC156647	100062198	with	279028	Adamts13	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 13"
+BC167216	100068116	with	237360	Adamts14	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 14"
+BC166030	100066330	with	330119	Adamts3	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 3"
+BC167206	100068106	with	108154	Adamts6	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 6"
+BC156802	100062510	with	30806	Adamts8	"a disintegrin-like and metallopeptidase (reprolysin type) with thrombospondin type 1 motif, 8"
+BC152925	100016169	without	11640	Akap1	A kinase (PRKA) anchor protein 1
+BC160279	100063927	with	432442	Akap7	A kinase (PRKA) anchor protein 7
+BC167185	100068085	with	320712	Abi3bp	"ABI gene family, member 3 (NESH) binding protein"
+BC156144	100062462	without	107476	Acaca	acetyl-Coenzyme A carboxylase alpha
+BC156982	100062870	with	107476	Acaca	acetyl-Coenzyme A carboxylase alpha
+BC148622	100015640	without	106877	Afap1l1	actin filament associated protein 1-like 1
+BC153188	100016590	with	106877	Afap1l1	actin filament associated protein 1-like 1
+BC156704	100062123	with	231148	Ablim2	actin-binding LIM protein 2
+BC140289	100014278	without	11628	Aicda	activation-induced cytidine deaminase
+BC146499	100015021	with	11628	Aicda	activation-induced cytidine deaminase
+BC160360	100064104	with	269275	Acvr1c	"activin A receptor, type IC"
+BC167195	100068095	with	11538	Adnp	activity-dependent neuroprotective protein
+BC156691	100062145	with	257633	Acsf3	acyl-CoA synthetase family member 3
+BC152829	100016095	without	108011	Ap4e1	"adaptor-related protein complex AP-4, epsilon 1"
+BC172612	100069420	without	228790	Asxl1	additional sex combs like 1
+BC172725	100069533	with	228790	Asxl1	additional sex combs like 1
+BC166033	100066333	with	75302	Asxl2	additional sex combs like 2 (Drosophila)
+BC165984	100066284	with	21744	Adad1	adenosine deaminase domain containing 1 (testis specific)
+BC165982	100066282	with	110532	Adarb1	"adenosine deaminase, RNA-specific, B1"
+BC156060	100062307	without	229665	Ampd1	adenosine monophosphate deaminase 1
+BC156943	100063640	with	229665	Ampd1	adenosine monophosphate deaminase 1
+BC172711	100069519	with	432530	Adcy1	adenylate cyclase 1
+BC156960	100063597	with	11512	Adcy6	adenylate cyclase 6
+BC156810	100062571	with	11514	Adcy8	adenylate cyclase 8
+BC166017	100066317	with	11515	Adcy9	adenylate cyclase 9
+BC156236	100061628	without	320844	Amigo3	adhesion molecule with Ig like domain 3
+BC157008	100062804	with	320844	Amigo3	adhesion molecule with Ig like domain 3
+BC140255	100014214	without	384185	Arl9	ADP-ribosylation factor-like 9
+BC141630	100014670	with	384185	Arl9	ADP-ribosylation factor-like 9
+BC140404	100014487	without	11872	Art2b	ADP-ribosyltransferase 2b
+BC148693	100015723	with	11872	Art2b	ADP-ribosyltransferase 2b
+BC160266	100063914	with	109979	Art3	ADP-ribosyltransferase 3
+BC148419	100015374	without	320129	Adrbk2	"adrenergic receptor kinase, beta 2"
+BC152998	100016278	with	320129	Adrbk2	"adrenergic receptor kinase, beta 2"
+BC167230	100068130	with	11550	Adra1d	"adrenergic receptor, alpha 1d"
+BC156761	100062240	with	11552	Adra2b	"adrenergic receptor, alpha 2b"
+BC172637	100069445	with	11553	Adra2c	"adrenergic receptor, alpha 2c"
+BC166029	100066329	with	14266	Aff2	"AF4/FMR2 family, member 2"
+BC165987	100066287	with	268782	Agxt2	alanine-glyoxylate aminotransferase 2
+BC148646	100015560	without	11648	Akp3	"alkaline phosphatase 3, intestine, not Mn requiring"
+BC166032	100066332	with	76768	Alpi	"alkaline phosphatase, intestinal"
+BC146355	100015226	without	319660	Agmo	alkylglycerol monooxygenase
+BC148840	100015860	with	319660	Agmo	alkylglycerol monooxygenase
+BC140395	100014462	without	215493	A3galt2	"alpha 1,3-galactosyltransferase 2 (isoglobotriaosylceramide synthase)"
+BC146478	100015040	with	215493	A3galt2	"alpha 1,3-galactosyltransferase 2 (isoglobotriaosylceramide synthase)"
+BC156901	100062709	with	117586	A1bg	alpha-1-B glycoprotein
+BC148439	100015436	without	56068	Ammecr1	"Alport syndrome, mental retardation, midface hypoplasia and elliptocytosis chromosomal region gene 1"
+BC153030	100016345	with	56068	Ammecr1	"Alport syndrome, mental retardation, midface hypoplasia and elliptocytosis chromosomal region gene 1"
+BC140300	100014328	without	58170	Accn5	"amiloride-sensitive cation channel 5, intestinal"
+BC141472	100014719	without	109959	Amy2a5	amylase 2a5
+BC148724	100015743	with	109959	Amy2a5	amylase 2a5
+BC167247	100068147	with	77559	Agl	"amylo-1,6-glucosidase, 4-alpha-glucanotransferase"
+BC165961	100066261	with	494519	Abpd	androgen binding protein delta
+BC148496	100015504	without	11835	Ar	androgen receptor
+BC153098	100016477	with	11835	Ar	androgen receptor
+BC140357	100014395	without	11731	Ang2	"angiogenin, ribonuclease A family, member 2"
+BC146501	100015045	with	11731	Ang2	"angiogenin, ribonuclease A family, member 2"
+BC156689	100062121	with	75723	Amotl1	angiomotin-like 1
+BC156111	100062397	without	11606	Agt	"angiotensinogen (serpin peptidase inhibitor, clade A, member 8)"
+BC156904	100062769	with	11606	Agt	"angiotensinogen (serpin peptidase inhibitor, clade A, member 8)"
+BC156902	100062721	with	142687	Asb14	ankyrin repeat and SOCS box-containing 14
+BC167192	100068092	with	208372	Asb18	ankyrin repeat and SOCS box-containing 18
+BC156142	100062438	without	76389	Ankrd36	ankyrin repeat domain 36
+BC156981	100062846	with	76389	Ankrd36	ankyrin repeat domain 36
+BC152843	100016073	without	382543	Ankfn1	ankyrin-repeat and fibronectin type III domain containing 1
+BC167197	100068097	with	320091	Ano4	anoctamin 4
+BC167250	100068150	with	11705	Amh	anti-Mullerian hormone
+BC160359	100064103	with	71281	Apobec4	"apolipoprotein B mRNA editing enzyme, catalytic polypeptide-like 4 (putative)"
+BC152864	100016040	without	66333	Aqp11	aquaporin 11
+BC156614	100062037	with	66333	Aqp11	aquaporin 11
+BC165994	100066294	with	11684	Alox12	arachidonate 12-lipoxygenase
+BC156262	100061682	without	347722	Agap1	"ArfGAP with GTPase domain, ankyrin repeat and PH domain 1"
+BC172673	100069481	with	347722	Agap1	"ArfGAP with GTPase domain, ankyrin repeat and PH domain 1"
+BC156808	100062535	with	216439	Agap2	"ArfGAP with GTPase domain, ankyrin repeat and PH domain 2"
+BC168408	100068377	with	213990	Agap3	"ArfGAP with GTPase domain, ankyrin repeat and PH domain 3"
+BC167217	100068117	with	68703	Rere	arginine glutamic acid dipeptide (RE) repeats
+BC160258	100063906	with	26361	Avpr1b	arginine vasopressin receptor 1B
+BC141537	100014559	without	11694	Alx3	aristaless-like homeobox 3
+BC140274	100014252	without	11876	Artn	artemin
+BC146573	100014871	with	11876	Artn	artemin
+BC152973	100016223	without	11622	Ahr	aryl-hydrocarbon receptor
+BC156629	100062087	with	11622	Ahr	aryl-hydrocarbon receptor
+BC168412	100068381	with	11881	Arsb	arylsulfatase B
+BC156127	100062424	without	12316	Aspm	"asp (abnormal spindle)-like, microcephaly associated (Drosophila)"
+BC167179	100068079	with	65973	Asph	aspartate-beta-hydroxylase
+BC156105	100062313	without	67855	Asprv1	"aspartic peptidase, retroviral-like 1"
+BC160195	100063843	with	238247	Arid4a	AT rich interactive domain 4A (RBP1-like)
+BC165988	100066288	with	71371	Arid5b	AT rich interactive domain 5B (MRF1-like)
+BC148578	100015550	without	382423	Atxn7l3b	ataxin 7-like 3B
+BC153152	100016463	with	382423	Atxn7l3b	ataxin 7-like 3B
+BC160299	100064043	with	271813	Agbl2	ATP/GTP binding protein-like 2
+BC160289	100064033	with	237877	Atad5	"ATPase family, AAA domain containing 5"
+BC168384	100068353	with	54667	Atp8b2	"ATPase, class I, type 8B, member 2"
+BC156090	100062323	without	11979	Atp7b	"ATPase, Cu++ transporting, beta polypeptide"
+BC156956	100063608	with	11979	Atp7b	"ATPase, Cu++ transporting, beta polypeptide"
+BC172713	100069521	with	11303	Abca1	"ATP-binding cassette, sub-family A (ABC1), member 1"
+BC156245	100061656	without	11305	Abca2	"ATP-binding cassette, sub-family A (ABC1), member 2"
+BC172668	100069476	with	217258	Abca8a	"ATP-binding cassette, sub-family A (ABC1), member 8a"
+BC156052	100062306	without	27413	Abcb11	"ATP-binding cassette, sub-family B (MDR/TAP), member 11"
+BC172671	100069479	with	27413	Abcb11	"ATP-binding cassette, sub-family B (MDR/TAP), member 11"
+BC156363	100061888	without	213948	Atg9b	autophagy related 9B
+BC156038	100062316	without	17132	Maf	avian musculoaponeurotic fibrosarcoma (v-maf) AS42 oncogene homolog
+BC156806	100062511	with	12051	Bcl3	B cell leukemia/lymphoma 3
+BC172625	100069433	without	79362	Bhlhe41	"basic helix-loop-helix family, member e41"
+BC172727	100069535	with	79362	Bhlhe41	"basic helix-loop-helix family, member e41"
+BC165999	100066299	with	12173	Bnc1	basonuclin 1
+BC148494	100015455	without	382427	Best3	bestrophin 3
+BC153087	100016367	with	382427	Best3	bestrophin 3
+BC156372	100062652	without	330671	B4galnt4	"beta-1,4-N-acetyl-galactosaminyl transferase 4"
+BC172670	100069478	with	330671	B4galnt4	"beta-1,4-N-acetyl-galactosaminyl transferase 4"
+BC140208	100014208	without	17695	Msmb	beta-microseminoprotein
+BC141601	100014604	with	17695	Msmb	beta-microseminoprotein
+BC156219	100061578	without	140780	Bmp2k	BMP2 inducible kinase
+BC152871	100016124	without	75388	Boll	"bol, boule-like (Drosophila)"
+BC165978	100066278	with	12096	Bglap	bone gamma carboxyglutamate protein
+BC160309	100064053	with	12097	Bglap2	bone gamma-carboxyglutamate protein 2
+BC148547	100015463	without	12182	Bst1	bone marrow stromal cell antigen 1
+BC148339	100015314	without	12168	Bmpr2	"bone morphogenic protein receptor, type II (serine/threonine kinase)"
+BC156868	100062725	with	12168	Bmpr2	"bone morphogenic protein receptor, type II (serine/threonine kinase)"
+BC166011	100066311	with	75770	Brsk2	BR serine/threonine kinase 2
+BC160328	100064072	with	70350	Basp1	"brain abundant, membrane attached signal protein 1"
+BC160250	100063898	with	118452	Baalc	"brain and acute leukemia, cytoplasmic"
+BC172649	100069457	with	12190	Brca2	breast cancer 2
+BC148495	100015492	without	116848	Baz2a	"bromodomain adjacent to zinc finger domain, 2A"
+BC156872	100062726	with	116848	Baz2a	"bromodomain adjacent to zinc finger domain, 2A"
+BC166008	100066308	with	26992	Brd7	bromodomain containing 7
+BC160209	100063857	with	67445	C1qtnf4	C1q and tumor necrosis factor related protein 4
+BC172618	100069426	without	320405	Cadps2	Ca2+-dependent activator protein for secretion 2
+BC172728	100069536	with	320405	Cadps2	Ca2+-dependent activator protein for secretion 2
+BC152813	100016093	without	12555	Cdh15	cadherin 15
+BC156578	100062090	with	12555	Cdh15	cadherin 15
+BC166028	100066328	with	12561	Cdh4	cadherin 4
+BC160324	100064068	with	76815	Calcoco2	calcium binding and coiled-coil domain 2
+BC160237	100063885	with	29867	Cabp1	calcium binding protein 1
+BC146312	100015185	without	54652	Cacna1f	"calcium channel, voltage-dependent, alpha 1F subunit"
+BC156573	100062089	with	54652	Cacna1f	"calcium channel, voltage-dependent, alpha 1F subunit"
+BC156406	100061983	without	319734	Cacna2d4	"calcium channel, voltage-dependent, alpha 2/delta subunit 4"
+BC140359	100014324	without	12294	Cacna2d3	"calcium channel, voltage-dependent, alpha2/delta subunit 3"
+BC148700	100015726	with	12294	Cacna2d3	"calcium channel, voltage-dependent, alpha2/delta subunit 3"
+BC160243	100063891	with	12297	Cacnb3	"calcium channel, voltage-dependent, beta 3 subunit"
+BC172620	100069428	without	12289	Cacna1d	"calcium channel, voltage-dependent, L type, alpha 1D subunit"
+BC172729	100069537	with	12289	Cacna1d	"calcium channel, voltage-dependent, L type, alpha 1D subunit"
+BC172641	100069449	with	12292	Cacna1s	"calcium channel, voltage-dependent, L type, alpha 1S subunit"
+BC148659	100015621	without	12361	Cask	calcium/calmodulin-dependent serine protein kinase (MAGUK family)
+BC168383	100068352	with	12374	Casr	calcium-sensing receptor
+BC148662	100015562	without	75568	Capsl	calcyphosine-like
+BC156824	100062538	with	75568	Capsl	calcyphosine-like
+BC148637	100015642	without	268958	Capn11	calpain 11
+BC153195	100016544	with	268958	Capn11	calpain 11
+BC156837	100062540	with	73316	Calr3	calreticulin 3
+BC152880	100016054	without	246257	Ovca2	candidate tumor suppressor in ovarian cancer 2
+BC152804	100016068	without	71722	Cic	capicua homolog (Drosophila)
+BC141429	100014749	without	56773	Chst5	carbohydrate (N-acetylglucosamine 6-O) sulfotransferase 5
+BC146577	100014872	with	56773	Chst5	carbohydrate (N-acetylglucosamine 6-O) sulfotransferase 5
+BC156751	100062274	with	12873	Cpa3	"carboxypeptidase A3, mast cell"
+BC168395	100068364	with	12874	Cpd	carboxypeptidase D
+BC156067	100062391	without	242939	Cpz	carboxypeptidase Z
+BC156883	100062705	with	242939	Cpz	carboxypeptidase Z
+BC167228	100068128	with	73250	Ceacam5	carcinoembryonic antigen-related cell adhesion molecule 5
+BC140237	100014271	without	26368	Ceacam9	carcinoembryonic antigen-related cell adhesion molecule 9
+BC146520	100014917	with	26368	Ceacam9	carcinoembryonic antigen-related cell adhesion molecule 9
+BC166001	100066301	with	332579	Card9	"caspase recruitment domain family, member 9"
+BC146420	100015150	without	64139	Ctsm	cathepsin M
+BC148857	100015851	with	64139	Ctsm	cathepsin M
+BC156225	100061555	without	13041	Ctsw	cathepsin W
+BC156998	100062838	with	13041	Ctsw	cathepsin W
+BC140372	100014385	without	225865	Catsper1	"cation channel, sperm associated 1"
+BC146511	100015059	with	225865	Catsper1	"cation channel, sperm associated 1"
+BC160327	100064071	with	12608	Cebpb	"CCAAT/enhancer binding protein (C/EBP), beta"
+BC160197	100063845	with	12607	Cebpz	CCAAT/enhancer binding protein zeta
+BC152845	100016097	without	664799	Ctcfl	CCCTC-binding factor (zinc finger protein)-like
+BC146550	100014949	with	17079	Cd180	CD180 antigen
+BC140436	100014420	without	17079	Cd180	CD180 antigen
+BC156767	100062217	with	12478	Cd19	CD19 antigen
+BC152965	100016210	without	271375	Cd200r2	Cd200 receptor 2
+BC156619	100062050	with	271375	Cd200r2	Cd200 receptor 2
+BC146457	100015155	without	246278	Cd207	CD207 antigen
+BC141546	100014572	without	69165	Cd209b	CD209b antigen
+BC146574	100014800	with	69165	Cd209b	CD209b antigen
+BC160257	100063905	with	170779	Cd209d	CD209d antigen
+BC160247	100063895	with	18106	Cd244	CD244 natural killer cell receptor 2B4
+BC160263	100063911	with	217304	Cd300lb	CD300 antigen like family member B
+BC140254	100014297	without	387565	Cd300c	CD300C antigen
+BC141629	100014658	with	387565	Cd300c	CD300C antigen
+BC156050	100062377	without	17064	Cd93	CD93 antigen
+BC156937	100063627	with	17064	Cd93	CD93 antigen
+BC160357	100064101	with	12747	Clk1	CDC-like kinase 1
+BC156234	100061604	without	252966	Cables2	CDK5 and Abl enzyme substrate 2
+BC148341	100015338	without	70925	Cdkn2aip	CDKN2A interacting protein
+BC152983	100016274	with	70925	Cdkn2aip	CDKN2A interacting protein
+BC152822	100016106	without	231201	AF366264	cDNA sequence AF366264
+BC160271	100063919	with	278676	AY358078	cDNA sequence AY358078
+BC152827	100016071	without	382000	AY761184	cDNA sequence AY761184
+BC160383	100064127	with	103220	BC030307	cDNA sequence BC030307
+BC160351	100064095	with	271887	BC066135	cDNA sequence BC066135
+BC172635	100069443	with	100038854	BC117090	cDNA sequence BC1179090
+BC148452	100015402	without	260299	Cadm4	cell adhesion molecule 4
+BC153044	100016407	with	260299	Cadm4	cell adhesion molecule 4
+BC160241	100063889	with	217232	Cdc27	cell division cycle 27
+BC140383	100014413	without	60411	Cenpk	centromere protein K
+BC146467	100015025	with	60411	Cenpk	centromere protein K
+BC156383	100062606	without	28135	Cep63	centrosomal protein 63
+BC156349	100061910	without	211660	Cspp1	centrosome and spindle pole associated protein 1
+BC146453	100015107	without	228094	Cerkl	ceramide kinase-like
+BC153071	100016400	with	228094	Cerkl	ceramide kinase-like
+BC141471	100014707	without	76524	Cln6	"ceroid-lipofuscinosis, neuronal 6"
+BC148723	100015731	with	76524	Cln6	"ceroid-lipofuscinosis, neuronal 6"
+BC148586	100015551	without	541307	Ccl26	chemokine (C-C motif) ligand 26
+BC156679	100062179	with	541307	Ccl26	chemokine (C-C motif) ligand 26
+BC148418	100015445	without	12775	Ccr7	chemokine (C-C motif) receptor 7
+BC141556	100014502	without	227288	Cxcr1	chemokine (C-X-C motif) receptor 1
+BC153097	100016441	with	227288	Cxcr1	chemokine (C-X-C motif) receptor 1
+BC148372	100015283	without	26372	Clcn6	chloride channel 6
+BC156642	100062126	with	229927	Clca4	chloride channel calcium activated 4
+BC148747	100015796	with	99663	Clca6	chloride channel calcium activated 6
+BC146304	100015184	without	99663	Clca6	chloride channel calcium activated 6
+BC172636	100069444	with	11441	Chrna7	"cholinergic receptor, nicotinic, alpha polypeptide 7"
+BC148446	100015425	without	231252	Chrna9	"cholinergic receptor, nicotinic, alpha polypeptide 9"
+BC153038	100016406	with	231252	Chrna9	"cholinergic receptor, nicotinic, alpha polypeptide 9"
+BC156231	100061568	without	108015	Chrnb4	"cholinergic receptor, nicotinic, beta polypeptide 4"
+BC157005	100062851	with	108015	Chrnb4	"cholinergic receptor, nicotinic, beta polypeptide 4"
+BC148476	100015429	without	11448	Chrne	"cholinergic receptor, nicotinic, epsilon polypeptide"
+BC153108	100016491	with	11448	Chrne	"cholinergic receptor, nicotinic, epsilon polypeptide"
+BC156729	100062259	with	11449	Chrng	"cholinergic receptor, nicotinic, gamma polypeptide"
+BC148468	100015416	without	12753	Clock	circadian locomotor output cycles kaput
+BC156741	100062237	with	12753	Clock	circadian locomotor output cycles kaput
+BC140358	100014312	without	12265	Ciita	class II transactivator
+BC148699	100015714	with	12265	Ciita	class II transactivator
+BC167227	100068127	with	216705	Clint1	clathrin interactor 1
+BC140209	100014220	without	56492	Cldn18	claudin 18
+BC141602	100014616	with	56492	Cldn18	claudin 18
+BC156360	100061852	without	17289	Mertk	c-mer proto-oncogene tyrosine kinase
+BC165957	100066257	with	14064	F2rl2	coagulation factor II (thrombin) receptor-like 2
+BC146406	100015077	without	14071	F9	coagulation factor IX
+BC148848	100015885	with	14071	F9	coagulation factor IX
+BC156130	100062460	without	14067	F5	coagulation factor V
+BC172650	100069458	with	14067	F5	coagulation factor V
+BC156119	100062315	without	71743	Coasy	Coenzyme A synthase
+BC160348	100064092	with	211535	Ccdc114	coiled-coil domain containing 114
+BC167207	100068107	with	330830	Ccdc135	coiled-coil domain containing 135
+BC165949	100066249	with	545428	Ccdc141	coiled-coil domain containing 141
+BC152928	100016205	without	51938	Ccdc39	coiled-coil domain containing 39
+BC156763	100062264	with	51938	Ccdc39	coiled-coil domain containing 39
+BC167202	100068102	with	67896	Ccdc80	coiled-coil domain containing 80
+BC172708	100069516	with	12833	Col6a1	"collagen, type VI, alpha 1"
+BC156192	100061538	without	12813	Col10a1	"collagen, type X, alpha 1"
+BC156930	100063614	with	12813	Col10a1	"collagen, type X, alpha 1"
+BC140439	100014456	without	12815	Col11a2	"collagen, type XI, alpha 2"
+BC167245	100068145	with	213945	Col28a1	"collagen, type XXVIII, alpha 1"
+BC156826	100062562	with	12984	Csf2rb2	"colony stimulating factor 2 receptor, beta 2, low-affinity (granulocyte-macrophage)"
+BC172697	100069505	with	625018	C4a	complement component 4A (Rodgers blood group)
+BC140337	100014333	without	545366	Cfhr2	complement factor H-related 2
+BC141634	100014659	with	545366	Cfhr2	complement factor H-related 2
+BC160304	100064048	with	12890	Cplx2	complexin 2
+BC141426	100014713	without	18488	Cntn3	contactin 3
+BC156099	100062336	without	53321	Cntnap1	contactin associated protein-like 1
+BC156962	100063633	with	53321	Cntnap1	contactin associated protein-like 1
+BC156221	100061602	without	636808	Cntnap5a	contactin associated protein-like 5A
+BC156970	100063575	with	636808	Cntnap5a	contactin associated protein-like 5A
+BC167183	100068083	with	241175	Cntnap5b	contactin associated protein-like 5B
+BC156346	100061862	without	620292	Cntnap5c	contactin associated protein-like 5C
+BC165955	100066255	with	381457	Crnn	cornulin
+BC156237	100061545	without	12854	Cort	cortistatin
+BC157009	100062828	with	12854	Cort	cortistatin
+BC172737	100069545	with	12914	Crebbp	CREB binding protein
+BC167170	100068070	with	170788	Crb1	crumbs homolog 1 (Drosophila)
+BC148533	100015485	without	546024	Crxos1	Crx opposite strand transcript 1
+BC153126	100016482	with	546024	Crxos1	Crx opposite strand transcript 1
+BC141433	100014702	without	353287	Clec18a	"C-type lectin domain family 18, member A"
+BC146578	100014801	with	353287	Clec18a	"C-type lectin domain family 18, member A"
+BC140245	100014272	without	69810	Clec4b1	"C-type lectin domain family 4, member b1"
+BC146521	100014929	with	69810	Clec4b1	"C-type lectin domain family 4, member b1"
+BC148458	100015391	without	381809	Clec4b2	"C-type lectin domain family 4, member b2"
+BC153053	100016373	with	381809	Clec4b2	"C-type lectin domain family 4, member b2"
+BC146400	100015100	without	242603	Cdcp2	CUB domain containing protein 2
+BC153165	100016586	with	242603	Cdcp2	CUB domain containing protein 2
+BC156269	100061683	without	94218	Cnnm3	cyclin M3
+BC156167	100062454	without	94220	Cnnm4	cyclin M4
+BC172662	100069470	with	94220	Cnnm4	cyclin M4
+BC156382	100062677	without	218630	Ccno	cyclin O
+BC172677	100069485	with	218630	Ccno	cyclin O
+BC148441	100015365	without	69681	Cdk3-ps	"cyclin-dependent kinase 3, pseudogene"
+BC153031	100016369	with	69681	Cdk3-ps	"cyclin-dependent kinase 3, pseudogene"
+BC156263	100061694	without	12570	Cdk5r2	"cyclin-dependent kinase 5, regulatory subunit 2 (p39)"
+BC148539	100015462	without	264064	Cdk8	cyclin-dependent kinase 8
+BC152933	100016182	without	382253	Cdkl5	cyclin-dependent kinase-like 5
+BC140350	100014311	without	246277	Csad	cysteine sulfinic acid decarboxylase
+BC156785	100062255	with	664726	Cypt10	cysteine-rich perinuclear theca 10
+BC156708	100062171	with	664725	Cypt7	cysteine-rich perinuclear theca 7
+BC152961	100016162	without	664723	Cypt8	cysteine-rich perinuclear theca 8
+BC152963	100016186	without	664724	Cypt9	cysteine-rich perinuclear theca 9
+BC156911	100062758	with	664724	Cypt9	cysteine-rich perinuclear theca 9
+BC141508	100014783	without	78081	Crisp4	cysteine-rich secretory protein 4
+BC148787	100015779	with	78081	Crisp4	cysteine-rich secretory protein 4
+BC172633	100069441	without	12638	Cftr	cystic fibrosis transmembrane conductance regulator
+BC160285	100063933	with	13097	Cyp2c38	"cytochrome P450, family 2, subfamily c, polypeptide 38"
+BC165950	100066250	with	404195	Cyp2c54	"cytochrome P450, family 2, subfamily c, polypeptide 54"
+BC148420	100015386	without	71519	Cyp2u1	"cytochrome P450, family 2, subfamily u, polypeptide 1"
+BC152999	100016290	with	71519	Cyp2u1	"cytochrome P450, family 2, subfamily u, polypeptide 1"
+BC152926	100016181	without	13119	Cyp4a14	"cytochrome P450, family 4, subfamily a, polypeptide 14"
+BC165947	100066247	with	81906	Cyp4x1	"cytochrome P450, family 4, subfamily x, polypeptide 1"
+BC160203	100063851	with	12931	Crlf1	cytokine receptor-like factor 1
+BC156825	100062550	with	102323	Dcun1d2	"DCN1, defective in cullin neddylation 1, domain containing 2 (S. cerevisiae)"
+BC146331	100015223	without	245403	Dcaf12l2	DDB1 and CUL4 associated factor 12-like 2
+BC148815	100015880	with	245403	Dcaf12l2	DDB1 and CUL4 associated factor 12-like 2
+BC167209	100068109	with	230073	Ddx58	DEAD (Asp-Glu-Ala-Asp) box polypeptide 58
+BC152932	100016170	without	381375	Dfnb59	"deafness, autosomal recessive 59 (human)"
+BC156228	100061603	without	83703	Dbr1	debranching enzyme homolog 1 (S. cerevisiae)
+BC172611	100069419	without	75974	Dock11	dedicator of cytokinesis 11
+BC167231	100068131	with	208869	Dock3	dedicator of cyto-kinesis 3
+BC156169	100062478	without	238130	Dock4	dedicator of cytokinesis 4
+BC172663	100069471	with	238130	Dock4	dedicator of cytokinesis 4
+BC168404	100068373	with	105445	Dock9	dedicator of cytokinesis 9
+BC141481	100014744	without	246085	Defb10	defensin beta 10
+BC148765	100015835	with	246085	Defb10	defensin beta 10
+BC140234	100014235	without	77674	Defb12	defensin beta 12
+BC141616	100014667	with	77674	Defb12	defensin beta 12
+BC148556	100015476	without	246083	Defb13	defensin beta 13
+BC153142	100016425	with	246083	Defb13	defensin beta 13
+BC140347	100014370	without	246082	Defb15	defensin beta 15
+BC146534	100014932	with	246082	Defb15	defensin beta 15
+BC141502	100014711	without	654460	Defb18	defensin beta 18
+BC148782	100015790	with	654460	Defb18	defensin beta 18
+BC141487	100014721	without	319579	Defb20	defensin beta 20
+BC148461	100015427	without	403172	Defb21	defensin beta 21
+BC153057	100016338	with	403172	Defb21	defensin beta 21
+BC141496	100014734	without	545475	Defb28	defensin beta 28
+BC148776	100015813	with	545475	Defb28	defensin beta 28
+BC146441	100015153	without	360211	Defb34	defensin beta 34
+BC140230	100014282	without	246084	Defb35	defensin beta 35
+BC146519	100014893	with	246084	Defb35	defensin beta 35
+BC160339	100064083	with	266620	Defb36	defensin beta 36
+BC140239	100014295	without	353320	Defb37	defensin beta 37
+BC141618	100014620	with	353320	Defb37	defensin beta 37
+BC141528	100014546	without	360214	Defb39	defensin beta 39
+BC146532	100014884	with	360214	Defb39	defensin beta 39
+BC148392	100015274	without	360217	Defb40	defensin beta 40
+BC153015	100016234	with	360217	Defb40	defensin beta 40
+BC140329	100014320	without	77673	Defb41	defensin beta 41
+BC148546	100015546	without	574081	Defb46	defensin beta 46
+BC153135	100016424	with	574081	Defb46	defensin beta 46
+BC140287	100014254	without	81007	Defb5	defensin beta 5
+BC146498	100014997	with	81007	Defb5	defensin beta 5
+BC140276	100014300	without	387334	Defb50	defensin beta 50
+BC141646	100014662	with	387334	Defb50	defensin beta 50
+BC141441	100014715	without	246080	Defb7	defensin beta 7
+BC146585	100014791	with	246080	Defb7	defensin beta 7
+BC160340	100064084	with	244334	Defb8	defensin beta 8
+BC165979	100066279	with	68009	Defa20	"defensin, alpha, 20"
+BC152863	100016123	without	66298	Defa21	"defensin, alpha, 21"
+BC156613	100062025	with	66298	Defa21	"defensin, alpha, 21"
+BC165980	100066280	with	382059	Defa22	"defensin, alpha, 22"
+BC148566	100015501	without	497114	Defa23	"defensin, alpha, 23"
+BC153145	100016438	with	497114	Defa23	"defensin, alpha, 23"
+BC148617	100015556	without	503491	Defa24	"defensin, alpha, 24"
+BC153183	100016530	with	503491	Defa24	"defensin, alpha, 24"
+BC148677	100015647	without	626708	Defa26	"defensin, alpha, 26"
+BC152855	100016122	without	13237	Defa3	"defensin, alpha, 3"
+BC156829	100062515	with	13237	Defa3	"defensin, alpha, 3"
+BC165997	100066297	with	13239	Defa5	"defensin, alpha, 5"
+BC148483	100015418	without	13240	Defa6	"defensin, alpha, 6"
+BC153080	100016413	with	13240	Defa6	"defensin, alpha, 6"
+BC141592	100014507	without	13221	Defa-rs12	"defensin, alpha, related sequence 12"
+BC148757	100015786	with	13221	Defa-rs12	"defensin, alpha, related sequence 12"
+BC140445	100014457	without	13226	Defa-rs7	"defensin, alpha, related sequence 7"
+BC148704	100015727	with	13226	Defa-rs7	"defensin, alpha, related sequence 7"
+BC172616	100069424	without	13176	Dcc	deleted in colorectal carcinoma
+BC172723	100069531	with	13176	Dcc	deleted in colorectal carcinoma
+BC148334	100015349	without	21673	Dntt	"deoxynucleotidyltransferase, terminal"
+BC156690	100062133	with	97998	Deptor	DEP domain containing MTOR-interacting protein
+BC156112	100062314	without	13363	Dhh	desert hedgehog
+BC156905	100062781	with	13363	Dhh	desert hedgehog
+BC166007	100066307	with	13507	Dsc3	desmocollin 3
+BC146377	100015097	without	211924	Dsg1c	desmoglein 1 gamma
+BC156565	100062064	with	211924	Dsg1c	desmoglein 1 gamma
+BC166019	100066319	with	16769	Dsg4	desmoglein 4
+BC148743	100015831	with	384701	Dub2a	deubiquitinating enzyme 2a
+BC146298	100015207	without	384701	Dub2a	deubiquitinating enzyme 2a
+BC156718	100062281	with	223843	Dbx2	developing brain homeobox 2
+BC140301	100014340	without	56077	Dgke	"diacylglycerol kinase, epsilon"
+BC148725	100015756	with	56077	Dgke	"diacylglycerol kinase, epsilon"
+BC167201	100068101	with	269060	Dagla	"diacylglycerol lipase, alpha"
+BC160217	100063865	with	54004	Diap2	diaphanous homolog 2 (Drosophila)
+BC172621	100069429	without	192119	Dicer1	"dicer 1, ribonuclease type III"
+BC172735	100069543	with	64451	Dip2a	DIP2 disco-interacting protein 2 homolog A (Drosophila)
+BC156797	100062509	with	319446	Dpep2	dipeptidase 2
+BC140302	100014352	without	23859	Dlg2	"discs, large homolog 2 (Drosophila)"
+BC146460	100015000	with	23859	Dlg2	"discs, large homolog 2 (Drosophila)"
+BC148469	100015428	without	13544	Dvl3	"dishevelled 3, dsh homolog (Drosophila)"
+BC153065	100016399	with	13544	Dvl3	"dishevelled 3, dsh homolog (Drosophila)"
+BC148606	100015602	without	244667	Disc1	disrupted in schizophrenia 1
+BC140253	100014285	without	13395	Dlx5	distal-less homeobox 5
+BC141628	100014646	with	13395	Dlx5	distal-less homeobox 5
+BC160325	100064069	with	13396	Dlx6	distal-less homeobox 6
+BC160225	100063873	with	57755	Dnajb7	"DnaJ (Hsp40) homolog, subfamily B, member 7"
+BC152724	100015961	without	13195	Ddc	dopa decarboxylase
+BC167196	100068096	with	208266	Dot1l	"DOT1-like, histone H3 methyltransferase (S. cerevisiae)"
+BC152729	100016021	without	116905	Dph1	DPH1 homolog (S. cerevisiae)
+BC160338	100064082	with	654362	Dear1	dual endothelin 1/angiotensin II receptor 1 homolog (rat)
+BC166016	100066316	with	99439	Duox1	dual oxidase 1
+BC156280	100061649	without	214593	Duox2	dual oxidase 2
+BC172692	100069500	with	214593	Duox2	dual oxidase 2
+BC148369	100015342	without	71972	Dnmbp	dynamin binding protein
+BC156874	100062762	with	71972	Dnmbp	dynamin binding protein
+BC152819	100016070	without	432611	Dnaic2	"dynein, axonemal, intermediate chain 2"
+BC156579	100062019	with	432611	Dnaic2	"dynein, axonemal, intermediate chain 2"
+BC156226	100061567	without	13557	E2f3	E2F transcription factor 3
+BC156999	100062850	with	13557	E2f3	E2F transcription factor 3
+BC141509	100014496	without	13656	Egr4	early growth response 4
+BC160192	100063840	with	14020	Evi5	ecotropic viral integration site 5
+BC152799	100016019	without	72090	Entpd8	ectonucleoside triphosphate diphosphohydrolase 8
+BC160371	100064115	with	18605	Enpp1	ectonucleotide pyrophosphatase/phosphodiesterase 1
+BC156164	100062418	without	238011	Enpp7	ectonucleotide pyrophosphatase/phosphodiesterase 7
+BC157003	100062803	with	238011	Enpp7	ectonucleotide pyrophosphatase/phosphodiesterase 7
+BC168392	100068361	with	216565	Ehbp1	EH domain binding protein 1
+BC172617	100069425	without	111173	Erc1	ELKS/RAB6-interacting/CAST family member 1
+BC146435	100015164	without	270162	Elmod1	ELMO domain containing 1
+BC153045	100016324	with	270162	Elmod1	ELMO domain containing 1
+BC146280	100015169	without	77766	Elp4	elongation protein 4 homolog (S. cerevisiae)
+BC160212	100063860	with	13796	Emx1	empty spiracles homolog 1 (Drosophila)
+BC141562	100014574	without	13797	Emx2	empty spiracles homolog 2 (Drosophila)
+BC156640	100062197	with	19011	Endou	"endonuclease, polyU-specific"
+BC156204	100061599	without	78943	Ern1	endoplasmic reticulum (ER) to nucleus signalling 1
+BC156947	100063594	with	78943	Ern1	endoplasmic reticulum (ER) to nucleus signalling 1
+BC156220	100061590	without	226090	Ermp1	endoplasmic reticulum metallopeptidase 1
+BC156968	100063646	with	226090	Ermp1	endoplasmic reticulum metallopeptidase 1
+BC172645	100069453	with	13798	En1	engrailed 1
+BC146581	100014849	with	13799	En2	engrailed 2
+BC141438	100014774	without	13799	En2	engrailed 2
+BC172666	100069474	with	14027	Evpl	envoplakin
+BC160343	100064087	with	13861	Epx	eosinophil peroxidase
+BC140220	100014257	without	93725	Ear10	"eosinophil-associated, ribonuclease A family, member 10"
+BC146516	100014952	with	93725	Ear10	"eosinophil-associated, ribonuclease A family, member 10"
+BC152970	100016187	without	503845	Ear12	"eosinophil-associated, ribonuclease A family, member 12"
+BC156624	100062110	with	503845	Ear12	"eosinophil-associated, ribonuclease A family, member 12"
+BC148530	100015544	without	503847	Ear14	"eosinophil-associated, ribonuclease A family, member 14"
+BC153123	100016446	with	503847	Ear14	"eosinophil-associated, ribonuclease A family, member 14"
+BC148661	100015645	without	53876	Ear3	"eosinophil-associated, ribonuclease A family, member 3"
+BC153204	100016570	with	53876	Ear3	"eosinophil-associated, ribonuclease A family, member 3"
+BC160331	100064075	with	58521	Eid1	EP300 interacting inhibitor of differentiation 1
+BC167214	100068114	with	13840	Epha6	Eph receptor A6
+BC167187	100068087	with	13842	Epha8	Eph receptor A8
+BC146315	100015221	without	13844	Ephb2	Eph receptor B2
+BC156575	100062018	with	13844	Ephb2	Eph receptor B2
+BC160329	100064073	with	13639	Efna4	ephrin A4
+BC160320	100064064	with	13853	Epm2a	"epilepsy, progressive myoclonic epilepsy, type 2 gene alpha"
+BC148560	100015524	without	384214	Ephx4	epoxide hydrolase 4
+BC156747	100062226	with	384214	Ephx4	epoxide hydrolase 4
+BC168397	100068366	with	67425	Eps8l1	EPS8-like 1
+BC167168	100068068	with	13823	Epb4.1l3	erythrocyte protein band 4.1-like 3
+BC167246	100068146	with	13982	Esr1	estrogen receptor 1 (alpha)
+BC146473	100014979	with	13663	Ei24	etoposide induced 2.4 mRNA
+BC140389	100014485	without	13663	Ei24	etoposide induced 2.4 mRNA
+BC148751	100015809	with	14008	Etv2	ets variant gene 2
+BC146323	100015222	without	14008	Etv2	ets variant gene 2
+BC148400	100015299	without	18612	Etv4	"ets variant gene 4 (E1A enhancer binding protein, E1AF)"
+BC153020	100016259	with	18612	Etv4	"ets variant gene 4 (E1A enhancer binding protein, E1AF)"
+BC166034	100066334	with	226982	Eif5b	eukaryotic translation initiation factor 5B
+BC167234	100068134	with	319955	Ercc6	"excision repair cross-complementing rodent repair deficiency, complementation group 6"
+BC141467	100014754	without	74463	Exoc3l2	exocyst complex component 3-like 2
+BC148721	100015695	with	74463	Exoc3l2	exocyst complex component 3-like 2
+BC156636	100062113	with	57258	Xpo4	exportin 4
+BC160218	100063866	with	330361	AW146020	expressed sequence AW146020
+BC156046	100062329	without	245555	C77370	expressed sequence C77370
+BC156933	100063567	with	245555	C77370	expressed sequence C77370
+BC160316	100064060	with	97863	C78339	expressed sequence C78339
+BC146432	100015128	without	226016	Fam108b	"family with sequence similarity 108, member B"
+BC141450	100014728	without	403088	Fam115e	"family with sequence similarity 115, member E"
+BC167198	100068098	with	218236	Fam120a	"family with sequence similarity 120, member A"
+BC156816	100062560	with	330577	Fam154b	"family with sequence similarity 154, member B"
+BC166035	100066335	with	231863	Fbxl18	F-box and leucine-rich repeat protein 18
+BC140313	100014306	without	235612	Fbxw19	F-box and WD-40 domain protein 19
+BC146471	100015026	with	235612	Fbxw19	F-box and WD-40 domain protein 19
+BC148428	100015387	without	231672	Fbxw8	F-box and WD-40 domain protein 8
+BC160262	100063910	with	68628	Fbxw9	F-box and WD-40 domain protein 9
+BC146415	100015090	without	50764	Fbxo15	F-box protein 15
+BC148854	100015886	with	50764	Fbxo15	F-box protein 15
+BC160240	100063888	with	14129	Fcgr1	"Fc receptor, IgG, high affinity I"
+BC148640	100015583	without	435653	Fcrlb	Fc receptor-like B
+BC156364	100061900	without	223254	Farp1	"FERM, RhoGEF (Arhgef) and pleckstrin domain protein 1 (chondrocyte-derived)"
+BC152852	100016086	without	14172	Fgf18	fibroblast growth factor 18
+BC156769	100062241	with	14172	Fgf18	fibroblast growth factor 18
+BC156158	100062417	without	14173	Fgf2	fibroblast growth factor 2
+BC156994	100062861	with	14173	Fgf2	fibroblast growth factor 2
+BC140268	100014275	without	14177	Fgf6	fibroblast growth factor 6
+BC141640	100014661	with	14177	Fgf6	fibroblast growth factor 6
+BC148388	100015321	without	244091	Fsd2	fibronectin type III and SPRY domain containing 2
+BC153010	100016245	with	244091	Fsd2	fibronectin type III and SPRY domain containing 2
+BC156061	100062319	without	319448	Fndc3a	fibronectin type III domain containing 3A
+BC172720	100069528	with	68794	Flnc	"filamin C, gamma"
+BC140375	100014412	without	14262	Fmo3	flavin containing monooxygenase 3
+BC148678	100015660	with	14262	Fmo3	flavin containing monooxygenase 3
+BC160291	100064035	with	14255	Flt3	FMS-like tyrosine kinase 3
+BC140213	100014268	without	26910	Figla	folliculogenesis specific basic helix-loop-helix
+BC141606	100014593	with	26910	Figla	folliculogenesis specific basic helix-loop-helix
+BC160375	100064119	with	15376	Foxa2	forkhead box A2
+BC152802	100016044	without	15221	Foxd3	forkhead box D3
+BC156564	100062040	with	15221	Foxd3	forkhead box D3
+BC160319	100064063	with	110805	Foxe1	forkhead box E1
+BC156273	100061648	without	17425	Foxk1	forkhead box K1
+BC152767	100016015	without	68837	Foxk2	forkhead box K2
+BC152908	100016178	without	56458	Foxo1	forkhead box O1
+BC166015	100066315	with	56484	Foxo3	forkhead box O3
+BC141491	100014769	without	382074	Foxr1	forkhead box R1
+BC153177	100016600	with	382074	Foxr1	forkhead box R1
+BC152730	100015938	without	55935	Fnbp4	formin binding protein 4
+BC156569	100062017	with	55935	Fnbp4	formin binding protein 4
+BC148411	100015444	without	57778	Fmnl1	formin-like 1
+BC156635	100062196	with	57778	Fmnl1	formin-like 1
+BC168411	100068380	with	71409	Fmnl2	formin-like 2
+BC140412	100014405	without	14293	Fpr1	formyl peptide receptor 1
+BC148696	100015676	with	14293	Fpr1	formyl peptide receptor 1
+BC146407	100015089	without	14294	Fpr3	formyl peptide receptor 3
+BC148849	100015897	with	14294	Fpr3	formyl peptide receptor 3
+BC140376	100014424	without	14365	Fzd3	frizzled homolog 3 (Drosophila)
+BC172707	100069515	with	72313	Fryl	furry homolog-like (Drosophila)
+BC156092	100062347	without	17281	Fyco1	FYVE and coiled-coil domain containing 1
+BC140371	100014373	without	381628	Gpr113	G protein-coupled receptor 113
+BC146510	100015047	with	381628	Gpr113	G protein-coupled receptor 113
+BC172710	100069518	with	224792	Gpr116	G protein-coupled receptor 116
+BC152941	100016195	without	52389	Gpr123	G protein-coupled receptor 123
+BC172605	100069413	without	215798	Gpr126	G protein-coupled receptor 126
+BC146544	100014899	with	217302	Gpr142	G protein-coupled receptor 142
+BC140426	100014490	without	217302	Gpr142	G protein-coupled receptor 142
+BC141527	100014534	without	241263	Gpr158	G protein-coupled receptor 158
+BC156791	100062508	with	241263	Gpr158	G protein-coupled receptor 158
+BC160358	100064102	with	245526	Pgr15l	G protein-coupled receptor 15-like
+BC152756	100016025	without	11536	Gpr182	G protein-coupled receptor 182
+BC160318	100064062	with	14761	Gpr27	G protein-coupled receptor 27
+BC160363	100064107	with	436440	Gpr31b	"G protein-coupled receptor 31, D17Leh66b region"
+BC165976	100066276	with	23890	Gpr34	G protein-coupled receptor 34
+BC152948	100016196	without	140741	Gpr6	G protein-coupled receptor 6
+BC160265	100063913	with	81006	Gpr63	G protein-coupled receptor 63
+BC141536	100014547	without	14608	Gpr83	G protein-coupled receptor 83
+BC148482	100015406	without	14427	Galr1	galanin receptor 1
+BC153078	100016389	with	14427	Galr1	galanin receptor 1
+BC172741	100069549	with	14427	Galr1	galanin receptor 1
+BC140309	100014353	without	232836	Galp	galanin-like peptide
+BC148726	100015768	with	232836	Galp	galanin-like peptide
+BC148598	100015601	without	14402	Gabrb3	"gamma-aminobutyric acid (GABA) A receptor, subunit beta 3"
+BC153159	100016561	with	14402	Gabrb3	"gamma-aminobutyric acid (GABA) A receptor, subunit beta 3"
+BC148535	100015509	without	14407	Gabrg3	"gamma-aminobutyric acid (GABA) A receptor, subunit gamma 3"
+BC156087	100062382	without	242425	Gabbr2	"gamma-aminobutyric acid (GABA) B receptor, 2"
+BC156988	100062836	with	242425	Gabbr2	"gamma-aminobutyric acid (GABA) B receptor, 2"
+BC141453	100014764	without	14610	Gja10	"gap junction protein, alpha 10"
+BC148712	100015682	with	14610	Gja10	"gap junction protein, alpha 10"
+BC156300	100061729	without	353155	Gjd3	"gap junction protein, delta 3"
+BC172680	100069488	with	353155	Gjd3	"gap junction protein, delta 3"
+BC140388	100014473	without	57911	Gsdma	gasdermin A
+BC148684	100015673	with	57911	Gsdma	gasdermin A
+BC148481	100015394	without	450219	Gsdma3	gasdermin A3
+BC153077	100016377	with	450219	Gsdma3	gasdermin A3
+BC141514	100014556	without	83492	Gsdmc	gasdermin C
+BC156358	100061828	without	231044	Gbx1	gastrulation brain homeobox 1
+BC141533	100014511	without	404194	Gfral	GDNF family receptor alpha like
+BC153094	100016476	with	404194	Gfral	GDNF family receptor alpha like
+BC167232	100068132	with	268527	Greb1	gene regulated by estrogen in breast cancer protein
+BC165989	100066289	with	209239	Gan	giant axonal neuropathy
+BC156914	100062699	with	209047	Gipc3	"GIPC PDZ domain containing family, member 3"
+BC167213	100068113	with	243842	Gltscr1	glioma tumor suppressor candidate region gene 1
+BC167165	100068065	with	226075	Glis3	GLIS family zinc finger 3
+BC141558	100014526	without	14378	G6pc2	"glucose-6-phosphatase, catalytic, 2"
+BC148698	100015702	with	14378	G6pc2	"glucose-6-phosphatase, catalytic, 2"
+BC156764	100062276	with	76051	Ganc	"glucosidase, alpha; neutral C"
+BC167177	100068077	with	14803	Grid1	"glutamate receptor, ionotropic, delta 1"
+BC160298	100064042	with	14806	Grik2	"glutamate receptor, ionotropic, kainate 2 (beta 2)"
+BC160379	100064123	with	14807	Grik3	"glutamate receptor, ionotropic, kainate 3"
+BC146289	100015182	without	14811	Grin2a	"glutamate receptor, ionotropic, NMDA2A (epsilon 1)"
+BC148800	100015901	with	14811	Grin2a	"glutamate receptor, ionotropic, NMDA2A (epsilon 1)"
+BC152738	100015963	without	170483	Grin3b	"glutamate receptor, ionotropic, NMDA3B"
+BC156787	100062279	with	622339	Gm6316	glyceraldehyde-3-phosphate dehydrogenase pseudogene
+BC141498	100014758	without	624367	Gm6498	glyceraldehyde-3-phosphate dehydrogenase pseudogene
+BC148778	100015837	with	624367	Gm6498	glyceraldehyde-3-phosphate dehydrogenase pseudogene
+BC152918	100016180	without	14447	Gapdhs	"glyceraldehyde-3-phosphate dehydrogenase, spermatogenic"
+BC140461	100014459	without	110304	Glra3	"glycine receptor, alpha 3 subunit"
+BC148711	100015658	with	110304	Glra3	"glycine receptor, alpha 3 subunit"
+BC152757	100015942	without	606496	Gsk3a	glycogen synthase kinase 3 alpha
+BC156581	100062043	with	606496	Gsk3a	glycogen synthase kinase 3 alpha
+BC160220	100063868	with	14934	Gypa	glycophorin A
+BC152792	100016030	without	14727	Gp49a	glycoprotein 49 A
+BC156183	100061620	without	14729	Gp5	glycoprotein 5 (platelet)
+BC156923	100063565	with	14729	Gp5	glycoprotein 5 (platelet)
+BC148430	100015423	without	260302	Gga3	"golgi associated, gamma adaptin ear containing, ARF binding protein 3"
+BC172626	100069434	without	54214	Golga4	"golgi autoantigen, golgin subfamily a, 4"
+BC160213	100063861	with	14836	Gsc	goosecoid homeobox
+BC165974	100066274	with	14941	Gzmd	granzyme D
+BC141594	100014531	without	14942	Gzme	granzyme E
+BC148577	100015538	without	14945	Gzmk	granzyme K
+BC153151	100016451	with	14945	Gzmk	granzyme K
+BC168389	100068358	with	57330	Gigyf1	GRB10 interacting GYF protein 1
+BC160216	100063864	with	231413	Grsf1	G-rich RNA sequence binding factor 1
+BC152721	100016020	without	14561	Gdf11	growth differentiation factor 11
+BC156128	100062436	without	238057	Gdf7	growth differentiation factor 7
+BC160313	100064057	with	14581	Gfi1	growth factor independent 1
+BC172613	100069421	without	74558	Gvin1	"GTPase, very large interferon inducible 1"
+BC172717	100069525	with	74558	Gvin1	"GTPase, very large interferon inducible 1"
+BC156682	100062120	with	234889	Gucy1a2	"guanylate cyclase 1, soluble, alpha 2"
+BC156143	100062450	without	73707	Gucy2g	guanylate cyclase 2g
+BC160207	100063855	with	15371	Hmx1	H6 homeobox 1
+BC141416	100014688	without	58240	Hs1bp3	HCLS1 binding protein 3
+BC148679	100015684	with	58240	Hs1bp3	HCLS1 binding protein 3
+BC172639	100069447	with	15111	Hand2	heart and neural crest derivatives expressed transcript 2
+BC172632	100069440	without	217995	Heatr1	HEAT repeat containing 1
+BC152841	100016049	without	15511	Hspa1b	heat shock protein 1B
+BC156260	100061658	without	94253	Hecw1	"HECT, C2 and WW domain containing E3 ubiquitin protein ligase 1"
+BC156405	100061971	without	329152	Hecw2	"HECT, C2 and WW domain containing E3 ubiquitin protein ligase 2"
+BC141595	100014543	without	15202	Hemt1	hematopoietic cell transcript 1
+BC152869	100016100	without	110257	Hba-a2	"hemoglobin alpha, adult chain 2"
+BC156773	100062289	with	110257	Hba-a2	"hemoglobin alpha, adult chain 2"
+BC152793	100015947	without	15129	Hbb-b1	"hemoglobin, beta adult major chain"
+BC156762	100062252	with	15129	Hbb-b1	"hemoglobin, beta adult major chain"
+BC156369	100062616	without	15139	Hc	hemolytic complement
+BC152758	100015954	without	195646	Hs3st2	heparan sulfate (glucosamine) 3-O-sulfotransferase 2
+BC156582	100062055	with	195646	Hs3st2	heparan sulfate (glucosamine) 3-O-sulfotransferase 2
+BC160206	100063854	with	432467	Hnrnph3	heterogeneous nuclear ribonucleoprotein H3
+BC152909	100016202	without	68693	Hnrnpul2	heterogeneous nuclear ribonucleoprotein U-like 2
+BC140360	100014336	without	15212	Hexb	hexosaminidase B
+BC146503	100015010	with	15212	Hexb	hexosaminidase B
+BC140314	100014318	without	15465	Hrh1	histamine receptor H1
+BC146472	100015038	with	15465	Hrh1	histamine receptor H1
+BC165958	100066258	with	15466	Hrh2	histamine receptor H2
+BC167249	100068149	with	15464	Hrc	histidine rich calcium binding protein
+BC172638	100069446	with	14969	H2-Eb1	"histocompatibility 2, class II antigen E beta"
+BC160234	100063882	with	224756	H2-M1	"histocompatibility 2, M region locus 1"
+BC146459	100014988	with	110696	H2-M10.3	"histocompatibility 2, M region locus 10.3"
+BC140374	100014400	without	110696	H2-M10.3	"histocompatibility 2, M region locus 10.3"
+BC148572	100015478	without	224753	H2-M10.4	"histocompatibility 2, M region locus 10.4"
+BC153149	100016498	with	224753	H2-M10.4	"histocompatibility 2, M region locus 10.4"
+BC146431	100015116	without	224761	H2-M10.5	"histocompatibility 2, M region locus 10.5"
+BC146442	100015165	without	399549	H2-M10.6	"histocompatibility 2, M region locus 10.6"
+BC146408	100015101	without	14997	H2-M9	"histocompatibility 2, M region locus 9"
+BC148850	100015909	with	14997	H2-M9	"histocompatibility 2, M region locus 9"
+BC148635	100015618	without	110557	H2-Q6	"histocompatibility 2, Q region locus 6"
+BC156754	100062215	with	110557	H2-Q6	"histocompatibility 2, Q region locus 6"
+BC160245	100063893	with	15019	H2-Q8	"histocompatibility 2, Q region locus 8"
+BC156693	100062181	with	15042	H2-T24	"histocompatibility 2, T region locus 24"
+BC156807	100062523	with	15260	Hira	histone cell cycle regulation defective homolog A (S. cerevisiae)
+BC140310	100014365	without	56702	Hist1h1b	"histone cluster 1, H1b"
+BC146469	100015049	with	56702	Hist1h1b	"histone cluster 1, H1b"
+BC146436	100015081	without	319172	Hist1h2ab	"histone cluster 1, H2ab"
+BC153047	100016348	with	319172	Hist1h2ab	"histone cluster 1, H2ab"
+BC160307	100064051	with	319180	Hist1h2bf	"histone cluster 1, H2bf"
+BC160302	100064046	with	319150	Hist1h3b	"histone cluster 1, H3b"
+BC160303	100064047	with	319149	Hist1h3d	"histone cluster 1, H3d"
+BC156786	100062267	with	319151	Hist1h3e	"histone cluster 1, H3e"
+BC146439	100015117	without	326620	Hist1h4b	"histone cluster 1, H4b"
+BC153049	100016384	with	326620	Hist1h4b	"histone cluster 1, H4b"
+BC152966	100016222	without	319156	Hist1h4d	"histone cluster 1, H4d"
+BC156620	100062062	with	319156	Hist1h4d	"histone cluster 1, H4d"
+BC148561	100015536	without	319157	Hist1h4f	"histone cluster 1, H4f"
+BC156748	100062238	with	319157	Hist1h4f	"histone cluster 1, H4f"
+BC152884	100016102	without	319159	Hist1h4j	"histone cluster 1, H4j"
+BC156618	100062097	with	319159	Hist1h4j	"histone cluster 1, H4j"
+BC160305	100064049	with	15267	Hist2h2aa1	"histone cluster 2, H2aa1"
+BC156107	100062337	without	319154	Hist2h3b	"histone cluster 2, H3b"
+BC156965	100063598	with	319154	Hist2h3b	"histone cluster 2, H3b"
+BC152885	100016114	without	320332	Hist4h4	"histone cluster 4, H4"
+BC172606	100069414	without	15410	Hoxb3	homeobox B3
+BC140344	100014334	without	15415	Hoxb7	homeobox B7
+BC160208	100063856	with	15422	Hoxc13	homeobox C13
+BC152853	100016098	without	15426	Hoxc8	homeobox C8
+BC166031	100066331	with	15433	Hoxd13	homeobox D13
+BC156341	100061897	without	15437	Hoxd8	homeobox D8
+BC172665	100069473	with	15437	Hoxd8	homeobox D8
+BC148402	100015323	without	26557	Homer2	homer homolog 2 (Drosophila)
+BC153023	100016307	with	26557	Homer2	homer homolog 2 (Drosophila)
+BC148370	100015354	without	110521	Hivep1	human immunodeficiency virus type I enhancer binding protein 1
+BC156925	100063554	with	110521	Hivep1	human immunodeficiency virus type I enhancer binding protein 1
+BC172623	100069431	without	16656	Hivep3	human immunodeficiency virus type I enhancer binding protein 3
+BC165962	100066262	with	15487	Hsd17b3	hydroxysteroid (17-beta) dehydrogenase 3
+BC156149	100062487	without	15166	Hcn2	"hyperpolarization-activated, cyclic nucleotide-gated K+ 2"
+BC168402	100068371	with	330953	Hcn4	"hyperpolarization-activated, cyclic nucleotide-gated K+ 4"
+BC156828	100062503	with	16351	Ipp	IAP promoted placental gene
+BC160215	100063863	with	15931	Ids	iduronate 2-sulfatase
+BC148734	100015782	with	22780	Ikzf3	IKAROS family zinc finger 3
+BC146283	100015205	without	22780	Ikzf3	IKAROS family zinc finger 3
+BC160352	100064096	with	22781	Ikzf4	IKAROS family zinc finger 4
+BC156108	100062349	without	210145	Irgc1	"immunity-related GTPase family, cinema 1"
+BC156897	100062756	with	210145	Irgc1	"immunity-related GTPase family, cinema 1"
+BC167242	100068142	with	20589	Ighmbp2	immunoglobulin mu binding protein 2
+BC156227	100061591	without	56741	Igdcc4	"immunoglobulin superfamily, DCC subclass, member 4"
+BC157001	100062874	with	56741	Igdcc4	"immunoglobulin superfamily, DCC subclass, member 4"
+BC141510	100014508	without	233726	Ipo7	importin 7
+BC156161	100062465	without	320727	Ipo8	importin 8
+BC172657	100069465	with	320727	Ipo8	importin 8
+BC160315	100064059	with	16324	Inhbb	inhibin beta-B
+BC156378	100062629	without	15904	Id4	inhibitor of DNA binding 4
+BC172675	100069483	with	15904	Id4	inhibitor of DNA binding 4
+BC152847	100016121	without	26356	Ing1	"inhibitor of growth family, member 1"
+BC166004	100066304	with	76614	Immt	"inner membrane protein, mitochondrial"
+BC172648	100069456	with	16438	Itpr1	"inositol 1,4,5-trisphosphate receptor 1"
+BC172640	100069448	with	16337	Insr	insulin receptor
+BC156076	100062321	without	16367	Irs1	insulin receptor substrate 1
+BC165972	100066272	with	104360	Isl2	insulin related protein 2 (islet 2)
+BC167237	100068137	with	109700	Itga1	integrin alpha 1
+BC152747	100015988	without	16404	Itga7	integrin alpha 7
+BC156094	100062371	without	16409	Itgam	integrin alpha M
+BC156991	100062789	with	16409	Itgam	integrin alpha M
+BC167182	100068082	with	16410	Itgav	integrin alpha V
+BC167225	100068125	with	16411	Itgax	integrin alpha X
+BC148415	100015409	without	381924	Itgad	"integrin, alpha D"
+BC148569	100015537	without	320495	Ipcef1	interaction protein for cytohesin exchange factors 1
+BC153147	100016462	with	320495	Ipcef1	interaction protein for cytohesin exchange factors 1
+BC140285	100014230	without	15962	Ifna1	interferon alpha 1
+BC141650	100014675	with	15962	Ifna1	interferon alpha 1
+BC141454	100014776	without	15965	Ifna2	interferon alpha 2
+BC148713	100015694	with	15965	Ifna2	interferon alpha 2
+BC160330	100064074	with	15969	Ifna6	interferon alpha 6
+BC160276	100063924	with	27056	Irf5	interferon regulatory factor 5
+BC160242	100063890	with	319146	Ifnz	interferon zeta
+BC140355	100014371	without	16154	Il10ra	"interleukin 10 receptor, alpha"
+BC146496	100015068	with	16154	Il10ra	"interleukin 10 receptor, alpha"
+BC141596	100014555	without	16159	Il12a	interleukin 12a
+BC146595	100014842	with	16159	Il12a	interleukin 12a
+BC152854	100016110	without	16163	Il13	interleukin 13
+BC146306	100015208	without	16172	Il17ra	interleukin 17 receptor A
+BC156651	100062151	with	16172	Il17ra	interleukin 17 receptor A
+BC152929	100016134	without	171463	Il17rd	interleukin 17 receptor D
+BC160214	100063862	with	239114	Il17d	interleukin 17D
+BC160259	100063907	with	257630	Il17f	interleukin 17F
+BC140273	100014240	without	338374	Il28b	interleukin 28B
+BC141644	100014638	with	338374	Il28b	interleukin 28B
+BC156083	100062310	without	16188	Il3ra	"interleukin 3 receptor, alpha chain"
+BC172655	100069463	with	16188	Il3ra	"interleukin 3 receptor, alpha chain"
+BC148583	100015515	without	16194	Il6ra	"interleukin 6 receptor, alpha"
+BC140269	100014287	without	16198	Il9	interleukin 9
+BC141641	100014673	with	16198	Il9	interleukin 9
+BC172688	100069496	with	16443	Itsn1	intersectin 1 (SH3 domain protein 1A)
+BC160201	100063849	with	16447	Ivl	involucrin
+BC148474	100015393	without	245666	Iqsec2	IQ motif and Sec7 domain 2
+BC153107	100016467	with	245666	Iqsec2	IQ motif and Sec7 domain 2
+BC168388	100068357	with	243621	Iqsec3	IQ motif and Sec7 domain 3
+BC172704	100069512	with	404710	Iqgap3	IQ motif containing GTPase activating protein 3
+BC148652	100015632	without	16371	Irx1	Iroquois related homeobox 1 (Drosophila)
+BC152920	100016204	without	73456	Izumo1	izumo sperm-egg fusion 1
+BC167222	100068122	with	16450	Jag2	jagged 2
+BC166010	100066310	with	16469	Jrk	jerky
+BC156699	100062158	with	71912	Jsrp1	junctional sarcoplasmic reticulum protein 1
+BC141430	100014761	without	16538	Kcns1	"K+ voltage-gated channel, subfamily S, 1"
+BC160255	100063903	with	56538	Klk11	kallikrein related-peptidase 11
+BC152778	100015957	without	626834	Klk13	kallikrein related-peptidase 13
+BC156599	100062023	with	626834	Klk13	kallikrein related-peptidase 13
+BC152823	100016118	without	68304	Kdelc2	KDEL (Lys-Asp-Glu-Leu) containing 2
+BC172685	100069493	with	16661	Krt10	keratin 10
+BC160314	100064058	with	16660	Krt31	keratin 31
+BC141597	100014567	without	16673	Krt36	keratin 36
+BC165963	100066263	with	237934	Krt39	keratin 39
+BC165973	100066273	with	68239	Krt42	keratin 42
+BC156168	100062466	without	105866	Krt72-ps	"keratin 72, pseudogene"
+BC157004	100062839	with	105866	Krt72-ps	"keratin 72, pseudogene"
+BC160264	100063912	with	406222	Krt74	keratin 74
+BC152922	100016133	without	53622	Krt85	keratin 85
+BC168409	100068378	with	107656	Krt9	keratin 9
+BC160310	100064054	with	170657	Krtap16-2	keratin associated protein 16-2
+BC156156	100062488	without	68484	Krtap16-8	keratin associated protein 16-8
+BC156899	100062780	with	68484	Krtap16-8	keratin associated protein 16-8
+BC160372	100064116	with	66708	Krtap3-2	keratin associated protein 3-2
+BC156698	100062146	with	68673	Krtap4-2	keratin associated protein 4-2
+BC156385	100062630	without	50774	Krtap5-1	keratin associated protein 5-1
+BC172693	100069501	with	50774	Krtap5-1	keratin associated protein 5-1
+BC148736	100015806	with	50775	Krtap5-4	keratin associated protein 5-4
+BC148336	100015278	without	50775	Krtap5-4	keratin associated protein 5-4
+BC160373	100064117	with	16701	Krtap6-2	keratin associated protein 6-2
+BC160311	100064055	with	16704	Krtap8-2	keratin associated protein 8-2
+BC156686	100062180	with	75586	Krtap9-3	keratin associated protein 9-3
+BC165941	100066241	with	368204	Khdc1a	KH domain containing 1A
+BC166022	100066322	with	16549	Khsrp	KH-type splicing regulatory protein
+BC160238	100063886	with	243655	Klre1	killer cell lectin-like receptor family E member 1
+BC160277	100063925	with	16628	Klra10	"killer cell lectin-like receptor subfamily A, member 10"
+BC140218	100014233	without	93969	Klra22	"killer cell lectin-like receptor subfamily A, member 22"
+BC146515	100014940	with	93969	Klra22	"killer cell lectin-like receptor subfamily A, member 22"
+BC160223	100063871	with	16640	Klra9	"killer cell lectin-like receptor subfamily A, member 9"
+BC160273	100063921	with	16641	Klrc1	"killer cell lectin-like receptor subfamily C, member 1"
+BC152858	100016063	without	16635	Klra4	"killer cell lectin-like receptor, subfamily A, member 4"
+BC156611	100062096	with	16635	Klra4	"killer cell lectin-like receptor, subfamily A, member 4"
+BC152859	100016075	without	16637	Klra6	"killer cell lectin-like receptor, subfamily A, member 6"
+BC156612	100062108	with	16637	Klra6	"killer cell lectin-like receptor, subfamily A, member 6"
+BC140346	100014358	without	16639	Klra8	"killer cell lectin-like receptor, subfamily A, member 8"
+BC168386	100068355	with	16706	Ksr1	kinase suppressor of ras 1
+BC172712	100069520	with	16709	Ktn1	kinectin 1
+BC156335	100061908	without	16553	Kif13a	kinesin family member 13A
+BC156080	100062369	without	16558	Kif16b	kinesin family member 16B
+BC140373	100014397	without	16559	Kif17	kinesin family member 17
+BC148703	100015691	with	16559	Kif17	kinesin family member 17
+BC152807	100016104	without	16561	Kif1b	kinesin family member 1B
+BC167189	100068089	with	16562	Kif1c	kinesin family member 1C
+BC156377	100062617	without	16565	Kif21b	kinesin family member 21B
+BC152740	100015999	without	16581	Kifc2	kinesin family member C2
+BC156801	100062498	with	16581	Kifc2	kinesin family member C2
+BC140362	100014360	without	80880	Kank3	KN motif and ankyrin repeat domains 3
+BC141513	100014544	without	50794	Klf13	Kruppel-like factor 13
+BC156644	100062162	with	16716	Ky	kyphoscoliosis peptidase
+BC148404	100015347	without	28036	Larp7	"La ribonucleoprotein domain family, member 7"
+BC153029	100016333	with	28036	Larp7	"La ribonucleoprotein domain family, member 7"
+BC172614	100069422	without	226413	Lct	lactase
+BC156301	100061741	without	16772	Lama1	"laminin, alpha 1"
+BC172652	100069460	with	16772	Lama1	"laminin, alpha 1"
+BC172647	100069455	with	16773	Lama2	"laminin, alpha 2"
+BC165945	100066245	with	226519	Lamc1	"laminin, gamma 1"
+BC140417	100014465	without	16782	Lamc2	"laminin, gamma 2"
+BC160374	100064118	with	73722	Lce1a2	late cornified envelope 1A2
+BC146599	100014819	with	68720	Lce1b	late cornified envelope 1B
+BC148405	100015359	without	68720	Lce1b	late cornified envelope 1B
+BC146598	100014807	with	67718	Lce1h	late cornified envelope 1H
+BC146421	100015162	without	67718	Lce1h	late cornified envelope 1H
+BC168401	100068370	with	16998	Ltbp3	latent transforming growth factor beta binding protein 3
+BC172691	100069499	with	99633	Lphn2	latrophilin 2
+BC160275	100063923	with	16857	Lgals6	"lectin, galactose binding, soluble 6"
+BC148633	100015594	without	93689	Lmod1	leiomodin 1 (smooth muscle)
+BC153193	100016603	with	93689	Lmod1	leiomodin 1 (smooth muscle)
+BC156701	100062182	with	93677	Lmod2	leiomodin 2 (cardiac)
+BC167257	100068157	with	68732	Lrrc16a	leucine rich repeat containing 16A
+BC156310	100061754	without	268747	Lrrc16b	leucine rich repeat containing 16B
+BC156356	100061899	without	74249	Lrrc2	leucine rich repeat containing 2
+BC156649	100062127	with	14160	Lgr5	leucine rich repeat containing G protein coupled receptor 5
+BC166014	100066314	with	320974	Lrrn4	leucine rich repeat neuronal 4
+BC152759	100015966	without	69706	Lrr1	leucine rich repeat protein 1
+BC140381	100014484	without	107065	Lrrtm2	leucine rich repeat transmembrane neuronal 2
+BC146465	100015001	with	107065	Lrrtm2	leucine rich repeat transmembrane neuronal 2
+BC148507	100015541	without	246316	Lgi2	"leucine-rich repeat LGI family, member 2"
+BC160293	100064037	with	107515	Lgr4	leucine-rich repeat-containing G protein-coupled receptor 4
+BC140353	100014347	without	16878	Lif	leukemia inhibitory factor
+BC146495	100015044	with	16878	Lif	leukemia inhibitory factor
+BC141476	100014779	without	232801	Lilra5	"leukocyte immunoglobulin-like receptor, subfamily A (with TM domain), member 5"
+BC141417	100014700	without	319583	Lig4	"ligase IV, DNA, ATP-dependent"
+BC148517	100015471	without	268890	Lsamp	limbic system-associated membrane protein
+BC153114	100016504	with	268890	Lsamp	limbic system-associated membrane protein
+BC156778	100062254	with	16885	Limk1	"LIM-domain containing, protein kinase"
+BC156606	100062107	with	381591	L1td1	LINE-1 type transposase domain containing 1
+BC160370	100064114	with	227630	Lcn11	lipocalin 11
+BC140405	100014404	without	13863	Lcn5	lipocalin 5
+BC146485	100015054	with	13863	Lcn5	lipocalin 5
+BC140235	100014247	without	77704	Lcn9	lipocalin 9
+BC156650	100062139	with	74142	Lonp1	"lon peptidase 1, mitochondrial"
+BC156400	100061922	without	16975	Lrp8	"low density lipoprotein receptor-related protein 8, apolipoprotein e receptor"
+BC160301	100064045	with	16866	Lhb	luteinizing hormone beta
+BC140438	100014444	without	16867	Lhcgr	luteinizing hormone/choriogonadotropin receptor
+BC152856	100016039	without	17071	Ly6f	"lymphocyte antigen 6 complex, locus F"
+BC160367	100064111	with	16994	Ltb	lymphotoxin B
+BC152815	100016117	without	244694	Kdm4d	lysine (K)-specific demethylase 4D
+BC156878	100062716	with	244694	Kdm4d	lysine (K)-specific demethylase 4D
+BC160287	100063935	with	270084	Lpcat2	lysophosphatidylcholine acyltransferase 2
+BC160231	100063879	with	239739	Lamp3	lysosomal-associated membrane protein 3
+BC141520	100014545	without	71263	Mro	maestro
+BC172689	100069497	with	226844	Mfsd7b	major facilitator superfamily domain containing 7B
+BC172683	100069491	with	74762	Mdga1	MAM domain containing glycosylphosphatidylinositol anchor 1
+BC165942	100066242	with	269181	Mgat4a	"mannoside acetylglucosaminyltransferase 4, isoenzyme A"
+BC156720	100062222	with	232944	Mark4	MAP/microtubule affinity-regulating kinase 4
+BC140379	100014460	without	233222	Mrgpra3	"MAS-related GPR, member A3"
+BC146462	100015060	with	233222	Mrgpra3	"MAS-related GPR, member A3"
+BC148489	100015395	without	404235	Mrgpra5	"MAS-related GPR, member A5"
+BC156157	100062405	without	404236	Mrgpra7	"MAS-related GPR, member A7"
+BC156596	100062082	with	404237	Mrgpra8	"MAS-related GPR, member A8"
+BC165971	100066271	with	233231	Mrgprb1	"MAS-related GPR, member B1"
+BC148570	100015549	without	233230	Mrgprb4	"MAS-related GPR, member B4"
+BC156677	100062155	with	233230	Mrgprb4	"MAS-related GPR, member B4"
+BC148744	100015760	with	83996	Mmp1b	matrix metallopeptidase 1b (interstitial collagenase)
+BC146301	100015243	without	83996	Mmp1b	matrix metallopeptidase 1b (interstitial collagenase)
+BC160269	100063917	with	30800	Mmp20	matrix metallopeptidase 20 (enamelysin)
+BC156391	100061992	without	17391	Mmp24	matrix metallopeptidase 24
+BC140432	100014467	without	234911	Mmp27	matrix metallopeptidase 27
+BC148544	100015522	without	14013	Mecom	MDS1 and EVI1 complex locus
+BC153133	100016495	with	14013	Mecom	MDS1 and EVI1 complex locus
+BC156350	100061827	without	327987	Med13	mediator complex subunit 13
+BC172732	100069540	with	76199	Med13l	mediator complex subunit 13-like
+BC148466	100015392	without	17137	Magea1	"melanoma antigen, family A, 1"
+BC153060	100016398	with	17137	Magea1	"melanoma antigen, family A, 1"
+BC160260	100063908	with	17145	Mageb1	"melanoma antigen, family B, 1"
+BC140339	100014357	without	338320	Mia2	melanoma inhibitory activity 2
+BC146486	100014983	with	338320	Mia2	melanoma inhibitory activity 2
+BC148563	100015465	without	64381	Ms4a8a	"membrane-spanning 4-domains, subfamily A, member 8A"
+BC153143	100016497	with	64381	Ms4a8a	"membrane-spanning 4-domains, subfamily A, member 8A"
+BC148451	100015390	without	259172	Mfrp	membrane-type frizzled-related protein
+BC153043	100016395	with	259172	Mfrp	membrane-type frizzled-related protein
+BC156287	100061650	without	17295	Met	met proto-oncogene
+BC160254	100063902	with	72852	Mblac2	metallo-beta-lactamase domain containing 2
+BC148584	100015527	without	213582	Mtap9	microtubule-associated protein 9
+BC156817	100062572	with	213582	Mtap9	microtubule-associated protein 9
+BC140361	100014348	without	23947	Mid2	midline 2
+BC146504	100015022	with	23947	Mid2	midline 2
+BC167181	100068081	with	76580	Mib2	mindbomb homolog 2 (Drosophila)
+BC172624	100069432	without	71567	Mcm9	minichromosome maintenance complex component 9
+BC152775	100016016	without	67062	Mcart6	mitochondrial carrier triple repeat 6
+BC172631	100069439	without	26401	Map3k1	mitogen-activated protein kinase kinase kinase 1
+BC152824	100016035	without	269881	Map3k10	mitogen-activated protein kinase kinase kinase 10
+BC156585	100062103	with	269881	Map3k10	mitogen-activated protein kinase kinase kinase 10
+BC160295	100064039	with	53859	Map3k14	mitogen-activated protein kinase kinase kinase 14
+BC165983	100066283	with	26405	Map3k2	mitogen-activated protein kinase kinase kinase 2
+BC172686	100069494	with	225028	Map4k3	mitogen-activated protein kinase kinase kinase kinase 3
+BC168387	100068356	with	26921	Map4k4	mitogen-activated protein kinase kinase kinase kinase 4
+BC167240	100068140	with	58805	Mlxipl	MLX interacting protein-like
+BC167258	100068158	with	83456	Mov10l1	Moloney leukemia virus 10-like 1
+BC172660	100069468	with	270096	Mon1b	MON1 homolog b (yeast)
+BC152917	100016168	without	194357	Moxd2	"monooxygenase, DBH-like 2"
+BC156890	100062742	with	194357	Moxd2	"monooxygenase, DBH-like 2"
+BC156727	100062235	with	17540	Mrvi1	MRV integration site 1
+BC167221	100068121	with	17837	Mug2	murinoglobulin 2
+BC146538	100014969	with	17690	Msi1	Musashi homolog 1(Drosophila)
+BC140422	100014430	without	17690	Msi1	Musashi homolog 1(Drosophila)
+BC140378	100014448	without	232934	Mypop	"Myb-related transcription factor, partner of profilin"
+BC146461	100015048	with	232934	Mypop	"Myb-related transcription factor, partner of profilin"
+BC167175	100068075	with	17188	Maz	MYC-associated zinc finger protein (purine-binding transcription factor)
+BC160377	100064121	with	17356	Mllt4	"myeloid/lymphoid or mixed-lineage leukemia (trithorax homolog, Drosophila); translocated to, 4"
+BC148410	100015432	without	246198	Mllt6	"myeloid/lymphoid or mixed-lineage leukemia (trithorax homolog, Drosophila); translocated to, 6"
+BC152980	100016297	with	246198	Mllt6	"myeloid/lymphoid or mixed-lineage leukemia (trithorax homolog, Drosophila); translocated to, 6"
+BC167199	100068099	with	214384	Myocd	myocardin
+BC146566	100014834	with	16543	Mdfic	MyoD family inhibitor domain containing
+BC146373	100015144	without	16543	Mdfic	MyoD family inhibitor domain containing
+BC156281	100061661	without	329421	Myo3b	myosin IIIB
+BC172681	100069489	with	17921	Myo7a	myosin VIIA
+BC156151	100062416	without	17909	Myo10	myosin X
+BC156270	100061695	without	228785	Mylk2	"myosin, light polypeptide kinase 2, skeletal muscle"
+BC148525	100015472	without	381204	Naaladl1	N-acetylated alpha-linked acidic dipeptidase-like 1
+BC140232	100014211	without	17962	Nat3	N-acetyltransferase 3
+BC141615	100014643	with	17962	Nat3	N-acetyltransferase 3
+BC141522	100014569	without	237038	Nox1	NADPH oxidase 1
+BC156790	100062496	with	237038	Nox1	NADPH oxidase 1
+BC165954	100066254	with	50490	Nox4	NADPH oxidase 4
+BC160381	100064125	with	378430	Nanos2	nanos homolog 2 (Drosophila)
+BC146384	100015086	without	18087	Nktr	natural killer tumor recognition sequence
+BC148805	100015890	with	18087	Nktr	natural killer tumor recognition sequence
+BC148377	100015272	without	50884	Nckap1	NCK-associated protein 1
+BC156351	100061839	without	333789	N4bp2	NEDD4 binding protein 2
+BC156969	100063563	with	338352	Nell1	NEL-like 1 (chicken)
+BC152916	100016156	without	54631	Nphs1	"nephrosis 1 homolog, nephrin (human)"
+BC156756	100062239	with	54631	Nphs1	"nephrosis 1 homolog, nephrin (human)"
+BC156604	100062083	with	18049	Ngf	nerve growth factor
+BC148675	100015623	without	415115	Neurl2	neuralized-like 2 (Drosophila)
+BC156597	100062094	with	415115	Neurl2	neuralized-like 2 (Drosophila)
+BC160344	100064088	with	211323	Nrg1	neuregulin 1
+BC140288	100014266	without	104080	Nxph4	neurexophilin 4
+BC156568	100062100	with	104080	Nxph4	neurexophilin 4
+BC172619	100069427	without	18015	Nf1	neurofibromatosis 1
+BC168406	100068375	with	380684	Nefh	"neurofilament, heavy polypeptide"
+BC167193	100068093	with	18040	Nefm	"neurofilament, medium polypeptide"
+BC156101	100062360	without	216856	Nlgn2	neuroligin 2
+BC156963	100063645	with	216856	Nlgn2	neuroligin 2
+BC167248	100068148	with	27386	Npas3	neuronal PAS domain protein 3
+BC152773	100015992	without	504193	Npcd	neuronal pentraxin chromo domain
+BC156235	100061616	without	319504	Nrcam	neuron-glia-CAM-related cell adhesion molecule
+BC157007	100062792	with	319504	Nrcam	neuron-glia-CAM-related cell adhesion molecule
+BC172604	100069412	without	384569	Nova2	neuro-oncological ventral antigen 2
+BC156702	100062194	with	104443	Npffr2	neuropeptide FF receptor 2
+BC141449	100014716	without	319239	Npsr1	neuropeptide S receptor 1
+BC153168	100016527	with	319239	Npsr1	neuropeptide S receptor 1
+BC156093	100062359	without	18187	Nrp2	neuropilin 2
+BC156989	100062848	with	18187	Nrp2	neuropilin 2
+BC167186	100068086	with	18004	Nek1	NIMA (never in mitosis gene a)-related expressed kinase 1
+BC167256	100068156	with	64652	Nisch	nischarin
+BC160272	100063920	with	70729	Nos1ap	nitric oxide synthase 1 (neuronal) adaptor protein
+BC167235	100068135	with	18125	Nos1	"nitric oxide synthase 1, neuronal"
+BC152743	100015940	without	228731	Nkx2-4	"NK2 transcription factor related, locus 4 (Drosophila)"
+BC140413	100014417	without	14912	Nkx6-2	NK6 homeobox 2
+BC168393	100068362	with	17952	Naip6	"NLR family, apoptosis inhibitory protein 6"
+BC172694	100069502	with	53880	Naip7	"NLR family, apoptosis inhibitory protein 7"
+BC160196	100063844	with	268857	Nlrc3	"NLR family, CARD domain containing 3"
+BC156396	100061969	without	195046	Nlrp1a	"NLR family, pyrin domain containing 1A"
+BC156633	100062160	with	232827	Nlrp2	"NLR family, pyrin domain containing 2"
+BC172659	100069467	with	97895	Nlrp4f	"NLR family, pyrin domain containing 4F"
+BC148609	100015638	without	233001	Nlrp9a	"NLR family, pyrin domain containing 9A"
+BC148455	100015438	without	330490	Nlrp9c	"NLR family, pyrin domain containing 9C"
+BC156738	100062296	with	330490	Nlrp9c	"NLR family, pyrin domain containing 9C"
+BC165967	100066267	with	100609	Nsun5	"NOL1/NOP2/Sun domain family, member 5"
+BC172642	100069450	with	18129	Notch2	notch 2
+BC172738	100069546	with	18131	Notch3	notch 3
+BC146409	100015113	without	18029	Nfic	nuclear factor I/C
+BC148851	100015921	with	18029	Nfic	nuclear factor I/C
+BC172709	100069517	with	54446	Nfat5	nuclear factor of activated T cells 5
+BC141543	100014536	without	68564	Nufip2	nuclear fragile X mental retardation protein interacting protein 2
+BC156380	100062653	without	244879	Npat	nuclear protein in the AT region
+BC172676	100069484	with	244879	Npat	nuclear protein in the AT region
+BC160294	100064038	with	211329	Ncoa7	nuclear receptor coactivator 7
+BC160300	100064044	with	11614	Nr0b1	"nuclear receptor subfamily 0, group B, member 1"
+BC148436	100015400	without	18124	Nr4a3	"nuclear receptor subfamily 4, group A, member 3"
+BC156736	100062260	with	18124	Nr4a3	"nuclear receptor subfamily 4, group A, member 3"
+BC156284	100061697	without	14536	Nr6a1	"nuclear receptor subfamily 6, group A, member 1"
+BC152962	100016174	without	245610	Nxf3	nuclear RNA export factor 3
+BC141512	100014532	without	170722	Nxf7	nuclear RNA export factor 7
+BC146558	100014808	with	170722	Nxf7	nuclear RNA export factor 7
+BC168407	100068376	with	257632	Nod2	nucleotide-binding oligomerization domain containing 2
+BC160356	100064100	with	380924	Olfm4	olfactomedin 4
+BC140221	100014269	without	258923	Olfr1	olfactory receptor 1
+BC141608	100014594	with	258923	Olfr1	olfactory receptor 1
+BC140222	100014281	without	258830	Olfr103	olfactory receptor 103
+BC141609	100014606	with	258830	Olfr103	olfactory receptor 103
+BC167224	100068124	with	257948	Olfr104-ps	"olfactory receptor 104, pseudogene"
+BC146350	100015261	without	259019	Olfr1045	olfactory receptor 1045
+BC148836	100015883	with	259019	Olfr1045	olfactory receptor 1045
+BC160365	100064109	with	257893	Olfr105-ps	"olfactory receptor 105, pseudogene"
+BC160364	100064108	with	257925	Olfr106-ps	"olfactory receptor 106, pseudogene"
+BC165965	100066265	with	218066	Olfr11	olfactory receptor 11
+BC152952	100016149	without	257875	Olfr1116-ps	"olfactory receptor 1116, pseudogene"
+BC156909	100062734	with	257875	Olfr1116-ps	"olfactory receptor 1116, pseudogene"
+BC140279	100014241	without	258096	Olfr112	olfactory receptor 112
+BC141444	100014751	without	258631	Olfr1151	olfactory receptor 1151
+BC160366	100064110	with	258103	Olfr1152	olfactory receptor 1152
+BC140241	100014224	without	258625	Olfr116	olfactory receptor 116
+BC141620	100014644	with	258625	Olfr116	olfactory receptor 116
+BC141580	100014517	without	258820	Olfr1184	olfactory receptor 1184
+BC152956	100016197	without	258095	Olfr119	olfactory receptor 119
+BC156775	100062218	with	258095	Olfr119	olfactory receptor 119
+BC140275	100014264	without	258624	Olfr120	olfactory receptor 120
+BC141645	100014650	with	258624	Olfr120	olfactory receptor 120
+BC146345	100015201	without	258896	Olfr1206	olfactory receptor 1206
+BC148831	100015906	with	258896	Olfr1206	olfactory receptor 1206
+BC156657	100062164	with	258285	Olfr122	olfactory receptor 122
+BC146346	100015213	without	258972	Olfr1239	olfactory receptor 1239
+BC148833	100015930	with	258972	Olfr1239	olfactory receptor 1239
+BC146537	100014909	with	258892	Olfr126	olfactory receptor 126
+BC140418	100014477	without	258892	Olfr126	olfactory receptor 126
+BC160282	100063930	with	258909	Olfr1282	olfactory receptor 1282
+BC146433	100015140	without	258324	Olfr129	olfactory receptor 129
+BC141576	100014564	without	258442	Olfr1314	olfactory receptor 1314
+BC165981	100066281	with	257889	Olfr132	olfactory receptor 132
+BC141572	100014516	without	236784	Olfr1320	olfactory receptor 1320
+BC146335	100015176	without	258385	Olfr1323	olfactory receptor 1323
+BC148819	100015928	with	258385	Olfr1323	olfactory receptor 1323
+BC152879	100016042	without	258851	Olfr1339	olfactory receptor 1339
+BC140396	100014474	without	258829	Olfr134	olfactory receptor 134
+BC146454	100015119	without	258305	Olfr1356	olfactory receptor 1356
+BC153072	100016412	with	258305	Olfr1356	olfactory receptor 1356
+BC156782	100062219	with	258803	Olfr136	olfactory receptor 136
+BC160261	100063909	with	258481	Olfr137	olfactory receptor 137
+BC146338	100015212	without	258465	Olfr1387	olfactory receptor 1387
+BC148821	100015857	with	258465	Olfr1387	olfactory receptor 1387
+BC152890	100016091	without	57272	Olfr140	olfactory receptor 140
+BC156630	100062099	with	57272	Olfr140	olfactory receptor 140
+BC148499	100015540	without	257913	Olfr141	olfactory receptor 141
+BC153102	100016442	with	257913	Olfr141	olfactory receptor 141
+BC140271	100014216	without	406186	Olfr142	olfactory receptor 142
+BC146541	100014934	with	406186	Olfr142	olfactory receptor 142
+BC146394	100015123	without	258802	Olfr143	olfactory receptor 143
+BC148825	100015905	with	258802	Olfr143	olfactory receptor 143
+BC146353	100015202	without	258700	Olfr1451	olfactory receptor 1451
+BC153164	100016574	with	258700	Olfr1451	olfactory receptor 1451
+BC141591	100014578	without	258299	Olfr1461	olfactory receptor 1461
+BC148479	100015370	without	258120	Olfr1463	olfactory receptor 1463
+BC153075	100016353	with	258120	Olfr1463	olfactory receptor 1463
+BC160239	100063887	with	258869	Olfr147	olfactory receptor 147
+BC140265	100014239	without	18312	Olfr15	olfactory receptor 15
+BC146531	100014943	with	18312	Olfr15	olfactory receptor 15
+BC140406	100014416	without	57270	Olfr1508	olfactory receptor 1508
+BC148694	100015735	with	57270	Olfr1508	olfactory receptor 1508
+BC152954	100016173	without	258640	Olfr152	olfactory receptor 152
+BC152870	100016112	without	110511	Olfr153	olfactory receptor 153
+BC148580	100015479	without	258173	Olfr1532-ps1	"olfactory receptor 1532, pseudogene 1"
+BC160283	100063931	with	257959	Olfr1537-ps1	"olfactory receptor 1537, pseudogene 1"
+BC148629	100015629	without	29849	Olfr159	olfactory receptor 159
+BC153192	100016579	with	29849	Olfr159	olfactory receptor 159
+BC148429	100015399	without	258859	Olfr161	olfactory receptor 161
+BC141446	100014775	without	258937	Olfr167	olfactory receptor 167
+BC153162	100016538	with	258937	Olfr167	olfactory receptor 167
+BC148834	100015847	with	258995	Olfr176	olfactory receptor 176
+BC146347	100015225	without	258995	Olfr176	olfactory receptor 176
+BC146348	100015237	without	258998	Olfr177	olfactory receptor 177
+BC153163	100016550	with	258998	Olfr177	olfactory receptor 177
+BC146410	100015125	without	18321	Olfr23	olfactory receptor 23
+BC153106	100016419	with	18321	Olfr23	olfactory receptor 23
+BC156707	100062159	with	406175	Olfr242	olfactory receptor 242
+BC152878	100016125	without	258826	Olfr27	olfactory receptor 27
+BC156972	100063611	with	258826	Olfr27	olfactory receptor 27
+BC146434	100015152	without	258449	Olfr282	olfactory receptor 282
+BC153041	100016371	with	258449	Olfr282	olfactory receptor 282
+BC152883	100016090	without	258278	Olfr284	olfactory receptor 284
+BC146395	100015135	without	258613	Olfr292	olfactory receptor 292
+BC156725	100062294	with	258613	Olfr292	olfactory receptor 292
+BC141583	100014553	without	258611	Olfr297	olfactory receptor 297
+BC160267	100063915	with	18328	Olfr3	olfactory receptor 3
+BC167238	100068138	with	258064	Olfr316	olfactory receptor 316
+BC156661	100062129	with	236509	Olfr366	olfactory receptor 366
+BC146352	100015190	without	259027	Olfr380	olfactory receptor 380
+BC148838	100015907	with	259027	Olfr380	olfactory receptor 380
+BC141570	100014587	without	193053	Olfr384	olfactory receptor 384
+BC141448	100014704	without	259025	Olfr385	olfactory receptor 385
+BC146349	100015249	without	259011	Olfr389	olfactory receptor 389
+BC148835	100015871	with	259011	Olfr389	olfactory receptor 389
+BC140223	100014293	without	258822	Olfr39	olfactory receptor 39
+BC141610	100014618	with	258822	Olfr39	olfactory receptor 39
+BC141588	100014518	without	259010	Olfr393	olfactory receptor 393
+BC146540	100014922	with	259009	Olfr394	olfactory receptor 394
+BC140424	100014454	without	259009	Olfr394	olfactory receptor 394
+BC141447	100014692	without	259007	Olfr395	olfactory receptor 395
+BC148390	100015345	without	258705	Olfr398	olfactory receptor 398
+BC153012	100016293	with	258705	Olfr398	olfactory receptor 398
+BC141574	100014540	without	258238	Olfr417	olfactory receptor 417
+BC156340	100061885	without	18343	Olfr44	olfactory receptor 44
+BC146587	100014863	with	258488	Olfr474	olfactory receptor 474
+BC140454	100014470	without	258488	Olfr474	olfactory receptor 474
+BC140427	100014407	without	258928	Olfr477	olfactory receptor 477
+BC156634	100062172	with	258928	Olfr477	olfactory receptor 477
+BC141519	100014521	without	18347	Olfr48	olfactory receptor 48
+BC140392	100014426	without	56861	Olfr480	olfactory receptor 480
+BC160284	100063932	with	258927	Olfr481	olfactory receptor 481
+BC148828	100015846	with	258307	Olfr493	olfactory receptor 493
+BC146344	100015189	without	258307	Olfr493	olfactory receptor 493
+BC160333	100064077	with	258733	Olfr497	olfactory receptor 497
+BC141577	100014576	without	258738	Olfr507	olfactory receptor 507
+BC141598	100014579	without	18351	Olfr51	olfactory receptor 51
+BC146596	100014866	with	18351	Olfr51	olfactory receptor 51
+BC148431	100015435	without	258721	Olfr514	olfactory receptor 514
+BC153013	100016305	with	258721	Olfr514	olfactory receptor 514
+BC148839	100015848	with	258720	Olfr516	olfactory receptor 516
+BC146354	100015214	without	258720	Olfr516	olfactory receptor 516
+BC140385	100014437	without	18352	Olfr52	olfactory receptor 52
+BC148682	100015732	with	18352	Olfr52	olfactory receptor 52
+BC140398	100014403	without	259028	Olfr532	olfactory receptor 532
+BC148690	100015734	with	259028	Olfr532	olfactory receptor 532
+BC160281	100063929	with	18354	Olfr54	olfactory receptor 54
+BC146455	100015131	without	258357	Olfr574	olfactory receptor 574
+BC153073	100016329	with	258357	Olfr574	olfactory receptor 574
+BC146398	100015076	without	259118	Olfr575	olfactory receptor 575
+BC148830	100015894	with	259118	Olfr575	olfactory receptor 575
+BC140457	100014411	without	259119	Olfr578	olfactory receptor 578
+BC148706	100015728	with	259119	Olfr578	olfactory receptor 578
+BC140419	100014489	without	18358	Olfr58	olfactory receptor 58
+BC152881	100016066	without	259055	Olfr582	olfactory receptor 582
+BC141579	100014505	without	258752	Olfr583	olfactory receptor 583
+BC146589	100014804	with	258752	Olfr583	olfactory receptor 583
+BC141586	100014589	without	259054	Olfr589	olfactory receptor 589
+BC146396	100015147	without	259073	Olfr603	olfactory receptor 603
+BC153161	100016526	with	259073	Olfr603	olfactory receptor 603
+BC165990	100066290	with	258189	Olfr624	olfactory receptor 624
+BC148335	100015266	without	258961	Olfr631	olfactory receptor 631
+BC152978	100016261	with	258961	Olfr631	olfactory receptor 631
+BC148621	100015628	without	18366	Olfr64	olfactory receptor 64
+BC153187	100016578	with	18366	Olfr64	olfactory receptor 64
+BC148510	100015482	without	18367	Olfr66	olfactory receptor 66
+BC153179	100016541	with	18367	Olfr66	olfactory receptor 66
+BC146342	100015260	without	258810	Olfr665	olfactory receptor 665
+BC148826	100015917	with	258810	Olfr665	olfactory receptor 665
+BC146324	100015234	without	18368	Olfr67	olfactory receptor 67
+BC148809	100015891	with	18368	Olfr67	olfactory receptor 67
+BC160235	100063883	with	258755	Olfr672	olfactory receptor 672
+BC146397	100015159	without	259099	Olfr676	olfactory receptor 676
+BC148829	100015882	with	259099	Olfr676	olfactory receptor 676
+BC156705	100062135	with	258355	Olfr677	olfactory receptor 677
+BC156753	100062298	with	18369	Olfr68	olfactory receptor 68
+BC156170	100062490	without	258589	Olfr703	olfactory receptor 703
+BC141483	100014768	without	257902	Olfr704	olfactory receptor 704
+BC148767	100015764	with	257902	Olfr704	olfactory receptor 704
+BC165960	100066260	with	259034	Olfr705	olfactory receptor 705
+BC141530	100014570	without	194433	Olfr707	olfactory receptor 707
+BC153156	100016560	with	194433	Olfr707	olfactory receptor 707
+BC140311	100014377	without	258594	Olfr710	olfactory receptor 710
+BC146470	100014978	with	258594	Olfr710	olfactory receptor 710
+BC152882	100016078	without	259036	Olfr713	olfactory receptor 713
+BC140216	100014209	without	117004	Olfr73	olfactory receptor 73
+BC141607	100014629	with	117004	Olfr73	olfactory receptor 73
+BC146334	100015259	without	258360	Olfr731	olfactory receptor 731
+BC148818	100015916	with	258360	Olfr731	olfactory receptor 731
+BC140281	100014265	without	117005	Olfr74	olfactory receptor 74
+BC141648	100014627	with	117005	Olfr74	olfactory receptor 74
+BC146326	100015258	without	56858	Olfr749	olfactory receptor 749
+BC148811	100015927	with	56858	Olfr749	olfactory receptor 749
+BC141581	100014529	without	258863	Olfr768	olfactory receptor 768
+BC148623	100015557	without	258862	Olfr770	olfactory receptor 770
+BC146343	100015177	without	258540	Olfr771	olfactory receptor 771
+BC148827	100015929	with	258540	Olfr771	olfactory receptor 771
+BC146339	100015224	without	258232	Olfr774	olfactory receptor 774
+BC148822	100015869	with	258232	Olfr774	olfactory receptor 774
+BC141484	100014780	without	258538	Olfr775	olfactory receptor 775
+BC148768	100015776	with	258538	Olfr775	olfactory receptor 775
+BC141589	100014530	without	404321	Olfr776	olfactory receptor 776
+BC141442	100014727	without	258723	Olfr781	olfactory receptor 781
+BC146588	100014875	with	258723	Olfr781	olfactory receptor 781
+BC146340	100015236	without	258724	Olfr784	olfactory receptor 784
+BC148823	100015881	with	258724	Olfr784	olfactory receptor 784
+BC140228	100014258	without	258542	Olfr786	olfactory receptor 786
+BC146557	100014796	with	258542	Olfr786	olfactory receptor 786
+BC141599	100014591	without	18372	Olfr8	olfactory receptor 8
+BC140455	100014482	without	258773	Olfr818	olfactory receptor 818
+BC140456	100014494	without	258772	Olfr821	olfactory receptor 821
+BC141585	100014577	without	258668	Olfr823	olfactory receptor 823
+BC160322	100064066	with	258669	Olfr824	olfactory receptor 824
+BC141582	100014541	without	258598	Olfr828	olfactory receptor 828
+BC146590	100014852	with	258598	Olfr828	olfactory receptor 828
+BC141587	100014506	without	259070	Olfr829	olfactory receptor 829
+BC146591	100014829	with	259070	Olfr829	olfactory receptor 829
+BC141445	100014763	without	258908	Olfr853	olfactory receptor 853
+BC141443	100014739	without	258515	Olfr854	olfactory receptor 854
+BC148325	100015300	without	57251	Olfr870	olfactory receptor 870
+BC152976	100016260	with	57251	Olfr870	olfactory receptor 870
+BC140420	100014406	without	258882	Olfr874	olfactory receptor 874
+BC141575	100014552	without	258413	Olfr881	olfactory receptor 881
+BC146586	100014839	with	258413	Olfr881	olfactory receptor 881
+BC148820	100015845	with	258414	Olfr883	olfactory receptor 883
+BC146336	100015188	without	258414	Olfr883	olfactory receptor 883
+BC146337	100015200	without	258415	Olfr887	olfactory receptor 887
+BC148389	100015333	without	258868	Olfr894	olfactory receptor 894
+BC153011	100016269	with	258868	Olfr894	olfactory receptor 894
+BC148450	100015378	without	258872	Olfr908	olfactory receptor 908
+BC153042	100016383	with	258872	Olfr908	olfactory receptor 908
+BC152749	100016012	without	258806	Olfr912	olfactory receptor 912
+BC152953	100016161	without	258432	Olfr919	olfactory receptor 919
+BC141590	100014542	without	404322	Olfr924	olfactory receptor 924
+BC148449	100015366	without	258434	Olfr934	olfactory receptor 934
+BC153040	100016359	with	258434	Olfr934	olfactory receptor 934
+BC141578	100014588	without	258741	Olfr935	olfactory receptor 935
+BC156178	100061536	without	258431	Olfr937	olfactory receptor 937
+BC156920	100063552	with	258431	Olfr937	olfactory receptor 937
+BC141518	100014509	without	257912	Olfr948	olfactory receptor 948
+BC160270	100063918	with	258506	Olfr95	olfactory receptor 95
+BC148448	100015449	without	258328	Olfr954	olfactory receptor 954
+BC153039	100016347	with	258328	Olfr954	olfactory receptor 954
+BC146333	100015247	without	258242	Olfr955	olfactory receptor 955
+BC148817	100015904	with	258242	Olfr955	olfactory receptor 955
+BC140270	100014299	without	258865	Olfr992	olfactory receptor 992
+BC141642	100014685	with	258865	Olfr992	olfactory receptor 992
+BC148345	100015291	without	18302	Oit3	oncoprotein induced transcript 3
+BC152985	100016310	with	18302	Oit3	oncoprotein induced transcript 3
+BC156275	100061672	without	216157	ORF61	open reading frame 61
+BC156120	100062327	without	13603	Opn3	opsin 3
+BC156916	100062735	with	13603	Opn3	opsin 3
+BC156288	100061662	without	246190	Otoa	otoancorin
+BC148738	100015830	with	21906	Otop1	otopetrin 1
+BC146285	100015229	without	21906	Otop1	otopetrin 1
+BC141529	100014558	without	237987	Otop2	otopetrin 2
+BC165953	100066253	with	69602	Otop3	otopetrin 3
+BC148550	100015499	without	108078	Olr1	oxidized low density lipoprotein (lectin-like) receptor 1
+BC148511	100015494	without	64291	Osbpl1a	oxysterol binding protein-like 1A
+BC153110	100016432	with	64291	Osbpl1a	oxysterol binding protein-like 1A
+BC166009	100066309	with	71240	Osbpl7	oxysterol binding protein-like 7
+BC148471	100015452	without	18430	Oxtr	oxytocin receptor
+BC167167	100068067	with	18479	Pak1	p21 protein (Cdc42/Rac)-activated kinase 1
+BC148654	100015561	without	241656	Pak7	p21 protein (Cdc42/Rac)-activated kinase 7
+BC156990	100062872	with	241656	Pak7	p21 protein (Cdc42/Rac)-activated kinase 7
+BC156134	100062425	without	18507	Pax5	paired box gene 5
+BC156072	100062368	without	18509	Pax7	paired box gene 7
+BC156884	100062729	with	18509	Pax7	paired box gene 7
+BC160334	100064078	with	19127	Prop1	paired like homeodomain factor 1
+BC166006	100066306	with	18722	Pira1	paired-Ig-like receptor A1
+BC165986	100066286	with	18725	Pira2	paired-Ig-like receptor A2
+BC165996	100066296	with	18727	Pira4	paired-Ig-like receptor A4
+BC172615	100069423	without	11859	Phox2a	paired-like homeobox 2a
+BC172722	100069530	with	11859	Phox2a	paired-like homeobox 2a
+BC167194	100068094	with	72333	Palld	"palladin, cytoskeletal associated protein"
+BC141455	100014693	without	19063	Ppt1	palmitoyl-protein thioesterase 1
+BC148714	100015706	with	19063	Ppt1	palmitoyl-protein thioesterase 1
+BC141516	100014580	without	406218	Panx2	pannexin 2
+BC146559	100014832	with	406218	Panx2	pannexin 2
+BC167176	100068076	with	72823	Pard3b	par-3 partitioning defective 3 homolog B (C. elegans)
+BC152959	100016138	without	231903	Prhoxnb	parahox cluster neighbor
+BC140226	100014234	without	114640	Pth2	parathyroid hormone 2
+BC141612	100014654	with	114640	Pth2	parathyroid hormone 2
+BC140402	100014463	without	213527	Pth2r	parathyroid hormone 2 receptor
+BC156082	100062393	without	19206	Ptch1	patched homolog 1
+BC166018	100066318	with	19207	Ptch2	patched homolog 2
+BC156757	100062263	with	170676	Peg10	paternally expressed 10
+BC152794	100015959	without	19303	Pxn	paxillin
+BC165968	100066268	with	170761	Pdzd3	PDZ domain containing 3
+BC172701	100069509	with	54604	Pcnx	pecanex homolog (Drosophila)
+BC156655	100062116	with	104401	Pcnxl3	pecanex-like 3 (Drosophila)
+BC156171	100062407	without	18599	Padi1	"peptidyl arginine deiminase, type I"
+BC157010	100062840	with	18599	Padi1	"peptidyl arginine deiminase, type I"
+BC166013	100066313	with	18484	Pam	peptidylglycine alpha-amidating monooxygenase
+BC167236	100068136	with	18627	Per2	period homolog 2 (Drosophila)
+BC152974	100016224	with	26930	Ppnr	per-pentamer repeat gene
+BC152716	100015936	without	26930	Ppnr	per-pentamer repeat gene
+BC160354	100064098	with	21652	Phf1	PHD finger protein 1
+BC141532	100014499	without	237928	Phospho1	"phosphatase, orphan 1"
+BC140284	100014218	without	18559	Pctp	phosphatidylcholine transfer protein
+BC156713	100062268	with	18559	Pctp	phosphatidylcholine transfer protein
+BC148367	100015318	without	18711	Pikfyve	"phosphoinositide kinase, FYVE finger containing"
+BC156752	100062286	with	18796	Plcb2	"phospholipase C, beta 2"
+BC148434	100015376	without	269615	Plch2	"phospholipase C, eta 2"
+BC153018	100016294	with	269615	Plch2	"phospholipase C, eta 2"
+BC166025	100066325	with	18679	Phka1	phosphorylase kinase alpha 1
+BC148393	100015286	without	330890	Piwil4	piwi-like homolog 4 (Drosophila)
+BC153016	100016246	with	330890	Piwil4	piwi-like homolog 4 (Drosophila)
+BC160226	100063874	with	18793	Plaur	"plasminogen activator, urokinase receptor"
+BC160361	100064105	with	19204	Ptafr	platelet-activating factor receptor
+BC156162	100062477	without	102075	Plekhg4	"pleckstrin homology domain containing, family G (with RhoGef domain) member 4"
+BC156995	100062802	with	102075	Plekhg4	"pleckstrin homology domain containing, family G (with RhoGef domain) member 4"
+BC148338	100015302	without	269608	Plekhg5	"pleckstrin homology domain containing, family G (with RhoGef domain) member 5"
+BC152981	100016309	with	269608	Plekhg5	"pleckstrin homology domain containing, family G (with RhoGef domain) member 5"
+BC160290	100064034	with	83946	Phip	pleckstrin homology domain interacting protein
+BC167178	100068078	with	22634	Plagl1	pleiomorphic adenoma gene-like 1
+BC156397	100061981	without	18846	Plxna3	plexin A3
+BC156654	100062187	with	18789	Papola	poly (A) polymerase alpha
+BC160292	100064036	with	26430	Parg	poly (ADP-ribose) glycohydrolase
+BC172609	100069417	without	66923	Pbrm1	polybromo 1
+BC172736	100069544	with	66923	Pbrm1	polybromo 1
+BC156299	100061812	without	18766	Pkdrej	"polycystic kidney disease (polycystin) and REJ (sperm receptor for egg jelly homolog, sea urchin)"
+BC146356	100015238	without	320655	Pgap3	post-GPI attachment to proteins 3
+BC148841	100015872	with	320655	Pgap3	post-GPI attachment to proteins 3
+BC160321	100064065	with	239217	Kctd12	potassium channel tetramerisation domain containing 12
+BC152742	100016023	without	16527	Kcnk3	"potassium channel, subfamily K, member 3"
+BC156198	100061622	without	16532	Kcnu1	"potassium channel, subfamily U, member 1"
+BC172702	100069510	with	16495	Kcna7	"potassium voltage-gated channel, shaker-related subfamily, member 7"
+BC148342	100015350	without	225030	Kcng3	"potassium voltage-gated channel, subfamily G, member 3"
+BC152984	100016298	with	225030	Kcng3	"potassium voltage-gated channel, subfamily G, member 3"
+BC156352	100061851	without	380728	Kcnh4	"potassium voltage-gated channel, subfamily H (eag-related), member 4"
+BC148599	100015613	without	170738	Kcnh7	"potassium voltage-gated channel, subfamily H (eag-related), member 7"
+BC156315	100061814	without	16536	Kcnq2	"potassium voltage-gated channel, subfamily Q, member 2"
+BC156308	100061730	without	226922	Kcnq5	"potassium voltage-gated channel, subfamily Q, member 5"
+BC148748	100015808	with	18986	Pou2f1	"POU domain, class 2, transcription factor 1"
+BC146305	100015196	without	18986	Pou2f1	"POU domain, class 2, transcription factor 1"
+BC148604	100015578	without	18988	Pou2f3	"POU domain, class 2, transcription factor 3"
+BC172630	100069438	without	18991	Pou3f1	"POU domain, class 3, transcription factor 1"
+BC172733	100069541	with	18991	Pou3f1	"POU domain, class 3, transcription factor 1"
+BC172622	100069430	without	18992	Pou3f2	"POU domain, class 3, transcription factor 2"
+BC172726	100069534	with	18992	Pou3f2	"POU domain, class 3, transcription factor 2"
+BC156037	100062304	without	18993	Pou3f3	"POU domain, class 3, transcription factor 3"
+BC156891	100062754	with	18997	Pou4f2	"POU domain, class 4, transcription factor 2"
+BC172658	100069466	with	12142	Prdm1	"PR domain containing 1, with ZNF domain"
+BC156279	100061637	without	110593	Prdm2	"PR domain containing 2, with ZNF domain"
+BC141459	100014741	without	22363	Vpreb2	pre-B lymphocyte gene 2
+BC148717	100015742	with	22363	Vpreb2	pre-B lymphocyte gene 2
+BC160368	100064112	with	624860	Gm12253	predicted gene 12253
+BC141569	100014575	without	230398	Gm13280	predicted gene 13280
+BC160204	100063852	with	383787	Gm1337	predicted gene 1337
+BC152781	100015993	without	654464	Gm15386	predicted gene 15386
+BC156759	100062216	with	654464	Gm15386	predicted gene 15386
+BC160210	100063858	with	114600	Gm4736	predicted gene 4736
+BC160347	100064091	with	317677	Gm5077	predicted gene 5077
+BC146403	100015136	without	330513	Gm5114	predicted gene 5114
+BC148842	100015908	with	330513	Gm5114	predicted gene 5114
+BC156687	100062192	with	381484	Gm5150	predicted gene 5150
+BC172627	100069435	without	384813	Gm5346	predicted gene 5346
+BC172730	100069538	with	384813	Gm5346	predicted gene 5346
+BC165992	100066292	with	406223	Gm5414	predicted gene 5414
+BC146444	100015094	without	408196	Gm5416	predicted gene 5416
+BC153058	100016350	with	408196	Gm5416	predicted gene 5416
+BC160336	100064080	with	619517	Gm6084	predicted gene 6084
+BC156784	100062243	with	622408	Gm6320	predicted gene 6320
+BC152960	100016150	without	330440	Gm766	predicted gene 766
+BC152888	100016067	without	751864	Gm9733	predicted gene 9733
+BC156626	100062051	with	751864	Gm9733	predicted gene 9733
+BC141492	100014781	without	386551	Gm5409	predicted pseudogene 5409
+BC148773	100015777	with	386551	Gm5409	predicted pseudogene 5409
+BC165944	100066244	with	347710	Pramel4	preferentially expressed antigen in melanoma like 4
+BC140407	100014428	without	347711	Pramel6	preferentially expressed antigen in melanoma like 6
+BC146487	100014995	with	347711	Pramel6	preferentially expressed antigen in melanoma like 6
+BC160230	100063878	with	83565	Pramel3	preferentially expressed antigen in melanoma-like 3
+BC156243	100061632	without	18491	Pappa	pregnancy-associated plasma protein A
+BC148473	100015381	without	56868	Psg23	pregnancy-specific glycoprotein 23
+BC153068	100016364	with	56868	Psg23	pregnancy-specific glycoprotein 23
+BC148861	100015899	with	114774	Pawr	"PRKC, apoptosis, WT1, regulator"
+BC148613	100015591	without	114774	Pawr	"PRKC, apoptosis, WT1, regulator"
+BC140212	100014256	without	54192	Pbsn	probasin
+BC141605	100014676	with	54192	Pbsn	probasin
+BC160251	100063899	with	18542	Pcolce	procollagen C-endopeptidase enhancer protein
+BC148378	100015284	without	18567	Pdcd2	programmed cell death 2
+BC166005	100066305	with	50996	Pdcd7	programmed cell death 7
+BC148668	100015634	without	215029	Prl3d3	"prolactin family 3, subfamily d, member 3"
+BC153206	100016535	with	215029	Prl3d3	"prolactin family 3, subfamily d, member 3"
+BC140214	100014280	without	19111	Prl6a1	"prolactin family 6, subfamily a, member 1"
+BC160332	100064076	with	170952	Prima1	proline rich membrane anchor 1
+BC172602	100069410	without	83380	Prp2	proline rich protein 2
+BC172724	100069532	with	83380	Prp2	proline rich protein 2
+BC160211	100063859	with	108767	Pnrc1	proline-rich nuclear receptor coactivator 1
+BC156821	100062502	with	18551	Pcsk4	proprotein convertase subtilisin/kexin type 4
+BC160278	100063926	with	65112	Pmepa1	"prostate transmembrane protein, androgen induced 1"
+BC148737	100015818	with	22072	Prss2	"protease, serine, 2"
+BC146284	100015217	without	22072	Prss2	"protease, serine, 2"
+BC156706	100062147	with	328780	Prss34	"protease, serine, 34"
+BC167239	100068139	with	77613	Prss36	"protease, serine, 36"
+BC156065	100062367	without	272643	Prss43	"protease, serine, 43"
+BC156882	100062776	with	272643	Prss43	"protease, serine, 43"
+BC160228	100063876	with	73336	Prss44	"protease, serine, 44"
+BC160288	100064032	with	103554	Psme4	"proteasome (prosome, macropain) activator subunit 4"
+BC160349	100064093	with	72836	Pot1b	protection of telomeres 1B
+BC156740	100062225	with	102182	Prmt10	protein arginine methyltransferase 10 (putative)
+BC152947	100016184	without	216974	Proca1	protein interacting with cyclin A1
+BC165948	100066248	with	18754	Prkce	"protein kinase C, epsilon"
+BC167174	100068074	with	333654	Ppp1r13l	"protein phosphatase 1, regulatory (inhibitor) subunit 13 like"
+BC156116	100062362	without	108954	Ppp1r15b	"protein phosphatase 1, regulatory (inhibitor) subunit 15b"
+BC156913	100062782	with	108954	Ppp1r15b	"protein phosphatase 1, regulatory (inhibitor) subunit 15b"
+BC148447	100015437	without	237178	Ppef1	protein phosphatase with EF hand calcium-binding domain 1
+BC172703	100069511	with	19249	Ptpn13	"protein tyrosine phosphatase, non-receptor type 13"
+BC167229	100068129	with	19250	Ptpn14	"protein tyrosine phosphatase, non-receptor type 14"
+BC160274	100063922	with	19256	Ptpn20	"protein tyrosine phosphatase, non-receptor type 20"
+BC160246	100063894	with	545622	Ptpn3	"protein tyrosine phosphatase, non-receptor type 3"
+BC140437	100014432	without	19258	Ptpn4	"protein tyrosine phosphatase, non-receptor type 4"
+BC167212	100068112	with	19264	Ptprc	"protein tyrosine phosphatase, receptor type, C"
+BC160345	100064089	with	19267	Ptpre	"protein tyrosine phosphatase, receptor type, E"
+BC168385	100068354	with	19270	Ptprg	"protein tyrosine phosphatase, receptor type, G"
+BC148595	100015565	without	19271	Ptprj	"protein tyrosine phosphatase, receptor type, J"
+BC156870	100062773	with	19271	Ptprj	"protein tyrosine phosphatase, receptor type, J"
+BC148365	100015294	without	19275	Ptprn	"protein tyrosine phosphatase, receptor type, N"
+BC156648	100062115	with	19275	Ptprn	"protein tyrosine phosphatase, receptor type, N"
+BC156361	100061864	without	19281	Ptprt	"protein tyrosine phosphatase, receptor type, T"
+BC172678	100069486	with	19281	Ptprt	"protein tyrosine phosphatase, receptor type, T"
+BC156888	100062706	with	19273	Ptpru	"protein tyrosine phosphatase, receptor type, U"
+BC156150	100062404	without	13924	Ptprv	"protein tyrosine phosphatase, receptor type, V"
+BC141456	100014705	without	19152	Prtn3	proteinase 3
+BC148715	100015718	with	19152	Prtn3	proteinase 3
+BC156141	100062414	without	53601	Pcdh12	protocadherin 12
+BC172672	100069480	with	53601	Pcdh12	protocadherin 12
+BC172646	100069454	with	11994	Pcdh15	protocadherin 15
+BC165991	100066291	with	211712	Pcdh9	protocadherin 9
+BC167180	100068080	with	12943	Pcdha10	protocadherin alpha 10
+BC156384	100062618	without	12942	Pcdha11	protocadherin alpha 11
+BC172667	100069475	with	12942	Pcdha11	protocadherin alpha 11
+BC156386	100062642	without	353234	Pcdha2	protocadherin alpha 2
+BC172669	100069477	with	353234	Pcdha2	protocadherin alpha 2
+BC167173	100068073	with	12941	Pcdha5	protocadherin alpha 5
+BC160380	100064124	with	12937	Pcdha6	protocadherin alpha 6
+BC167255	100068155	with	192161	Pcdha9	protocadherin alpha 9
+BC160198	100063846	with	353236	Pcdhac1	"protocadherin alpha subfamily C, 1"
+BC167253	100068153	with	353237	Pcdhac2	"protocadherin alpha subfamily C, 2"
+BC160342	100064086	with	93882	Pcdhb11	protocadherin beta 11
+BC156700	100062170	with	93876	Pcdhb5	protocadherin beta 5
+BC167188	100068088	with	93709	Pcdhga1	"protocadherin gamma subfamily A, 1"
+BC160199	100063847	with	93702	Pcdhgb5	"protocadherin gamma subfamily B, 5"
+BC167223	100068123	with	235472	Prtg	protogenin homolog (Gallus gallus)
+BC156259	100061646	without	56194	Prpf40a	PRP40 pre-mRNA processing factor 40 homolog A (yeast)
+BC156181	100061572	without	19290	Pura	purine rich element binding protein A
+BC156317	100061743	without	19291	Purb	purine rich element binding protein B
+BC160353	100064097	with	18770	Pklr	pyruvate kinase liver and red blood cell
+BC152733	100015974	without	268451	Rab11fip4	RAB11 family interacting protein 4 (class II)
+BC172698	100069506	with	52055	Rab11fip5	RAB11 family interacting protein 5 (class I)
+BC152766	100016003	without	19328	Rab12	"RAB12, member RAS oncogene family"
+BC156697	100062134	with	73341	Arhgef6	Rac/Cdc42 guanine nucleotide exchange factor (GEF) 6
+BC168398	100068367	with	19360	Rad50	RAD50 homolog (S. cerevisiae)
+BC148356	100015269	without	71746	Rgl3	ral guanine nucleotide dissociation stimulator-like 3
+BC152992	100016300	with	71746	Rgl3	ral guanine nucleotide dissociation stimulator-like 3
+BC148412	100015361	without	66011	Ranbp17	RAN binding protein 17
+BC140322	100014331	without	233046	Rasgrp4	RAS guanyl releasing protein 4
+BC146526	100014918	with	233046	Rasgrp4	RAS guanyl releasing protein 4
+BC156318	100061767	without	69581	Rhou	"ras homolog gene family, member U"
+BC160200	100063848	with	114713	Rasa2	RAS p21 protein activator 2
+BC152771	100015968	without	320484	Rasal3	RAS protein activator like 3
+BC156258	100061634	without	19418	Rasgrf2	RAS protein-specific guanine nucleotide-releasing factor 2
+BC148631	100015570	without	19395	Rasgrp2	"RAS, guanyl releasing protein 2"
+BC148501	100015469	without	52187	Rragd	Ras-related GTP binding D
+BC153104	100016466	with	52187	Rragd	Ras-related GTP binding D
+BC165975	100066275	with	19668	Rbpjl	recombination signal binding protein for immunoglobulin kappa J region-like
+BC167215	100068115	with	79456	Recql4	RecQ protein-like 4
+BC156758	100062299	with	170472	Recql5	RecQ protein-like 5
+BC160378	100064122	with	116837	Rims1	regulating synaptic membrane exocytosis 1
+BC152875	100016077	without	241770	Rims4	regulating synaptic membrane exocytosis 4
+BC156344	100061838	without	50782	Rgs11	regulator of G-protein signaling 11
+BC167200	100068100	with	74370	Rptor	"regulatory associated protein of MTOR, complex 1"
+BC156261	100061670	without	319758	Rfx7	"regulatory factor X, 7"
+BC160232	100063880	with	212108	Rln3	relaxin 3
+BC156370	100062628	without	381489	Rxfp1	relaxin/insulin-like family peptide receptor 1
+BC172664	100069472	with	381489	Rxfp1	relaxin/insulin-like family peptide receptor 1
+BC140409	100014452	without	385343	Rhox1	reproductive homeobox 1
+BC146489	100015031	with	385343	Rhox1	reproductive homeobox 1
+BC160253	100063901	with	57737	Rhox4b	reproductive homeobox 4B
+BC156600	100062035	with	664610	Rhox4d	reproductive homeobox 4D
+BC141499	100014770	without	636177	Rhox4f	reproductive homeobox 4F
+BC148779	100015754	with	636177	Rhox4f	reproductive homeobox 4F
+BC160369	100064113	with	664608	Rhox4g	reproductive homeobox 4G
+BC156948	100063606	with	216453	Rdh19	retinol dehydrogenase 19
+BC148618	100015568	without	235033	Rdh8	retinol dehydrogenase 8
+BC153184	100016542	with	235033	Rdh8	retinol dehydrogenase 8
+BC172679	100069487	with	78514	Arhgap10	Rho GTPase activating protein 10
+BC156106	100062325	without	58996	Arhgap23	Rho GTPase activating protein 23
+BC156993	100062849	with	58996	Arhgap23	Rho GTPase activating protein 23
+BC148467	100015404	without	11856	Arhgap6	Rho GTPase activating protein 6
+BC153064	100016375	with	11856	Arhgap6	Rho GTPase activating protein 6
+BC156338	100061849	without	622434	Arhgef26	Rho guanine nucleotide exchange factor (GEF) 26
+BC156147	100062451	without	19877	Rock1	Rho-associated coiled-coil containing protein kinase 1
+BC156985	100062871	with	19877	Rock1	Rho-associated coiled-coil containing protein kinase 1
+BC156153	100062440	without	19878	Rock2	Rho-associated coiled-coil containing protein kinase 2
+BC165985	100066285	with	110651	Rps6ka3	ribosomal protein S6 kinase polypeptide 3
+BC140305	100014388	without	66129	1110018J18Rik	RIKEN cDNA 1110018J18 gene
+BC156631	100062112	with	66129	1110018J18Rik	RIKEN cDNA 1110018J18 gene
+BC152867	100016076	without	68721	1110032A03Rik	RIKEN cDNA 1110032A03 gene
+BC141466	100014730	without	69189	1810033B17Rik	RIKEN cDNA 1810033B17 gene
+BC152923	100016145	without	72080	2010317E24Rik	RIKEN cDNA 2010317E24 gene
+BC160268	100063916	with	72307	2510002D24Rik	RIKEN cDNA 2510002D24 gene
+BC167252	100068152	with	319719	4732471D19Rik	RIKEN cDNA 4732471D19 gene
+BC172629	100069437	without	619303	4930567H17Rik	RIKEN cDNA 4930567H17 gene
+BC172731	100069539	with	619303	4930567H17Rik	RIKEN cDNA 4930567H17 gene
+BC148555	100015464	without	70567	5730455O13Rik	RIKEN cDNA 5730455O13 gene
+BC153141	100016508	with	70567	5730455O13Rik	RIKEN cDNA 5730455O13 gene
+BC146429	100015092	without	215772	9130014G24Rik	RIKEN cDNA 9130014G24 gene
+BC153036	100016358	with	215772	9130014G24Rik	RIKEN cDNA 9130014G24 gene
+BC141507	100014771	without	77432	9530002B09Rik	RIKEN cDNA 9530002B09 gene
+BC148786	100015767	with	77432	9530002B09Rik	RIKEN cDNA 9530002B09 gene
+BC148500	100015457	without	319482	9530053A07Rik	RIKEN cDNA 9530053A07 gene
+BC153103	100016454	with	319482	9530053A07Rik	RIKEN cDNA 9530053A07 gene
+BC148391	100015357	without	319801	9630033F20Rik	RIKEN cDNA 9630033F20 gene
+BC153014	100016317	with	319801	9630033F20Rik	RIKEN cDNA 9630033F20 gene
+BC148328	100015348	without	213993	A630007B06Rik	RIKEN cDNA A630007B06 gene
+BC148520	100015507	without	235973	A630095E13Rik	RIKEN cDNA A630095E13 gene
+BC153116	100016445	with	235973	A630095E13Rik	RIKEN cDNA A630095E13 gene
+BC146437	100015093	without	320148	B430306N03Rik	RIKEN cDNA B430306N03 gene
+BC156662	100062141	with	320148	B430306N03Rik	RIKEN cDNA B430306N03 gene
+BC172653	100069461	with	211135	D130040H23Rik	RIKEN cDNA D130040H23 gene
+BC140242	100014236	without	57373	D930014E17Rik	RIKEN cDNA D930014E17 gene
+BC141621	100014656	with	57373	D930014E17Rik	RIKEN cDNA D930014E17 gene
+BC152751	100015953	without	228592	F830045P16Rik	RIKEN cDNA F830045P16 gene
+BC152821	100016094	without	231760	Rimbp2	RIMS binding protein 2
+BC152931	100016158	without	381305	Rc3h1	RING CCCH (C3H) domains 1
+BC160221	100063869	with	330812	Rnf150	ring finger protein 150
+BC148491	100015419	without	320040	Rnf222	ring finger protein 222
+BC153084	100016331	with	320040	Rnf222	ring finger protein 222
+BC152857	100016051	without	19823	Rnf7	ring finger protein 7
+BC156675	100062131	with	622473	Ripply1	ripply1 homolog (zebrafish)
+BC160306	100064050	with	382089	Ripply2	ripply2 homolog (zebrafish)
+BC156297	100061788	without	19886	Ros1	Ros1 proto-oncogene
+BC167219	100068119	with	19876	Robo1	roundabout homolog 1 (Drosophila)
+BC167164	100068064	with	244585	Rpgrip1l	Rpgrip1-like
+BC152876	100016089	without	239405	Rspo2	R-spondin 2 homolog (Xenopus laevis)
+BC156617	100062073	with	239405	Rspo2	R-spondin 2 homolog (Xenopus laevis)
+BC148344	100015279	without	216724	Rufy1	RUN and FYVE domain containing 1
+BC172607	100069415	without	12393	Runx2	runt related transcription factor 2
+BC172715	100069523	with	12393	Runx2	runt related transcription factor 2
+BC168396	100068365	with	12399	Runx3	runt related transcription factor 3
+BC160382	100064126	with	244891	Scaper	S phase cyclin A-associated protein in the ER
+BC152946	100016172	without	76407	Sun5	Sad1 and UNC84 domain containing 5
+BC148600	100015625	without	99377	Sall4	sal-like 4 (Drosophila)
+BC156717	100062257	with	99377	Sall4	sal-like 4 (Drosophila)
+BC146549	100014913	with	17691	Sik1	salt inducible kinase 1
+BC140435	100014408	without	17691	Sik1	salt inducible kinase 1
+BC152763	100016026	without	235344	Sik2	salt inducible kinase 2
+BC148361	100015341	without	70097	Sash1	SAM and SH3 domain containing 1
+BC152995	100016277	with	70097	Sash1	SAM and SH3 domain containing 1
+BC156772	100062277	with	74131	Sash3	SAM and SH3 domain containing 3
+BC160244	100063892	with	20391	Sgca	"sarcoglycan, alpha (dystrophin-associated glycoprotein)"
+BC141535	100014535	without	237887	Slfn10-ps	"schlafen 10, pseudogene"
+BC148384	100015273	without	237886	Slfn9	schlafen 9
+BC160337	100064081	with	338417	Scgb1c1	"secretoglobin, family 1C, member 1"
+BC160256	100063904	with	56546	Sec1	secretory blood group 1
+BC156809	100062559	with	20352	Sema4b	"sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4B"
+BC156070	100062332	without	20360	Sema6c	"sema domain, transmembrane domain (TM), and cytoplasmic domain, (semaphorin) 6C"
+BC140261	100014286	without	387564	Sval3	seminal vesicle antigen-like 3
+BC146530	100014895	with	387564	Sval3	seminal vesicle antigen-like 3
+BC156403	100061923	without	269254	Setx	senataxin
+BC156710	100062207	with	435350	Serpinb6e	"serine (or cysteine) peptidase inhibitor, clade B, member 6e"
+BC148575	100015514	without	408198	Spink7	"serine peptidase inhibitor, Kazal type 7 (putative)"
+BC156750	100062262	with	408198	Spink7	"serine peptidase inhibitor, Kazal type 7 (putative)"
+BC160335	100064079	with	545378	Sh2d1b2	SH2 domain protein 1B2
+BC156114	100062338	without	14218	Sh3pxd2a	SH3 and PX domains 2A
+BC156910	100062746	with	14218	Sh3pxd2a	SH3 and PX domains 2A
+BC156084	100062322	without	225608	Sh3tc2	SH3 domain and tetratricopeptide repeats 2
+BC156951	100063631	with	225608	Sh3tc2	SH3 domain and tetratricopeptide repeats 2
+BC167171	100068071	with	210274	Shank2	SH3/ankyrin domain gene 2
+BC141538	100014571	without	50795	Sh3bgr	SH3-binding domain glutamic acid-rich protein
+BC153095	100016488	with	50795	Sh3bgr	SH3-binding domain glutamic acid-rich protein
+BC156605	100062095	with	58194	Sh3kbp1	SH3-domain kinase binding protein 1
+BC152904	100016130	without	271849	Shc4	"SHC (Src homology 2 domain containing) family, member 4"
+BC172634	100069442	without	20429	Shox2	short stature homeobox 2
+BC160229	100063877	with	94282	Sfxn5	sideroflexin 5
+BC152820	100016082	without	56788	Scube2	"signal peptide, CUB domain, EGF-like 2"
+BC148350	100015292	without	268935	Scube3	"signal peptide, CUB domain, EGF-like 3"
+BC141425	100014701	without	66661	Srp72	signal recognition particle 72
+BC167243	100068143	with	20847	Stat2	signal transducer and activator of transcription 2
+BC152782	100016005	without	751865	Sap25	sin3 associated polypeptide
+BC156601	100062047	with	751865	Sap25	sin3 associated polypeptide
+BC160194	100063842	with	20464	Sim1	single-minded homolog 1 (Drosophila)
+BC165995	100066295	with	93759	Sirt1	"sirtuin 1 (silent mating type information regulation 2, homolog) 1 (S. cerevisiae)"
+BC152935	100016206	without	14270	Srgap2	SLIT-ROBO Rho GTPase activating protein 2
+BC156692	100062157	with	14270	Srgap2	SLIT-ROBO Rho GTPase activating protein 2
+BC167211	100068111	with	259302	Srgap3	SLIT-ROBO Rho GTPase activating protein 3
+BC148503	100015493	without	193116	Slu7	SLU7 splicing factor homolog (S. cerevisiae)
+BC140304	100014376	without	20638	Snrpb	small nuclear ribonucleoprotein B
+BC141604	100014652	with	20638	Snrpb	small nuclear ribonucleoprotein B
+BC148789	100015803	with	20756	Sprr2b	small proline-rich protein 2B
+BC146458	100015167	without	20756	Sprr2b	small proline-rich protein 2B
+BC160202	100063850	with	20758	Sprr2d	small proline-rich protein 2D
+BC148438	100015424	without	20759	Sprr2e	small proline-rich protein 2E
+BC156737	100062272	with	20759	Sprr2e	small proline-rich protein 2E
+BC146411	100015137	without	20760	Sprr2f	small proline-rich protein 2F
+BC153170	100016587	with	20760	Sprr2f	small proline-rich protein 2F
+BC156163	100062406	without	20762	Sprr2h	small proline-rich protein 2H
+BC157000	100062862	with	20762	Sprr2h	small proline-rich protein 2H
+BC141457	100014717	without	20763	Sprr2i	small proline-rich protein 2I
+BC146597	100014795	with	20763	Sprr2i	small proline-rich protein 2I
+BC148490	100015407	without	20765	Sprr2k	small proline-rich protein 2K
+BC156672	100062178	with	20765	Sprr2k	small proline-rich protein 2K
+BC152942	100016207	without	66354	Snw1	SNW domain containing 1
+BC172643	100069451	with	20271	Scn5a	"sodium channel, voltage-gated, type V, alpha"
+BC156117	100062374	without	237831	Slc13a5	"solute carrier family 13 (sodium-dependent citrate transporter), member 5"
+BC156915	100062711	with	237831	Slc13a5	"solute carrier family 13 (sodium-dependent citrate transporter), member 5"
+BC165946	100066246	with	227659	Slc2a6	"solute carrier family 2 (facilitated glucose transporter), member 6"
+BC160193	100063841	with	320718	Slc26a9	"solute carrier family 26, member 9"
+BC152750	100015941	without	226781	Slc30a10	"solute carrier family 30, member 10"
+BC167254	100068154	with	54403	Slc4a4	"solute carrier family 4 (anion exchanger), member 4"
+BC148750	100015785	with	218756	Slc4a7	"solute carrier family 4, sodium bicarbonate cotransporter, member 7"
+BC146314	100015209	without	218756	Slc4a7	"solute carrier family 4, sodium bicarbonate cotransporter, member 7"
+BC160350	100064094	with	241612	Slc5a12	"solute carrier family 5 (sodium/glucose cotransporter), member 12"
+BC152901	100016189	without	64452	Slc5a4a	"solute carrier family 5, member 4a"
+BC146307	100015220	without	243616	Slc6a11	"solute carrier family 6 (neurotransmitter transporter, GABA), member 11"
+BC140320	100014390	without	140918	Slc7a12	"solute carrier family 7 (cationic amino acid transporter, y+ system), member 12"
+BC146476	100014992	with	140918	Slc7a12	"solute carrier family 7 (cationic amino acid transporter, y+ system), member 12"
+BC148549	100015487	without	328059	Slc7a15	"solute carrier family 7 (cationic amino acid transporter, y+ system), member 15"
+BC153137	100016460	with	328059	Slc7a15	"solute carrier family 7 (cationic amino acid transporter, y+ system), member 15"
+BC152921	100016216	without	105243	Slc9a3	"solute carrier family 9 (sodium/hydrogen exchanger), member 3"
+BC168405	100068374	with	208169	Slc9a10	"solute carrier family 9, member 10"
+BC156830	100062527	with	28250	Slco1a4	"solute carrier organic anion transporter family, member 1a4"
+BC140315	100014330	without	20605	Sstr1	somatostatin receptor 1
+BC140348	100014382	without	20606	Sstr2	somatostatin receptor 2
+BC146535	100014956	with	20606	Sstr2	somatostatin receptor 2
+BC146288	100015170	without	20662	Sos1	son of sevenless homolog 1 (Drosophila)
+BC148799	100015889	with	20662	Sos1	son of sevenless homolog 1 (Drosophila)
+BC166027	100066327	with	234214	Sorbs2	sorbin and SH3 domain containing 2
+BC172714	100069522	with	20660	Sorl1	"sortilin-related receptor, LDLR class A repeats-containing"
+BC167251	100068151	with	66673	Sorcs3	sortilin-related VPS10 domain containing receptor 3
+BC156098	100062324	without	76742	Snx27	sorting nexin family member 27
+BC156894	100062767	with	76742	Snx27	sorting nexin family member 27
+BC172699	100069507	with	20742	Spnb2	spectrin beta 2
+BC152865	100016052	without	74673	Spdyb	speedy homolog B (Xenopus laevis)
+BC156615	100062049	with	74673	Spdyb	speedy homolog B (Xenopus laevis)
+BC146388	100015146	without	20690	Spam1	sperm adhesion molecule 1
+BC148808	100015867	with	20690	Spam1	sperm adhesion molecule 1
+BC141421	100014748	without	67946	Spata6	spermatogenesis associated 6
+BC146567	100014858	with	67946	Spata6	spermatogenesis associated 6
+BC152877	100016101	without	224318	Speer2	spermatogenesis associated glutamate (E)-rich protein 2
+BC160233	100063881	with	71026	Speer3	spermatogenesis associated glutamate (E)-rich protein 3
+BC168410	100068379	with	75657	Speer4a	spermatogenesis associated glutamate (E)-rich protein 4a
+BC165959	100066259	with	360220	Speer4d	spermatogenesis associated glutamate (E)-rich protein 4d
+BC156813	100062512	with	26972	Spo11	SPO11 meiotic protein covalently bound to DSB homolog (S. cerevisiae)
+BC156804	100062546	with	78473	Skap1	src family associated phosphoprotein 1
+BC172600	100069408	without	20664	Sox1	SRY-box containing gene 1
+BC172706	100069514	with	20664	Sox1	SRY-box containing gene 1
+BC148437	100015412	without	20671	Sox17	SRY-box containing gene 17
+BC153021	100016271	with	20671	Sox17	SRY-box containing gene 17
+BC156193	100061550	without	214105	Sox30	SRY-box containing gene 30
+BC167259	100068159	with	20788	Srebf2	sterol regulatory element binding factor 2
+BC156610	100062084	with	20892	Stra13	stimulated by retinoic acid 13
+BC148645	100015643	without	55948	Sfn	stratifin
+BC153200	100016521	with	55948	Sfn	stratifin
+BC152861	100016099	without	24071	Synj2bp	synaptojanin 2 binding protein
+BC156306	100061801	without	320558	Sycp2	synaptonemal complex protein 2
+BC172654	100069462	with	320558	Sycp2	synaptonemal complex protein 2
+BC160355	100064099	with	329324	Syt14	synaptotagmin XIV
+BC156838	100062552	with	110058	Syt17	synaptotagmin XVII
+BC167233	100068133	with	233335	Synm	"synemin, intermediate filament protein"
+BC140210	100014232	without	382206	Ssx9	"synovial sarcoma, X breakpoint 9"
+BC146512	100014880	with	382206	Ssx9	"synovial sarcoma, X breakpoint 9"
+BC141493	100014698	without	387586	Ssxb5	"synovial sarcoma, X member B, breakpoint 5"
+BC148774	100015789	with	387586	Ssxb5	"synovial sarcoma, X member B, breakpoint 5"
+BC160286	100063934	with	71096	Sntg1	"syntrophin, gamma 1"
+BC165956	100066256	with	380608	Tagap1	T cell activation GTPase activating protein 1
+BC156180	100061560	without	226182	Taf5	"TAF5 RNA polymerase II, TATA box binding protein (TBP)-associated factor"
+BC156277	100061696	without	216965	Taok1	TAO kinase 1
+BC172656	100069464	with	216965	Taok1	TAO kinase 1
+BC160341	100064085	with	541610	Trcg1	taste receptor cell gene 1
+BC148527	100015496	without	83771	Tas1r3	"taste receptor, type 1, member 3"
+BC153121	100016422	with	83771	Tas1r3	"taste receptor, type 1, member 3"
+BC165964	100066264	with	387339	Tas2r102	"taste receptor, type 2, member 102"
+BC152964	100016198	without	387343	Tas2r109	"taste receptor, type 2, member 109"
+BC156834	100062504	with	387343	Tas2r109	"taste receptor, type 2, member 109"
+BC146402	100015124	without	387344	Tas2r110	"taste receptor, type 2, member 110"
+BC140257	100014238	without	387345	Tas2r113	"taste receptor, type 2, member 113"
+BC146528	100014966	with	387345	Tas2r113	"taste receptor, type 2, member 113"
+BC140277	100014217	without	387346	Tas2r114	"taste receptor, type 2, member 114"
+BC146545	100014935	with	387346	Tas2r114	"taste receptor, type 2, member 114"
+BC165970	100066270	with	57254	Tas2r119	"taste receptor, type 2, member 119"
+BC140291	100014302	without	387348	Tas2r120	"taste receptor, type 2, member 120"
+BC146502	100015057	with	387348	Tas2r120	"taste receptor, type 2, member 120"
+BC152779	100015969	without	630845	Tas2r122	"taste receptor, type 2, member 122"
+BC140256	100014226	without	353167	Tas2r123	"taste receptor, type 2, member 123"
+BC141631	100014682	with	353167	Tas2r123	"taste receptor, type 2, member 123"
+BC140411	100014476	without	387351	Tas2r124	"taste receptor, type 2, member 124"
+BC146491	100015055	with	387351	Tas2r124	"taste receptor, type 2, member 124"
+BC156833	100062587	with	387354	Tas2r129	"taste receptor, type 2, member 129"
+BC140244	100014260	without	387511	Tas2r134	"taste receptor, type 2, member 134"
+BC141623	100014680	with	387511	Tas2r134	"taste receptor, type 2, member 134"
+BC140236	100014259	without	353165	Tas2r136	"taste receptor, type 2, member 136"
+BC141617	100014679	with	353165	Tas2r136	"taste receptor, type 2, member 136"
+BC172684	100069492	with	574417	Tas2r137	"taste receptor, type 2, member 137"
+BC140338	100014345	without	353148	Tas2r139	"taste receptor, type 2, member 139"
+BC148730	100015793	with	353148	Tas2r139	"taste receptor, type 2, member 139"
+BC160236	100063884	with	387514	Tas2r143	"taste receptor, type 2, member 143"
+BC140333	100014368	without	387515	Tas2r144	"taste receptor, type 2, member 144"
+BC166026	100066326	with	381801	Tatdn2	TatD DNase domain containing 2
+BC168400	100068369	with	140810	Ttbk2	tau tubulin kinase 2
+BC160248	100063896	with	108995	Tbc1d10c	"TBC1 domain family, member 10c"
+BC141557	100014514	without	21384	Tbx15	T-box 15
+BC156800	100062569	with	21384	Tbx15	T-box 15
+BC156393	100061921	without	21385	Tbx2	T-box 2
+BC140331	100014344	without	57246	Tbx20	T-box 20
+BC148728	100015828	with	57246	Tbx20	T-box 20
+BC160323	100064067	with	245572	Tbx22	T-box 22
+BC156121	100062339	without	21389	Tbx6	T-box 6
+BC156840	100062576	with	399673	Tdpoz2	TD and POZ domain containing 2
+BC146313	100015197	without	21678	Tead3	TEA domain family member 3
+BC156574	100062101	with	21678	Tead3	TEA domain family member 3
+BC156783	100062231	with	654470	Tctn1	tectonic family member 1
+BC172603	100069411	without	319939	Tns3	tensin 3
+BC172718	100069526	with	319939	Tns3	tensin 3
+BC172695	100069503	with	269536	Tex10	testis expressed gene 10
+BC156042	100062364	without	104271	Tex15	testis expressed gene 15
+BC148663	100015574	without	83984	Tssk6	testis-specific serine kinase 6
+BC156590	100062093	with	83984	Tssk6	testis-specific serine kinase 6
+BC167169	100068069	with	22129	Ttc3	tetratricopeptide repeat domain 3
+BC165943	100066243	with	65971	Tbata	"thymus, brain and testes associated"
+BC160296	100064040	with	22018	Tpo	thyroid peroxidase
+BC156638	100062161	with	22032	Traf4	TNF receptor associated factor 4
+BC172644	100069452	with	81897	Tlr9	toll-like receptor 9
+BC172628	100069436	without	21892	Tll1	tolloid-like
+BC172734	100069542	with	21892	Tll1	tolloid-like
+BC156379	100062641	without	21969	Top1	topoisomerase (DNA) I
+BC172687	100069495	with	21969	Top1	topoisomerase (DNA) I
+BC140390	100014402	without	24086	Tlk2	tousled-like kinase 2 (Arabidopsis)
+BC160249	100063897	with	209513	Taar4	trace amine-associated receptor 4
+BC148624	100015569	without	215855	Taar6	trace amine-associated receptor 6
+BC146430	100015104	without	215856	Taar7a	trace amine-associated receptor 7A
+BC153037	100016370	with	215856	Taar7a	trace amine-associated receptor 7A
+BC156673	100062190	with	209517	Taar7b	trace amine-associated receptor 7B
+BC148571	100015466	without	435206	Taar7d	trace amine-associated receptor 7D
+BC153148	100016486	with	435206	Taar7d	trace amine-associated receptor 7D
+BC141475	100014767	without	215859	Taar8a	trace amine-associated receptor 8A
+BC148762	100015763	with	215859	Taar8a	trace amine-associated receptor 8A
+BC156885	100062753	with	216131	Trappc10	trafficking protein particle complex 10
+BC165998	100066298	with	20683	Sp1	trans-acting transcription factor 1
+BC148852	100015850	with	21419	Tfap2b	transcription factor AP-2 beta
+BC146412	100015149	without	21419	Tfap2b	transcription factor AP-2 beta
+BC160252	100063900	with	226896	Tfap2d	"transcription factor AP-2, delta"
+BC156068	100062308	without	332937	Tfap2e	"transcription factor AP-2, epsilon"
+BC141541	100014512	without	81004	Tbl1xr1	transducin (beta)-like 1X-linked receptor 1
+BC148660	100015633	without	21886	Tle2	"transducin-like enhancer of split 2, homolog of Drosophila E(spl)"
+BC156959	100063585	with	21886	Tle2	"transducin-like enhancer of split 2, homolog of Drosophila E(spl)"
+BC165993	100066293	with	21888	Tle4	"transducin-like enhancer of split 4, homolog of Drosophila E(spl)"
+BC146438	100015105	without	320165	Tacc1	"transforming, acidic coiled-coil containing protein 1"
+BC153048	100016372	with	320165	Tacc1	"transforming, acidic coiled-coil containing protein 1"
+BC160205	100063853	with	22135	Tgoln2	trans-golgi network protein 2
+BC167191	100068091	with	22064	Trpc2	"transient receptor potential cation channel, subfamily C, member 2"
+BC167220	100068120	with	17364	Trpm1	"transient receptor potential cation channel, subfamily M, member 1"
+BC148644	100015631	without	193034	Trpv1	"transient receptor potential cation channel, subfamily V, member 1"
+BC153199	100016604	with	193034	Trpv1	"transient receptor potential cation channel, subfamily V, member 1"
+BC141573	100014528	without	237500	Tmtc3	transmembrane and tetratricopeptide repeat containing 3
+BC152732	100015962	without	13409	Tmc1	transmembrane channel-like gene family 1
+BC148655	100015573	without	192140	Tmc2	transmembrane channel-like gene family 2
+BC156587	100062021	with	192140	Tmc2	transmembrane channel-like gene family 2
+BC156723	100062258	with	233424	Tmc3	transmembrane channel-like gene family 3
+BC156371	100062640	without	353499	Tmc4	transmembrane channel-like gene family 4
+BC172651	100069459	with	353499	Tmc4	transmembrane channel-like gene family 4
+BC141540	100014500	without	209760	Tmc7	transmembrane channel-like gene family 7
+BC168399	100068368	with	432478	Tmprss9	"transmembrane protease, serine 9"
+BC167241	100068141	with	270893	Tmem132e	transmembrane protein 132E
+BC160326	100064070	with	68027	Tmem178	transmembrane protein 178
+BC165977	100066277	with	71325	Tchhl1	trichohyalin-like 1
+BC140340	100014369	without	58217	Trem1	triggering receptor expressed on myeloid cells 1
+BC148731	100015817	with	58217	Trem1	triggering receptor expressed on myeloid cells 1
+BC160362	100064106	with	328833	Treml2	triggering receptor expressed on myeloid cells-like 2
+BC165966	100066266	with	94094	Trim34a	tripartite motif-containing 34A
+BC148457	100015379	without	381485	Trim55	tripartite motif-containing 55
+BC153052	100016361	with	381485	Trim55	tripartite motif-containing 55
+BC156343	100061826	without	433766	Trim63	tripartite motif-containing 63
+BC167218	100068118	with	93679	Trim8	tripartite motif-containing 8
+BC167244	100068144	with	330010	Ttll10	"tubulin tyrosine ligase-like family, member 10"
+BC156345	100061850	without	320244	Ttll5	"tubulin tyrosine ligase-like family, member 5"
+BC152795	100015971	without	21944	Tnfsf12	"tumor necrosis factor (ligand) superfamily, member 12"
+BC148526	100015484	without	22164	Tnfsf4	"tumor necrosis factor (ligand) superfamily, member 4"
+BC153120	100016505	with	22164	Tnfsf4	"tumor necrosis factor (ligand) superfamily, member 4"
+BC140224	100014210	without	21936	Tnfrsf18	"tumor necrosis factor receptor superfamily, member 18"
+BC146517	100014964	with	21936	Tnfrsf18	"tumor necrosis factor receptor superfamily, member 18"
+BC141526	100014522	without	79202	Tnfrsf22	"tumor necrosis factor receptor superfamily, member 22"
+BC160227	100063875	with	21987	Tpd52l1	tumor protein D52-like 1
+BC172674	100069482	with	69136	Tusc1	tumor suppressor candidate 1
+BC148472	100015369	without	56844	Tssc4	tumor-suppressing subchromosomal transferable fragment 4
+BC153067	100016352	with	56844	Tssc4	tumor-suppressing subchromosomal transferable fragment 4
+BC156668	100062130	with	21823	Th	tyrosine hydroxylase
+BC140312	100014389	without	328795	Ubash3a	"ubiquitin associated and SH3 domain containing, A"
+BC148683	100015661	with	328795	Ubash3a	"ubiquitin associated and SH3 domain containing, A"
+BC152899	100016165	without	13532	Usp17l5	ubiquitin specific peptidase 17-like 5
+BC146299	100015219	without	57775	Usp29	ubiquitin specific peptidase 29
+BC156265	100061718	without	237898	Usp32	ubiquitin specific peptidase 32
+BC148745	100015772	with	170822	Usp33	ubiquitin specific peptidase 33
+BC146302	100015255	without	170822	Usp33	ubiquitin specific peptidase 33
+BC148642	100015607	without	170707	Usp48	ubiquitin specific peptidase 48
+BC166012	100066312	with	252870	Usp7	ubiquitin specific peptidase 7
+BC172601	100069409	without	107868	Usp9y	"ubiquitin specific peptidase 9, Y chromosome"
+BC140444	100014445	without	22202	Ube1y1	"ubiquitin-activating enzyme E1, Chr Y 1"
+BC140403	100014475	without	22290	Uty	"ubiquitously transcribed tetratricopeptide repeat gene, Y chromosome"
+BC165969	100066269	with	394433	Ugt1a5	"UDP glucuronosyltransferase 1 family, polypeptide A5"
+BC172608	100069416	without	54218	B3galt4	"UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 4"
+BC172719	100069527	with	54218	B3galt4	"UDP-Gal:betaGlcNAc beta 1,3-galactosyltransferase, polypeptide 4"
+BC148440	100015448	without	56336	B4galt5	"UDP-Gal:betaGlcNAc beta 1,4-galactosyltransferase, polypeptide 5"
+BC152835	100016072	without	272411	B3gnt6	"UDP-GlcNAc:betaGal beta-1,3-N-acetylglucosaminyltransferase 6 (core 3 synthase)"
+BC166023	100066323	with	22249	Unc13b	unc-13 homolog B (C. elegans)
+BC172700	100069508	with	217843	Unc79	unc-79 homolog (C. elegans)
+BC172682	100069490	with	52020	Umodl1	uromodulin-like 1
+BC156199	100061539	without	11352	Abl2	"v-abl Abelson murine leukemia viral oncogene 2 (arg, Abelson-related gene)"
+BC148567	100015513	without	22344	Vezf1	vascular endothelial zinc finger 1
+BC153180	100016577	with	22344	Vezf1	vascular endothelial zinc finger 1
+BC156777	100062242	with	22354	Vipr1	vasoactive intestinal peptide receptor 1
+BC156355	100061887	without	13869	Erbb4	v-erb-a erythroblastic leukemia viral oncogene homolog 4 (avian)
+BC152836	100016084	without	327956	Vmo1	vitelline membrane outer layer 1 homolog (chicken)
+BC156190	100061609	without	378435	Mafa	"v-maf musculoaponeurotic fibrosarcoma oncogene family, protein A (avian)"
+BC140286	100014242	without	113858	Vmn1r10	vomeronasal 1 receptor 10
+BC141651	100014687	with	113858	Vmn1r10	vomeronasal 1 receptor 10
+BC140278	100014229	without	113862	Vmn1r13	vomeronasal 1 receptor 13
+BC146575	100014812	with	113862	Vmn1r13	vomeronasal 1 receptor 13
+BC172739	100069547	with	113862	Vmn1r13	vomeronasal 1 receptor 13
+BC140345	100014346	without	113864	Vmn1r14	vomeronasal 1 receptor 14
+BC141639	100014601	with	113864	Vmn1r14	vomeronasal 1 receptor 14
+BC140446	100014469	without	171202	Vmn1r16	vomeronasal 1 receptor 16
+BC140447	100014481	without	171189	Vmn1r17	vomeronasal 1 receptor 17
+BC156289	100061674	without	232959	Vmn1r178	vomeronasal 1 receptor 178
+BC140429	100014431	without	404286	Vmn1r179	vomeronasal 1 receptor 179
+BC148381	100015332	without	171255	Vmn1r201	vomeronasal 1 receptor 201
+BC153006	100016268	with	171255	Vmn1r201	vomeronasal 1 receptor 201
+BC146393	100015111	without	171270	Vmn1r203	vomeronasal 1 receptor 203
+BC148814	100015868	with	171270	Vmn1r203	vomeronasal 1 receptor 203
+BC152971	100016199	without	632793	Vmn1r204	vomeronasal 1 receptor 204
+BC146554	100014963	with	171252	Vmn1r208	vomeronasal 1 receptor 208
+BC140450	100014422	without	171252	Vmn1r208	vomeronasal 1 receptor 208
+BC141439	100014691	without	171269	Vmn1r210	vomeronasal 1 receptor 210
+BC160317	100064061	with	171249	Vmn1r213	vomeronasal 1 receptor 213
+BC140384	100014425	without	171272	Vmn1r219	vomeronasal 1 receptor 219
+BC148681	100015720	with	171272	Vmn1r219	vomeronasal 1 receptor 219
+BC148755	100015762	with	171196	Vmn1r22	vomeronasal 1 receptor 22
+BC146329	100015199	without	171196	Vmn1r22	vomeronasal 1 receptor 22
+BC148557	100015488	without	171226	Vmn1r228	vomeronasal 1 receptor 228
+BC156746	100062214	with	171226	Vmn1r228	vomeronasal 1 receptor 228
+BC148753	100015833	with	171197	Vmn1r23	vomeronasal 1 receptor 23
+BC146327	100015175	without	171197	Vmn1r23	vomeronasal 1 receptor 23
+BC152950	100016220	without	171231	Vmn1r230	vomeronasal 1 receptor 230
+BC146391	100015087	without	171230	Vmn1r231	vomeronasal 1 receptor 231
+BC148812	100015844	with	171230	Vmn1r231	vomeronasal 1 receptor 231
+BC146392	100015099	without	100504631	Vmn1r239-ps	"vomeronasal 1 receptor 239, pseudogene"
+BC148813	100015856	with	100504631	Vmn1r239-ps	"vomeronasal 1 receptor 239, pseudogene"
+BC146555	100014975	with	171191	Vmn1r24	vomeronasal 1 receptor 24
+BC140451	100014434	without	171191	Vmn1r24	vomeronasal 1 receptor 24
+BC140262	100014298	without	113865	Vmn1r25	vomeronasal 1 receptor 25
+BC141635	100014671	with	113865	Vmn1r25	vomeronasal 1 receptor 25
+BC148754	100015750	with	171190	Vmn1r26	vomeronasal 1 receptor 26
+BC146328	100015187	without	171190	Vmn1r26	vomeronasal 1 receptor 26
+BC141566	100014527	without	171183	Vmn1r37	vomeronasal 1 receptor 37
+BC153101	100016430	with	171183	Vmn1r37	vomeronasal 1 receptor 37
+BC140250	100014237	without	113855	Vmn1r40	vomeronasal 1 receptor 40
+BC141626	100014657	with	113855	Vmn1r40	vomeronasal 1 receptor 40
+BC140264	100014227	without	22297	Vmn1r45	vomeronasal 1 receptor 45
+BC141636	100014600	with	22297	Vmn1r45	vomeronasal 1 receptor 45
+BC140251	100014249	without	113856	Vmn1r46	vomeronasal 1 receptor 46
+BC146524	100014894	with	113856	Vmn1r46	vomeronasal 1 receptor 46
+BC160222	100063870	with	113846	Vmn1r47	vomeronasal 1 receptor 47
+BC140225	100014222	without	113845	Vmn1r48	vomeronasal 1 receptor 48
+BC141611	100014642	with	113845	Vmn1r48	vomeronasal 1 receptor 48
+BC140231	100014294	without	113849	Vmn1r52	vomeronasal 1 receptor 52
+BC141614	100014631	with	113849	Vmn1r52	vomeronasal 1 receptor 52
+BC160280	100063928	with	81015	Vmn1r56	vomeronasal 1 receptor 56
+BC140354	100014359	without	81014	Vmn1r58	vomeronasal 1 receptor 58
+BC156709	100062195	with	404284	Vmn1r59	vomeronasal 1 receptor 59
+BC152837	100016096	without	81016	Vmn1r62	vomeronasal 1 receptor 62
+BC140258	100014250	without	404285	Vmn1r64	vomeronasal 1 receptor 64
+BC141632	100014611	with	404285	Vmn1r64	vomeronasal 1 receptor 64
+BC152945	100016160	without	81013	Vmn1r65	vomeronasal 1 receptor 65
+BC141482	100014756	without	252904	Vmn1r69	vomeronasal 1 receptor 69
+BC148766	100015752	with	252904	Vmn1r69	vomeronasal 1 receptor 69
+BC141474	100014755	without	171262	Vmn1r70	vomeronasal 1 receptor 70
+BC148761	100015751	with	171262	Vmn1r70	vomeronasal 1 receptor 70
+BC152874	100016065	without	171237	Vmn1r73	vomeronasal 1 receptor 73
+BC140448	100014493	without	171239	Vmn1r76	vomeronasal 1 receptor 76
+BC148705	100015692	with	171239	Vmn1r76	vomeronasal 1 receptor 76
+BC146553	100014951	with	171244	Vmn1r81	vomeronasal 1 receptor 81
+BC140449	100014410	without	171244	Vmn1r81	vomeronasal 1 receptor 81
+BC140453	100014458	without	171267	Vmn1r84	vomeronasal 1 receptor 84
+BC152968	100016163	without	404287	V1rd19	"vomeronasal 1 receptor, D19"
+BC156622	100062086	with	404287	V1rd19	"vomeronasal 1 receptor, D19"
+BC140238	100014283	without	24112	Vmn1r49	"vomeronasal 1, receptor 49"
+BC160297	100064041	with	56544	Vmn2r1	"vomeronasal 2, receptor 1"
+BC140410	100014464	without	22307	Vmn2r10	"vomeronasal 2, receptor 10"
+BC148634	100015606	without	22300	Vmn2r123	"vomeronasal 2, receptor 123"
+BC153194	100016520	with	22300	Vmn2r123	"vomeronasal 2, receptor 123"
+BC146389	100015158	without	56552	Vmn2r26	"vomeronasal 2, receptor 26"
+BC148810	100015903	with	56552	Vmn2r26	"vomeronasal 2, receptor 26"
+BC156792	100062520	with	22305	Vmn2r37	"vomeronasal 2, receptor 37"
+BC141511	100014520	without	22310	Vmn2r42	"vomeronasal 2, receptor 42"
+BC146359	100015179	without	381838	Vmn2r43	"vomeronasal 2, receptor 43"
+BC152873	100016053	without	233437	Vmn2r66	"vomeronasal 2, receptor 66"
+BC156703	100062206	with	216144	Vmn2r81	"vomeronasal 2, receptor 81"
+BC166002	100066302	with	22308	Vmn2r122	"vomeronasal 2, receptor, 122"
+BC156321	100061803	without	319210	Vmn2r-ps11	"vomeronasal 2, receptor, pseudogene 11"
+BC141458	100014729	without	22327	Vbp1	von Hippel-Lindau binding protein 1
+BC148716	100015730	with	22327	Vbp1	von Hippel-Lindau binding protein 1
+BC148363	100015270	without	22371	Vwf	Von Willebrand factor homolog
+BC140243	100014248	without	58188	Vstm2b	V-set and transmembrane domain containing 2B
+BC141622	100014668	with	58188	Vstm2b	V-set and transmembrane domain containing 2B
+BC148669	100015646	without	277343	Wfdc8	WAP four-disulfide core domain 8
+BC153207	100016547	with	277343	Wfdc8	WAP four-disulfide core domain 8
+BC156285	100061709	without	242687	Wasf2	"WAS protein family, member 2"
+BC166024	100066324	with	213081	Wdr19	WD repeat domain 19
+BC167210	100068110	with	269633	Wdr86	WD repeat domain 86
+BC148376	100015355	without	22431	Wt1	Wilms tumor 1 homolog
+BC140316	100014342	without	22410	Wnt10b	wingless related MMTV integration site 10b
+BC148685	100015697	with	22410	Wnt10b	wingless related MMTV integration site 10b
+BC152754	100015989	without	22416	Wnt3a	wingless-related MMTV integration site 3A
+BC166000	100066300	with	22376	Was	Wiskott-Aldrich syndrome homolog (human)
+BC156160	100062453	without	107823	Whsc1	Wolf-Hirschhorn syndrome candidate 1 (human)
+BC156967	100063634	with	107823	Whsc1	Wolf-Hirschhorn syndrome candidate 1 (human)
+BC167226	100068126	with	234135	Whsc1l1	Wolf-Hirschhorn syndrome candidate 1-like 1 (human)
+BC160346	100064090	with	19775	Xpr1	xenotropic and polytropic retrovirus receptor 1
+BC146440	100015129	without	327959	Xaf1	XIAP associated factor 1
+BC153050	100016396	with	327959	Xaf1	XIAP associated factor 1
+BC165940	100066240	with	22446	Xlr3c	X-linked lymphocyte-regulated 3C
+BC152868	100016088	without	72891	Xlr4c	X-linked lymphocyte-regulated 4C
+BC156196	100061598	without	233781	Xylt1	xylosyltransferase 1
+BC148553	100015535	without	66090	Ypel3	yippee-like 3 (Drosophila)
+BC153140	100016496	with	66090	Ypel3	yippee-like 3 (Drosophila)
+BC156320	100061791	without	387524	Znrf2	zinc and ring finger 2
+BC156404	100061959	without	22184	Zrsr2	"zinc finger (CCCH type), RNA binding motif and serine/arginine rich 2"
+BC172696	100069504	with	22184	Zrsr2	"zinc finger (CCCH type), RNA binding motif and serine/arginine rich 2"
+BC156926	100063566	with	245007	Zbtb38	zinc finger and BTB domain containing 38
+BC166021	100066321	with	332221	Zscan10	zinc finger and SCAN domain containing 10
+BC167184	100068084	with	20286	Zc3h7b	zinc finger CCCH type containing 7B
+BC167208	100068108	with	22643	Zfp101	zinc finger protein 101
+BC167172	100068072	with	93681	Zfp192	zinc finger protein 192
+BC156680	100062191	with	22768	Zfy2	"zinc finger protein 2, Y linked"
+BC167203	100068103	with	22688	Zfp26	zinc finger protein 26
+BC146543	100014958	with	236537	Zfp352	zinc finger protein 352
+BC140425	100014466	without	236537	Zfp352	zinc finger protein 352
+BC156658	100062176	with	234203	Zfp353	zinc finger protein 353
+BC167205	100068105	with	333473	Zfp36l3	"zinc finger protein 36, C3H type-like 3"
+BC167204	100068104	with	170936	Zfp369	zinc finger protein 369
+BC160312	100064056	with	218311	Zfp455	zinc finger protein 455
+BC168403	100068372	with	431706	Zfp457	zinc finger protein 457
+BC148454	100015426	without	328274	Zfp459	zinc finger protein 459
+BC153051	100016408	with	328274	Zfp459	zinc finger protein 459
+BC148788	100015791	with	240068	Zfp563	zinc finger protein 563
+BC148480	100015382	without	240068	Zfp563	zinc finger protein 563
+BC148401	100015311	without	22717	Zfp59	zinc finger protein 59
+BC153022	100016295	with	22717	Zfp59	zinc finger protein 59
+BC146316	100015233	without	232816	Zfp628	zinc finger protein 628
+BC160219	100063867	with	170753	Zfp704	zinc finger protein 704
+BC172610	100069418	without	432769	Zfp708	zinc finger protein 708
+BC172721	100069529	with	432769	Zfp708	zinc finger protein 708
+BC172716	100069524	with	408067	Zfp874b	zinc finger protein 874b
+BC156276	100061684	without	109910	Zfp91	zinc finger protein 91
+BC168394	100068363	with	109910	Zfp91	zinc finger protein 91
+BC146568	100014870	with	22759	Zfp97	zinc finger protein 97
+BC146375	100015073	without	22759	Zfp97	zinc finger protein 97
+BC141551	100014537	without	22773	Zic3	zinc finger protein of the cerebellum 3
+BC160224	100063872	with	22774	Zic4	zinc finger protein of the cerebellum 4
+BC148594	100015553	without	22639	Zfa	"zinc finger protein, autosomal"
+BC153158	100016525	with	22639	Zfa	"zinc finger protein, autosomal"
+BC146423	100015103	without	108672	Zdhhc15	"zinc finger, DHHC domain containing 15"
+BC148858	100015863	with	108672	Zdhhc15	"zinc finger, DHHC domain containing 15"
+BC167166	100068066	with	503610	Zdhhc18	"zinc finger, DHHC domain containing 18"
+BC152943	100016219	without	70605	Zdhhc24	"zinc finger, DHHC domain containing 24"
+BC172690	100069498	with	230597	Zfyve9	"zinc finger, FYVE domain containing 9"
+BC168391	100068360	with	360216	Zranb1	"zinc finger, RAN-binding domain containing 1"
+BC148610	100015555	without	108946	Zzz3	"zinc finger, ZZ domain containing 3"
+BC153178	100016517	with	108946	Zzz3	"zinc finger, ZZ domain containing 3"

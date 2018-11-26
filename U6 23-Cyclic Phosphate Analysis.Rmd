@@ -23,8 +23,6 @@ library(tidyverse)
 library(readr)
 library(dplyr)
 library(ggplot2)
-library(valr)
-library(Sushi)
 library(stringr)
 library(cowplot)
 library(RColorBrewer)
@@ -50,7 +48,7 @@ read_file <- function(x) {
 #Generate data table and make graphs
 
 U6_table <- purrr::map_df(data_files, read_file) %>%
-  dplyr::mutate(name = str_replace(name, ".umi.U6.bg", "")) %>%
+  dplyr::mutate(name = str_replace(name, ".U6.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
 
 plot_U6 <- ggplot(U6_table, aes(x = start, y = count)) +

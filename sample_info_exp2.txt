@@ -1,0 +1,16 @@
+B6	Mock	12
+B6	MHV wt Volker	12
+B6	NS2susan mut 3	12
+B6	nsp15HA Eveline P1	12
+RnaseL	Mock	12
+RnaseL	MHV wt Volker	12
+RnaseL	NS2susan mut 3	12
+RnaseL	nsp15HA Eveline P1	12
+B6	Mock	9
+B6	MHV wt Volker	9
+B6	NS2susan mut 3	9
+B6	nsp15HA Eveline P1	9
+RnaseL	Mock	9
+RnaseL	MHV wt Volker	9
+RnaseL	NS2susan mut 3	9
+RnaseL	nsp15HA Eveline P1	9

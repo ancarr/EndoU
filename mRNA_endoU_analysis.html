@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Rachel Ancar" />
+
+
+<title>Analysis of mRNA to Detect EndoU Cleavage Sites for experiment 1</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.4/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">EndoU Collaboration Data Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="MHV_endoU_analysis_final.html">MHV RNA analysis exp.1</a>
+</li>
+<li>
+  <a href="MHV_endoU_analysis_experiment2.html">MHV RNA analysis exp.2</a>
+</li>
+<li>
+  <a href="Alignments.html">Alignments</a>
+</li>
+<li>
+  <a href="rRNA_endoU_analysis_final.html">rRNA analysis exp.1</a>
+</li>
+<li>
+  <a href="rRNA_endoU_analysis_exp2_final.html">rRNA analysis exp.2</a>
+</li>
+<li>
+  <a href="mRNA_endoU_analysis.html">mRNA analysis exp.1</a>
+</li>
+<li>
+  <a href="mRNA_endoU_exp2_analysis.html">mRNA analysis exp.2</a>
+</li>
+<li>
+  <a href="U6_23-Cyclic_Phosphate_Analysis.html">U6 RNA analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Analysis of mRNA to Detect EndoU Cleavage Sites for experiment 1</h1>
+<h4 class="author"><em>Rachel Ancar</em></h4>
+<h4 class="date"><em>4/28/2018</em></h4>
+
+</div>
+
+
+<pre class="r"><code>library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(cowplot)
+library(RColorBrewer)
+library(purrr)
+library(shiny)
+library(DT)</code></pre>
+<p>2´,3´-cyclic phosphate RNA-sequencing libraries were prepared from mouse macrophages: B6 (WT), IFNAR KO, RNaseL KO. These cells were either mock infected or infected with WT MHV virus (from Volker or Susan), MHV mutated to inactivate ns2 (phosphodiesterase) activity, or MHV mutated to inactivate nsp15 (endoribonuclease) activity for 9 and 12 hours.</p>
+<pre class="r"><code>sample_info_table &lt;- read_tsv(&quot;sample_info.txt&quot;, col_names = c(&quot;cell type&quot;, &quot;virus type&quot;, &quot;time&quot;))
+datatable(sample_info_table)</code></pre>
+<div id="htmlwidget-68d6a7b5a354bc35bb55" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-68d6a7b5a354bc35bb55">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],["B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","IFNAR","RNaseL","B6","IFNAR","RNaseL"],["Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","mock","mock","mock","mock","mock","mock"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","0/12","0/12","0/12","0/9","0/9","0/9"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cell type<\/th>\n      <th>virus type<\/th>\n      <th>time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<p>In this analysis, reads from all libraries were aligned to reference file containing Mus musculus sequences of Refseq mRNAs. Bedgraph files containing counts at each 3´-cleavage site were generated for this analysis.</p>
+<div id="identify-rnas-with-the-most-abundant-capture-of-23--cyclic-phosphates-across-all-samples." class="section level1">
+<h1>Identify RNAs with the most abundant capture of 2´,3´- cyclic phosphates across all samples.</h1>
+<p>In this analysis, the total and normalized counts per RNA were summed and filtered to exclude RNAs with less than 100 total reads and less than 5 reads per position. Additionally, an analysis to detect RNA reads unique to infected samples was performed to interogate RNA cleavage that may be dependent upon nsp15.</p>
+<pre class="r"><code>data_dir_mRNA = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/mRNA/exp1&quot;
+data_files_mRNA = list.files(data_dir_mRNA, full.names = T)
+
+read_file &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;, &quot;normalized_count&quot;))
+  df$name &lt;- basename(x)
+  df
+}
+
+table_mRNA &lt;- purrr::map_df(data_files_mRNA, read_file) %&gt;%
+  mutate(name = str_replace(name, &quot;.mRNA.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;), sep = &#39;_&#39;) %&gt;%
+  separate(chrom, into = c(&#39;extra&#39;, &#39;chrom&#39;), sep = &#39;\\|&#39;) %&gt;%
+  dplyr::select(-extra) %&gt;%
+  separate(chrom, into = c(&#39;genome&#39;, &#39;chrom&#39;, &#39;mRNA&#39;), sep = &#39;\\_&#39;) %&gt;%
+  dplyr::select(-genome, -chrom)  %&gt;%
+  filter(count &gt;= 5) 
+
+top_mRNA &lt;- table_mRNA %&gt;% 
+  group_by(mRNA, cell, virus, time) %&gt;% 
+  summarise(total_count = sum(count), total_normalcount = sum(normalized_count)) %&gt;%
+  arrange(desc(total_count)) %&gt;%
+  filter(total_count &gt;= 100) </code></pre>
+<pre class="r"><code>ORF_collection &lt;- read_tsv(&quot;MouseORFeomeCollection.txt&quot;) %&gt;%
+  dplyr::select(1,5) %&gt;%
+  rename(mRNA = &quot;Accession #&quot;)
+
+top_mRNA_annotated &lt;- left_join(top_mRNA, ORF_collection)
+
+mock_mRNA &lt;- top_mRNA_annotated %&gt;% filter(virus == &quot;mock&quot;) 
+
+virus_mRNA &lt;- top_mRNA_annotated %&gt;% filter(virus != &quot;mock&quot;)
+
+only_virus_mRNA &lt;- top_mRNA_annotated %&gt;%        
+  anti_join(mock_mRNA, by = &quot;mRNA&quot;)</code></pre>
+<div id="top-100-rnas-by-cell-virus-and-time-for-all-types-of-infections" class="section level2">
+<h2>Top 100 RNAs by cell, virus, and time for all types of infections</h2>
+<pre class="r"><code>top100_mRNA &lt;- top_mRNA_annotated %&gt;% head(n =100)
+datatable(top100_mRNA)</code></pre>
+<div id="htmlwidget-e625e1d8a523afe978f9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e625e1d8a523afe978f9">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100"],["BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC140360","BC148539","BC146503","BC140360","BC148539","BC146503","BC148539","BC140360","BC148539","BC146503","BC160379","BC146503","BC148539","BC140360","BC148539","BC148539","BC160379","BC146503","BC146503","BC140360","BC146503","BC148539","BC140360","BC140360","BC140360","BC140360","BC146503","BC146503","BC148539","BC140360","BC146503","BC140360","BC146503","BC146503","BC148539","BC140360","BC140360","BC140360","BC146503","BC148539","BC146503","BC146503","BC160379","BC160379","BC140360","BC146503","BC140360","BC160382","BC140360","BC146503","BC140360","BC146503","BC140360","BC146503","BC146503","BC140360","BC160379","BC160379","BC140360","BC146503","BC140331","BC148728","BC140360","BC148728","BC146503","BC140331","BC160379","BC146503","BC160379","BC160382","BC148728","BC140331","BC148539","BC160379","BC140360","BC140360","BC146503","BC140331","BC140360","BC148728"],["IFNAR","B6","B6","RNaseL","IFNAR","RNaseL","RNaseL","RNaseL","B6","RNaseL","IFNAR","B6","RNaseL","B6","B6","IFNAR","IFNAR","RNaseL","IFNAR","IFNAR","IFNAR","B6","IFNAR","B6","B6","B6","IFNAR","B6","IFNAR","B6","IFNAR","IFNAR","RNaseL","IFNAR","RNaseL","B6","B6","IFNAR","RNaseL","IFNAR","B6","B6","RNaseL","B6","RNaseL","B6","RNaseL","B6","IFNAR","RNaseL","RNaseL","IFNAR","IFNAR","B6","IFNAR","IFNAR","B6","B6","IFNAR","RNaseL","B6","B6","B6","IFNAR","RNaseL","RNaseL","B6","B6","RNaseL","B6","RNaseL","RNaseL","B6","RNaseL","IFNAR","RNaseL","B6","IFNAR","IFNAR","RNaseL","IFNAR","IFNAR","IFNAR","B6","IFNAR","B6","IFNAR","B6","B6","B6","B6","B6","B6","B6","IFNAR","RNaseL","IFNAR","B6","B6","B6"],["nsp15","MHVS","nsp15","MHVS","MHVS","MHVV","nsp15","MHVS","nsp15","ns2","mock","mock","mock","MHVS","ns2","nsp15","MHVS","mock","mock","ns2","nsp15","mock","nsp15","MHVS","mock","MHVS","MHVV","nsp15","ns2","nsp15","nsp15","MHVS","ns2","MHVS","nsp15","MHVV","MHVS","MHVS","MHVS","MHVS","ns2","MHVV","MHVS","ns2","nsp15","nsp15","nsp15","nsp15","mock","ns2","ns2","ns2","ns2","mock","MHVV","mock","mock","mock","mock","MHVV","mock","MHVS","mock","MHVS","MHVV","MHVS","MHVS","nsp15","MHVS","MHVV","mock","MHVV","MHVV","mock","nsp15","mock","MHVS","MHVS","nsp15","mock","nsp15","nsp15","ns2","MHVS","ns2","MHVS","mock","mock","mock","nsp15","MHVV","MHVV","mock","MHVV","mock","nsp15","mock","mock","mock","mock"],["12","12","12","9","12","9","12","12","9","12","09","9","9","9","12","9","9","012","9","9","12","012","12","12","09","12","9","12","12","12","12","9","9","9","9","9","12","12","12","12","12","12","12","12","12","9","12","9","012","12","12","9","9","012","12","09","012","9","09","12","9","9","9","9","9","9","9","12","9","12","9","9","12","9","9","012","9","12","9","012","12","12","12","12","12","12","09","09","012","9","12","12","12","12","9","9","9","012","09","012"],[7120,6024,5204,4727,4601,4596,4579,4563,4469,4291,4189,4095,4050,3955,3751,3162,3103,3046,2713,2535,2481,2429,2326,2254,2243,2170,2056,1960,1955,1938,1803,1676,1662,1660,1611,1576,1548,1542,1505,1444,1442,1427,1395,1394,1342,1315,1301,1294,1259,1248,1229,1142,1128,1117,1109,1107,1096,1083,1081,1078,1062,1046,1032,1009,999,988,972,949,945,945,928,918,896,891,883,880,869,863,845,778,776,748,733,711,699,694,672,668,649,648,647,639,638,610,604,603,601,598,591,589],[0.868843821,0.673608392,0.900782463,0.943307605,0.663592806,0.95802899,0.98197087,0.907167806,0.827269336,0.838434618,0.97866105,0.93614823,1.05881479,0.83039734,0.597832853,0.84470468,0.65067952,0.92355876,0.95803099,0.65714589,0.302752839,0.74582885,0.283838622,0.252044074,0.8689861,0.242651062,0.80142205,0.339264691,0.55848525,0.335456632,0.220017589,0.35144667,0.74653656,0.34809155,0.68964344,0.60909633,0.173098677,0.22239951,0.29920844,0.20826509,0.229825337,0.34755208,0.27733941,0.222175255,0.28779333,0.24342349,0.27900064,0.239535968,0.78141898,0.24385148,0.24013899,0.2960397,0.29241063,0.34297672,0.53255872,0.25862435,0.33652871,0.24758183,0.25254998,0.58201088,0.2427812,0.21961972,0.23592287,0.21158093,0.20824005,0.197162654,0.20408245,0.16426643,0.18858163,0.23015888,0.24261246,0.19135569,0.21822471,0.23293932,0.23588686,0.26681934,0.18245646,0.124468716,0.22573538,0.2358925,0.094694241,0.091277381,0.20939614,0.079504596,0.19968347,0.07760359,0.15699684,0.25879745,0.19927664,0.119953154,0.1575797,0.15563118,0.40279294,0.14856814,0.21328814,0.25813453,0.21222869,0.18361696,0.22896598,0.18085354],["Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Hexb","Cdk8","Hexb","Hexb","Cdk8","Hexb","Cdk8","Hexb","Cdk8","Hexb","Grik3","Hexb","Cdk8","Hexb","Cdk8","Cdk8","Grik3","Hexb","Hexb","Hexb","Hexb","Cdk8","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Cdk8","Hexb","Hexb","Hexb","Hexb","Hexb","Cdk8","Hexb","Hexb","Hexb","Hexb","Cdk8","Hexb","Hexb","Grik3","Grik3","Hexb","Hexb","Hexb","Scaper","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Grik3","Grik3","Hexb","Hexb","Tbx20","Tbx20","Hexb","Tbx20","Hexb","Tbx20","Grik3","Hexb","Grik3","Scaper","Tbx20","Tbx20","Cdk8","Grik3","Hexb","Hexb","Hexb","Tbx20","Hexb","Tbx20"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mRNA<\/th>\n      <th>cell<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>total_count<\/th>\n      <th>total_normalcount<\/th>\n      <th>Symbol<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="top-100-rnas-by-cell-virus-and-time-for-only-infected-cells." class="section level2">
+<h2>Top 100 RNAs by cell, virus, and time for only infected cells.</h2>
+<pre class="r"><code>top100_virus_mRNA &lt;- virus_mRNA %&gt;% head(n =100)
+datatable(top100_virus_mRNA)</code></pre>
+<div id="htmlwidget-fb8bde6fd4f70d29d9ae" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fb8bde6fd4f70d29d9ae">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100"],["BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC148539","BC140360","BC146503","BC140360","BC146503","BC148539","BC140360","BC148539","BC146503","BC160379","BC146503","BC148539","BC140360","BC148539","BC148539","BC160379","BC146503","BC146503","BC140360","BC146503","BC148539","BC140360","BC140360","BC140360","BC140360","BC146503","BC146503","BC140360","BC146503","BC140360","BC146503","BC148539","BC148539","BC146503","BC160379","BC140360","BC146503","BC140360","BC160382","BC140360","BC146503","BC146503","BC140360","BC146503","BC160379","BC160379","BC140360","BC140331","BC148728","BC140360","BC148728","BC146503","BC140331","BC160382","BC148728","BC140331","BC160379","BC140360","BC146503","BC160379","BC140360","BC160379","BC160379","BC140360","BC148728","BC146503","BC140331","BC140360","BC160382","BC146503","BC148728","BC156060","BC140331","BC146503","BC146503","BC160379","BC140360","BC156943","BC160382","BC146503","BC156943","BC160382","BC140360","BC160379","BC156060","BC160379"],["IFNAR","B6","B6","RNaseL","IFNAR","RNaseL","RNaseL","RNaseL","B6","RNaseL","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","B6","B6","IFNAR","B6","IFNAR","B6","IFNAR","IFNAR","RNaseL","IFNAR","RNaseL","B6","B6","IFNAR","RNaseL","IFNAR","B6","B6","RNaseL","B6","RNaseL","B6","RNaseL","B6","RNaseL","RNaseL","IFNAR","IFNAR","IFNAR","RNaseL","B6","IFNAR","RNaseL","RNaseL","B6","B6","RNaseL","B6","RNaseL","B6","IFNAR","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","B6","IFNAR","B6","B6","B6","B6","B6","RNaseL","RNaseL","IFNAR","RNaseL","B6","B6","IFNAR","IFNAR","B6","IFNAR","B6","B6","IFNAR","B6","IFNAR","B6","RNaseL","IFNAR","IFNAR","RNaseL","IFNAR","B6","RNaseL","RNaseL","RNaseL","IFNAR","RNaseL","RNaseL","RNaseL"],["nsp15","MHVS","nsp15","MHVS","MHVS","MHVV","nsp15","MHVS","nsp15","ns2","MHVS","ns2","nsp15","MHVS","ns2","nsp15","nsp15","MHVS","MHVS","MHVV","nsp15","ns2","nsp15","nsp15","MHVS","ns2","MHVS","nsp15","MHVV","MHVS","MHVS","MHVS","MHVS","ns2","MHVV","MHVS","ns2","nsp15","nsp15","nsp15","nsp15","ns2","ns2","ns2","ns2","MHVV","MHVV","MHVS","MHVS","MHVV","MHVS","MHVS","nsp15","MHVS","MHVV","MHVV","MHVV","nsp15","MHVS","MHVS","nsp15","nsp15","nsp15","ns2","MHVS","ns2","MHVS","nsp15","MHVV","MHVV","MHVV","nsp15","nsp15","nsp15","MHVV","nsp15","ns2","MHVV","MHVS","MHVV","MHVS","MHVV","ns2","MHVV","ns2","nsp15","ns2","MHVV","MHVV","ns2","ns2","nsp15","MHVS","ns2","MHVS","nsp15","MHVV","MHVV","MHVS","MHVS"],["12","12","12","9","12","9","12","12","9","12","9","12","9","9","9","12","12","12","12","9","12","12","12","12","9","9","9","9","9","12","12","12","12","12","12","12","12","12","9","12","9","12","12","9","9","12","12","9","9","9","9","9","12","9","12","9","12","9","9","12","9","12","12","12","12","12","12","9","12","12","12","9","9","9","12","9","12","9","9","9","9","9","12","12","12","12","12","12","9","9","9","12","12","9","9","12","12","9","9","9"],[7120,6024,5204,4727,4601,4596,4579,4563,4469,4291,3955,3751,3162,3103,2535,2481,2326,2254,2170,2056,1960,1955,1938,1803,1676,1662,1660,1611,1576,1548,1542,1505,1444,1442,1427,1395,1394,1342,1315,1301,1294,1248,1229,1142,1128,1109,1078,1046,1009,999,988,972,949,945,945,918,896,883,869,863,845,776,748,733,711,699,694,648,647,639,610,603,574,535,533,530,526,524,524,523,512,504,462,461,453,452,448,443,440,430,425,424,424,408,398,391,388,370,367,353],[0.868843821,0.673608392,0.900782463,0.943307605,0.663592806,0.95802899,0.98197087,0.907167806,0.827269336,0.838434618,0.83039734,0.597832853,0.84470468,0.65067952,0.65714589,0.302752839,0.283838622,0.252044074,0.242651062,0.80142205,0.339264691,0.55848525,0.335456632,0.220017589,0.35144667,0.74653656,0.34809155,0.68964344,0.60909633,0.173098677,0.22239951,0.29920844,0.20826509,0.229825337,0.34755208,0.27733941,0.222175255,0.28779333,0.24342349,0.27900064,0.239535968,0.24385148,0.24013899,0.2960397,0.29241063,0.53255872,0.58201088,0.21961972,0.21158093,0.20824005,0.197162654,0.20408245,0.16426643,0.18858163,0.23015888,0.19135569,0.21822471,0.23588686,0.18245646,0.124468716,0.22573538,0.094694241,0.091277381,0.20939614,0.079504596,0.19968347,0.07760359,0.119953154,0.1575797,0.15563118,0.14856814,0.25813453,0.24572035,0.14292127,0.28776586,0.09810979,0.083833676,0.20425355,0.10987951,0.2021302,0.10736318,0.19478705,0.0736334,0.22137922,0.072198924,0.055156906,0.071402071,0.23917513,0.17151046,0.11146856,0.19090146,0.051740089,0.047412051,0.18326546,0.079423864,0.08385035,0.18632342,0.07712588,0.0732376,0.070443739],["Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Cdk8","Hexb","Hexb","Hexb","Hexb","Cdk8","Hexb","Cdk8","Hexb","Grik3","Hexb","Cdk8","Hexb","Cdk8","Cdk8","Grik3","Hexb","Hexb","Hexb","Hexb","Cdk8","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Hexb","Cdk8","Cdk8","Hexb","Grik3","Hexb","Hexb","Hexb","Scaper","Hexb","Hexb","Hexb","Hexb","Hexb","Grik3","Grik3","Hexb","Tbx20","Tbx20","Hexb","Tbx20","Hexb","Tbx20","Scaper","Tbx20","Tbx20","Grik3","Hexb","Hexb","Grik3","Hexb","Grik3","Grik3","Hexb","Tbx20","Hexb","Tbx20","Hexb","Scaper","Hexb","Tbx20","Ampd1","Tbx20","Hexb","Hexb","Grik3","Hexb","Ampd1","Scaper","Hexb","Ampd1","Scaper","Hexb","Grik3","Ampd1","Grik3"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mRNA<\/th>\n      <th>cell<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>total_count<\/th>\n      <th>total_normalcount<\/th>\n      <th>Symbol<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="top-100-rnas-by-cell-virus-and-time-for-only-infected-cells-excluding-all-mrna-captured-in-mock-libraries" class="section level2">
+<h2>Top 100 RNAs by cell, virus, and time for only infected cells, excluding all mRNA captured in mock libraries</h2>
+<pre class="r"><code>datatable(only_virus_mRNA)</code></pre>
+<div id="htmlwidget-33bc34a022f55c2354b3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33bc34a022f55c2354b3">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10"],["BC156558","BC172613","BC156985","BC172717","BC156494","BC152792","BC172613","BC172681","BC148535","BC152918"],["B6","B6","IFNAR","B6","IFNAR","B6","B6","IFNAR","B6","B6"],["MHVS","MHVS","nsp15","MHVS","nsp15","MHVS","MHVV","nsp15","MHVS","MHVS"],["12","12","12","12","12","12","12","12","12","12"],[189,189,147,125,124,122,107,107,102,100],[0.02113414,0.021134136,0.01793821,0.013977601,0.015131548,0.013642143,0.02606031,0.013057061,0.011405715,0.011182088],[null,"Gvin1","Rock1","Gvin1",null,"Gp49a","Gvin1","Myo7a","Gabrg3","Gapdhs"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mRNA<\/th>\n      <th>cell<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>total_count<\/th>\n      <th>total_normalcount<\/th>\n      <th>Symbol<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="plots-of-some-of-the-most-abundant-rnas-captured-in-both-mock-and-infected-samples" class="section level2">
+<h2>Plots of some of the most abundant RNAs captured in both mock and infected samples</h2>
+<pre class="r"><code>Cdk8 &lt;- top_mRNA %&gt;% filter(mRNA == &quot;BC148539&quot;) %&gt;%
+    filter(time != &quot;09&quot;) %&gt;%
+    filter(time != &quot;012&quot;) %&gt;%
+    ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x=&quot;mRNA&quot;, y=&quot;Total normalized counts per mRNA&quot;) +
+  ggtitle(&quot;Cdk8&quot;)
+Cdk8 </code></pre>
+<p><img src="mRNA_endoU_analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>Hexb &lt;- top_mRNA %&gt;% filter(mRNA == &quot;BC146503&quot;) %&gt;%
+    filter(time != &quot;09&quot;) %&gt;%
+    filter(time != &quot;012&quot;) %&gt;%
+    ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x=&quot;mRNA&quot;, y=&quot;Total normalized counts per mRNA&quot;) +
+  ggtitle(&quot;Hexb&quot;)
+Hexb</code></pre>
+<p><img src="mRNA_endoU_analysis_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<pre class="r"><code>Grik3 &lt;- top_mRNA %&gt;% filter(mRNA == &quot;BC160379&quot;) %&gt;%
+    filter(time != &quot;09&quot;) %&gt;%
+    filter(time != &quot;012&quot;) %&gt;%
+    ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x=&quot;mRNA&quot;, y=&quot;Total normalized counts per mRNA&quot;) +
+  ggtitle(&quot;Grik3&quot;)
+Grik3</code></pre>
+<p><img src="mRNA_endoU_analysis_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
+</div>
+<div id="plot-of-abundant-rna-captured-in-the-infected-samples" class="section level2">
+<h2>Plot of abundant RNA captured in the infected samples</h2>
+<pre class="r"><code>Gvin1 &lt;- top_mRNA %&gt;% filter(mRNA == &quot;BC172613&quot;) %&gt;%
+    filter(time != &quot;09&quot;) %&gt;%
+    filter(time != &quot;012&quot;) %&gt;%
+    ggplot(aes(x = mRNA, y = total_normalcount, fill = virus)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(time ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+    labs(x=&quot;mRNA&quot;, y=&quot;Total normalized counts per mRNA&quot;) +
+    ggtitle(&quot;Gvin1&quot;)
+Gvin1</code></pre>
+<p><img src="mRNA_endoU_analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Rachel Ancar" />
+
+<meta name="date" content="2018-11-03" />
+
+<title>Analysis of MHV RNA to Detect EndoU Cleavage Sites</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.4/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">EndoU Collaboration Data Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="MHV_endoU_analysis_final.html">MHV RNA analysis exp.1</a>
+</li>
+<li>
+  <a href="MHV_endoU_analysis_experiment2.html">MHV RNA analysis exp.2</a>
+</li>
+<li>
+  <a href="Alignments.html">Alignments</a>
+</li>
+<li>
+  <a href="rRNA_endoU_analysis_final.html">rRNA analysis exp.1</a>
+</li>
+<li>
+  <a href="rRNA_endoU_analysis_exp2_final.html">rRNA analysis exp.2</a>
+</li>
+<li>
+  <a href="mRNA_endoU_analysis.html">mRNA analysis exp.1</a>
+</li>
+<li>
+  <a href="mRNA_endoU_exp2_analysis.html">mRNA analysis exp.2</a>
+</li>
+<li>
+  <a href="U6_23-Cyclic_Phosphate_Analysis.html">U6 RNA analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Analysis of MHV RNA to Detect EndoU Cleavage Sites</h1>
+<h4 class="author"><em>Rachel Ancar</em></h4>
+<h4 class="date"><em>11/03/2018</em></h4>
+
+</div>
+
+
+<pre class="r"><code>library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(cowplot)
+library(RColorBrewer)
+library(purrr)
+library(shiny)
+library(DT)</code></pre>
+<p>2´,3´-cyclic phosphate RNA-sequencing libraries were prepared from mouse macrophages: B6 (WT), IFNAR KO, RNaseL KO. These cells were either mock infected or infected with WT MHV virus (from Volker or Susan), MHV mutated to inactivate ns2 (phosphodiesterase) activity, or MHV mutated to inactivate nsp15 (endoribonuclease) activity for 9 and 12 hours.</p>
+<pre class="r"><code>sample_info_table &lt;- read_tsv(&quot;sample_info.txt&quot;, col_names = c(&quot;cell type&quot;, &quot;virus type&quot;, &quot;time&quot;))
+datatable(sample_info_table)</code></pre>
+<div id="htmlwidget-eb146b4d7764e9be24b1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb146b4d7764e9be24b1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],["B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RnaseL","RnaseL","RnaseL","RnaseL","RnaseL","B6","IFNAR","RNaseL","B6","IFNAR","RNaseL"],["Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","MHV wt susan","NS2susan mut 3","nsp15HA Eveline P1","mock","mock","mock","mock","mock","mock"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","0/12","0/12","0/12","0/9","0/9","0/9"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cell type<\/th>\n      <th>virus type<\/th>\n      <th>time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<p>These libraries were processed to generate bedgraph files containing sites of 3´-cleavage and the associated dinucleotide in the MHV (+) strand RNA (mRNA) and (-) strand RNA (genomic).</p>
+<div id="coverage-plots-for-all-cell-types-by-type-of-viral-infection" class="section level1">
+<h1>Coverage plots for all cell types by type of viral infection</h1>
+<p>These plots show the normalized counts of captured 2´,3´-cyclic phosphates captured (% of total cDNA reads for each library) per nucleotide position in the the MHV (+) strand reads. The MHV (-) strand reads are displayed using un-normalized counts because there were very few detected cleavage events and those occured at very low frequency.</p>
+<pre class="r"><code>#MHV (+) strand coverage plots 
+
+data_dir_neg = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/neg&quot;
+data_files_neg = list.files(data_dir_neg, full.names = T)
+
+read_file &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;, &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df$name &lt;- basename(x)
+  df
+}
+
+neg_table &lt;- purrr::map_df(data_files_neg, read_file) %&gt;%
+  mutate(name = str_replace(name, &quot;.mhv.neg.dinuc.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;), sep = &#39;_&#39;)
+
+#neg_plot &lt;- ggplot(neg_table, aes(x = start, y = normalized_count)) +
+    #geom_line(aes(color = time)) +
+    #scale_colour_brewer(palette=&quot;Set1&quot;) + 
+    #theme_cowplot() + 
+    #facet_grid(virus ~ cell) +
+    #theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    #labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    #scale_x_continuous(breaks=seq(0, 30000, 5000)) + 
+    #ggtitle(&quot;MHV (+) strand coverage plots&quot;)
+#neg_plot
+
+neg_plot &lt;- ggplot(neg_table, aes(x = start, y = normalized_count, fill = time, width = 100)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    scale_x_continuous(breaks=seq(0, 30000, 5000)) + 
+    ggtitle(&quot;MHV (+) strand coverage plots&quot;)
+neg_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>#MHV (-) strand coverage plots
+
+data_dir_pos = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/pos&quot;
+data_files_pos = list.files(data_dir_pos, full.names = T)
+
+pos_table &lt;- purrr::map_df(data_files_pos, read_file) %&gt;%
+  mutate(name = str_replace(name, &quot;.mhv.pos.dinuc.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;), sep = &#39;_&#39;)
+
+pos_plot &lt;- ggplot(pos_table, aes(x = start, y = normalized_count)) +
+    geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Counts&quot;) +
+    scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+    ggtitle(&quot;MHV (-) strand coverage plots&quot;)
+pos_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<div id="discussion-of-coverage-analysis" class="section level3">
+<h3>Discussion of coverage analysis:</h3>
+<ol style="list-style-type: decimal">
+<li>We do not observe significant capture of MHV RNA from any of the mock infected samples</li>
+<li>In general, we see more MHV “cleavage” (aka 2´,3´-cyclic phosphate capture) at 12 hpi vs. 9 hpi with WT virus, which may reflect greater viral RNA abundance at the later time point. In the ns2 mutant, which will result in increased RNaseL activation, we see even more robust cleavage, especially at 12 hours.</li>
+<li>There is a significant decrease in signal in the viral samples with mutant nsp15, which may reflect decreased viral RNA abundance, adiditonally, we also see a different temporal pattern with the majority of cleavage at 9 vs. 12 hpi which may reflect earlier detection and cleavage of MHV RNA in the absence of nsp15.</li>
+<li>The IFNAR KO and RNaseL KO samples are similar, but different. This may reflect direct vs. infdirect effects of dsRNA sensing pathways and effectors on MHV detection.</li>
+<li>In the IFNAR KO and RNaseL KO samples, there are lower amounts of MHV cleavage events detected, which could be a result of RNaseL activation. A measure of total viral RNA in these samples could provde some clarity. Additionally, the RNA clevaage events are more robust at 9 hpi than observed in the WT B6 samples.</li>
+<li>Although low abundance, the key comparison between WT MHV and mutant MHV across all cell types suggest that there may be some sites of specific nsp15 cleavage.</li>
+</ol>
+</div>
+</div>
+<div id="identifying-endonuclease-specific-cleavage-by-subtractive-analysis" class="section level1">
+<h1>Identifying endonuclease specific cleavage by subtractive analysis</h1>
+<div id="rnasel-substractive-coverage-plots-of-mhv-strand-reads-for-all-cell-types-by-type-of-viral-infection" class="section level2">
+<h2>RNaseL substractive coverage plots of MHV (+) strand reads for all cell types by type of viral infection</h2>
+<p>The normalized counts detected in RNaseL KO cells for each type of viral infection were subtracted from the normalized counts detected in WT B6 and IFNAR KO cells. This substractive analysis will emphasize RNaseL dependent cleavage events by reporting signals that occur only in the presence of RNaseL.</p>
+<pre class="r"><code>#RNase L substractive analysis to remove signal that occurs in the abscence of RNAse L by cell type 
+
+subtractive_neg &lt;- neg_table %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count) 
+subtractive_neg[is.na(subtractive_neg)] &lt;- 0
+
+subtractive_neg &lt;- subtractive_neg %&gt;% 
+  mutate(B6_RNaseLdep = B6 - RNaseL) %&gt;% 
+  mutate(IFNAR_RNaseLdep = IFNAR - RNaseL) %&gt;% 
+  dplyr::select(start:end, virus:time, B6_RNaseLdep:IFNAR_RNaseLdep) %&gt;% 
+  gather(cell, normalized_count, B6_RNaseLdep:IFNAR_RNaseLdep)
+                                      
+#Plots of RNase L dependent sites 
+subneg_plot &lt;- ggplot(subtractive_neg, aes(x = start, y = normalized_count)) +
+    geom_line(aes(color = time)) + 
+    scale_color_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    ylim(0, 0.2) + 
+    scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+    ggtitle(&quot;RNase L dependent-cleavage sites analysis&quot;)
+subneg_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="endou-mutant-nsp15-substractive-coverage-analysis-of-mhv-strand-for-all-cell-types-by-type-of-viral-infection" class="section level2">
+<h2>EndoU mutant (nsp15) substractive coverage analysis of MHV (+) strand for all cell types by type of viral infection</h2>
+<p>This is very similar to the analysis above, expect it will substract signal occuring in the abscence of nsp15 actviity, which will emphasize sites specific to nsp15 cleavage actviity.</p>
+<pre class="r"><code># nsp15 substractive analysis to remove signal that occurs in the abscence of nsp15 activity by viral infection 
+
+subtractive_nsp15 &lt;- neg_table %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+subtractive_nsp15[is.na(subtractive_nsp15)] &lt;- 0
+
+subtractive_nsp15 &lt;- subtractive_nsp15 %&gt;% 
+  mutate(MHVS_nsp15dep = MHVS - nsp15) %&gt;% 
+  mutate(MHVV_nsp15dep = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15dep = ns2 - nsp15) %&gt;% 
+  dplyr::select(start:end, cell:time, MHVS_nsp15dep:ns2_nsp15dep) %&gt;% 
+  gather(virus, normalized_count, MHVS_nsp15dep:ns2_nsp15dep)
+
+#Plots of nsp15 dependent sites 
+                         
+subnsp15_plot &lt;- ggplot(subtractive_nsp15, aes(x = start, y = normalized_count, fill = time)) +
+    geom_line(aes(color = time)) + 
+    scale_colour_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    ylim(0, 0.15) + 
+    scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+    ggtitle(&quot;Nsp15 dependent-cleavage sites analysis&quot;)
+subnsp15_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div id="discussion-of-substractive-rnase-l-and-nsp15-analysis" class="section level3">
+<h3>Discussion of substractive RNase L and Nsp15 analysis:</h3>
+<p>We have captured signal specific to RNase L and Nsp15 cleavage of MHV + strand RNA. This is evidenced by the signal that remains in nsp15-mutant RNase L WT cells and RNase L KO cells with WT nsp15.</p>
+<p>We can compare the sites of RNase L cleavage to data previously collected by Dave Barton, but there has been no previously identified sites of cleavge in MHV RNA by nsp15.</p>
+<p>Looking specifically at the nsp15-subtractive analysis, the robust signal in all of the B6 cells is nsp15-dpendent, but not RNaseL independent, because RNaseL could also be responsible for this signal. Looking in the RNaseL KO samples give us the best understanding of nsp15 cleavage of MHV RNA without the confounding effect of RNaseL cleavage. Focusing on this cell type, we see the nsp15-dependent and RNaseL-independent sites in MHV RNA at 12 and 9 hours after infection. There are some clear sites of cleavage.</p>
+</div>
+</div>
+</div>
+<div id="examining-specific-sites-of-cleavage-in-mhv-strand-rna" class="section level1">
+<h1>Examining specific sites of cleavage in MHV (+) strand RNA</h1>
+<p>By visual inspection, the nsp15 substractive analysis data suggests some potential regions of interest in the MHV genome that may be cleaved by endoU. Some specific sites are visualized below.</p>
+<p>Site18645: Previously identified by Dave Barton as potentially a site of interest. Dinucleotide is “GC” at 18645 (GA in reference, but GC in viral RNA). There is also a site of clevage with smaller signal at 18648, which is “UU”</p>
+<p>Site 26080 and 26087: 26080 = UC, 26087 = CU</p>
+<p>Site25404: 25404 = UC</p>
+<p>Site 26147 and 26148: 26147 = UC, 26147 = UU</p>
+<pre class="r"><code>#Site18645-Previously identified in unpublished data from Dave Barton as potentially a site of interest. Dinucleotide is &quot;GC&quot; at 18645 (GA in reference, but GC in viral RNA). There is also a site of clevage with smaller signal at 18648, which is &quot;UU&quot; 
+
+neg_plot_18645 &lt;- filter(neg_table, time != &quot;012&quot;) %&gt;% filter(time != &quot;09&quot;) %&gt;%
+  ggplot(aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    xlim(18640, 18660) +
+    ggtitle(&quot;MHV (+) strand coverage plot: sites 18645 and 18648&quot;)
+neg_plot_18645</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>#Site 26080 and 26087- identified by visual inspection of the data, 26080 = UC, 26087 = CU
+
+neg_plot_26080 &lt;- filter(neg_table, time != &quot;012&quot;) %&gt;% filter(time != &quot;09&quot;) %&gt;%
+    ggplot(aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    xlim(26075, 26090) +
+    ggtitle(&quot;MHV (+) strand coverage plot: sites 26080 and 26087&quot;)
+neg_plot_26080 </code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre class="r"><code>#Site25404 - identified by visual inspection of the data, 25404 = UC
+
+neg_plot_25404 &lt;- filter(neg_table, time != &quot;012&quot;) %&gt;% filter(time != &quot;09&quot;) %&gt;%
+    ggplot(aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    xlim(25390, 25410) +
+    ggtitle(&quot;MHV (+) strand coverage plot: site 25404&quot;)
+neg_plot_25404</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<pre class="r"><code>#Site 26147 and 26148 - identified by visual inspection of the data, 26147 = UC, 26147 = UU
+
+neg_plot_26148 &lt;- filter(neg_table, time != &quot;012&quot;) %&gt;% filter(time != &quot;09&quot;) %&gt;%
+    ggplot(aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    xlim(26142, 26150) +
+    ggtitle(&quot;MHV (+) strand coverage plot: sites 26147 and 26148&quot;)
+neg_plot_26148</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+</div>
+<div id="identifying-significant-sites-of-nsp15-cleavage" class="section level1">
+<h1>Identifying “significant” sites of nsp15 cleavage</h1>
+<p>Visual inspection of the data indicates that there are some nsp15 cleavage sites in the MHV (+) RNA. This analysis attempts to calculate which potential cleavage sites have the greatest fold change in cleavage singal captured between samples infected with WT virus and samples infected with nsp15 mutant virus. Cleavage sites where signal captured during WT infection decreases the most during infection with nsp15 mutant virus may be “real” sites of MHV endoU cleavage acitivity.</p>
+<p>Calculating “fold change” across all sites is an unbiased approach to identify potential nsp15 cleavage sites. An alternative approach, focuses on fold change at sites with the greatest signal in the libary.</p>
+<div id="top-cleavage-sites-by-normalized-count-for-cell-type-and-viral-infection." class="section level2">
+<h2>Top cleavage sites by normalized count for cell type and viral infection.</h2>
+<p>This analysis identifies the top sites 50 sites by normalized count stratified by cell type and viral infection.</p>
+<pre class="r"><code>top &lt;- neg_table %&gt;%
+  group_by(cell, virus) %&gt;%
+  arrange(desc(normalized_count)) %&gt;%
+  do(head(., n = 50))
+
+datatable(top)</code></pre>
+<div id="htmlwidget-46eaf9030db127c1e6fc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-46eaf9030db127c1e6fc">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503","504","505","506","507","508","509","510","511","512","513","514","515","516","517","518","519","520","521","522","523","524","525","526","527","528","529","530","531","532","533","534","535","536","537","538","539","540","541","542","543","544","545","546","547","548","549","550","551","552","553","554","555","556","557","558","559","560","561","562","563","564","565","566","567","568","569","570","571","572","573","574","575","576","577","578","579","580","581","582","583","584","585","586","587","588","589","590","591","592","593","594","595","596","597","598","599","600","601","602","603","604","605","606","607","608","609","610","611","612","613","614","615","616","617","618","619","620","621","622","623","624","625","626","627","628","629","630","631","632","633","634","635","636","637","638","639","640","641","642","643","644","645","646","647","648","649","650","651","652","653","654","655","656","657","658","659","660","661","662","663","664","665","666","667","668","669","670","671","672","673","674","675","676","677","678","679","680","681","682","683","684","685","686","687","688","689","690","691","692","693","694","695","696","697","698","699","700","701","702","703","704","705","706","707","708","709","710","711","712","713","714","715","716","717","718","719","720","721","722","723","724","725","726","727","728","729","730","731","732","733","734","735","736","737","738","739","740","741","742","743","744","745","746","747","748","749","750"],["MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59"],[30235,26080,29003,30290,28470,26148,25404,30235,18645,30321,11674,30156,23838,28470,29788,30088,29003,30321,26080,11723,30287,25404,30306,23621,26166,10980,26056,23838,26087,23645,31331,30181,30289,30289,26147,26027,16195,31331,30156,28355,30656,18645,28345,29742,30484,31333,1808,11728,30177,30290,26080,29003,25404,28470,26148,30235,11674,26056,18645,11723,26027,5527,23838,29788,26166,30235,11530,26147,11728,28345,31331,16195,10980,29742,30290,28241,20426,1808,18589,30181,23645,18144,30156,28355,30456,26175,31333,30177,31208,30173,5521,26087,30321,30725,30260,30156,27563,28445,30290,28715,30235,30173,30156,25404,18645,30290,29788,10980,26080,23838,30177,11530,28470,26148,29003,11674,30321,11723,28715,30235,16195,26027,27219,28355,30088,30287,30306,28345,30235,30181,5527,25374,30289,11043,20426,22698,26056,26147,30028,8154,23621,30307,30656,31331,1242,5972,11134,30725,4606,10688,30290,30290,26013,30307,13423,208,8287,4847,31205,30088,13421,11605,11088,9296,30089,26166,30235,3527,31229,18645,1601,26087,16193,13887,26080,29615,30289,18070,23838,30277,28470,16502,228,31206,3989,1721,15082,10980,16782,5527,11674,26148,10945,25404,1159,30306,8407,26624,11723,26219,30290,30290,30307,30277,30307,8287,8287,30277,934,30088,30289,1721,29615,30088,934,29597,30029,10945,30288,29615,208,30291,29883,4847,5577,30235,30089,2801,30026,10945,208,30089,26013,30025,29597,30287,30288,26013,27879,31205,2801,3527,30029,3526,30289,30156,4847,5620,29564,18678,29003,28470,30235,25404,29788,28470,30181,26080,30156,31333,30235,29809,30177,31331,30321,30173,29003,26148,23838,31208,23838,29788,28475,18645,30289,26027,10980,23621,26080,30935,28692,30456,28710,30439,18645,25404,31103,29742,31030,23645,28715,30156,26056,30725,26087,30162,23645,26166,29833,26148,11674,11723,26080,11728,26027,30235,25404,26148,26166,26087,30156,5527,30235,30290,11530,28239,10980,18645,26056,29003,30156,28470,28355,28470,25404,23838,26147,11680,11733,11755,29788,11527,30088,23838,30306,30306,30321,26164,30287,30289,26027,26080,30088,19243,29003,8154,25374,10980,23645,28241,30290,30235,11674,26166,30156,3989,8287,30290,31205,30235,17075,28470,29788,30159,31331,30307,28470,30156,30088,10980,29788,73,171,1601,1808,7549,10688,11723,13666,16195,22007,23838,25728,26048,26131,26220,29615,29833,30026,30321,30862,31206,26148,31333,30235,30277,841,1895,3635,3778,30235,30235,26080,28470,23838,30156,26148,29003,18645,25404,28470,29788,11723,26056,23621,30156,26027,11674,23645,28475,26087,30088,26166,10980,26027,30289,30321,26166,28355,31331,5527,26087,29003,30177,5527,28355,30287,29742,30173,28710,30306,23838,11674,5590,28710,30237,30236,11728,28345,28715,30235,30235,28470,30156,29003,31333,29788,30156,31331,28470,30088,30088,28715,5527,30321,29003,23645,30177,30177,28475,29742,30321,31333,29788,28710,31294,30289,30289,28710,30173,30306,31331,30173,30181,23621,30484,30287,1808,30439,30306,30287,26080,28715,11674,29833,28475,23838,30181,11723,18645,30235,30235,30156,28470,28470,26080,30156,26148,30306,30088,28475,25404,11674,30289,18645,28710,26148,26166,25404,26027,29003,30289,28715,29003,28355,30306,26166,23838,26080,10980,30287,30088,5527,10980,28355,28353,29788,31331,11674,26147,30173,30321,26087,30236,30321,30177,30287,26087,28475,18645,30235,28470,29003,30235,26080,28470,30156,31331,30156,26087,25404,26148,29003,30287,31333,30088,23838,28710,28475,28715,30289,28475,28710,11530,31331,26027,30088,3242,27219,28715,10980,18645,30306,1808,18589,28355,1165,23838,5527,29788,30173,30321,8154,30289,3250,30290,11527,30181,26027,26166,30235,30235,30156,30290,3020,10690,16804,31330,28470,30156,900,958,1054,1246,1397,1488,1571,1624,1721,1808,2010,2804,2890,2937,3085,3156,3504,3785,4399,5145,5478,5577,5590,5635,5985,6061,6602,6853,7545,7552,7606,7897,8151,8278,8287,8651,8904,9184,9276,9327,30235,28470,25404,30156,26080,30235,28470,29003,30088,30321,30156,18645,26148,28715,30289,26087,28710,29003,10980,29788,11674,31333,26027,23838,30287,30306,23645,30177,30321,31331,23838,23645,30306,25404,26080,28475,26147,30290,31331,10980,30088,30177,26166,29788,26056,28355,23621,30173,30181,30289,30235,30156,30235,30290,28470,31202,31331,30088,30290,30156,29788,31202,30306,31333,28710,30088,28475,28715,29003,30173,30289,30656,30289,30177,30321,30287,30237,30321,5527,30236,31294,31205,30181,30287,31333,3020,30887,23838,29614,29717,30234,28470,31331,5590,29074,30304,1172,26027,27219,28355],[30236,26081,29004,30291,28471,26149,25405,30236,18646,30322,11675,30157,23839,28471,29789,30089,29004,30322,26081,11724,30288,25405,30307,23622,26167,10981,26057,23839,26088,23646,31332,30182,30290,30290,26148,26028,16196,31332,30157,28356,30657,18646,28346,29743,30485,31334,1809,11729,30178,30291,26081,29004,25405,28471,26149,30236,11675,26057,18646,11724,26028,5528,23839,29789,26167,30236,11531,26148,11729,28346,31332,16196,10981,29743,30291,28242,20427,1809,18590,30182,23646,18145,30157,28356,30457,26176,31334,30178,31209,30174,5522,26088,30322,30726,30261,30157,27564,28446,30291,28716,30236,30174,30157,25405,18646,30291,29789,10981,26081,23839,30178,11531,28471,26149,29004,11675,30322,11724,28716,30236,16196,26028,27220,28356,30089,30288,30307,28346,30236,30182,5528,25375,30290,11044,20427,22699,26057,26148,30029,8155,23622,30308,30657,31332,1243,5973,11135,30726,4607,10689,30291,30291,26014,30308,13424,209,8288,4848,31206,30089,13422,11606,11089,9297,30090,26167,30236,3528,31230,18646,1602,26088,16194,13888,26081,29616,30290,18071,23839,30278,28471,16503,229,31207,3990,1722,15083,10981,16783,5528,11675,26149,10946,25405,1160,30307,8408,26625,11724,26220,30291,30291,30308,30278,30308,8288,8288,30278,935,30089,30290,1722,29616,30089,935,29598,30030,10946,30289,29616,209,30292,29884,4848,5578,30236,30090,2802,30027,10946,209,30090,26014,30026,29598,30288,30289,26014,27880,31206,2802,3528,30030,3527,30290,30157,4848,5621,29565,18679,29004,28471,30236,25405,29789,28471,30182,26081,30157,31334,30236,29810,30178,31332,30322,30174,29004,26149,23839,31209,23839,29789,28476,18646,30290,26028,10981,23622,26081,30936,28693,30457,28711,30440,18646,25405,31104,29743,31031,23646,28716,30157,26057,30726,26088,30163,23646,26167,29834,26149,11675,11724,26081,11729,26028,30236,25405,26149,26167,26088,30157,5528,30236,30291,11531,28240,10981,18646,26057,29004,30157,28471,28356,28471,25405,23839,26148,11681,11734,11756,29789,11528,30089,23839,30307,30307,30322,26165,30288,30290,26028,26081,30089,19244,29004,8155,25375,10981,23646,28242,30291,30236,11675,26167,30157,3990,8288,30291,31206,30236,17076,28471,29789,30160,31332,30308,28471,30157,30089,10981,29789,74,172,1602,1809,7550,10689,11724,13667,16196,22008,23839,25729,26049,26132,26221,29616,29834,30027,30322,30863,31207,26149,31334,30236,30278,842,1896,3636,3779,30236,30236,26081,28471,23839,30157,26149,29004,18646,25405,28471,29789,11724,26057,23622,30157,26028,11675,23646,28476,26088,30089,26167,10981,26028,30290,30322,26167,28356,31332,5528,26088,29004,30178,5528,28356,30288,29743,30174,28711,30307,23839,11675,5591,28711,30238,30237,11729,28346,28716,30236,30236,28471,30157,29004,31334,29789,30157,31332,28471,30089,30089,28716,5528,30322,29004,23646,30178,30178,28476,29743,30322,31334,29789,28711,31295,30290,30290,28711,30174,30307,31332,30174,30182,23622,30485,30288,1809,30440,30307,30288,26081,28716,11675,29834,28476,23839,30182,11724,18646,30236,30236,30157,28471,28471,26081,30157,26149,30307,30089,28476,25405,11675,30290,18646,28711,26149,26167,25405,26028,29004,30290,28716,29004,28356,30307,26167,23839,26081,10981,30288,30089,5528,10981,28356,28354,29789,31332,11675,26148,30174,30322,26088,30237,30322,30178,30288,26088,28476,18646,30236,28471,29004,30236,26081,28471,30157,31332,30157,26088,25405,26149,29004,30288,31334,30089,23839,28711,28476,28716,30290,28476,28711,11531,31332,26028,30089,3243,27220,28716,10981,18646,30307,1809,18590,28356,1166,23839,5528,29789,30174,30322,8155,30290,3251,30291,11528,30182,26028,26167,30236,30236,30157,30291,3021,10691,16805,31331,28471,30157,901,959,1055,1247,1398,1489,1572,1625,1722,1809,2011,2805,2891,2938,3086,3157,3505,3787,4400,5146,5479,5578,5591,5636,5986,6062,6603,6854,7546,7553,7607,7898,8152,8279,8288,8652,8905,9185,9277,9328,30236,28471,25405,30157,26081,30236,28471,29004,30089,30322,30157,18646,26149,28716,30290,26088,28711,29004,10981,29789,11675,31334,26028,23839,30288,30307,23646,30178,30322,31332,23839,23646,30307,25405,26081,28476,26148,30291,31332,10981,30089,30178,26167,29789,26057,28356,23622,30174,30182,30290,30236,30157,30236,30291,28471,31203,31332,30089,30291,30157,29789,31203,30307,31334,28711,30089,28476,28716,29004,30174,30290,30657,30290,30178,30322,30288,30238,30322,5528,30237,31295,31206,30182,30288,31334,3021,30888,23839,29615,29718,30235,28471,31332,5591,29075,30305,1173,26028,27220,28356],[390,711,705,365,665,643,636,608,603,313,587,310,575,305,569,302,299,553,294,547,284,282,266,497,497,493,485,255,473,472,464,463,246,452,447,446,445,232,431,425,225,224,420,416,416,416,415,415,413,413,676,619,598,589,554,523,497,494,488,486,458,435,433,431,422,263,404,388,387,382,364,360,356,344,213,324,320,316,313,312,311,307,305,301,301,299,298,297,296,287,276,276,268,265,262,162,253,253,253,247,58,41,40,35,34,31,30,28,28,27,27,25,25,24,24,23,21,18,18,37,17,17,17,17,17,17,17,16,42,15,14,14,14,13,13,13,13,13,13,12,12,12,12,12,11,11,11,11,10,10,1254,92,872,747,543,477,475,474,467,461,460,451,438,420,412,42,403,394,394,386,39,39,372,367,350,350,349,346,344,342,340,335,332,332,329,325,324,323,316,313,312,310,307,307,299,31,293,293,289,285,1120,996,568,512,505,426,382,403,380,326,321,341,333,312,281,299,279,261,260,255,245,243,238,244,241,222,218,210,208,221,219,218,216,199,197,192,200,186,196,178,190,188,188,181,180,164,162,171,158,168,537,449,441,368,341,462,300,298,274,274,394,264,253,249,248,247,358,234,340,232,231,332,227,211,211,210,207,293,292,199,194,194,190,185,268,268,181,180,178,258,177,257,173,173,169,169,168,168,168,242,309,239,235,201,201,198,196,191,166,164,155,148,179,129,118,114,113,105,100,99,121,96,95,112,111,90,89,87,86,86,85,80,78,95,89,72,70,69,85,80,78,78,78,63,77,62,62,76,60,60,52,8,7,6,6,5,5,5,5,19,4,4,4,4,4,18,10,10,15,8,8,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,7,7,6,10,2,2,2,2,420,330,301,291,268,286,254,237,227,227,234,208,206,201,198,197,217,196,194,209,203,200,198,178,178,170,161,160,156,155,163,145,158,143,142,156,141,140,138,136,148,147,146,130,143,143,142,126,125,137,269,431,409,184,369,354,307,306,302,132,130,270,109,227,227,101,220,220,99,207,207,94,93,92,198,197,89,194,88,88,87,86,186,185,183,183,83,180,180,179,176,174,173,170,168,75,74,74,161,161,292,265,227,215,184,153,152,146,143,141,136,134,133,133,132,131,130,128,124,121,121,120,119,119,117,113,112,111,110,110,110,109,108,108,108,107,105,105,105,105,104,104,103,103,102,101,100,100,100,99,220,162,154,339,124,309,112,111,284,106,105,98,248,93,89,221,214,210,208,80,79,76,76,75,184,71,71,70,70,180,69,69,178,67,67,64,62,62,160,159,61,61,60,154,59,59,58,58,148,148,4,46,3,3,2,2,2,2,26,23,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,197,155,355,149,334,315,302,268,105,238,234,227,225,97,207,205,88,88,202,86,192,81,184,79,179,76,75,72,70,70,160,157,157,68,67,66,151,151,151,65,149,149,147,145,144,144,143,62,61,60,154,110,196,186,85,162,80,71,63,125,60,60,59,57,56,110,55,53,51,47,45,45,88,43,43,83,41,78,38,38,38,74,37,35,68,34,34,33,33,33,33,64,64,32,32,63,31,31,31,31],[0.0818849,0.0795046,0.0788337,0.0766359,0.0743608,0.0719008,0.071118,0.067987,0.0674279,0.0657179,0.0656388,0.065088,0.064297,0.0640382,0.063626,0.0634083,0.0627785,0.0618369,0.0617287,0.061166,0.059629,0.0592091,0.0558497,0.0555749,0.0555749,0.0551277,0.0542331,0.0535402,0.0528912,0.0527794,0.0518849,0.051773,0.0516505,0.050543,0.0499839,0.0498721,0.0497603,0.048711,0.0481948,0.0475238,0.0472413,0.0470314,0.0469647,0.0465175,0.0465175,0.0465175,0.0464056,0.0464056,0.046182,0.046182,0.164643,0.15076,0.145645,0.143454,0.134929,0.127379,0.121047,0.120316,0.118855,0.118367,0.111548,0.105946,0.105459,0.104972,0.10278,0.101645,0.098396,0.0944991,0.0942555,0.0930378,0.0886538,0.0876796,0.0867053,0.0837827,0.0823207,0.0789116,0.0779374,0.0769632,0.0762325,0.075989,0.0757454,0.0747712,0.0742841,0.0733099,0.0733099,0.0728227,0.0725792,0.0723356,0.0720921,0.0699001,0.067221,0.067221,0.0652726,0.0645419,0.0638112,0.0626101,0.0616192,0.0616192,0.0616192,0.0601579,0.0366175,0.0258848,0.0252535,0.0220968,0.0214655,0.0195714,0.0189401,0.0176774,0.0176774,0.0170461,0.0170461,0.0157834,0.0157834,0.0151521,0.0151521,0.0145208,0.0132581,0.0113641,0.0113641,0.0113609,0.0107327,0.0107327,0.0107327,0.0107327,0.0107327,0.0107327,0.0107327,0.0101014,0.00960151,0.00947006,0.00883872,0.00883872,0.00883872,0.00820738,0.00820738,0.00820738,0.00820738,0.00820738,0.00820738,0.00757604,0.00757604,0.00757604,0.00757604,0.00757604,0.00694471,0.00694471,0.00694471,0.00694471,0.00631337,0.00631337,0.199862,0.140834,0.138979,0.119057,0.0865431,0.0760241,0.0757053,0.0755459,0.0744303,0.073474,0.0733146,0.0718802,0.0698083,0.0669394,0.0656644,0.0642939,0.06423,0.0627955,0.0627955,0.0615205,0.0597015,0.0597015,0.0592892,0.0584923,0.0557828,0.0557828,0.0556235,0.0551453,0.0548266,0.0545078,0.0541891,0.0533922,0.052914,0.052914,0.0524359,0.0517984,0.051639,0.0514796,0.0503639,0.0498858,0.0497264,0.0494077,0.0489295,0.0489295,0.0476545,0.047455,0.0466982,0.0466982,0.0460607,0.0454232,0.207326,0.172402,0.105144,0.0947778,0.0874126,0.0737381,0.0707131,0.069757,0.0657758,0.0603468,0.0594212,0.0590251,0.0576404,0.0540054,0.0520167,0.0517552,0.0516465,0.0483145,0.0481293,0.0472038,0.0453526,0.0449824,0.0440569,0.042235,0.0417157,0.0410951,0.0403546,0.0388737,0.0385035,0.0382538,0.0379076,0.0377345,0.0373884,0.0368375,0.0364672,0.0355417,0.0346188,0.034431,0.0339265,0.0329501,0.0328879,0.0325417,0.0325417,0.0313301,0.031157,0.0303585,0.0299883,0.0295991,0.0292478,0.0290798,0.112606,0.0941525,0.0924749,0.0771673,0.0715056,0.0666333,0.0629081,0.0624887,0.0574561,0.0574561,0.0568258,0.0553591,0.0530525,0.0522137,0.052004,0.0517943,0.0516336,0.0490683,0.0490375,0.0486489,0.0484392,0.0478837,0.0476005,0.0442454,0.0442454,0.0440357,0.0434066,0.0422588,0.0421146,0.0417291,0.0406806,0.0406806,0.0398418,0.0387933,0.0386531,0.0386531,0.0379546,0.0377449,0.0373255,0.0372108,0.0371158,0.0370666,0.036277,0.036277,0.0354382,0.0354382,0.0352285,0.0352285,0.0352285,0.0349032,0.148386,0.114771,0.112851,0.0965232,0.0965232,0.0950826,0.0941222,0.0917211,0.0797157,0.0787553,0.0744333,0.0710718,0.0697736,0.0619478,0.0566654,0.0547445,0.0542643,0.0504226,0.0480215,0.0475413,0.0471654,0.0461007,0.0456204,0.0436572,0.0432674,0.0432194,0.0427391,0.0417787,0.0412985,0.0412985,0.0408183,0.0384172,0.0374568,0.0370307,0.0346919,0.0345755,0.0336151,0.0331348,0.0331327,0.0311837,0.0304041,0.0304041,0.0304041,0.0302536,0.0300143,0.0297733,0.0297733,0.0296245,0.0288129,0.0288129,0.0183626,0.01311,0.0114713,0.00983252,0.00983252,0.00819377,0.00819377,0.00819377,0.00819377,0.00670939,0.00655501,0.00655501,0.00655501,0.00655501,0.00655501,0.00635627,0.00620667,0.00620667,0.00529689,0.00496534,0.00496534,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00491626,0.00434467,0.00434467,0.003724,0.00353126,0.00327751,0.00327751,0.00327751,0.00327751,0.108876,0.0942712,0.0859867,0.08313,0.0765596,0.0741396,0.0725602,0.0677038,0.0648471,0.0648471,0.0606596,0.0594194,0.0588481,0.0574197,0.0565627,0.056277,0.0562527,0.0559914,0.05542,0.0541789,0.0526235,0.0518458,0.0513274,0.0508493,0.0508493,0.0485639,0.0459929,0.0457072,0.0445646,0.0442789,0.0422544,0.0414222,0.0409582,0.0408508,0.0405652,0.0404398,0.0402795,0.0399938,0.0394225,0.0388511,0.0383659,0.0381067,0.0378475,0.0371371,0.0370698,0.0370698,0.0368105,0.0359944,0.0357088,0.0355144,0.0718613,0.0525943,0.0499097,0.0491542,0.0450286,0.0431981,0.0374628,0.0373408,0.0368526,0.0352628,0.0347285,0.0329477,0.0291185,0.0277005,0.0277005,0.0269814,0.0268463,0.0268463,0.0264471,0.0252599,0.0252599,0.0251114,0.0248443,0.0245771,0.0241617,0.0240396,0.0237757,0.0236735,0.0235085,0.0235085,0.0232414,0.0229743,0.0226973,0.0225753,0.0223312,0.0223312,0.0221728,0.0219651,0.0219651,0.0218431,0.021477,0.021233,0.0211109,0.0207449,0.0205008,0.0200357,0.0197685,0.0197685,0.0196466,0.0196466,0.0582708,0.0526845,0.0452995,0.0429048,0.036581,0.0304179,0.030219,0.0290262,0.0285367,0.0281376,0.0271398,0.0266405,0.0265411,0.0265411,0.0262429,0.026142,0.0259425,0.0254476,0.0247451,0.0241464,0.024056,0.0238571,0.0237473,0.0237473,0.0233482,0.0224655,0.0223504,0.0221509,0.0219513,0.021869,0.021869,0.0216702,0.0215522,0.0215522,0.0214714,0.0213526,0.0209535,0.0209535,0.020875,0.020875,0.020754,0.0206762,0.0205544,0.0205544,0.0203549,0.0201553,0.0199557,0.019881,0.019881,0.0197562,0.118778,0.0874636,0.0831444,0.070664,0.0669474,0.0644106,0.0604686,0.0599287,0.0591993,0.0572292,0.0566893,0.0529101,0.0516952,0.0502106,0.048051,0.0460671,0.044608,0.0437742,0.0433573,0.0431919,0.042652,0.0410323,0.0410323,0.0404924,0.0383545,0.0383328,0.0383328,0.0377929,0.0377929,0.0375207,0.037253,0.037253,0.0371038,0.0361732,0.0361732,0.0345535,0.0334737,0.0334737,0.0333517,0.0331433,0.0329338,0.0329338,0.0323939,0.0321011,0.031854,0.031854,0.0313141,0.0313141,0.0308504,0.0308504,0.0159096,0.012026,0.0119322,0.0119322,0.00795482,0.00795482,0.00795482,0.00795482,0.00679733,0.00601302,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.00397741,0.0884884,0.0696229,0.0693648,0.0669278,0.0652615,0.061549,0.0590089,0.0523655,0.0471639,0.0465037,0.0457221,0.0443544,0.0439636,0.0435704,0.0404465,0.0400557,0.0395278,0.0395278,0.0394695,0.0386295,0.0375156,0.0363836,0.0359525,0.0354852,0.0349755,0.0341377,0.0336885,0.0323409,0.0314426,0.0314426,0.031263,0.0306768,0.0306768,0.0305442,0.030095,0.0296459,0.0295045,0.0295045,0.0295045,0.0291967,0.0291137,0.0291137,0.0287229,0.0283321,0.0281367,0.0281367,0.0279413,0.0278491,0.0274,0.0269508,0.0659249,0.0470892,0.0420324,0.0398879,0.0363871,0.0347411,0.0342467,0.030394,0.0269693,0.0268064,0.025685,0.025685,0.025257,0.0244008,0.0239727,0.0235896,0.0235446,0.0226885,0.0218323,0.0201199,0.0192638,0.0192638,0.0188717,0.0184076,0.0184076,0.0177994,0.0175514,0.0167272,0.0162672,0.0162672,0.0162672,0.0158694,0.0158391,0.0149829,0.0145827,0.0145549,0.0145549,0.0141268,0.0141268,0.0141268,0.0141268,0.0137249,0.0137249,0.0136987,0.0136987,0.0135104,0.0132706,0.0132706,0.0132706,0.0132706],["UU","UC","UC","CA","UC","CC","UC","UU","GA","GC","UU","AU","UU","UC","UC","UU","UC","GC","UC","GC","UC","UC","AU","AC","AU","AC","UC","UU","CU","UC","UC","UC","AC","AC","UC","GU","UC","UC","AU","UU","UU","GA","CC","UC","CC","AC","UC","UU","GC","CA","UC","UC","UC","UC","CC","UU","UU","UC","GA","GC","GU","UU","UU","UC","AU","UU","UU","UC","UU","CC","UC","UC","AC","UC","CA","AC","UC","UC","AC","UC","UC","AC","AU","UU","UC","GC","AC","GC","GC","CC","UC","CU","GC","UC","GC","AU","CU","UC","CA","UU","UU","CC","AU","UC","GA","CA","UC","AC","UC","UU","GC","UU","UC","CC","UC","UU","GC","GC","UU","UU","UC","GU","UC","UU","UU","UC","AU","CC","UU","UC","UU","UC","AC","UU","UC","UC","UC","UC","GC","UU","AC","UA","UU","UC","GC","UU","UU","UC","AC","UU","CA","CA","UA","UA","UU","UA","UA","UA","UU","UU","UG","UA","UA","UA","UA","AU","UU","UA","UA","GA","GU","CU","UA","UU","UC","CA","AC","UA","UU","UG","UC","UA","UA","UA","UA","UA","UA","AC","CA","UU","UU","CC","UU","UC","UA","AU","UA","AA","GC","UU","CA","CA","UA","UG","UA","UA","UA","UG","UU","UU","AC","UA","CA","UU","UU","UU","CA","UU","CA","CA","UA","AA","UU","UA","UU","UU","UA","UA","AA","UU","UA","UA","UA","GA","UU","UC","CA","UA","UA","UU","UA","UA","CA","UU","AC","AU","UA","AA","UU","UA","UC","UC","UU","UC","UC","UC","UC","UC","AU","AC","UU","UC","GC","UC","GC","CC","UC","CC","UU","GC","UU","UC","UU","GA","AC","GU","AC","AC","UC","GU","GC","UC","UU","GC","GA","UC","UC","UC","GU","UC","UU","AU","UC","UC","CU","UC","UC","AU","UC","CC","UU","GC","UC","UU","GU","UU","UC","CC","AU","CU","AU","UU","UU","CA","UU","AU","AC","GA","UC","UC","AU","UC","UU","UC","UC","UU","UC","CU","UU","GU","UC","CU","UU","UU","AU","AU","GC","UU","UC","AC","GU","UC","UU","UU","UC","UU","UC","AC","UC","AC","CA","UU","UU","AU","AU","UA","UA","CA","UU","UU","AC","UC","UC","UU","UC","UA","UC","AU","UU","AC","UC","UU","UG","GU","UC","CC","UU","GC","UC","UC","UA","UU","CU","UU","UU","UC","CA","UC","AA","GC","AC","UA","CC","AC","UU","UG","CC","UU","GC","UU","UU","UU","UC","UC","UU","AU","CC","UC","GA","UC","UC","UC","GC","UC","AC","AU","GU","UU","UC","UU","CU","UU","AU","AC","GU","AC","GC","AU","UU","UC","UU","CU","UC","GC","UU","UU","UC","UC","CC","UU","AU","UU","UU","GU","UU","AU","UA","UU","CC","UU","UU","UU","UC","AU","UC","AC","UC","AU","UC","UC","UU","UU","UU","UU","GC","UC","UC","GC","GC","UU","UC","GC","AC","UC","UU","GU","AC","AC","UU","CC","AU","UC","CC","UC","AC","CC","UC","UC","GC","AU","UC","UC","UU","UU","UC","UU","UU","UC","GC","GA","UU","UU","AU","UC","UC","UC","AU","CC","AU","UU","UU","UC","UU","AC","GA","UU","CC","AU","UC","GU","UC","AC","UU","UC","UU","AU","AU","UU","UC","AC","UC","UU","UU","AC","UU","UU","UC","UC","UU","UC","CC","GC","CU","UA","GC","GC","UC","CU","UU","GA","UU","UC","UC","UU","UC","UC","AU","UC","AU","CU","UC","CC","UC","UC","AC","UU","UU","UU","UU","UU","AC","UU","UU","UU","UC","GU","UU","UC","UC","UU","AC","GA","AU","UC","AC","UU","GC","UU","UU","UC","CC","GC","UU","AC","CC","CA","CU","UC","GU","AU","UU","UU","AU","CA","GU","AU","UU","AU","UC","AU","AA","CC","AG","CC","UU","UC","UC","UG","UA","UC","UU","UG","AG","GU","AA","AA","GU","UA","GU","AA","UU","UU","GU","UU","GU","UU","UA","UC","GU","AU","AU","AU","AA","AC","UA","UA","GC","CU","CA","GU","UU","UC","UC","AU","UC","UU","UC","UC","UU","GC","AU","GA","CC","UU","AC","CU","UU","UC","AC","UC","UU","AC","GU","UU","UC","AU","UC","GC","GC","UC","UU","UC","AU","UC","UC","UU","UC","CA","UC","AC","UU","GC","AU","UC","UC","UU","AC","CC","UC","AC","UU","AU","UU","CA","UC","AA","UC","UU","CA","AU","UC","AA","AU","AC","UU","UU","UU","UU","UC","CC","AC","UU","AC","GC","GC","UC","AU","GC","UU","UA","GU","UU","UC","UC","AC","GU","GU","UU","AC","GU","UU","UC","UC","GU","UU","AA","UU","GU","UC","UU"],["B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","IFNAR","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL"],["MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","mock","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15","nsp15"],["9","12","12","9","12","12","12","12","12","9","12","9","12","9","12","9","9","12","9","12","9","9","9","12","12","12","12","9","12","12","12","12","9","12","12","12","12","9","12","12","9","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","012","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","9","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","9","12","9","9","12","12","9","12","12","9","9","12","12","12","9","12","9","9","9","9","9","9","9","12","12","9","9","9","9","12","12","12","12","9","9","9","12","9","12","9","12","12","12","12","12","9","9","12","9","12","9","9","9","9","9","12","9","9","9","9","12","9","9","9","9","9","12","9","12","9","9","12","9","9","9","9","9","12","12","9","9","9","9","9","12","12","9","9","9","12","9","12","9","9","9","9","9","9","9","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","9","12","12","9","9","12","12","12","12","12","12","12","12","9","9","12","12","12","9","9","9","9","9","12","9","12","12","9","12","12","9","12","12","12","12","12","12","12","12","9","12","12","12","12","12","9","012","012","9","012","012","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","012","012","012","9","12","12","12","12","9","12","12","12","12","9","12","12","12","12","9","12","12","12","12","12","9","12","12","9","9","9","9","12","12","12","12","12","12","12","9","12","9","12","12","9","12","12","12","12","9","9","9","12","9","9","9","12","12","9","9","12","12","9","12","12","12","12","12","9","9","12","9","12","12","9","12","12","9","12","12","9","9","9","12","12","9","12","9","9","9","9","12","12","12","12","9","12","12","12","12","12","12","12","12","9","9","9","12","12","9","12","9","9","12","12","12","12","9","9","9","12","9","9","12","9","9","12","9","9","12","12","9","9","9","12","9","9","9","12","12","12","9","9","12","9","9","9","12","12","9","12","9","9","9","9","9","12","12","9","12","12","12","9","12","9","12","12","9","12","12","12","9","12","12","9","9","9","9","12","12","12","12","12","9","12","12","12","12","9","12","12","9","12","12","12","12","12","9","9","12","12","12","9","12","12","12","12","9","9","09","9","09","09","09","09","09","09","9","9","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","09","9","9","12","9","12","12","12","12","9","12","12","12","12","9","12","12","9","9","12","9","12","9","12","9","12","9","9","9","9","9","12","12","12","9","9","9","12","12","12","9","12","12","12","12","12","12","12","9","9","9","9","9","12","12","9","12","9","9","9","12","9","9","9","9","9","12","9","9","9","9","9","9","12","9","9","12","9","12","9","9","9","12","9","9","12","9","9","9","9","9","9","12","12","9","9","12","9","9","9","9"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>count<\/th>\n      <th>normalized_count<\/th>\n      <th>dinuc<\/th>\n      <th>cell<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>top_plot &lt;- top %&gt;%
+  ggplot(aes(x = start, y = normalized_count, fill = time, width=300)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;)
+top_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+</div>
+<div id="fold-change-for-rnasel" class="section level2">
+<h2>Fold-change for RNaseL</h2>
+<p>In this analysis, all positions in the MHV positive strand RNA with more than 20 reads were queried to identify sites with equal to or greater than a 5-fold decrease in signal comparing B6 WT cells and IFNAR KO cells to RNaseL KO cells (B6/RNaseL and IFNAR/RNaseL).</p>
+<p>This analysis is independent of viral infection and just asks which sites change the most when RNaseL is absent.</p>
+<pre class="r"><code>change_RNaseL &lt;- neg_table %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count)
+change_RNaseL[is.na(change_RNaseL)] &lt;- 0
+
+change_RNaseL &lt;- change_RNaseL %&gt;% 
+  mutate(B6_change = B6/RNaseL) %&gt;% 
+  mutate(IFNAR_change = IFNAR/RNaseL) %&gt;% 
+  gather(cell_comp, fold_change, B6_change:IFNAR_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_RNaseL)</code></pre>
+<div id="htmlwidget-94b1edf94769877aba06" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-94b1edf94769877aba06">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84"],["MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59"],[13423,30307,26013,10945,23879,30089,26013,16195,30288,5518,30260,30484,11728,25335,30290,11728,11723,30307,30288,16251,11723,3242,30029,7832,28454,30725,30290,29809,20426,11852,29597,30290,31205,26175,11733,1601,21548,29185,30439,28241,9876,30456,26376,23645,25425,29883,30547,5521,11755,9876,5521,1808,8710,30307,23621,24204,28360,30260,16192,31208,29494,28345,30327,10950,29742,24540,709,11674,5478,30666,23517,29742,3356,5527,30896,29320,11086,8507,19026,23879,25709,27563,5576,5478],[13424,30308,26014,10946,23880,30090,26014,16196,30289,5519,30261,30485,11729,25336,30291,11729,11724,30308,30289,16252,11724,3243,30030,7833,28455,30726,30291,29810,20427,11853,29598,30291,31206,26176,11734,1602,21549,29186,30440,28242,9877,30457,26377,23646,25426,29884,30548,5522,11756,9877,5522,1809,8711,30308,23622,24205,28361,30261,16193,31209,29495,28346,30328,10951,29743,24541,710,11675,5479,30667,23518,29743,3357,5528,30897,29321,11087,8508,19027,23880,25710,27564,5577,5479],["ns2","ns2","ns2","ns2","MHVS","ns2","nsp15","MHVS","nsp15","MHVS","MHVS","MHVS","MHVV","MHVS","nsp15","MHVV","MHVV","MHVV","ns2","MHVS","MHVV","MHVS","ns2","MHVS","ns2","MHVS","ns2","MHVS","MHVS","MHVS","ns2","ns2","ns2","MHVV","MHVS","ns2","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","nsp15","ns2","ns2","MHVS","MHVS","MHVS","MHVS","MHVV","MHVS","ns2","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","ns2","MHVV","MHVS","ns2","MHVS","MHVS","MHVS","MHVV","MHVS","MHVS","MHVS","MHVV","MHVS","MHVS","MHVS","MHVS","ns2","MHVS","ns2","MHVS","MHVS","MHVS","ns2","MHVS"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","9","12","12","12","9","12","12","12","12","12","9","12","12","12","9","12","12","12","9","12","9","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","9","12","9","12","12","9","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12"],[0.0865431,0.119057,0.138979,0.0489295,0.03746,0.0656644,0.0373884,0.0497603,0.0346188,0.0327635,0.0450638,0.0465175,0.0942555,0.0337699,0.207326,0.0942555,0.118367,0.0486968,0.0439888,0.0297443,0.118367,0.0115479,0.0291665,0.0335462,0.0267758,0.0365654,0.199862,0.0174268,0.0441692,0.0320926,0.0414387,0.140834,0.0744303,0.0728227,0.0254951,0.0597015,0.0298562,0.00692873,0.0417092,0.0376836,0.0252715,0.0404791,0.024936,0.00501973,0.0368167,0.0342666,0.0301916,0.0252715,0.0275079,0.0065088,0.067221,0.0464056,0.0215162,0.0240415,0.0555749,0.0238178,0.0215814,0.0411524,0.0323162,0.027085,0.0221538,0.0930378,0.0224659,0.0250226,0.0465175,0.0315335,0.0210223,0.121047,0.0283448,0.0250479,0.023706,0.0837827,0.0267252,0.0459583,0.0253833,0.0263897,0.0199224,0.0222523,0.0197631,0.03746,0.0349999,0.0379073,0.0196037,0.0219169],[0,0.0077131,0,0,0.0200477,0.00657041,0.00414897,0.0188939,0.00475912,0.0108171,0.0111056,0.0279802,0.0965232,0.00937482,0.0152271,0.0965232,0.114771,0,0.00628474,0.0108171,0.114771,0.0306153,0,0.0124036,0,0.0194708,0.0168545,0.0553591,0.0240861,0.0162978,0.0077131,0.0173684,0.00857011,0.0273723,0.0135574,0.0145168,0.01774,0.033551,0.02149,0.0191823,0.00793254,0.0171631,0.00677871,0.0268463,0.00599907,0,0.0170189,0.0087979,0.0158651,0.0283087,0.0148867,0.0181727,0,0.00317301,0.0422588,0.010096,0.011394,0.0337607,0.0112498,0.0486489,0,0.0235305,0.0121622,0,0.0245187,0.0222111,0.00677871,0.148386,0.0119525,0.0116825,0.0125478,0.0225701,0.013269,0.0174516,0.0183169,0.0121151,0,0.00937482,0.00599907,0.0200477,0.0135574,0.0197592,0,0.00966327],[0.00390788,0.00547103,0.00683878,0.00390788,0.00397619,0.00742496,0.00428902,0.00576548,0.00428902,0.004175,0.00576548,0.00596429,0.0124177,0.00437381,0.0269693,0.0124177,0.0156571,0.0064619,0.00586181,0.00397619,0.0156571,0.00419071,0.00410327,0.00477143,0.00390788,0.00536786,0.0295045,0.00818185,0.00656071,0.00477143,0.0062526,0.0215606,0.0115282,0.0113379,0.00397619,0.00943278,0.00477143,0.00538805,0.00675952,0.0061631,0.004175,0.00675952,0.004175,0.00450347,0.0062526,0.00586181,0.00516905,0.00437381,0.00477143,0.00498893,0.0118778,0.00835,0.00390788,0.00437381,0.0101393,0.00437381,0.00397619,0.00758318,0.00596429,0.00898008,0.00410327,0.0172768,0.00419071,0.00468945,0.00874762,0.00596429,0.00397619,0.0280747,0.00538805,0.00477143,0.00457262,0.016197,0.00516905,0.00894643,0.00497024,0.00516905,0.00390788,0.00437381,0.00390788,0.00397619,0.00695833,0.00755476,0.00390788,0.00437381],["B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change"],[22.1457926036623,21.7613502393516,20.3221919699128,12.520727350891,9.42107897258431,8.84373787872258,8.71723610521751,8.63072979179531,8.07149418748339,7.84754491017964,7.81614019994866,7.79933571305218,7.77303365357514,7.72093437986561,7.68748169214625,7.59041529429766,7.55995682469934,7.53598786734552,7.50430327833894,7.48060329109021,7.33028466318795,7.30551624903656,7.10811133559332,7.03063861358125,6.85174570355282,6.81191387256747,6.77394973648088,6.76608590966591,6.73238109899691,6.72599199820599,6.62743498704539,6.53200745804848,6.45636786315296,6.42294428421489,6.41194208526252,6.32915216934986,6.25728555171091,6.22692810942734,6.17043813761924,6.11439048530772,6.05305389221557,5.98845776031434,5.97269461077844,5.96124766013763,5.88822249944023,5.84573706756104,5.84084116036796,5.77791444987322,5.76512701642904,5.67430290663529,5.6593813669198,5.55755688622754,5.50584971902924,5.49669510106749,5.4811377511268,5.44554976096355,5.42765813504888,5.42679983859014,5.41828113656445,5.41742389822808,5.39905977427759,5.38512919059085,5.36088156899427,5.33593491774089,5.31773213742709,5.28705009313766,5.28704614216121,5.28539930969877,5.26067872421377,5.24955830851548,5.18433633234338,5.17272951781194,5.1702343757557,5.13705466873379,5.10705720448107,5.10532883218386,5.09800710359581,5.08762383368276,5.05724331351014,5.04193713077091,5.02992815804942,5.01767097829713,5.01645393410238,5.01094011856939]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>B6<\/th>\n      <th>IFNAR<\/th>\n      <th>RNaseL<\/th>\n      <th>cell_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_RNaseL_graph &lt;- change_RNaseL %&gt;% 
+  ggplot(aes(x = start, y = fold_change, fill = cell_comp, width=100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(virus ~ cell_comp) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_RNaseL_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p>There are many sites with a greater than 5-fold change in signal when comparing B6 cells to RNaseL KO cells. The top four sites have very robust cleavage in B6 cells under conditions of infection with ns2 mutant virus and significantly decreased cleavage in RNase L KO cells (13423, UU; 30307, UA; 26013, UA; 10945, UU). Curiously, I do not see robust cleavage at these sites in Daphene’s data. This inconsistenty is confusing, because these sites would otherwise be consistent with RNaseL targets.</p>
+<p>Interestingly, in B6 cells infected with nsp15 mutant MHV, many of the sites with greater than 5-fold change are lost. This suggests that RNaseL cleavage is decreased in the presence of nsp15 activity so that the overall change in signal in the abscence of RNaseL is less than 5 fold. Or it could suggest that in the absence of nsp15 activity there is more cleavage at these RNaseL sites by another unknown endonuclease, which decreases the fold change in the absence of RNaseL. There are very few sites of cleavage with greater than 5 fold change in signal in IFNAR KO cells, which is not suprising because RNaseL activity will be dependent on IFNAR.</p>
+</div>
+<div id="fold-change-for-nsp15-mutant-reads" class="section level2">
+<h2>Fold-change for Nsp15 mutant reads</h2>
+<p>In this analysis, all positions in the MHV positive strand RNA with more than 20 reads were queried to identify sites with equal to or greater than a 5-fold decrease in signal comparing cells infected with WT/ns2 mutant virus to nsp15 mutant virus (MHV WT/nsp15 and ns2/nsp15).</p>
+<p>This analysis is independent of cells type and just asks which sites change the most when nsp15 activity is lost. Thus, these sites are not independent of RNaseL actviity.</p>
+<pre class="r"><code>change_nsp15 &lt;- neg_table %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+change_nsp15[is.na(change_nsp15)] &lt;- 0
+
+change_nsp15 &lt;- change_nsp15 %&gt;% 
+  mutate(MHVS_change = MHVS/nsp15) %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVS_change:ns2_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15)</code></pre>
+<div id="htmlwidget-4e932b29af46426364a9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4e932b29af46426364a9">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235"],["MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59"],[29003,26080,26056,18144,29742,28241,20426,26148,18589,31331,29003,30260,26166,28470,11723,23645,25404,31333,11674,28475,11728,29833,28239,29780,28349,26080,30260,18645,18144,29742,20426,31103,8256,26056,120,31331,26220,30177,26012,26087,26087,18589,23645,23838,29003,26148,10110,30656,9300,5518,29788,28241,30181,31333,28239,26166,5527,26166,30028,28475,29717,30198,30321,28470,26080,28715,26080,11723,23645,20405,205,30321,26012,26080,26056,25731,8256,20453,20426,11530,25374,28710,11530,31103,29003,1601,26087,18589,16192,11674,28241,25732,1808,29780,26056,18144,26087,25404,28355,29383,11674,26148,8507,3250,29833,30177,26087,30173,10980,28349,26148,3020,23645,1165,26027,17514,25404,29829,18645,12128,11728,18645,27563,30181,28475,30156,30935,11728,25404,25731,28239,23838,11723,26025,9300,22698,23838,30065,28470,28470,23621,30260,23645,11680,5518,3242,29742,23621,26087,30656,11530,16502,26012,3020,18645,11530,241,23838,29788,28710,8256,120,30198,19245,31202,11527,11733,29001,19243,5972,31206,11674,11723,30235,26166,8154,5639,25335,7459,4534,31331,26148,8154,29614,24827,18645,1172,29062,23829,11043,23621,28349,25404,30028,11728,25430,23838,9332,26220,26024,11530,30234,26027,31030,11718,11527,29717,26080,2723,25374,31229,25404,4458,30065,10112,11607,19243,28239,25731,26027,9335,27625,11723,24826,26027,3020,16195,28752,23823,25404,26192,28445,26056,5639,26147],[29004,26081,26057,18145,29743,28242,20427,26149,18590,31332,29004,30261,26167,28471,11724,23646,25405,31334,11675,28476,11729,29834,28240,29781,28350,26081,30261,18646,18145,29743,20427,31104,8257,26057,121,31332,26221,30178,26013,26088,26088,18590,23646,23839,29004,26149,10111,30657,9301,5519,29789,28242,30182,31334,28240,26167,5528,26167,30029,28476,29718,30199,30322,28471,26081,28716,26081,11724,23646,20406,206,30322,26013,26081,26057,25732,8257,20454,20427,11531,25375,28711,11531,31104,29004,1602,26088,18590,16193,11675,28242,25733,1809,29781,26057,18145,26088,25405,28356,29384,11675,26149,8508,3251,29834,30178,26088,30174,10981,28350,26149,3021,23646,1166,26028,17515,25405,29830,18646,12129,11729,18646,27564,30182,28476,30157,30936,11729,25405,25732,28240,23839,11724,26026,9301,22699,23839,30066,28471,28471,23622,30261,23646,11681,5519,3243,29743,23622,26088,30657,11531,16503,26013,3021,18646,11531,242,23839,29789,28711,8257,121,30199,19246,31203,11528,11734,29002,19244,5973,31207,11675,11724,30236,26167,8155,5640,25336,7460,4535,31332,26149,8155,29615,24828,18646,1173,29063,23830,11044,23622,28350,25405,30029,11729,25431,23839,9333,26221,26025,11531,30235,26028,31031,11719,11528,29718,26081,2724,25375,31230,25405,4459,30066,10113,11608,19244,28240,25732,26028,9336,27626,11724,24827,26028,3021,16196,28753,23824,25405,26193,28446,26057,5640,26148],["B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","B6","B6","RNaseL","B6","B6","IFNAR","B6","RNaseL","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","IFNAR","B6","B6","RNaseL","B6","B6","IFNAR","B6","B6","B6","RNaseL","B6","RNaseL","B6","IFNAR","B6","RNaseL","B6","B6","B6","B6","RNaseL","B6","B6","B6","B6","RNaseL","IFNAR","IFNAR","B6","B6","RNaseL","B6","IFNAR","B6","B6","B6","B6","B6","RNaseL","B6","B6","RNaseL","IFNAR","B6","RNaseL","B6","RNaseL","B6","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","B6","B6","IFNAR","B6","IFNAR","IFNAR","B6","IFNAR","B6","B6","B6","IFNAR","B6","B6","RNaseL","B6","IFNAR","B6","B6","B6","RNaseL","IFNAR","B6","B6","RNaseL","B6","B6","IFNAR","RNaseL","IFNAR","B6","RNaseL","B6","B6","B6","B6","B6","B6","IFNAR","IFNAR","B6","RNaseL","B6","IFNAR","B6","B6","IFNAR","B6","B6","B6","IFNAR","RNaseL","B6","IFNAR","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","RNaseL","B6","B6","B6","IFNAR","B6","B6","RNaseL","IFNAR","B6","IFNAR"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","9","9","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","9","12","9","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","9","12","12","9","12","9","12","12","12","9","12","9","12","12","12","12","9","9","12","9","12","12","12","12","12","12","9","12","12","12","12","12","9","12","12"],[0.0788337,0.0795046,0.0542331,0.040591,0.0465175,0.0376836,0.0441692,0.0719008,0.0421564,0.0518849,0.0788337,0.0450638,0.0555749,0.0743608,0.061166,0.0527794,0.071118,0.0465175,0.0656388,0.033099,0.0464056,0.029297,0.0428274,0.0356708,0.0240415,0.0795046,0.0450638,0.0674279,0.040591,0.0465175,0.0441692,0.0450638,0.0358945,0.0542331,0.0218051,0.0518849,0.0253833,0.046182,0.025607,0.0344337,0.019881,0.0421564,0.0527794,0.064297,0.0788337,0.0719008,0.0183386,0.034329,0.0244888,0.0327635,0.063626,0.0376836,0.051773,0.0465175,0.0428274,0.0555749,0.0459583,0.0239356,0.0276197,0.033099,0.0239297,0.0218051,0.0618369,0.0743608,0.0795046,0.0320926,0.0304179,0.061166,0.0527794,0.0228114,0.0190095,0.0618369,0.025607,0.0304179,0.0451417,0.0204632,0.0358945,0.0272843,0.0441692,0.00894643,0.0214696,0.0417092,0.0118267,0.0450638,0.024056,0.0115479,0.0344337,0.0421564,0.0344337,0.0656388,0.0376836,0.00279552,0.0464056,0.0356708,0.0542331,0.040591,0.019881,0.071118,0.0475238,0.0148722,0.0301436,0.0719008,0.0222523,0,0.029297,0.046182,0.0284129,0.0433865,0.0551277,0.0240415,0.0290262,0.0332108,0.0129226,0.025607,0.0275475,0.0177795,0.0266405,0.0147603,0.0674279,0,0.0464056,0.0262429,0.027085,0.051773,0.033099,0.0481948,0.00675952,0.0248072,0.0386531,0.0204632,0.0428274,0.0170976,0.061166,0.00605757,0.0244888,0.0266134,0.064297,0.0232587,0.0743608,0.036581,0.0365333,0.0450638,0.0129226,0.0138459,0.0327635,0.00656071,0.0465175,0.0101393,0.0344337,0.034329,0.0275049,0.00290734,0.025607,0.0332108,0.0674279,0.0275049,0.0260542,0.0170976,0.063626,0.0417092,0.0358945,0.0218051,0.0218051,0.00663448,0.00279552,0.0112498,0.0135574,0.00559104,0.0126921,0.0201277,0.00738017,0.0656388,0.0298552,0.067987,0.0555749,0.0143143,0.0277316,0.00937482,0.0173322,0.0158786,0.0518849,0.0290262,0.00447107,0.0332108,0,0.0262429,0.0230351,0.0231469,0.00923059,0.0131214,0.0295668,0.0240415,0.0266405,0.0276197,0.0464056,0.0220287,0.064297,0,0.0253833,0.00706717,0.0155173,0.0180031,0.0192845,0.0220459,0.00432684,0.0167969,0.0239297,0.0421146,0,0.0195264,0.00503194,0.0771673,0.0131214,0.0232587,0.0062018,0.00223642,0.0201563,0.0392628,0.0204632,0.0398927,0,0.00223642,0.0155071,0.00939295,0.0192845,0.0332108,0.0300245,0.0211341,0.00605757,0.071118,0.0138658,0.00894643,0.036277,0.0277316,0.0181727],[0.15076,0.164643,0.120316,0.0747712,0.0837827,0.0789116,0.0779374,0.134929,0.0762325,0.0886538,0.15076,0.0638112,0.10278,0.143454,0.118367,0.0757454,0.145645,0.0725792,0.121047,0.0496851,0.0942555,0.0557739,0.0594273,0.0601579,0.0431091,0.164643,0.0638112,0.118855,0.0747712,0.0837827,0.0779374,0.0316621,0.0489544,0.120316,0.04043,0.0886538,0.0516335,0.0723356,0.044814,0.0436725,0.0572292,0.0762325,0.0757454,0.105459,0.15076,0.134929,0.0409171,0.0560175,0.038238,0.0521206,0.104972,0.0789116,0.075989,0.0725792,0.0594273,0.10278,0.105946,0.0340105,0.0462753,0.0496851,0.0409171,0.0328798,0.0652726,0.143454,0.164643,0.0601579,0.0669474,0.118367,0.0757454,0.0414042,0.0323927,0.0652726,0.044814,0.0669474,0.0127539,0.0333669,0.0489544,0.0528513,0.0779374,0.0404924,0.0423785,0.0565046,0.0566654,0.0316621,0.0831444,0,0.0436725,0.0762325,0.0158458,0.121047,0.0789116,0.00633241,0.0769632,0.0601579,0.120316,0.0747712,0.0572292,0.145645,0.0733099,0.0112035,0.148386,0.134929,0.0331234,0.031854,0.0557739,0.0723356,0.0787553,0.0699001,0.0867053,0.0431091,0.0529101,0.024599,0.0286146,0.0375074,0.0965232,0.0280087,0.0566893,0.026791,0.118855,0,0.0942555,0.037253,0.010435,0.075989,0.0496851,0.0742841,0.0280747,0.0965232,0.0941222,0.0333669,0.0594273,0.0334737,0.118367,0.0220899,0.038238,0.0197279,0.105459,0.0189972,0.143454,0.0874636,0.0127539,0.0638112,0.0286146,0.0417787,0.0521206,0.0377929,0.0837827,0.0221358,0.0436725,0.0560175,0.0270538,0.00706308,0.044814,0.024599,0.118855,0.0270538,0.0358025,0.0334737,0.104972,0.0565046,0.0489544,0.04043,0.0328798,0.0153669,0.00876796,0.0384172,0.0412985,0.00633241,0.0302536,0.0396994,0.0131519,0.121047,0.114771,0.127379,0.10278,0.0323939,0.0321492,0.0240108,0.0280087,0.026791,0.0886538,0.0529101,0.0297733,0.0574788,0,0.037253,0.0377509,0.0187537,0.0115252,0.0237555,0.0124735,0.0431091,0.0566893,0.0462753,0.0942555,0.0255732,0.105459,0,0.0516335,0.0192086,0.0128633,0.0253297,0.0383328,0.00850261,0.0144065,0.0197106,0.0409171,0.112851,0,0,0.0085244,0.0432674,0.0291545,0.0189972,0.017768,0,0.0181647,0.0266673,0.0333669,0.0382618,0,0,0.0156571,0.0153439,0.0383328,0.024599,0.00811613,0.0323927,0,0.145645,0.0314185,0.0237555,0.0183204,0.0321492,0.0427391],[0.0151521,0.0176774,0,0,0,0,0,0.0151521,0,0,0.0151521,0,0,0.0157834,0,0,0.0220968,0,0.0145208,0,0,0,0,0,0,0.0176774,0,0.0214655,0,0,0,0,0,0,0,0,0,0.0170461,0,0,0,0,0,0.0170461,0.0151521,0.0151521,0,0,0,0,0.0189401,0,0,0,0,0,0,0,0,0,0,0,0.0132581,0.0157834,0.0176774,0,0,0,0,0,0,0.0132581,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0145208,0,0,0,0,0,0,0,0.0220968,0,0,0,0.0151521,0,0,0,0.0170461,0,0.0258848,0.0176774,0,0,0,0,0,0,0,0,0,0.0214655,0,0,0,0,0,0,0.0252535,0,0,0,0,0,0,0,0,0,0,0.0170461,0,0.0157834,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0214655,0,0,0,0.0189401,0,0,0,0,0,0,0,0,0,0,0,0,0.0145208,0,0.0366175,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0170461,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0220968,0,0,0,0,0],[0.0452638,0.0557828,0.0368167,0.0259789,0.0250226,0.0293258,0.0313978,0.0494077,0.031079,0.0266164,0.0452638,0.02311,0.0342666,0.0541891,0.0460607,0.0431919,0.0489295,0.02056,0.0497264,0.0240663,0.0379323,0.0167349,0.0293258,0.0192849,0.0191255,0.0557828,0.02311,0.0615205,0.0259789,0.0250226,0.0313978,0.0156192,0.0259789,0.0368167,0.0148223,0.0266164,0.0135473,0.025182,0.0352229,0.0597015,0.0400557,0.031079,0.0431919,0.0548266,0.0452638,0.0494077,0.0137066,0.0253414,0.0168942,0.02056,0.0393668,0.0293258,0.0280508,0.02056,0.0293258,0.0342666,0.0498858,0.0642939,0.0156192,0.0240663,0.0165755,0.0117941,0.034426,0.0541891,0.0557828,0.0223131,0.0652615,0.0460607,0.0431919,0.0210381,0.0129097,0.034426,0.0352229,0.0652615,0,0.0259789,0.0259789,0.0315572,0.0313978,0.0209071,0.0178505,0.0278914,0.023425,0.0156192,0.0523655,0.0597015,0.0597015,0.031079,0,0.0497264,0.0293258,0.0345854,0.0304415,0.0192849,0.0368167,0.0259789,0.0400557,0.0489295,0.0382511,0.0262976,0.0559914,0.0494077,0.0111566,0.0177808,0.0167349,0.025182,0.0414222,0.0328322,0.0514796,0.0191255,0.0439636,0.029804,0.0306768,0.0165755,0.0508493,0.0180099,0.0693648,0.0113159,0.0615205,0.0243851,0.0379323,0.0443544,0,0.0280508,0.0240663,0.0420762,0.0132868,0.0359944,0.0648471,0.0259789,0.0293258,0.031263,0.0460607,0.0134265,0.0168942,0.0173724,0.0548266,0.0117941,0.0541891,0.0590089,0,0.02311,0.0306768,0.0157119,0.02056,0.0242288,0.0250226,0.0279413,0.0597015,0.0253414,0,0.0533922,0.0352229,0.029804,0.0615205,0,0.0154598,0.031263,0.0393668,0.0278914,0.0259789,0.0148223,0.0117941,0.00914145,0.0207193,0.0182829,0.0165689,0.0347447,0.0179972,0.0196037,0.052914,0.0497264,0.0588481,0.06423,0.0342666,0.013873,0.015938,0.0182829,0.0168942,0.013866,0.0266164,0.0439636,0.00685609,0.0237476,0.0194443,0.0443544,0.0151411,0.0151411,0.0162832,0.0130914,0.0165907,0.0191255,0.0693648,0.0156192,0.0379323,0.0207193,0.0548266,0.031079,0.0135473,0.0165689,0.0318852,0.0196037,0.0359525,0,0,0,0.0165755,0.0859867,0.0247038,0,0.0627955,0.0279968,0.0205163,0.0117941,0.0114268,0.0341072,0,0,0.0259789,0,0.0186474,0.0186474,0.0252058,0.0309196,0.0359525,0.029804,0,0.015938,0.0154262,0.0489295,0.00988153,0.0177808,0.0152945,0.015938,0.0328521],[0.00432736,0.00640449,0.00484664,0.00346188,0.00398117,0.00380807,0.00380807,0.00692377,0.00398117,0.00467354,0.00432736,0.00363498,0.0058852,0.00848162,0.00709686,0.00501973,0.00969328,0.00484664,0.00848162,0.00363498,0.00692377,0.00415426,0.00450045,0.00467354,0.00346188,0.00640449,0.00363498,0.0100395,0.00346188,0.00398117,0.00380807,0.00398117,0.00432736,0.00484664,0.00363498,0.00467354,0.00467354,0.00657758,0.00415426,0.00555339,0.00536127,0.00398117,0.00501973,0.0100395,0.00432736,0.00692377,0.00398117,0.00553902,0.00380807,0.00519283,0.0105587,0.00380807,0.00778924,0.00484664,0.00450045,0.0058852,0.0112511,0.00684918,0.00501973,0.00363498,0.00450045,0.00363498,0.00726996,0.00848162,0.00640449,0.00692377,0.00772024,0.00709686,0.00501973,0.00484664,0.00380807,0.00726996,0.00415426,0.00772024,0.00536827,0.00398117,0.00432736,0.00640449,0.00380807,0.00493237,0.00519283,0.00692377,0.00707766,0.00398117,0.0105081,0.00758963,0.00555339,0.00398117,0.00444271,0.00848162,0.00380807,0.00450045,0.0100395,0.00467354,0.00484664,0.00346188,0.00536127,0.00969328,0.0100395,0.00363498,0.0207449,0.00692377,0.00467354,0.00450347,0.00415426,0.00657758,0.0112266,0.0100395,0.0124628,0.00346188,0.00772024,0.00484664,0.00450347,0.00553902,0.0142773,0.00415426,0.0102936,0.00398117,0.0100395,0.00363498,0.00692377,0.00664798,0.00407248,0.00778924,0.00363498,0.0112511,0.00428902,0.0147655,0.0143994,0.00398117,0.00450045,0.00514682,0.00709686,0.0034168,0.00380807,0.00415426,0.0100395,0.00363498,0.00848162,0.0137249,0.0057385,0.00363498,0.00450347,0.00658954,0.00519283,0.00600463,0.00398117,0.00450347,0.00555339,0.00553902,0.00444271,0.00865471,0.00415426,0.00484664,0.0100395,0.00444271,0.0058852,0.00514682,0.0105587,0.00692377,0.00432736,0.00363498,0.00363498,0.0025626,0.00346188,0.00646752,0.00695563,0.0058852,0.0051252,0.00675068,0.0090009,0.00848162,0.0196466,0.0218099,0.0058852,0.00557573,0.00553902,0.00414897,0.00484664,0.00467354,0.00467354,0.00772024,0.00524723,0.0102126,0.00346188,0.00664798,0.00675068,0.00415426,0.00292869,0.00428902,0.00534285,0.00346188,0.0102936,0.00501973,0.00692377,0.00467354,0.0100395,0.00571211,0.00467354,0.00353883,0.00587714,0.00467354,0.00707688,0.00407248,0.00268463,0.00370226,0.00450045,0.021233,0.00467354,0.00370226,0.0119435,0.0146928,0.00557573,0.00363498,0.0034168,0.00657758,0.00388737,0.00758963,0.00398117,0.00777474,0.00363498,0.00363498,0.00493237,0.0060583,0.00707688,0.00484664,0.00592361,0.00640449,0.00305072,0.00969328,0.00623139,0.00471792,0.00721285,0.00553902,0.008542],["MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","MHVS_change","MHVV_change","MHVS_change","MHVS_change","MHVS_change","MHVS_change","MHVV_change","MHVS_change","MHVV_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVS_change","MHVS_change","MHVV_change","ns2_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","MHVS_change","MHVS_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","ns2_change","ns2_change","MHVS_change","MHVV_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVS_change","MHVS_change","ns2_change","ns2_change","MHVV_change","MHVS_change","ns2_change","ns2_change","ns2_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVS_change","ns2_change","MHVS_change","MHVS_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change","MHVV_change","ns2_change","MHVV_change","MHVS_change","MHVS_change","MHVS_change","MHVS_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","ns2_change","ns2_change","MHVS_change","MHVS_change","MHVS_change","ns2_change","MHVS_change","ns2_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVS_change","MHVS_change","ns2_change","MHVS_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","ns2_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","ns2_change","ns2_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","ns2_change","MHVS_change","ns2_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVS_change","MHVS_change","MHVS_change","MHVS_change","ns2_change","ns2_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVS_change","MHVV_change","ns2_change","ns2_change","MHVV_change","MHVV_change","MHVS_change","MHVS_change","MHVV_change"],[34.8387931671966,25.7074333787702,24.8246207682023,21.5984378430217,21.0447431282764,20.7222031107621,20.4663779814972,19.4877934997841,19.1482654596513,18.9693037825717,18.2175044368853,17.5547595860225,17.4641473526813,16.9135141635678,16.6787847019668,15.0895366882283,15.0253577736329,14.9751580476371,14.2716839471705,13.6686034035951,13.6133204886933,13.425712401246,13.2047461920475,12.8720199249391,12.4525113522132,12.4138846340614,12.3972621582512,11.8387369888939,11.7251320091973,11.6843792151553,11.5988414078523,11.3192353001756,11.3127634400651,11.189834607068,11.1224821044407,11.1018414306928,11.0480492303479,10.9972968781832,10.7874808028385,10.7504605295144,10.6745603187305,10.588947470216,10.5143902162068,10.5044075900194,10.4599108925534,10.3846314941138,10.2776570706601,10.113251080516,10.0413070137891,10.0370318304277,9.94175419322454,9.89572145470015,9.75563726371251,9.59788637076408,9.51624837516249,9.44316250934548,9.41650149763134,9.38709451350381,9.21868307657981,9.10568971493653,9.0917797109178,9.04538676966586,8.97839878073607,8.76728738142006,8.70995192435307,8.68860461858207,8.67167341947919,8.61874124612857,8.60442693132897,8.54286681082152,8.50632997817792,8.5058102107852,8.47874230308166,8.45329937929391,8.40898464496011,8.38117940203508,8.29478018930711,8.2522261725758,8.24506902446646,8.20952199449757,8.16096425263296,8.16095855292709,8.00623369870833,7.95296357603418,7.91241042624261,7.86619374066983,7.86411543219547,7.8064990944873,7.75060717444983,7.73894609756155,7.70096137938641,7.68487595684876,7.66603914537577,7.63250127312487,7.59633478038394,7.50427513374236,7.4713081042365,7.33683541587574,7.3021465212411,7.23459276254615,7.15289058997633,7.13595338955511,7.08743265276429,7.07321243396759,7.05227886555006,7.02112327026049,7.01506244098837,6.96250809303252,6.95712841416054,6.94463701803644,6.85342683647141,6.8523348133965,6.81181400120352,6.77148665287361,6.76060599693219,6.74216346593617,6.73863371415248,6.72942878601014,6.71626076995866,6.70845506715305,6.70236013039139,6.67186122701933,6.65073861627313,6.64673318577936,6.62075169602034,6.60238554452454,6.5457144056218,6.53707629270936,6.53653624456575,6.5254435253958,6.51619282516193,6.5037634889116,6.49029289009506,6.46508428939358,6.43076414036507,6.40629137319282,6.40440260969172,6.39857715860885,6.38900351583778,6.37262202274698,6.36635009148732,6.35766909308992,6.35390043677431,6.34015424445409,6.30937273124674,6.29395982766632,6.28523775673985,6.20439350101144,6.20048294825323,6.19766673527086,6.19101854498718,6.16914951511951,6.16403402772094,6.14941485235132,6.1278450122018,6.0894814201242,6.08348059539183,6.07423613027073,6.02593122259369,6.02405914696762,6.00340623382386,5.99868499964236,5.99868499964236,5.99660501053617,5.9849850370319,5.94002028598288,5.93742047808754,5.90374158907089,5.90291110590806,5.88080015642869,5.87874545878746,5.86284224004376,5.84177414921666,5.84042109317328,5.82250390810848,5.80980427674941,5.80413141674881,5.78717127383423,5.77899328194378,5.73248543930297,5.69512617844289,5.69458980549827,5.67409852436428,5.62822395863933,5.61668804233538,5.60365705071315,5.59216256732655,5.57184673082571,5.5598919653497,5.53867783316469,5.53390044639097,5.52459935064185,5.50723750680034,5.50222820749323,5.47856153511743,5.47191208377376,5.46108869963644,5.44089662138859,5.43127907325068,5.42795217628425,5.42529189367618,5.41981025090189,5.41662427510428,5.41338447334302,5.36628883682295,5.32393727074814,5.31717939317179,5.31488720388075,5.28588607351173,5.27418387687521,5.25771340059447,5.25204862245454,5.22882205558734,5.22621857616823,5.20018730976352,5.18537212774303,5.18507371307594,5.17321661266755,5.13999653368231,5.13106547614454,5.12998696003829,5.12998696003829,5.11028166986662,5.10367594869848,5.08027548863341,5.07547496822541,5.06861525319864,5.05781100446718,5.05657680809776,5.04777536602677,5.0419729787415,5.03516380099705,5.02949596899977,5.0065896133251,5.00340669632405]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVS<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,10,12]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_nsp15_graph &lt;- change_nsp15 %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = viral_comp, width=100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(cell ~ viral_comp) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_nsp15_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+</div>
+<div id="fold-change-for-nsp15-muant-and-rnasel-ko-reads" class="section level2">
+<h2>Fold-change for Nsp15 muant and RNaseL KO reads</h2>
+<p>Same analysis as above focused in RNaseL KO cells.</p>
+<pre class="r"><code>change_nsp15 &lt;- neg_table %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+change_nsp15[is.na(change_nsp15)] &lt;- 0
+
+change_nsp15RNaseL &lt;- change_nsp15 %&gt;% 
+  mutate(MHVS_change = MHVS/nsp15) %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVS_change:ns2_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  filter(cell == &quot;RNaseL&quot;) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15RNaseL)</code></pre>
+<div id="htmlwidget-fb0919504f03dbacf123" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fb0919504f03dbacf123">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"],["MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59","MHVA59"],[26087,26080,26080,11530,29003,26087,3250,26148,23645,25404,18645,30935,23838,28470,23645,3242,23621,23838,8154,26148,18645,11043,25404,26027,4458,11723,26027,28445],[26088,26081,26081,11531,29004,26088,3251,26149,23646,25405,18646,30936,23839,28471,23646,3243,23622,23839,8155,26149,18646,11044,25405,26028,4459,11724,26028,28446],["RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12"],[0.019881,0.0304179,0.0304179,0.00894643,0.024056,0.019881,0,0.0290262,0.0129226,0.0266405,0.0262429,0.00675952,0.0170976,0.036581,0.0129226,0.00656071,0.0101393,0.0170976,0.0143143,0.0290262,0.0262429,0.0131214,0.0266405,0.0192845,0.0131214,0.0155071,0.0192845,0.00894643],[0.0572292,0.0669474,0.0669474,0.0404924,0.0831444,0.0572292,0.031854,0.0529101,0.0286146,0.0566893,0.037253,0.0280747,0.0334737,0.0874636,0.0286146,0.0377929,0.0221358,0.0334737,0.0323939,0.0529101,0.037253,0.0237555,0.0566893,0.0383328,0.0291545,0.0156571,0.0383328,0.0237555],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0.0400557,0.0652615,0.0652615,0.0209071,0.0523655,0.0400557,0.0177808,0.0439636,0.0306768,0.0693648,0.0443544,0.0132868,0.031263,0.0590089,0.0306768,0.0242288,0.0279413,0.031263,0.013873,0.0439636,0.0443544,0.0130914,0.0693648,0.0359525,0.0205163,0.0252058,0.0359525,0.0177808],[0.00536127,0.00772024,0.00772024,0.00493237,0.0105081,0.00536127,0.00450347,0.00772024,0.00450347,0.0102936,0.00664798,0.00428902,0.00514682,0.0137249,0.00450347,0.00600463,0.00450347,0.00514682,0.00557573,0.00772024,0.00664798,0.00428902,0.0102936,0.00707688,0.00557573,0.00493237,0.00707688,0.00471792],["MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change","MHVV_change"],[10.6745603187305,8.67167341947919,8.45329937929391,8.20952199449757,7.91241042624261,7.4713081042365,7.07321243396759,6.85342683647141,6.81181400120352,6.73863371415248,6.67186122701933,6.5457144056218,6.5037634889116,6.37262202274698,6.35390043677431,6.29395982766632,6.20439350101144,6.07423613027073,5.80980427674941,5.69458980549827,5.60365705071315,5.53867783316469,5.50723750680034,5.41662427510428,5.22882205558734,5.11028166986662,5.08027548863341,5.03516380099705]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVS<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,10,12]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_nsp15RNaseL_graph &lt;- change_nsp15RNaseL %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = viral_comp, width=100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(cell ~ viral_comp) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_nsp15RNaseL_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>There are many sites with greater than 5-fold decrease in signal when comparing WT MHV/ ns2 mutant MHV to nsp15 mutant MHV in B6 cells. In IFNAR NO and RNaseL KO cells there are less sites with a greater than 5-fold decrease in signal in the abscence of nsp15 as compared to B6 cells, which suggests that some of those sites are cleave by RNaseL as well.</p>
+<p>Top 3 nsp15-dependent: 29003, UC; 26080, UC; 30260, GC</p>
+<p>This is confirmed by looking specifically for sites that decrease by 5-fold or greater with nsp15 infection only in RNaseL KO cells. There are 10 sites that change by 5-fold or greater in RNaseL KO cells.</p>
+<p>Top 3 nsp15-dependent, RNaseL-independent: 26080, UC; 26087, CU; 23645, UC</p>
+<p>Interestingly, most of the significant sites are only identified during infection with ns2 mutant virus. Including the polymorphic site 18646. More sites are detected with WT virus infection with a lower cut-off for fold-change. However, this suggests that ns2 mutant virus increases nsp15 mutant activity or the activity of another endoribunuclease cleaving at the same sites.</p>
+</div>
+<div id="top-rnasel-dependent-sites" class="section level2">
+<h2>Top RNaseL-dependent sites</h2>
+<p>In this analysis, the sites with the greatest normalized counts that are RNaseL dependent are identified. This relies on an inital subtractive analysis to emphasize signal that occurs when RNaseL is present. The top 50 sites by cell type that are RNaseL dependent are then identified. This data is filtered by sites with 20 or more reads.</p>
+<pre class="r"><code>top_RNaseL &lt;- neg_table %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count) 
+top_RNaseL[is.na(top_RNaseL)] &lt;- 0
+
+top_RNaseL &lt;- top_RNaseL %&gt;% 
+  mutate(B6_RNaseLdep = B6 - RNaseL) %&gt;% 
+  mutate(IFNAR_RNaseLdep = IFNAR - RNaseL) %&gt;% 
+  dplyr::select(start:end, virus:time, B6_RNaseLdep:IFNAR_RNaseLdep) %&gt;% 
+  gather(cell, normalized_count, B6_RNaseLdep:IFNAR_RNaseLdep) %&gt;%
+  group_by(cell) %&gt;%
+  arrange(desc(normalized_count)) %&gt;%
+  do(head(., n = 50))
+  
+datatable(top_RNaseL)</code></pre>
+<div id="htmlwidget-f1a4948eb4938e61a0b5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f1a4948eb4938e61a0b5">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100"],[30290,30290,30290,26013,30290,30307,30307,11723,26080,30277,11674,26056,25404,30307,13423,5527,26148,11728,18645,29788,28241,26166,208,28345,8287,4847,18144,8287,13421,26027,23838,11605,8287,11088,30277,26147,16195,29003,29742,9296,934,30260,31205,3527,31229,30290,26175,30290,16193,1721,11674,11723,29003,11728,26027,26166,25404,28470,29788,5527,29809,26080,23838,30181,11680,11733,31333,26080,31208,26148,28239,25404,30237,30236,28470,29003,30235,29788,11723,30177,30235,30935,23621,23838,30321,31331,29788,30173,26027,11755,28692,30456,30290,28470,31030,26056,28241,23621,31333,26148],[30291,30291,30291,26014,30291,30308,30308,11724,26081,30278,11675,26057,25405,30308,13424,5528,26149,11729,18646,29789,28242,26167,209,28346,8288,4848,18145,8288,13422,26028,23839,11606,8288,11089,30278,26148,16196,29004,29743,9297,935,30261,31206,3528,31230,30291,26176,30291,16194,1722,11675,11724,29004,11729,26028,26167,25405,28471,29789,5528,29810,26081,23839,30182,11681,11734,31334,26081,31209,26149,28240,25405,30238,30237,28471,29004,30236,29789,11724,30178,30236,30936,23622,23839,30322,31332,29789,30174,26028,11756,28693,30457,30291,28471,31031,26057,28242,23622,31334,26149],["nsp15","ns2","nsp15","ns2","ns2","ns2","nsp15","MHVV","MHVV","nsp15","MHVV","MHVV","MHVV","nsp15","ns2","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","MHVV","ns2","MHVV","ns2","ns2","MHVV","nsp15","ns2","MHVV","MHVV","ns2","nsp15","ns2","nsp15","MHVV","MHVV","MHVV","MHVV","ns2","nsp15","MHVV","ns2","ns2","ns2","MHVV","MHVV","MHVS","ns2","nsp15","MHVV","MHVV","MHVS","MHVV","MHVV","MHVV","MHVS","MHVS","MHVS","MHVV","MHVS","MHVV","ns2","MHVS","MHVV","MHVV","MHVS","MHVS","MHVS","MHVV","MHVV","MHVV","ns2","ns2","nsp15","nsp15","MHVS","MHVS","ns2","MHVS","ns2","MHVS","MHVS","MHVS","MHVS","MHVS","ns2","MHVS","ns2","MHVV","MHVS","MHVS","MHVV","MHVS","MHVS","ns2","MHVV","ns2","nsp15","ns2"],["9","12","12","12","9","12","9","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","9","12","9","12","12","12","12","9","12","12","12","9","9","9","12","9","12","12","9","12","12","9","9","9","12","12","12","9","9","12","12","9","12","12","9","12","9","12","12","9","9","12","9","9","12","9","9","12","12","9","12","12","12","12","12"],["B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","B6_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep","IFNAR_RNaseLdep"],[0.1803567,0.1703575,0.1325141,0.13214022,0.1192734,0.11358597,0.105144,0.1027099,0.0976956,0.0947778,0.0929723,0.0900817,0.0889557,0.0874126,0.08263522,0.0821905,0.0820189,0.0818378,0.081602,0.0806766,0.0789116,0.0774048,0.0760241,0.075761,0.0757053,0.0755459,0.0747712,0.0737381,0.0733146,0.0732152,0.0719853,0.0718802,0.0707131,0.0698083,0.069757,0.0696638,0.0687832,0.0676156,0.0675857,0.0669394,0.0657758,0.0638112,0.0629021,0.0627955,0.0627955,0.0627265,0.0614848,0.0610704,0.0592892,0.0590251,0.1203113,0.0991139,0.0888587,0.0841055,0.0581904,0.0543405,0.0524222,0.0512477,0.0505521,0.0473163,0.04717725,0.0459036,0.0452966,0.0449479,0.0417787,0.0412985,0.0410924,0.0405374,0.03966882,0.038811,0.0374677,0.0374329,0.0370698,0.0368105,0.0361848,0.0345205,0.0342041,0.0337682,0.0336423,0.0328972,0.0327222,0.03215035,0.0321195,0.0319399,0.0316491,0.0312602,0.0310873,0.0310403,0.0306495,0.0305005,0.0303036,0.0303036,0.0300938,0.0300523,0.02954276,0.029283,0.0288129,0.0286214,0.0286154,0.0285966]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>cell<\/th>\n      <th>normalized_count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>top_RNaseL_graph &lt;- 
+  ggplot(top_RNaseL, aes(x = start, y = normalized_count, fill = cell, width=100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(virus ~ cell) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;normalized_count&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+top_RNaseL_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p>This analysis furthur empahsizez the idea that nsp15 and RNaseL sites have significant overlap. We can see several many sites of robust signal in B6 cells that are dependent on RNaseL, but many are not independent of nsp15 activity. In B6 cells infected with nsp15 virus, many of the most robust cleavage sites are lost. This suggests that nsp15 contributes to the observed signal in many of the RNaseL-dependent top sites in the MHV positive strand RNA.</p>
+</div>
+<div id="fold-change-for-top-rnasel-dependent-sites" class="section level2">
+<h2>Fold change for top RNaseL-dependent sites</h2>
+<p>Using the top RNaseL-depenendent sites in a fold-change analaysis. This data is also filtered for sites with at least 20 or more reads and with a 5-fold or greater decrease in signal.</p>
+<pre class="r"><code>top_change_RNaseL &lt;- inner_join(neg_table, top_RNaseL, by = &quot;start&quot;) %&gt;%
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(start, end.x, normalized_count.x, cell.x, virus.x, time.x) %&gt;%
+  unique() %&gt;%
+  spread(cell.x, normalized_count.x)
+top_change_RNaseL[is.na(top_change_RNaseL)] &lt;- 0
+
+top_change_RNaseL &lt;- top_change_RNaseL %&gt;% 
+  mutate(B6_change = B6/RNaseL) %&gt;% 
+  mutate(IFNAR_change = IFNAR/RNaseL) %&gt;% 
+  gather(cell, fold_change, B6_change:IFNAR_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(top_change_RNaseL)</code></pre>
+<div id="htmlwidget-8f5d49351e613f2a7679" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8f5d49351e613f2a7679">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],[13423,30307,26013,26013,16195,30260,11728,30290,11728,11723,30307,11723,30290,29809,30290,31205,26175,11733,28241,30456,11755,30307,23621,30260,31208,28345,29742,11674,29742,5527],[13424,30308,26014,26014,16196,30261,11729,30291,11729,11724,30308,11724,30291,29810,30291,31206,26176,11734,28242,30457,11756,30308,23622,30261,31209,28346,29743,11675,29743,5528],["ns2","ns2","ns2","nsp15","MHVS","MHVS","MHVV","nsp15","MHVV","MHVV","MHVV","MHVV","ns2","MHVS","ns2","ns2","MHVV","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVS","MHVV","MHVS","MHVV","MHVV","MHVS"],["12","12","12","12","12","12","12","9","12","12","9","12","12","9","9","12","12","12","12","12","12","12","12","9","9","12","12","12","12","12"],[0.0865431,0.119057,0.138979,0.0373884,0.0497603,0.0450638,0.0942555,0.207326,0.0942555,0.118367,0.0486968,0.118367,0.199862,0.0174268,0.140834,0.0744303,0.0728227,0.0254951,0.0376836,0.0404791,0.0275079,0.0240415,0.0555749,0.0411524,0.027085,0.0930378,0.0465175,0.121047,0.0837827,0.0459583],[0,0.0077131,0,0.00414897,0.0188939,0.0111056,0.0965232,0.0152271,0.0965232,0.114771,0,0.114771,0.0168545,0.0553591,0.0173684,0.00857011,0.0273723,0.0135574,0.0191823,0.0171631,0.0158651,0.00317301,0.0422588,0.0337607,0.0486489,0.0235305,0.0245187,0.148386,0.0225701,0.0174516],[0.00390788,0.00547103,0.00683878,0.00428902,0.00576548,0.00576548,0.0124177,0.0269693,0.0124177,0.0156571,0.0064619,0.0156571,0.0295045,0.00818185,0.0215606,0.0115282,0.0113379,0.00397619,0.0061631,0.00675952,0.00477143,0.00437381,0.0101393,0.00758318,0.00898008,0.0172768,0.00874762,0.0280747,0.016197,0.00894643],["B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","IFNAR_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change","IFNAR_change","B6_change","B6_change"],[22.1457926036623,21.7613502393516,20.3221919699128,8.71723610521751,8.63072979179531,7.81614019994866,7.77303365357514,7.68748169214625,7.59041529429766,7.55995682469934,7.53598786734552,7.33028466318795,6.77394973648088,6.76608590966591,6.53200745804848,6.45636786315296,6.42294428421489,6.41194208526252,6.11439048530772,5.98845776031434,5.76512701642904,5.49669510106749,5.4811377511268,5.42679983859014,5.41742389822808,5.38512919059085,5.31773213742709,5.28539930969877,5.17272951781194,5.13705466873379]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start<\/th>\n      <th>end.x<\/th>\n      <th>virus.x<\/th>\n      <th>time.x<\/th>\n      <th>B6<\/th>\n      <th>IFNAR<\/th>\n      <th>RNaseL<\/th>\n      <th>cell<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,5,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>top_change_RNaseL_graph &lt;- top_change_RNaseL %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = cell, width=100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(virus.x ~ cell) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+top_change_RNaseL_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
+<p>This analysis emphasizes the sites with the greatest fold change in signal when comparing B6 WT and IFNAR KO cells. The sites with the greater fold-change in signal from B6 to RNaseL KO cells were infected with ns2 mutant MHV. The fold change in signal for IFNAR KO cells is significantly lower than B6 cells, which is consistent with the signfiicant loss of RNaseL activity.</p>
+<p>3 of the 4 top sites with the greatest fold change identified in the inital, more unbiased analysis calculating the fold change at all sites independent of a substractive analysis are identified here as well.</p>
+</div>
+<div id="top-nsp15-dependent-sites" class="section level2">
+<h2>Top nsp15-dependent sites</h2>
+<p>In this analysis, the sites with the greatest normalized counts that are nsp15-dependent are identified. This relies on an inital subtractive analysis to emphasize signal that occurs when nsp15 is present. The top 50 sites by cell type that are nsp15-dependent are then identified.</p>
+<pre class="r"><code>top_nsp15 &lt;- neg_table %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+top_nsp15[is.na(top_nsp15)] &lt;- 0
+
+top_nsp15 &lt;- top_nsp15 %&gt;% 
+  mutate(MHVS_nsp15dep = MHVS - nsp15) %&gt;% 
+  mutate(MHVV_nsp15dep = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15dep = ns2 - nsp15) %&gt;% 
+  dplyr::select(start:end, cell:time, MHVS_nsp15dep:ns2_nsp15dep) %&gt;% 
+  gather(virus, normalized_count, MHVS_nsp15dep:ns2_nsp15dep) %&gt;%
+  group_by(virus) %&gt;%
+  arrange(desc(normalized_count)) %&gt;%
+  do(head(., n = 50))
+
+datatable(top_nsp15)</code></pre>
+<div id="htmlwidget-7e54f6c8b46f170b4585" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7e54f6c8b46f170b4585">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150"],[29003,29003,26080,28470,26148,25404,25404,28470,18645,11674,23621,30321,23838,11723,29788,26087,26147,26027,16195,26166,26056,26080,26080,23645,31331,29003,28345,29788,30484,30235,25404,30181,30181,29809,10980,29742,23838,30439,31333,30260,31103,30235,30321,30456,20426,26056,30177,11728,26175,28239,26080,29003,25404,28470,26148,11674,26056,11674,26027,11723,18645,30235,11530,26166,23838,11723,5527,26147,29788,28345,26080,16195,11728,31331,26027,11728,29742,25404,30235,28241,10980,20426,28470,30456,26175,29003,26148,18589,31208,18144,23645,30181,31333,26087,5521,26087,1808,30177,30725,28355,26013,26080,25404,23838,13423,26080,26166,26087,11605,26148,31205,1601,13421,18645,31229,25404,26080,16193,28470,28470,18645,11088,23838,16502,31206,18070,26148,30235,29003,30235,11674,29003,26087,23621,26056,25404,11723,26027,9296,10980,11723,16782,5527,26166,23645,208,13887,18645,30235,26027],[29004,29004,26081,28471,26149,25405,25405,28471,18646,11675,23622,30322,23839,11724,29789,26088,26148,26028,16196,26167,26057,26081,26081,23646,31332,29004,28346,29789,30485,30236,25405,30182,30182,29810,10981,29743,23839,30440,31334,30261,31104,30236,30322,30457,20427,26057,30178,11729,26176,28240,26081,29004,25405,28471,26149,11675,26057,11675,26028,11724,18646,30236,11531,26167,23839,11724,5528,26148,29789,28346,26081,16196,11729,31332,26028,11729,29743,25405,30236,28242,10981,20427,28471,30457,26176,29004,26149,18590,31209,18145,23646,30182,31334,26088,5522,26088,1809,30178,30726,28356,26014,26081,25405,23839,13424,26081,26167,26088,11606,26149,31206,1602,13422,18646,31230,25405,26081,16194,28471,28471,18646,11089,23839,16503,31207,18071,26149,30236,29004,30236,11675,29004,26088,23622,26057,25405,11724,26028,9297,10981,11724,16783,5528,26167,23646,209,13888,18646,30236,26028],["IFNAR","B6","B6","B6","B6","IFNAR","B6","IFNAR","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","IFNAR","B6","B6","B6","B6","IFNAR","B6","B6","B6","B6","IFNAR","IFNAR","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","IFNAR","B6","B6","B6","B6","B6","B6","B6","B6","B6","IFNAR","B6","B6","B6","B6","IFNAR","B6","B6","B6","IFNAR","IFNAR","B6","IFNAR","RNaseL","B6","B6","B6","RNaseL","B6","B6","RNaseL","IFNAR","B6","B6","B6","B6","B6","B6","IFNAR","B6","B6","B6","B6","B6","B6","B6","IFNAR","RNaseL","IFNAR","B6","RNaseL","B6","B6","B6","IFNAR","B6","B6","B6","B6","B6","IFNAR","B6","B6","B6","RNaseL","IFNAR","B6","B6","B6","B6","B6","B6","B6","RNaseL","IFNAR","B6","B6","IFNAR","B6","IFNAR","B6","IFNAR","IFNAR","B6","B6","B6","B6","B6","IFNAR","B6","B6","B6","RNaseL","IFNAR","IFNAR"],["9","12","12","12","12","9","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","9","9","12","12","9","12","9","12","12","9","12","9","9","12","12","9","12","12","12","12","9","9","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","9","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","9","12","12","12","12","12","9","12","12","12","12","9","12"],["MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVS_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","MHVV_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep","ns2_nsp15dep"],[0.0856246,0.07450634,0.07310011,0.06587918,0.06497703,0.0624745,0.06142472,0.0588897,0.0573884,0.05715718,0.0555749,0.05456694,0.0542575,0.05406914,0.0530673,0.0528912,0.0499839,0.0498721,0.0497603,0.0496897,0.04938646,0.0493261,0.0491316,0.04775967,0.04721136,0.0470439,0.0469647,0.0469285,0.0465175,0.0461771,0.0451405,0.04398376,0.0431396,0.0430705,0.0426649,0.04253633,0.0422483,0.0417092,0.04167086,0.04142882,0.04108263,0.0407898,0.0407277,0.0404791,0.04036113,0.03977343,0.03960442,0.03948183,0.0384664,0.03832695,0.15823851,0.14643264,0.13595172,0.13497238,0.12800523,0.1276411,0.11546936,0.11256538,0.111548,0.11127014,0.1088155,0.1055691,0.098396,0.0968948,0.0954195,0.0951244,0.0946949,0.0944991,0.0944133,0.0930378,0.091618,0.0876796,0.08733173,0.08398026,0.0822459,0.0817577,0.07980153,0.0797228,0.0767456,0.07510353,0.0742425,0.07412933,0.0737387,0.0733099,0.0728227,0.0726363,0.0724406,0.07225133,0.0720921,0.07130932,0.07072567,0.06819976,0.06773256,0.0675287,0.067221,0.067221,0.0669237,0.06575802,0.0645419,0.0632704,0.1015906,0.0647537,0.0590712,0.0584994,0.0579826,0.05754126,0.05744472,0.05414811,0.0533591,0.0532797,0.0522742,0.05211187,0.0515047,0.051481,0.050852,0.0504477,0.04937831,0.0457878,0.04570748,0.045284,0.0452005,0.0448827,0.0447871,0.04473749,0.0439131,0.0433749,0.04248393,0.0424201,0.0418574,0.0416769,0.04124478,0.04093644,0.0408692,0.0406418,0.0400916,0.03923622,0.0392015,0.0391556,0.0390712,0.0390168,0.03896384,0.0389397,0.0386347,0.0385046,0.03817217,0.0381165,0.037721,0.03770642,0.0370147,0.036572]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>virus<\/th>\n      <th>normalized_count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>top_nsp15_graph &lt;- 
+  ggplot(top_nsp15, aes(x = start, y = normalized_count, fill = virus, width = 100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(cell ~ virus) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;normalized_count&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+top_nsp15_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<p>If we just look at the top 50 sites by normalized counts by cell type, the most robust signal occurs in B6 cells where RNaseL is still active. There are 2 sites in RNaseL KO cells with robust nsp15-dependent and RNaseL independent signal. There is more signal that is nsp15-dependent in RNaseL KO cells, but these sites are not in the top 50 by normalized counts. The signal at these sites is less robust.</p>
+</div>
+<div id="top-nsp15-dependent-sites-fold-change" class="section level2">
+<h2>Top nsp15-dependent sites fold change</h2>
+<p>Using the top nsp15-depenendent sites in a fold-change analaysis. This data is also filtered for sites with at least 20 or more reads and with a 5-fold or greater decrease in signal.</p>
+<pre class="r"><code>top_change_nsp15 &lt;- inner_join(neg_table, top_nsp15, by = &quot;start&quot;) %&gt;%
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(start, end.x, normalized_count.x, cell.x, virus.x, time.x) %&gt;%
+  unique() %&gt;%
+  spread(virus.x, normalized_count.x)
+top_change_nsp15[is.na(top_change_nsp15)] &lt;- 0
+
+top_change_nsp15 &lt;- top_change_nsp15 %&gt;% 
+  mutate(MHVS_change = MHVS/nsp15) %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  gather(virus, fold_change, MHVS_change:mock_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(top_change_nsp15)</code></pre>
+<div id="htmlwidget-28854ccfd43785974982" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-28854ccfd43785974982">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129"],[29003,26080,26056,18144,29742,28241,20426,26148,18589,31331,29003,30260,26166,28470,11723,23645,25404,31333,11674,11728,28239,26080,30260,18645,18144,29742,20426,31103,26056,31331,30177,26087,26087,18589,23645,23838,29003,26148,29788,28241,30181,31333,28239,26166,5527,26166,30321,28470,26080,26080,11723,23645,30321,26080,26056,20426,11530,11530,31103,29003,1601,26087,18589,11674,28241,1808,26056,18144,26087,25404,28355,11674,26148,30177,26087,10980,26148,23645,26027,25404,18645,11728,18645,30181,11728,25404,28239,23838,11723,23838,28470,28470,23621,30260,23645,29742,23621,26087,11530,16502,18645,11530,23838,29788,31206,11674,11723,30235,26166,31331,26148,18645,23621,25404,11728,23838,11530,26027,26080,31229,25404,28239,26027,11723,26027,16195,25404,26056,26147],[29004,26081,26057,18145,29743,28242,20427,26149,18590,31332,29004,30261,26167,28471,11724,23646,25405,31334,11675,11729,28240,26081,30261,18646,18145,29743,20427,31104,26057,31332,30178,26088,26088,18590,23646,23839,29004,26149,29789,28242,30182,31334,28240,26167,5528,26167,30322,28471,26081,26081,11724,23646,30322,26081,26057,20427,11531,11531,31104,29004,1602,26088,18590,11675,28242,1809,26057,18145,26088,25405,28356,11675,26149,30178,26088,10981,26149,23646,26028,25405,18646,11729,18646,30182,11729,25405,28240,23839,11724,23839,28471,28471,23622,30261,23646,29743,23622,26088,11531,16503,18646,11531,23839,29789,31207,11675,11724,30236,26167,31332,26149,18646,23622,25405,11729,23839,11531,26028,26081,31230,25405,28240,26028,11724,26028,16196,25405,26057,26148],["B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","RNaseL","B6","B6","RNaseL","IFNAR","B6","RNaseL","B6","B6","B6","B6","B6","B6","B6","B6","RNaseL","B6","B6","IFNAR","B6","B6","IFNAR","B6","RNaseL","RNaseL","IFNAR","RNaseL","B6","B6","RNaseL","B6","IFNAR","IFNAR","B6","RNaseL","B6","B6","B6","RNaseL","B6","B6","RNaseL","B6","RNaseL","B6","B6","B6","B6","B6","RNaseL","B6","B6","B6","IFNAR","B6","B6","B6","RNaseL","RNaseL","IFNAR","RNaseL","B6","B6","IFNAR","RNaseL","IFNAR","B6","IFNAR","B6","B6","RNaseL","RNaseL","B6","B6","IFNAR","IFNAR"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","12","12","12","12","9","12","12","12","12","12","9","9","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","9","12","12","12","12","9","9","12","12","9","12","12","12","12","12","12","12","12","12","12","9","12","12","12","9","12","12","12","9","9","9","12","12","9","12","9","12"],[0.0788337,0.0795046,0.0542331,0.040591,0.0465175,0.0376836,0.0441692,0.0719008,0.0421564,0.0518849,0.0788337,0.0450638,0.0555749,0.0743608,0.061166,0.0527794,0.071118,0.0465175,0.0656388,0.0464056,0.0428274,0.0795046,0.0450638,0.0674279,0.040591,0.0465175,0.0441692,0.0450638,0.0542331,0.0518849,0.046182,0.0344337,0.019881,0.0421564,0.0527794,0.064297,0.0788337,0.0719008,0.063626,0.0376836,0.051773,0.0465175,0.0428274,0.0555749,0.0459583,0.0239356,0.0618369,0.0743608,0.0795046,0.0304179,0.061166,0.0527794,0.0618369,0.0304179,0.0451417,0.0441692,0.00894643,0.0118267,0.0450638,0.024056,0.0115479,0.0344337,0.0421564,0.0656388,0.0376836,0.0464056,0.0542331,0.040591,0.019881,0.071118,0.0475238,0.0301436,0.0719008,0.046182,0.0284129,0.0551277,0.0290262,0.0129226,0.0275475,0.0266405,0.0674279,0.0464056,0.0262429,0.051773,0.0248072,0.0386531,0.0428274,0.0170976,0.061166,0.064297,0.0743608,0.036581,0.0365333,0.0450638,0.0129226,0.0465175,0.0101393,0.0344337,0.0275049,0.00290734,0.0674279,0.0275049,0.0170976,0.063626,0.00738017,0.0656388,0.0298552,0.067987,0.0555749,0.0518849,0.0290262,0.0262429,0.0295668,0.0266405,0.0464056,0.064297,0.0155173,0.0192845,0.0421146,0.00503194,0.0771673,0.0392628,0.0398927,0.0155071,0.0192845,0.0300245,0.071118,0.036277,0.0181727],[0.15076,0.164643,0.120316,0.0747712,0.0837827,0.0789116,0.0779374,0.134929,0.0762325,0.0886538,0.15076,0.0638112,0.10278,0.143454,0.118367,0.0757454,0.145645,0.0725792,0.121047,0.0942555,0.0594273,0.164643,0.0638112,0.118855,0.0747712,0.0837827,0.0779374,0.0316621,0.120316,0.0886538,0.0723356,0.0436725,0.0572292,0.0762325,0.0757454,0.105459,0.15076,0.134929,0.104972,0.0789116,0.075989,0.0725792,0.0594273,0.10278,0.105946,0.0340105,0.0652726,0.143454,0.164643,0.0669474,0.118367,0.0757454,0.0652726,0.0669474,0.0127539,0.0779374,0.0404924,0.0566654,0.0316621,0.0831444,0,0.0436725,0.0762325,0.121047,0.0789116,0.0769632,0.120316,0.0747712,0.0572292,0.145645,0.0733099,0.148386,0.134929,0.0723356,0.0787553,0.0867053,0.0529101,0.0286146,0.0965232,0.0566893,0.118855,0.0942555,0.037253,0.075989,0.0965232,0.0941222,0.0594273,0.0334737,0.118367,0.105459,0.143454,0.0874636,0.0127539,0.0638112,0.0286146,0.0837827,0.0221358,0.0436725,0.0270538,0.00706308,0.118855,0.0270538,0.0334737,0.104972,0.0131519,0.121047,0.114771,0.127379,0.10278,0.0886538,0.0529101,0.037253,0.0124735,0.0566893,0.0942555,0.105459,0.0128633,0.0383328,0.112851,0.0085244,0.0432674,0.0266673,0.0382618,0.0156571,0.0383328,0.00811613,0.145645,0.0183204,0.0427391],[0.0151521,0.0176774,0,0,0,0,0,0.0151521,0,0,0.0151521,0,0,0.0157834,0,0,0.0220968,0,0.0145208,0,0,0.0176774,0,0.0214655,0,0,0,0,0,0,0.0170461,0,0,0,0,0.0170461,0.0151521,0.0151521,0.0189401,0,0,0,0,0,0,0,0.0132581,0.0157834,0.0176774,0,0,0,0.0132581,0,0,0,0,0,0,0,0,0,0,0.0145208,0,0,0,0,0,0.0220968,0,0,0.0151521,0.0170461,0,0.0176774,0,0,0,0,0.0214655,0,0,0,0,0,0,0,0,0.0170461,0.0157834,0,0,0,0,0,0,0,0,0,0.0214655,0,0,0.0189401,0,0.0145208,0,0.0366175,0,0,0,0,0,0,0,0.0170461,0,0,0,0,0,0,0,0,0,0,0.0220968,0,0],[0.0452638,0.0557828,0.0368167,0.0259789,0.0250226,0.0293258,0.0313978,0.0494077,0.031079,0.0266164,0.0452638,0.02311,0.0342666,0.0541891,0.0460607,0.0431919,0.0489295,0.02056,0.0497264,0.0379323,0.0293258,0.0557828,0.02311,0.0615205,0.0259789,0.0250226,0.0313978,0.0156192,0.0368167,0.0266164,0.025182,0.0597015,0.0400557,0.031079,0.0431919,0.0548266,0.0452638,0.0494077,0.0393668,0.0293258,0.0280508,0.02056,0.0293258,0.0342666,0.0498858,0.0642939,0.034426,0.0541891,0.0557828,0.0652615,0.0460607,0.0431919,0.034426,0.0652615,0,0.0313978,0.0209071,0.023425,0.0156192,0.0523655,0.0597015,0.0597015,0.031079,0.0497264,0.0293258,0.0304415,0.0368167,0.0259789,0.0400557,0.0489295,0.0382511,0.0559914,0.0494077,0.025182,0.0414222,0.0514796,0.0439636,0.0306768,0.0508493,0.0693648,0.0615205,0.0379323,0.0443544,0.0280508,0.0359944,0.0648471,0.0293258,0.031263,0.0460607,0.0548266,0.0541891,0.0590089,0,0.02311,0.0306768,0.0250226,0.0279413,0.0597015,0,0.0533922,0.0615205,0,0.031263,0.0393668,0.052914,0.0497264,0.0588481,0.06423,0.0342666,0.0266164,0.0439636,0.0443544,0.0165907,0.0693648,0.0379323,0.0548266,0.0318852,0.0359525,0.0859867,0.0627955,0.0279968,0,0,0.0252058,0.0359525,0,0.0489295,0.0152945,0.0328521],[0.00432736,0.00640449,0.00484664,0.00346188,0.00398117,0.00380807,0.00380807,0.00692377,0.00398117,0.00467354,0.00432736,0.00363498,0.0058852,0.00848162,0.00709686,0.00501973,0.00969328,0.00484664,0.00848162,0.00692377,0.00450045,0.00640449,0.00363498,0.0100395,0.00346188,0.00398117,0.00380807,0.00398117,0.00484664,0.00467354,0.00657758,0.00555339,0.00536127,0.00398117,0.00501973,0.0100395,0.00432736,0.00692377,0.0105587,0.00380807,0.00778924,0.00484664,0.00450045,0.0058852,0.0112511,0.00684918,0.00726996,0.00848162,0.00640449,0.00772024,0.00709686,0.00501973,0.00726996,0.00772024,0.00536827,0.00380807,0.00493237,0.00707766,0.00398117,0.0105081,0.00758963,0.00555339,0.00398117,0.00848162,0.00380807,0.0100395,0.00484664,0.00346188,0.00536127,0.00969328,0.0100395,0.0207449,0.00692377,0.00657758,0.0112266,0.0124628,0.00772024,0.00450347,0.0142773,0.0102936,0.0100395,0.00692377,0.00664798,0.00778924,0.0147655,0.0143994,0.00450045,0.00514682,0.00709686,0.0100395,0.00848162,0.0137249,0.0057385,0.00363498,0.00450347,0.00398117,0.00450347,0.00555339,0.00444271,0.00865471,0.0100395,0.00444271,0.00514682,0.0105587,0.0090009,0.00848162,0.0196466,0.0218099,0.0058852,0.00467354,0.00772024,0.00664798,0.00534285,0.0102936,0.00692377,0.0100395,0.00587714,0.00707688,0.021233,0.0119435,0.0146928,0.00758963,0.00777474,0.00493237,0.00707688,0.00592361,0.00969328,0.00721285,0.008542],["MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVS_change","MHVS_change","MHVV_change","MHVS_change","MHVS_change","MHVS_change","MHVS_change","MHVS_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","MHVS_change","MHVS_change","MHVV_change","ns2_change","MHVS_change","MHVV_change","MHVS_change","MHVV_change","MHVS_change","MHVS_change","MHVS_change","MHVV_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVS_change","ns2_change","MHVS_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVS_change","ns2_change","MHVV_change","ns2_change","ns2_change","ns2_change","MHVS_change","MHVV_change","MHVV_change","ns2_change","MHVS_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVS_change","MHVS_change","ns2_change","MHVS_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVS_change","ns2_change","MHVV_change","MHVS_change","ns2_change","MHVV_change","ns2_change","ns2_change","MHVS_change","MHVS_change","ns2_change","ns2_change","MHVV_change","ns2_change","MHVS_change","ns2_change","ns2_change","MHVV_change","MHVV_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVS_change","MHVV_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVS_change","MHVS_change","MHVS_change","ns2_change","ns2_change","MHVS_change","ns2_change","MHVS_change","MHVV_change"],[34.8387931671966,25.7074333787702,24.8246207682023,21.5984378430217,21.0447431282764,20.7222031107621,20.4663779814972,19.4877934997841,19.1482654596513,18.9693037825717,18.2175044368853,17.5547595860225,17.4641473526813,16.9135141635678,16.6787847019668,15.0895366882283,15.0253577736329,14.9751580476371,14.2716839471705,13.6133204886933,13.2047461920475,12.4138846340614,12.3972621582512,11.8387369888939,11.7251320091973,11.6843792151553,11.5988414078523,11.3192353001756,11.189834607068,11.1018414306928,10.9972968781832,10.7504605295144,10.6745603187305,10.588947470216,10.5143902162068,10.5044075900194,10.4599108925534,10.3846314941138,9.94175419322454,9.89572145470015,9.75563726371251,9.59788637076408,9.51624837516249,9.44316250934548,9.41650149763134,9.38709451350381,8.97839878073607,8.76728738142006,8.70995192435307,8.67167341947919,8.61874124612857,8.60442693132897,8.5058102107852,8.45329937929391,8.40898464496011,8.24506902446646,8.20952199449757,8.00623369870833,7.95296357603418,7.91241042624261,7.86619374066983,7.86411543219547,7.8064990944873,7.73894609756155,7.70096137938641,7.66603914537577,7.59633478038394,7.50427513374236,7.4713081042365,7.33683541587574,7.3021465212411,7.15289058997633,7.13595338955511,7.02112327026049,7.01506244098837,6.95712841416054,6.85342683647141,6.81181400120352,6.76060599693219,6.73863371415248,6.71626076995866,6.70236013039139,6.67186122701933,6.64673318577936,6.53707629270936,6.53653624456575,6.51619282516193,6.5037634889116,6.49029289009506,6.40440260969172,6.38900351583778,6.37262202274698,6.36635009148732,6.35766909308992,6.35390043677431,6.28523775673985,6.20439350101144,6.20048294825323,6.19101854498718,6.16914951511951,6.1278450122018,6.0894814201242,6.07423613027073,6.02593122259369,5.87874545878746,5.86284224004376,5.84177414921666,5.84042109317328,5.82250390810848,5.69512617844289,5.69458980549827,5.60365705071315,5.53390044639097,5.50723750680034,5.47856153511743,5.46108869963644,5.42529189367618,5.41662427510428,5.31488720388075,5.25771340059447,5.25204862245454,5.17321661266755,5.13106547614454,5.11028166986662,5.08027548863341,5.06861525319864,5.04777536602677,5.02949596899977,5.00340669632405]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start<\/th>\n      <th>end.x<\/th>\n      <th>cell.x<\/th>\n      <th>time.x<\/th>\n      <th>MHVS<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>virus<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,5,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>top_change_nsp15_graph &lt;- 
+  ggplot(top_change_nsp15, aes(x = start, y = fold_change, fill = virus, width = 100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(cell.x ~ virus) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+top_change_nsp15_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p>This analysis identifies the sites in MHV positive strand RNA with a greater than 5-fold change in signal when comapring virus infection with MHV wt/ns2 mutant MHV to nsp15 mutant MHV infection. The most robust fold-change signal occurs in B6 cells, but there are common sites sites in RNaseL KO cells with 5-fold or greater decrease in signal.</p>
+<p>Again this data suggests that there is overlap between RNaseL and nsp15 cleavage sites.</p>
+</div>
+<div id="top-nsp15-dependent-and-rnasel-independent-sites-fold-change" class="section level2">
+<h2>Top nsp15-dependent and RNaseL-independent sites fold change</h2>
+<p>Same analysis as above focused on RNaseL KO cells.</p>
+<pre class="r"><code>top_change_nsp15RNaseL &lt;- top_change_nsp15 %&gt;% 
+  mutate(MHVS_change = MHVS/nsp15) %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  gather(virus, fold_change, MHVS_change:mock_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  filter(cell.x == &quot;RNaseL&quot;) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+
+datatable(top_change_nsp15RNaseL)</code></pre>
+<div id="htmlwidget-421a1edea6654e789676" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-421a1edea6654e789676">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],[26087,26080,26080,11530,29003,26087,26148,23645,25404,18645,23838,28470,23645,23621,23838,26148,18645,25404,26027,11723,26027],[26088,26081,26081,11531,29004,26088,26149,23646,25405,18646,23839,28471,23646,23622,23839,26149,18646,25405,26028,11724,26028],["RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL"],["12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12","12"],[0.019881,0.0304179,0.0304179,0.00894643,0.024056,0.019881,0.0290262,0.0129226,0.0266405,0.0262429,0.0170976,0.036581,0.0129226,0.0101393,0.0170976,0.0290262,0.0262429,0.0266405,0.0192845,0.0155071,0.0192845],[0.0572292,0.0669474,0.0669474,0.0404924,0.0831444,0.0572292,0.0529101,0.0286146,0.0566893,0.037253,0.0334737,0.0874636,0.0286146,0.0221358,0.0334737,0.0529101,0.037253,0.0566893,0.0383328,0.0156571,0.0383328],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0.0400557,0.0652615,0.0652615,0.0209071,0.0523655,0.0400557,0.0439636,0.0306768,0.0693648,0.0443544,0.031263,0.0590089,0.0306768,0.0279413,0.031263,0.0439636,0.0443544,0.0693648,0.0359525,0.0252058,0.0359525],[0.00536127,0.00772024,0.00772024,0.00493237,0.0105081,0.00536127,0.00772024,0.00450347,0.0102936,0.00664798,0.00514682,0.0137249,0.00450347,0.00450347,0.00514682,0.00772024,0.00664798,0.0102936,0.00707688,0.00493237,0.00707688],["MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change"],[10.6745603187305,8.67167341947919,8.45329937929391,8.20952199449757,7.91241042624261,7.4713081042365,6.85342683647141,6.81181400120352,6.73863371415248,6.67186122701933,6.5037634889116,6.37262202274698,6.35390043677431,6.20439350101144,6.07423613027073,5.69458980549827,5.60365705071315,5.50723750680034,5.41662427510428,5.11028166986662,5.08027548863341]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>start<\/th>\n      <th>end.x<\/th>\n      <th>cell.x<\/th>\n      <th>time.x<\/th>\n      <th>MHVS<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>virus<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,5,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>top_change_nsp15RNaseL_graph &lt;- 
+  ggplot(top_change_nsp15RNaseL, aes(x = start, y = fold_change, fill = virus, width = 100)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(cell.x ~ virus) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  scale_x_continuous(breaks=seq(0, 30000, 5000)) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+top_change_nsp15RNaseL_graph</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p>This analysis focuses in on sites that are nsp15-dependent and RNaseL-independent with a greater than 5-fold decrease in signal upon nsp15 infection.</p>
+<p>This analysis identifies the sites in MHV positive strand RNA that are nsp15-dependent and RNaseL-independent with a greater than 5-fold decrease in signal upon infection with nsp15 mutant MHV virus.</p>
+<div id="overall-discussion-for-identification-of-nsp15-and-rnasel-cleavage-sites-in-mhv-strand-rna" class="section level3">
+<h3>Overall discussion for identification of Nsp15 and RNaseL cleavage sites in MHV + strand RNA</h3>
+<p>The fold change analysis is a useful way to screen potential cleavage sites of interest.</p>
+<p>Looking at the sites that decrease at least 5-fold, there seems to be more overlap within cell type than between. The table containing the top 50 sites for each cell type and time can be used to investigate specific sites of interest. Additionally, adding dinucleotide data to the top 50 sites per cell and time provides another method to screen in and out potential endoU cleavage sites.</p>
+<p>The sites with the greatest decrease in cleavage in B6 cells at 12 hpi are enriched in the dinucleotides “UC”, “UU”, “CC”, “CU”. In this cell line, RNaseL is present so some of these sites are presumably RNaseL dependent.</p>
+<p>In the RNaseL KO cells at 12 hpi, this bias is lost. The sites with the greatest decrease in signal are at the dinucleotides “GA”, “UU”, “GU”, “AG”, “CG”.</p>
+<p>In addition to screening sites of interest, this analysis also helps to identify cleavage sites. The top changing site in B6 cells is also present in the RNaseL cells at the same position, as illustrated in the last graph above. This site is at a “UC” dinucleotide and may be a good candidtae cleavage site to confirm with other methods. This type of analysis can be expanded on to focus in on specific parameters, such as sites only present across cell type, across viral type, in certain regions of the viral RNA, etc…</p>
+<p>The analysis on the top hits from the nsp15-dependent analysis is also revealing. The sites with the greatest nsp15-dependent signal are consistent across cell types and virus infection. There are less significant sites in the IFNAR and RNase L KO cells as compared to B6, which is consistent with some of these sites being acted on by RNase L. Looking at the top nsp15-dependent sites in RNase L cells, there is a clear bias for C and U at the 3´- dinucleotide. Additionally, very few of these sites have signal in the nsp15 mutant infection, suggesting that most of these are specific to nsp15 activity and the abscence of RNase L. The sites with signfiicant signal under infection with nsp15 have “UU”, “CA”, “AU” dinucleotides.</p>
+<p>The fold change analysis for these top sites identifies sites conistent with the visual inspection of the data, and somewhat consistent with the unbiased approach. There are sited detected independnently in both analysis, which suggest that the unbiased approach is pulling out sites that start out with lowwe signal and decrease furthur in the abscence of nsp15, which may be more difficult to interpret than sites with inital higher signal.</p>
+<p>The sites with the greatest fold change are very similar between the B6 and RNase L KO cells. The IFNAR cells have overall less sites with significant fold change, and this is most likely a result of the resisual signal seen at candidate sites even in nsp15 mutant infection.</p>
+</div>
+</div>
+</div>
+<div id="calculating-dinucelotide-frequencies-for-all-cell-types-by-infection-status" class="section level1">
+<h1>Calculating dinucelotide frequencies for all cell types by infection status</h1>
+<p>Performing a dinucleotide frequency analysis will help us to confirm RNaseL signatures as a positive control and investigate a potential sequence preference for nsp15 cleavage.</p>
+<pre class="r"><code># Calculating freuqency of each dinucleotide for the + strand MHV reads 
+
+dinuc &lt;- c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;, &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)
+df_dinuc &lt;- data_frame(dinuc)
+
+frequencies_neg &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;,      &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df &lt;- aggregate(cbind(count) ~ dinuc, data = df, sum)
+  df &lt;- left_join(df_dinuc, df) %&gt;% 
+    replace_na(list(count = 0)) %&gt;% 
+    mutate(freq = count/sum(count)) 
+  df$name &lt;- basename(x)
+  df %&gt;% mutate(name = str_replace(name, &quot;.mhv.neg.dinuc.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;))
+}
+
+neg_freq &lt;- purrr::map_df(data_files_neg, frequencies_neg)</code></pre>
+<div id="plotting-dinucleotide-frequencies-for-all-cell-types-by-type-of-viral-infection" class="section level2">
+<h2>Plotting dinucleotide frequencies for all cell types by type of viral infection</h2>
+<p>These plots show the freuqency of cleavege at 3´-dinucleotides for the MHV (+) sense RNA from highest to lowest frequency. I removed the mock infected sample data from these graphs.</p>
+<pre class="r"><code># Dincleotide freuqnecy plots 
+
+neg_freq_plot &lt;- filter(neg_freq, virus != &quot;mock&quot;) %&gt;%
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,   &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size=8)) +
+  ggtitle(&quot;MHV (+) strand dinucleotide frequency plots&quot;)
+neg_freq_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="rnase-l-substractive-dinucleotide-analysis-of-for-all-cell-types-by-type-of-viral-infection" class="section level2">
+<h2>RNase L substractive dinucleotide analysis of for all cell types by type of viral infection</h2>
+<p>This is similar to the previous coverage substractive analysis. These plots display dinucleotde cleavage frequencies dependent on RNase L by removing the frequencies detected in the abscence of RNase L.</p>
+<pre class="r"><code># Subtractive RNaseL dinucleotide analysis
+
+subtractive_neg &lt;- neg_freq %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(cell, freq) %&gt;% 
+  mutate(B6_RNaseLdep = B6 - RNaseL) %&gt;% 
+  mutate(IFNAR_RNaseLdep = IFNAR - RNaseL) %&gt;% 
+  dplyr::select(dinuc:time, B6_RNaseLdep:IFNAR_RNaseLdep) %&gt;% 
+  gather(cell, freq, B6_RNaseLdep:IFNAR_RNaseLdep)
+
+# Plots 
+
+subneg_freq_plot &lt;- subtractive_neg %&gt;% 
+  filter(virus != &quot;mock&quot;) %&gt;%
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() +
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;MHV (+) strand RNase L subtractive dinucleotide frequency analysis&quot;)
+subneg_freq_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="nsp15-substractive-dinucleotide-analysis-of-for-all-cell-types-by-type-of-viral-infection" class="section level2">
+<h2>Nsp15 substractive dinucleotide analysis of for all cell types by type of viral infection</h2>
+<p>These plots indentify some dinucleotide cleavage events that might be dependent on nsp15 activity and independent of RNase L activity.</p>
+<pre class="r"><code>#Subtractive nsp15 dinucleotide analysis
+
+subdinuc_neg_nsp15 &lt;- neg_freq %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(virus, freq) %&gt;%
+  mutate(MHVS_nsp15dep = MHVS - nsp15) %&gt;% 
+  mutate(MHVV_nsp15dep = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15dep = ns2 - nsp15) %&gt;% 
+  dplyr::select(dinuc:time, MHVS_nsp15dep:ns2_nsp15dep) %&gt;% 
+  gather(virus, freq, MHVS_nsp15dep:ns2_nsp15dep)
+
+# Plots
+
+subnegdinuc_freq_plot &lt;- subdinuc_neg_nsp15 %&gt;% 
+  filter(virus != &quot;mock&quot;) %&gt;% 
+  filter(time != &quot;012&quot;) %&gt;% 
+  filter(time != &quot;09&quot;) %&gt;% 
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,   &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() +
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  scale_y_continuous(limits = c(0.00, 0.10)) +
+  ggtitle(&quot;MHV (+) strand nsp15 subtractive dinucleotide frequency analysis&quot;)
+subnegdinuc_freq_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div id="discussion-of-dinucleotide-analysis" class="section level3">
+<h3>Discussion of dinucleotide analysis</h3>
+<p>The most prominent cleavages are consistent with known RNaseL dinucleotide preferences, UA and UU. You can see this predominantly in the ns2 mutant virus infection greater than in the WT MHV and greater still in the samples with mutant ns15, which is a pattern we have also observed in the coverage analysis.</p>
+<p>The UA cleavage frequency is significantly decreased in the IFNAR and RNaseL samples, Furthermore, we see a prominent signal at UC, which could represent a endoU preference, but does not much in the nsp15 mutant. Furthermore, we note general lack of cleavage at G, and a similar dearth of cleavage at A residues, a pattern that does seem to shift in the RNaseL KO samples.</p>
+<p>The RNaseL substractive analysis reconfirms that preference for RNaseL cleavage at UA and UU and also suggests that UG may be may also be partially RNaseL dependent.</p>
+<p>The nsp15 substractive analysis in the B6 cells reaveals a clear pattern where dinucleotides where the 3´-position is C and U are favored. However, since RNase L is still active in these cells, we know that RNase L cleavage preferences are contributing to some of this observed pattern. In the IFNAR and RNase L KO cells, this pattern is mostly lost.</p>
+</div>
+</div>
+</div>
+<div id="single-nucleotide-analysis-of-nucleotide-enrichement-at-the-3-clevaage-site" class="section level1">
+<h1>Single nucleotide analysis of nucleotide enrichement at the 3´-clevaage site</h1>
+<p>Previous reports have identified that endoU prefers to cleave 3´of U and C with a greater preference for U &gt;&gt; C. This analysis calculates the frequency of capture of each dinucleotide per cell type, virus type, and time point.</p>
+<pre class="r"><code>#Calculating nucleotide freuqnecies for + strand MHV RNA
+
+data_dir_nuc = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/viral_bg/nucleotide_analysis&quot;
+data_files_nuc = list.files(data_dir_nuc, full.names = T)
+
+nuc &lt;- c(&quot;A&quot;,&quot;G&quot;, &quot;C&quot;, &quot;U&quot;)
+df_nuc &lt;- data_frame(nuc)
+
+frequencies_neg &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;, &quot;normalized_count&quot;, &quot;nuc&quot;))
+  df &lt;- aggregate(cbind(count) ~ nuc, data = df, sum)
+  df &lt;- left_join(df_nuc, df) %&gt;% 
+    replace_na(list(count = 0)) %&gt;% 
+    mutate(freq = count/sum(count)) 
+  df$name &lt;- basename(x)
+  df %&gt;% mutate(name = str_replace(name, &quot;.umi.nuc.neg.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;))
+}
+
+neg_nuc_freq &lt;- purrr::map_df(data_files_nuc, frequencies_neg)
+
+# Plots of nucleotide frequency across all cell types and viral infections
+
+neg_nuc_freq_plot &lt;- filter(neg_nuc_freq, virus != &quot;mock&quot;) %&gt;%
+  ggplot(aes(x = nuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;A&quot;,&quot;G&quot;, &quot;C&quot;, &quot;U&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;Single nuceltoide frequency analysis&quot;)
+neg_nuc_freq_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre class="r"><code># Calculating nucleotide freuqnecies with nsp15 subtractive analysis 
+
+subnuc_neg_nsp15 &lt;- neg_nuc_freq %&gt;% 
+  dplyr::select(nuc, freq:time) %&gt;% 
+  spread(virus, freq) %&gt;%
+  mutate(MHVS_nsp15dep = MHVS - nsp15) %&gt;% 
+  mutate(MHVV_nsp15dep = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15dep = ns2 - nsp15) %&gt;% 
+  dplyr::select(nuc:time, MHVS_nsp15dep:ns2_nsp15dep) %&gt;% 
+  gather(virus, freq, MHVS_nsp15dep:ns2_nsp15dep)
+
+# Plotting single nucleotide nsp15 substractive analysis 
+
+subneg_nuc_nsp15_plot &lt;- filter(subnuc_neg_nsp15, virus != &quot;mock&quot;) %&gt;% 
+  filter(time != &quot;012&quot;) %&gt;% 
+  filter(time != &quot;09&quot;) %&gt;% 
+  ggplot(aes(x = nuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;A&quot;,&quot;G&quot;, &quot;C&quot;, &quot;U&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+   ggtitle(&quot;nsp15 substractive single nuceltoide frequency analysis&quot;)
+subneg_nuc_nsp15_plot</code></pre>
+<p><img src="MHV_endoU_analysis_final_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<div id="discussion-of-single-nucleotide-analysis" class="section level3">
+<h3>Discussion of single nucleotide analysis:</h3>
+<p>This analysis reveals a bias for U and C across all cell types and viral infection conditions. G is counted at the lowest frequency consistently. However, the U bias does not change significantly in the RNase L KO or the nsp15 mutant virus infection. This suggests that there is increased cleavage at U’s indepdnent of RNase L or nsp15 or may be a result of overpresentation of U’s in the MHV (+) RNA as compared to the other nucelotides. The capture of C’s does seem to increase in RNase L KO cells and decrease minimally in the nsp15 mutant infection.</p>
+<p>The nsp15 substractive analysis reveals that in B6 cells, cleavge at C and U is nsp15 dependent. However, this clear signal decreases sigficantly in RNase L KO cells, but there does seem to be some residual U and C signal in the Volker WT virus and Ns2 mutant virus, with the most signal at C residues. It may be useful to perform a motif analysis to determine if a broader sequence context directs nsp15 cleavage.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

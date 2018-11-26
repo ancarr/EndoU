@@ -1,16 +1,14 @@
 name: "EndoU Collaboration Data Analysis"
 output_dir: "."
-output:
-  html_document:
-    theme: cosmo
-    highlight: textmate
+#output:
+  #html_document:
+    #theme: cosmo
+    #highlight: textmate
 navbar:
   title: "EndoU Collaboration Data Analysis"
   left:
     - text: "Home"
       href: index.html
-    - text: "Executive_Summary"
-      href: Executive_Summary.html
     - text: "MHV RNA analysis exp.1"
       href: MHV_endoU_analysis_final.html
     - text: "MHV RNA analysis exp.2"

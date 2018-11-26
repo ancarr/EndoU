@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Rachel Ancar" />
+
+<meta name="date" content="2018-11-15" />
+
+<title>Analysis of rRNA to Detect EndoU Cleavage Sites from experiment 2</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.4/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">EndoU Collaboration Data Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="MHV_endoU_analysis_final.html">MHV RNA analysis exp.1</a>
+</li>
+<li>
+  <a href="MHV_endoU_analysis_experiment2.html">MHV RNA analysis exp.2</a>
+</li>
+<li>
+  <a href="Alignments.html">Alignments</a>
+</li>
+<li>
+  <a href="rRNA_endoU_analysis_final.html">rRNA analysis exp.1</a>
+</li>
+<li>
+  <a href="rRNA_endoU_analysis_exp2_final.html">rRNA analysis exp.2</a>
+</li>
+<li>
+  <a href="mRNA_endoU_analysis.html">mRNA analysis exp.1</a>
+</li>
+<li>
+  <a href="mRNA_endoU_exp2_analysis.html">mRNA analysis exp.2</a>
+</li>
+<li>
+  <a href="U6_23-Cyclic_Phosphate_Analysis.html">U6 RNA analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Analysis of rRNA to Detect EndoU Cleavage Sites from experiment 2</h1>
+<h4 class="author"><em>Rachel Ancar</em></h4>
+<h4 class="date"><em>11/15/2018</em></h4>
+
+</div>
+
+
+<p>Prior to this analysis, 2´3´-cyclic phosphate RNA-sequencing libraries were prepared from mouse macrophages: B6 (WT) and RNaseL KO. These cells were either mock infected or infected with WT MHV virus (from Volker), MHV mutated to inactivate ns2 (phosphodiesterase) activity, or MHV mutated to inactivate nsp15 (endoribonuclease) activity for 9 and 12 hours.</p>
+<p>These libraries were processed to generate bedgraph files containing sites of 3´-cleavage and the associated dinucleotide for 18S, 28S, 5.8s and 5s rRNA.</p>
+<pre class="r"><code>library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(cowplot)
+library(RColorBrewer)
+library(purrr)
+library(shiny)
+library(DT)</code></pre>
+<div id="coverage-plots-for-18s-28s-and-5s-rrna-by-cell-type-and-type-of-viral-infection" class="section level1">
+<h1>Coverage plots for 18S, 28S, and 5s rRNA by cell type and type of viral infection</h1>
+<p>These plots display coverage across the entire 18S, 28S, and 5s rRNA sequence. Counts are normalized by library size.</p>
+<div id="s-rrna" class="section level2">
+<h2>18s rRNA</h2>
+<pre class="r"><code>sample_info_table &lt;- read_tsv(&quot;sample_info_exp2.txt&quot;, col_names = c(&quot;cell type&quot;, &quot;virus type&quot;, &quot;time&quot;))
+datatable(sample_info_table)</code></pre>
+<div id="htmlwidget-56bc7ce911e2dc9da02e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-56bc7ce911e2dc9da02e">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["B6","B6","B6","B6","RnaseL","RnaseL","RnaseL","RnaseL","B6","B6","B6","B6","RnaseL","RnaseL","RnaseL","RnaseL"],["Mock","MHV wt Volker","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","NS2susan mut 3","nsp15HA Eveline P1","Mock","MHV wt Volker","NS2susan mut 3","nsp15HA Eveline P1"],[12,12,12,12,12,12,12,12,9,9,9,9,9,9,9,9]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>cell type<\/th>\n      <th>virus type<\/th>\n      <th>time<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>#18S rRNA coverage plots
+
+data_dir_18S = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/18S/exp2/&quot;
+data_files_18S = list.files(data_dir_18S, full.names = T)
+
+read_file &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;, &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df$name &lt;- basename(x)
+  df
+}
+
+table_18S &lt;- purrr::map_df(data_files_18S, read_file) %&gt;%
+  mutate(name = str_replace(name, &quot;.r18s.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;), sep = &#39;_&#39;)
+
+plot_18S &lt;- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time, width = 5)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) +
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) + 
+    scale_x_continuous(breaks=seq(0, 2000, 250)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts (counts/total reads)&quot;) +
+    ggtitle(&quot;18S rRNA coverage plots&quot;)
+plot_18S</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code># Previously documented RNaseL cleavage site 542 and 771 in 18S rRNA
+
+plot_18S_542 &lt;- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts (counts/total reads)&quot;) +
+    xlim(530, 560) +
+    ggtitle(&quot;RNaseL cleavage site 542 in 18S rRNA&quot;)
+plot_18S_542</code></pre>
+<pre><code>## Warning: Removed 26493 rows containing missing values (geom_bar).</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<pre class="r"><code>plot_18S_771 &lt;- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts (counts/total reads)&quot;) +
+    xlim(760, 780) +
+    ggtitle(&quot;RNaseL cleavage site 771 in 18S rRNA&quot;)
+plot_18S_771</code></pre>
+<pre><code>## Warning: Removed 26643 rows containing missing values (geom_bar).</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
+</div>
+<div id="s-rrna-1" class="section level2">
+<h2>28s rRNA</h2>
+<pre class="r"><code>#28S rRNA coverage plots
+
+data_files_28S = list.files(&quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/28S/exp2/&quot; , full.names = T)
+
+read_file &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;, &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df$name &lt;- basename(x)
+  df
+}
+
+table_28S &lt;- purrr::map_df(data_files_28S, read_file) %&gt;%
+  mutate(name = str_replace(name, &quot;.r28s.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;), sep = &#39;_&#39;)
+
+plot_28S &lt;- ggplot(table_28S, aes(x = end, y = normalized_count, fill = time, width = 10)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) +
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts (counts/total reads)&quot;) +
+    ggtitle(&quot;28S rRNA coverage plots&quot;)
+plot_28S</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="s-rrna-2" class="section level2">
+<h2>5.8s rRNA</h2>
+<pre class="r"><code>data_dir_5.8S = &quot;~/Dropbox (Hesselberth Lab)/Rachel_data/EndoU_project/5.8S/exp2/&quot;
+data_files_5.8S = list.files(data_dir_5.8S, full.names = T)
+
+read_file &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;, &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df$name &lt;- basename(x)
+  df
+}
+
+table_5.8S &lt;- purrr::map_df(data_files_5.8S, read_file) %&gt;%
+  mutate(name = str_replace(name, &quot;.r5.8s.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;), sep = &#39;_&#39;)
+
+plot_5.8S &lt;- ggplot(table_5.8S, aes(x = end, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette=&quot;Set1&quot;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts (counts/total reads)&quot;) +
+    ggtitle(&quot;5.8S rRNA coverage plots&quot;)
+plot_5.8S</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
+<div id="rnase-l-substractive-coverage-analysis-of-rrna-reads-for-all-cell-types-by-type-of-viral-infection" class="section level1">
+<h1>RNase L substractive coverage analysis of rRNA reads for all cell types by type of viral infection</h1>
+<p>The normalized counts detected in RNase L KO cells for each type of viral infection were subtracted from the normalized counts detected in WT B6 cells. This substractive analysis will emphasize RNase L dependent cleavage events by reporting signals that occur only in the presence of RNase L.</p>
+<pre class="r"><code>#18S rRNA RNase L substractive analysis 
+
+subtractive_18S &lt;- table_18S %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count) 
+subtractive_18S[is.na(subtractive_18S)] &lt;- 0
+
+subtractive_18S &lt;- subtractive_18S %&gt;% 
+  mutate(B6_RNaseL = B6 - RNaseL) %&gt;% 
+  dplyr::select(start:end, virus:time, B6_RNaseL) %&gt;% 
+  gather(cell, normalized_count, B6_RNaseL)
+                                      
+#18s rRNA RNase L dependent cleavage plots
+
+sub18S_plot &lt;- ggplot(subtractive_18S, aes(x = end, y = normalized_count, fill = time, width = 1)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    #geom_line(aes(color = time)) + 
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts (counts/total reads)&quot;) + 
+    scale_y_continuous(limits = c(0 , 0.2)) +
+    scale_x_continuous(breaks=seq(0, 2000, 250)) + 
+    ggtitle(&quot;18s rRNA RNase L dependent cleavage plots&quot;)
+sub18S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>#28S rRNA RNase L substractive analysis 
+
+subtractive_28S &lt;- table_28S %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count) 
+subtractive_28S[is.na(subtractive_28S)] &lt;- 0
+
+subtractive_28S &lt;- subtractive_28S %&gt;% 
+  mutate(B6_RNaseL = B6 - RNaseL) %&gt;% 
+  dplyr::select(start:end, virus:time, B6_RNaseL) %&gt;%      
+  gather(cell, normalized_count, B6_RNaseL)
+
+#28s rRNA RNase L dependent cleavage plots
+                                      
+sub28S_plot &lt;- ggplot(subtractive_28S, aes(x = end, y = normalized_count, fill = time, width = 5)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +                  scale_y_continuous(limits = c(0 , 0.2)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
+   ggtitle(&quot;28s rRNA RNase L dependent cleavage plots&quot;)
+sub28S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>#5.8S rRNA RNase L substractive analysis 
+
+subtractive_5.8S &lt;- table_5.8S %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count) 
+subtractive_5.8S[is.na(subtractive_5.8S)] &lt;- 0
+
+subtractive_5.8S &lt;- subtractive_5.8S %&gt;% 
+  mutate(B6_RNaseL = B6 - RNaseL) %&gt;% 
+  dplyr::select(start:end, virus:time, B6_RNaseL) %&gt;%    
+  gather(cell, normalized_count, B6_RNaseL)
+
+#5s rRNA RNase L dependent cleavage plots
+                                      
+sub5.8S_plot &lt;- ggplot(subtractive_5.8S, aes(x = end, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +              
+    scale_y_continuous(limits = c(0 , 0.03)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
+    ggtitle(&quot;5.8s rRNA RNase L dependent cleavage plots&quot;)
+sub5.8S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+</div>
+<div id="endou-mutant-nsp15-substractive-coverage-analysis-of-mhv-strand-for-all-cell-types-by-type-of-viral-infection" class="section level1">
+<h1>EndoU mutant (nsp15) substractive coverage analysis of MHV (+) strand for all cell types by type of viral infection</h1>
+<p>This is very similar to the analysis above, expect it will substract signal occuring in the abscence of nsp15 actviity, which will emphasize sites specific to nsp15 cleavage actviity.</p>
+<pre class="r"><code>#18S rRNA EndoU substractive analysis 
+
+subtractive_nsp15_18S &lt;- table_18S %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count) 
+subtractive_nsp15_18S[is.na(subtractive_nsp15_18S)] &lt;- 0
+
+subtractive_nsp15_18S &lt;- subtractive_nsp15_18S %&gt;%       
+  mutate(MHVV_nsp15 = MHVV - nsp15) %&gt;%
+  mutate(ns2_nsp15 = ns2 - nsp15) %&gt;%
+  mutate(mock_nsp15 = mock - nsp15) %&gt;%
+  dplyr::select(start:end, cell:time, MHVV_nsp15:mock_nsp15) %&gt;% 
+  gather(virus, normalized_count, MHVV_nsp15:mock_nsp15)
+                                      
+subnsp15_18S_plot &lt;- ggplot(subtractive_nsp15_18S, aes(x = end, y = normalized_count, fill = time, width = 5)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +  
+    scale_y_continuous(limits = c(0.0, 0.2)) +
+    scale_x_continuous(breaks=seq(0, 2000, 250)) + 
+    ggtitle(&quot;18S rRNA EndoU substractive analysis &quot;)
+subnsp15_18S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>#28S
+
+subtractive_nsp15_28S &lt;- table_28S %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count) 
+subtractive_nsp15_28S[is.na(subtractive_nsp15_28S)] &lt;- 0
+
+subtractive_nsp15_28S &lt;- subtractive_nsp15_28S %&gt;%   
+  mutate(MHVV_nsp15 = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15 = ns2 - nsp15) %&gt;% mutate(mock_nsp15 = mock - nsp15) %&gt;% 
+  dplyr::select(start:end, cell:time, MHVV_nsp15:mock_nsp15) %&gt;%    
+  gather(virus, normalized_count, MHVV_nsp15:mock_nsp15)
+                                      
+subnsp15_28S_plot &lt;- ggplot(subtractive_nsp15_28S, aes(x = end, y = normalized_count, fill = time, width = 10)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +     
+    scale_y_continuous(limits = c(0.0, 0.2)) +
+    scale_x_continuous(breaks=seq(0, 5000, 500)) + 
+    ggtitle(&quot;28S rRNA EndoU substractive analysis &quot;)
+subnsp15_28S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre class="r"><code>#5.8S
+
+subtractive_nsp15_5.8S &lt;- table_5.8S %&gt;% 
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count) 
+subtractive_nsp15_5.8S[is.na(subtractive_nsp15_5.8S)] &lt;- 0
+
+subtractive_nsp15_5.8S &lt;- subtractive_nsp15_5.8S %&gt;% 
+  mutate(MHVV_nsp15 = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15 = ns2 - nsp15) %&gt;% 
+  mutate(mock_nsp15 = mock - nsp15) %&gt;% 
+  dplyr::select(start:end, cell:time, MHVV_nsp15:mock_nsp15) %&gt;%
+  gather(virus, normalized_count, MHVV_nsp15:mock_nsp15)
+                                      
+subnsp15_5.8S_plot &lt;- ggplot(subtractive_nsp15_5.8S, aes(x = end, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +                   scale_y_continuous(limits = c(0.0, 0.02)) +
+    scale_x_continuous(breaks=seq(0, 200, 20)) + 
+    ggtitle(&quot;5.8S rRNA EndoU substractive analysis &quot;)
+subnsp15_5.8S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<div id="fold-change-for-rnasel-acitivity-by-rrna" class="section level2">
+<h2>Fold-change for RNaseL acitivity by rRNA</h2>
+<p>In this analysis, all positions in the MHV positive strand RNA with more than 20 reads were queried to identify sites with equal to or greater than a 5-fold decrease in signal comparing B6 WT cells and IFNAR KO cells to RNaseL KO cells (B6/RNaseL and IFNAR/RNaseL).</p>
+<p>This analysis is independent of viral infection and just asks which sites change the most when RNaseL is absent.</p>
+</div>
+<div id="s" class="section level2">
+<h2>18s</h2>
+<pre class="r"><code>change_RNaseL_18S &lt;- table_18S %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count)
+change_RNaseL_18S[is.na(change_RNaseL_18S)] &lt;- 0
+
+change_RNaseL_18S &lt;- change_RNaseL_18S %&gt;% 
+  mutate(B6_change = B6/RNaseL) %&gt;% 
+  gather(cell_comp, fold_change, B6_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_RNaseL_18S)</code></pre>
+<div id="htmlwidget-5b59c1b1a55d5f630b7d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5b59c1b1a55d5f630b7d">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"],["r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|"],[771,1864,638,824,578,541,633,776,1361,640,375,770,361,348,775,801,511,785,393,317,824,801],[772,1865,639,825,579,542,634,777,1362,641,376,771,362,349,776,802,512,786,394,318,825,802],["ns2","ns2","ns2","mock","ns2","ns2","ns2","nsp15","ns2","ns2","ns2","ns2","ns2","nsp15","nsp15","mock","ns2","nsp15","nsp15","ns2","nsp15","nsp15"],["12","9","9","9","9","12","9","9","9","9","9","12","9","9","9","9","9","9","9","9","9","9"],[0.202332,0.067448,0.067448,0.020833,0.0561459,0.0422075,0.0697267,0.0143364,0.0476694,0.0474871,0.0899611,0.0657617,0.0489454,0.0164375,0.0131005,0.0387067,0.0382813,0.0359647,0.0139657,0.0607032,0.0205159,0.0354703],[0.0159756,0.00625256,0.00812833,0.00263639,0.0078157,0.00609668,0.0103167,0.0021857,0.00812833,0.00812833,0.0156314,0.0117418,0.00875358,0.00295069,0.00240427,0.00725007,0.00719044,0.00677566,0.00273212,0.0118799,0.00404354,0.00699423],["B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change"],[12.66506422294,10.7872615376742,8.29789144879699,7.90209339285917,7.18373274306844,6.92303023940899,6.75862436631869,6.5591801253603,5.86459949337687,5.8421717622193,5.75515308929462,5.600648963532,5.59147228905202,5.57073091378627,5.44884725925125,5.33880362534431,5.32391619984312,5.30792572236505,5.11167152248071,5.10973998097627,5.07374726106333,5.07136596880572]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>B6<\/th>\n      <th>RNaseL<\/th>\n      <th>cell_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_RNaseL_18S_graph &lt;- change_RNaseL_18S %&gt;% 
+  ggplot(aes(x = start, y = fold_change, fill = cell_comp, width = 1)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(virus ~ cell_comp) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_RNaseL_18S_graph</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+</div>
+<div id="s-1" class="section level2">
+<h2>28s</h2>
+<pre class="r"><code>change_RNaseL_28S &lt;- table_28S %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count)
+change_RNaseL_28S[is.na(change_RNaseL_28S)] &lt;- 0
+
+change_RNaseL_28S &lt;- change_RNaseL_28S %&gt;% 
+  mutate(B6_change = B6/RNaseL) %&gt;% 
+  gather(cell_comp, fold_change, B6_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_RNaseL_28S)</code></pre>
+<div id="htmlwidget-94b9bb7d339bdce5a0e6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-94b9bb7d339bdce5a0e6">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17"],["r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|"],[3680,4239,3585,3503,3506,3501,4285,2376,4266,559,255,4252,3590,3487,3456,1421,2595],[3681,4240,3586,3504,3507,3502,4286,2377,4267,560,256,4253,3591,3488,3457,1422,2596],["ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","ns2","nsp15","ns2","ns2","ns2","ns2","ns2","ns2","ns2"],["12","9","9","9","9","9","9","12","9","9","12","9","9","9","9","9","9"],[0.0213598,0.0716407,0.081758,0.0489454,0.0612501,0.0504037,0.061797,0.0141911,0.0501303,0.0148308,0.00826593,0.113112,0.0483074,0.0438412,0.0355469,0.0427475,0.0411068],[0.00124192,0.0078157,0.0106294,0.00656519,0.00906621,0.0078157,0.00969147,0.00225803,0.00812833,0.00251355,0.00146772,0.0203208,0.00875358,0.00812833,0.00687782,0.00844096,0.00812833],["B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change","B6_change"],[17.1990144292708,9.16625510191026,7.69168532560634,7.45529070750428,6.75586601236901,6.44903207646148,6.37643205829456,6.28472606652702,6.16735541002887,5.90034015635257,5.63181669528248,5.56631628676036,5.51858782349622,5.39362944171804,5.16833822344871,5.06429363484722,5.05722577700462]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>B6<\/th>\n      <th>RNaseL<\/th>\n      <th>cell_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_RNaseL_28S_graph &lt;- change_RNaseL_28S %&gt;% 
+  ggplot(aes(x = start, y = fold_change, fill = cell_comp, width = 15)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(virus ~ cell_comp) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_RNaseL_28S_graph</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+</div>
+<div id="s-2" class="section level2">
+<h2>5.8s</h2>
+<pre class="r"><code>change_RNaseL_5.8S &lt;- table_5.8S %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(cell, normalized_count)
+change_RNaseL_5.8S[is.na(change_RNaseL_5.8S)] &lt;- 0
+
+change_RNaseL_5.8S &lt;- change_RNaseL_5.8S %&gt;% 
+  mutate(B6_change = B6/RNaseL) %&gt;% 
+  gather(cell_comp, fold_change, B6_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_RNaseL_5.8S)</code></pre>
+<div id="htmlwidget-dd71d3f5d3fe2478c5d5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dd71d3f5d3fe2478c5d5">{"x":{"filter":"none","data":[[],[],[],[],[],[],[],[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>virus<\/th>\n      <th>time<\/th>\n      <th>B6<\/th>\n      <th>RNaseL<\/th>\n      <th>cell_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="fold-change-for-nsp15-activity-by-rrna" class="section level1">
+<h1>Fold-change for Nsp15 activity by rRNA</h1>
+<p>In this analysis, all positions in the MHV positive strand RNA with more than 20 reads were queried to identify sites with equal to or greater than a 5-fold decrease in signal comparing cells infected with WT/ns2 mutant virus to nsp15 mutant virus (MHV WT/nsp15 and ns2/nsp15).</p>
+<p>This analysis is independent of cell type and just asks which sites change the most when nsp15 activity is lost. Thus, these sites are not independent of RNaseL actviity.</p>
+<div id="s-3" class="section level2">
+<h2>18s</h2>
+<pre class="r"><code>change_nsp15_18S &lt;- table_18S %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+change_nsp15_18S[is.na(change_nsp15_18S)] &lt;- 0
+
+change_nsp15_18S &lt;- change_nsp15_18S %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVV_change:ns2_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15_18S)</code></pre>
+<div id="htmlwidget-0f5c57d468dbc82a8ce4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0f5c57d468dbc82a8ce4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45"],["r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|"],[1867,541,1863,1867,776,775,1720,779,635,829,784,824,766,630,613,785,599,1864,837,604,1711,631,622,389,1113,597,1299,348,777,780,1342,624,648,347,612,634,772,863,1714,801,636,387,1314,651,1361],[1868,542,1864,1868,777,776,1721,780,636,830,785,825,767,631,614,786,600,1865,838,605,1712,632,623,390,1114,598,1300,349,778,781,1343,625,649,348,613,635,773,864,1715,802,637,388,1315,652,1362],["B6","RNaseL","B6","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","B6","RNaseL","RNaseL","RNaseL","RNaseL","B6","B6","RNaseL","B6","RNaseL","RNaseL","B6","RNaseL","B6","B6","RNaseL","RNaseL","B6","B6","RNaseL","RNaseL","RNaseL","B6","B6","B6","RNaseL","B6","B6","RNaseL","B6","RNaseL","RNaseL","B6","RNaseL","B6","B6","B6"],["9","9","9","9","9","9","9","9","12","9","9","9","9","12","12","9","12","9","9","12","9","12","12","9","9","12","9","9","9","9","9","12","12","9","12","12","9","12","9","9","12","9","9","12","9"],[0.0129665,0.0115138,0.00526314,0.0339303,0.0195499,0.0203488,0.0466659,0.0225106,0,0.0167772,0.0165422,0.0262702,0.0223226,0,0,0.0422014,0,0.0571458,0.0132526,0,0.0222286,0,0,0.0138635,0.0345413,0,0.0117703,0.0165892,0.0165892,0.0243904,0.0107655,0,0.00436593,0.0153673,0,0,0.0212417,0,0.0210067,0.0358571,0,0.0137225,0.0106698,0.00358977,0.0106698],[0.0095879,0.0128524,0.0034327,0.00307579,0.00845842,0.00867811,0.0937017,0.00933721,0.0120227,0,0.00516293,0.00263639,0.00461368,0.0228653,0.0109901,0.0136213,0.0142355,0.00911751,0.00274624,0.0104738,0.0324056,0.0193986,0.0137929,0.00692052,0.0654703,0.0134979,0.00935116,0.00670082,0.00549248,0.0104357,0.0117185,0.0233078,0.0416738,0.00571218,0.0161532,0.0180709,0.0113145,0.0108426,0.0342731,0.00725007,0.0233078,0.00670082,0.00911442,0.0283972,0.014441],[0.0576043,0.273237,0.0250651,0,0,0,0.581801,0,0.00256024,0,0,0,0,0.00526679,0.001463,0,0,0.00625256,0,0,0.161003,0.00482789,0.00197505,0,0.303562,0,0.0521355,0,0,0,0.033724,0.00460844,0.0139716,0,0.0021945,0.00358434,0,0.00592514,0.135055,0,0.00585199,0,0.0223308,0.0130207,0.0476694],[0.00568514,0.0269934,0.00259539,0.00371568,0.0021857,0.00240427,0.0709259,0.00327855,0.00175362,0.00251355,0.00251355,0.00404354,0.00349711,0.00358694,0.00175362,0.00677566,0.00231158,0.00928921,0.0021857,0.00175362,0.0271026,0.00334781,0.00239129,0.00240427,0.0536589,0.00239129,0.00926925,0.00295069,0.00295069,0.00437139,0.00605591,0.00422462,0.00757243,0.00284141,0.00302897,0.00342752,0.00404354,0.00207245,0.0259005,0.00699423,0.00462317,0.00273212,0.00444924,0.0056594,0.00951643],["ns2_change","ns2_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","mock_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","mock_change","mock_change","MHVV_change","mock_change","MHVV_change","MHVV_change","mock_change","ns2_change","mock_change","mock_change","MHVV_change","ns2_change","mock_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","mock_change","mock_change","MHVV_change","mock_change","mock_change","MHVV_change","mock_change","ns2_change","MHVV_change","mock_change","MHVV_change","ns2_change","mock_change","ns2_change"],[10.1324329743859,10.1223632443486,9.65754665002177,9.13165288722387,8.94445715331473,8.46360849654989,8.20294137966526,6.86602308947553,6.8559323000422,6.67470310914842,6.58120984265282,6.49683198385573,6.38315637769473,6.37459784663251,6.26709321289675,6.22838217974338,6.15834191332335,6.15184714308321,6.06332067529853,5.97267366932403,5.9405001734151,5.79441485627918,5.76797460784765,5.76619930373877,5.65725350314673,5.64461023129775,5.62456509426329,5.62214261748947,5.62214261748947,5.57955249931944,5.56877496528185,5.51713526897094,5.5033588953612,5.40833600219609,5.33290194356497,5.27229600410793,5.25324344510009,5.23177881251659,5.21437810080887,5.1266686969116,5.04151913081284,5.02265639869405,5.01901448337244,5.01770505707319,5.00916835409917]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_nsp15_18S_graph &lt;- change_nsp15_18S %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = viral_comp, width=5)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(viral_comp ~ cell) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_nsp15_18S_graph</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<pre class="r"><code>interest_18S &lt;- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    xlim(538, 546)
+interest_18S</code></pre>
+<pre><code>## Warning: Removed 26812 rows containing missing values (geom_bar).</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+</div>
+<div id="s-4" class="section level2">
+<h2>28s</h2>
+<pre class="r"><code>change_nsp15_28S &lt;- table_28S %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+change_nsp15_28S[is.na(change_nsp15_28S)] &lt;- 0
+
+change_nsp15_28S &lt;- change_nsp15_28S %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVV_change:ns2_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15_28S)</code></pre>
+<div id="htmlwidget-e0e49fb1f663eaef48e7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e0e49fb1f663eaef48e7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37"],["r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|"],[569,2514,2240,2685,515,569,3418,500,1566,568,532,1567,559,563,2379,314,561,2607,3613,1518,532,250,248,2394,2393,2410,249,2606,2395,540,2393,1517,2364,2611,2400,565,2411],[570,2515,2241,2686,516,570,3419,501,1567,569,533,1568,560,564,2380,315,562,2608,3614,1519,533,251,249,2395,2394,2411,250,2607,2396,541,2394,1518,2365,2612,2401,566,2412],["B6","RNaseL","RNaseL","RNaseL","RNaseL","B6","RNaseL","RNaseL","RNaseL","B6","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","B6","RNaseL","RNaseL","B6","RNaseL","RNaseL","B6","RNaseL","B6","RNaseL","B6","B6","RNaseL","B6","RNaseL","RNaseL","B6","B6","RNaseL","B6"],["12","9","9","9","9","12","9","9","9","12","9","9","9","9","9","9","9","12","9","9","12","9","9","12","9","12","9","12","12","9","12","9","9","12","12","9","12"],[0.0500627,0.00723722,0.0109028,0.00380659,0.0104799,0.0500627,0.00822411,0.00286669,0.00953997,0.00223148,0.0251423,0.0103859,0.0189389,0.027774,0.0146624,0.0229335,0.0157433,0,0.0103859,0.0359511,0.00785868,0.0172001,0.0130176,0.00455997,0.0154143,0.00252254,0.0164952,0,0.00242552,0.0135815,0.00650039,0.0402276,0.0118897,0,0.0023285,0.0133935,0],[0.00265532,0.00823872,0.0175759,0.00538263,0.00692052,0.00265532,0.0117539,0.00417428,0.0198828,0.00272908,0.00725007,0,0.00571218,0.00582203,0,0.0141706,0.00538263,0.0150468,0.0166971,0.0760159,0.0114326,0.00406443,0.00582203,0.00184397,0.00362504,0.00383546,0.00549248,0.0133504,0.00280284,0.00494323,0.00464681,0.0778833,0.00307579,0.00980994,0.00228653,0.00417428,0.00368795],[0.136059,0.0887863,0.225405,0.0503331,0.0325133,0.136059,0.119737,0.0528341,0.127552,0.0192384,0,0.0900369,0,0,0,0.0128177,0,0.00563254,0.0640887,0.352332,0.0335026,0,0,0.0156541,0,0.0113382,0,0.00526679,0.0112651,0,0.0253098,0.293245,0,0.00526679,0.00936318,0,0.013167],[0.00502172,0.00622924,0.0168299,0.00404354,0.00262284,0.00502172,0.0121306,0.00535496,0.0132235,0.00207245,0.00284141,0.0113656,0.00251355,0.00393425,0.0021857,0.00349711,0.00240427,0.00231158,0.0102728,0.0567188,0.00542027,0.00284141,0.0021857,0.00263042,0.00262284,0.00199274,0.00295069,0.00239129,0.00207245,0.00251355,0.00478259,0.055626,0.00229498,0.00191304,0.00183333,0.00262284,0.00263042],["ns2_change","ns2_change","ns2_change","ns2_change","ns2_change","MHVV_change","ns2_change","ns2_change","ns2_change","ns2_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","mock_change","ns2_change","ns2_change","ns2_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVV_change","mock_change","ns2_change","MHVV_change","ns2_change","ns2_change","MHVV_change","mock_change","ns2_change","MHVV_change","ns2_change"],[27.0941032156313,14.2531512672493,13.3931277072353,12.4477809048507,12.3962193652682,9.96923364902862,9.87065767563022,9.86638555656812,9.64585775324233,9.28292600545248,8.84852942729138,7.92187829942986,7.53472180780172,7.05954120861664,6.70833142700279,6.55784347647057,6.54805824637,6.50931397572223,6.23867884121174,6.21190857352412,6.1809836041378,6.05336787017713,5.95580363270348,5.9511788991872,5.87695017614494,5.68975380631693,5.5902856619977,5.5829280430228,5.43564380322806,5.4033140379145,5.29206977809095,5.2717254521267,5.18074231583718,5.12793250533183,5.10719837672432,5.10648762410212,5.00566449464344]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_nsp15_28S_graph &lt;- change_nsp15_28S %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = viral_comp, width=10)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(viral_comp ~ cell) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_nsp15_28S_graph</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<pre class="r"><code>interest_28S &lt;- ggplot(table_28S, aes(x = start, y = normalized_count, fill = time)) +
+    geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) +
+    scale_fill_brewer(palette = &#39;Set1&#39;) + 
+    theme_cowplot() +
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    labs(x=&quot;Position&quot;, y=&quot;Normalized counts&quot;) +
+    xlim(565, 573)
+interest_28S</code></pre>
+<pre><code>## Warning: Removed 47831 rows containing missing values (geom_bar).</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
+</div>
+</div>
+<div id="s-5" class="section level1">
+<h1>5.8S</h1>
+<pre class="r"><code>change_nsp15_5.8S &lt;- table_5.8S %&gt;% 
+  filter(count &gt;= 20) %&gt;%
+  dplyr::select(-count, -dinuc) %&gt;% 
+  spread(virus, normalized_count)
+change_nsp15_5.8S[is.na(change_nsp15_5.8S)] &lt;- 0
+
+change_nsp15_5.8S &lt;- change_nsp15_5.8S %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  #mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVV_change:mock_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15_5.8S)</code></pre>
+<div id="htmlwidget-3af86f027424323d881d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3af86f027424323d881d">{"x":{"filter":"none","data":[[],[],[],[],[],[],[],[],[],[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="fold-change-for-nsp15-muant-and-rnasel-ko-reads" class="section level2">
+<h2>Fold-change for Nsp15 muant and RNaseL KO reads</h2>
+<p>Same analysis as above focused in RNaseL KO cells.</p>
+<pre class="r"><code>#18s 
+
+change_nsp15RNaseL_18S &lt;- change_nsp15_18S %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVV_change:ns2_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  filter(cell == &quot;RNaseL&quot;) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15RNaseL_18S)</code></pre>
+<div id="htmlwidget-9994d6e255adda7653ef" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9994d6e255adda7653ef">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],["r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|","r18s|gi|374088232|ref|NR_003278.3|"],[541,1867,776,775,1720,779,829,784,824,766,785,1864,837,1711,389,1113,348,777,780,347,772,1714,801,387],[542,1868,777,776,1721,780,830,785,825,767,786,1865,838,1712,390,1114,349,778,781,348,773,1715,802,388],["RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL"],["9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9"],[0.0115138,0.0339303,0.0195499,0.0203488,0.0466659,0.0225106,0.0167772,0.0165422,0.0262702,0.0223226,0.0422014,0.0571458,0.0132526,0.0222286,0.0138635,0.0345413,0.0165892,0.0165892,0.0243904,0.0153673,0.0212417,0.0210067,0.0358571,0.0137225],[0.0128524,0.00307579,0.00845842,0.00867811,0.0937017,0.00933721,0,0.00516293,0.00263639,0.00461368,0.0136213,0.00911751,0.00274624,0.0324056,0.00692052,0.0654703,0.00670082,0.00549248,0.0104357,0.00571218,0.0113145,0.0342731,0.00725007,0.00670082],[0.273237,0,0,0,0.581801,0,0,0,0,0,0,0.00625256,0,0.161003,0,0.303562,0,0,0,0,0,0.135055,0,0],[0.0269934,0.00371568,0.0021857,0.00240427,0.0709259,0.00327855,0.00251355,0.00251355,0.00404354,0.00349711,0.00677566,0.00928921,0.0021857,0.0271026,0.00240427,0.0536589,0.00295069,0.00295069,0.00437139,0.00284141,0.00404354,0.0259005,0.00699423,0.00273212],["ns2_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change"],[10.1223632443486,9.13165288722387,8.94445715331473,8.46360849654989,8.20294137966526,6.86602308947553,6.67470310914842,6.58120984265282,6.49683198385573,6.38315637769473,6.22838217974338,6.15184714308321,6.06332067529853,5.9405001734151,5.76619930373877,5.65725350314673,5.62214261748947,5.62214261748947,5.57955249931944,5.40833600219609,5.25324344510009,5.21437810080887,5.1266686969116,5.02265639869405]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_nsp15RNaseL_18S_graph &lt;- change_nsp15RNaseL_18S %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = viral_comp, width=10)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(viral_comp ~ cell) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_nsp15RNaseL_18S_graph</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<pre class="r"><code>#28s
+
+change_nsp15RNaseL_28S &lt;- change_nsp15_28S %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVV_change:ns2_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  filter(cell == &quot;RNaseL&quot;) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15RNaseL_28S)</code></pre>
+<div id="htmlwidget-aa99b5eb06494abc29e9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aa99b5eb06494abc29e9">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],["r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|","r28s|gi|120444900|ref|NR_003279.1|"],[2514,2240,2685,515,3418,500,1566,532,1567,559,563,2379,314,561,3613,1518,250,248,2393,249,540,1517,2364,565],[2515,2241,2686,516,3419,501,1567,533,1568,560,564,2380,315,562,3614,1519,251,249,2394,250,541,1518,2365,566],["RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL","RNaseL"],["9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9","9"],[0.00723722,0.0109028,0.00380659,0.0104799,0.00822411,0.00286669,0.00953997,0.0251423,0.0103859,0.0189389,0.027774,0.0146624,0.0229335,0.0157433,0.0103859,0.0359511,0.0172001,0.0130176,0.0154143,0.0164952,0.0135815,0.0402276,0.0118897,0.0133935],[0.00823872,0.0175759,0.00538263,0.00692052,0.0117539,0.00417428,0.0198828,0.00725007,0,0.00571218,0.00582203,0,0.0141706,0.00538263,0.0166971,0.0760159,0.00406443,0.00582203,0.00362504,0.00549248,0.00494323,0.0778833,0.00307579,0.00417428],[0.0887863,0.225405,0.0503331,0.0325133,0.119737,0.0528341,0.127552,0,0.0900369,0,0,0,0.0128177,0,0.0640887,0.352332,0,0,0,0,0,0.293245,0,0],[0.00622924,0.0168299,0.00404354,0.00262284,0.0121306,0.00535496,0.0132235,0.00284141,0.0113656,0.00251355,0.00393425,0.0021857,0.00349711,0.00240427,0.0102728,0.0567188,0.00284141,0.0021857,0.00262284,0.00295069,0.00251355,0.055626,0.00229498,0.00262284],["ns2_change","ns2_change","ns2_change","ns2_change","ns2_change","ns2_change","ns2_change","MHVV_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","ns2_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","MHVV_change","ns2_change","MHVV_change","MHVV_change"],[14.2531512672493,13.3931277072353,12.4477809048507,12.3962193652682,9.87065767563022,9.86638555656812,9.64585775324233,8.84852942729138,7.92187829942986,7.53472180780172,7.05954120861664,6.70833142700279,6.55784347647057,6.54805824637,6.23867884121174,6.21190857352412,6.05336787017713,5.95580363270348,5.87695017614494,5.5902856619977,5.4033140379145,5.2717254521267,5.18074231583718,5.10648762410212]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>change_nsp15RNaseL_28S_graph &lt;- change_nsp15RNaseL_28S %&gt;%
+  ggplot(aes(x = start, y = fold_change, fill = viral_comp, width=10)) +
+  geom_bar(stat = &quot;identity&quot;, position = &#39;identity&#39;) + 
+  scale_fill_brewer(palette=&quot;Set1&quot;) +
+  facet_grid(viral_comp ~ cell) +
+  theme_cowplot() +
+  labs(x=&quot;Position&quot;, y=&quot;fold_change&quot;) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+change_nsp15RNaseL_28S_graph</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-13-4.png" width="672" /></p>
+<pre class="r"><code>#5.8s
+
+change_nsp15RNaseL_5.8S &lt;- change_nsp15_5.8S %&gt;% 
+  mutate(MHVV_change = MHVV/nsp15) %&gt;% 
+  mutate(mock_change = mock/nsp15) %&gt;%
+  #mutate(ns2_change = ns2/nsp15) %&gt;% 
+  gather(viral_comp, fold_change, MHVV_change:mock_change) %&gt;%
+  filter(fold_change &gt; 0 &amp; fold_change != Inf) %&gt;%
+  filter(fold_change &gt;= 5) %&gt;%
+  filter(cell == &quot;RNaseL&quot;) %&gt;%
+  group_by(start) %&gt;%
+  unique() %&gt;%
+  arrange(desc(fold_change))
+
+datatable(change_nsp15RNaseL_5.8S)</code></pre>
+<div id="htmlwidget-894d8d920823b5f228c5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-894d8d920823b5f228c5">{"x":{"filter":"none","data":[[],[],[],[],[],[],[],[],[],[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>chrom<\/th>\n      <th>start<\/th>\n      <th>end<\/th>\n      <th>cell<\/th>\n      <th>time<\/th>\n      <th>MHVV<\/th>\n      <th>mock<\/th>\n      <th>ns2<\/th>\n      <th>nsp15<\/th>\n      <th>viral_comp<\/th>\n      <th>fold_change<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,6,7,8,9,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="calcualting-dinucelotide-frequencies-for-all-cell-types-by-type-of-viral-infection" class="section level1">
+<h1>Calcualting dinucelotide frequencies for all cell types by type of viral infection</h1>
+<p>Performing a dinucleotide frequency analysis will help us to confirm RNaseL signatures as a positive control and investigate a potential sequence preference for nsp15 cleavage.</p>
+<pre class="r"><code>dinuc &lt;- c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;, &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)
+df_dinuc &lt;- data_frame(dinuc)
+
+#18S dinuc frequency 
+
+frequencies_18S &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;,      &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df &lt;- aggregate(cbind(count) ~ dinuc, data = df, sum)
+  df &lt;- left_join(df_dinuc, df) %&gt;% 
+    replace_na(list(count = 0)) %&gt;% 
+    mutate(freq = count/sum(count)) 
+  df$name &lt;- basename(x)
+  df %&gt;% mutate(name = str_replace(name, &quot;.r18s.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;))
+}
+
+freq_18S &lt;- purrr::map_df(data_files_18S, frequencies_18S)
+
+#28S dinuc frequency 
+
+frequencies_28S &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;,      &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df &lt;- aggregate(cbind(count) ~ dinuc, data = df, sum)
+  df &lt;- left_join(df_dinuc, df) %&gt;% 
+    replace_na(list(count = 0)) %&gt;% 
+    mutate(freq = count/sum(count)) 
+  df$name &lt;- basename(x)
+  df %&gt;% mutate(name = str_replace(name, &quot;.r28s.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;))
+}
+
+freq_28S &lt;- purrr::map_df(data_files_28S, frequencies_28S)</code></pre>
+</div>
+<div id="s-6" class="section level1">
+<h1>5.8s</h1>
+<pre class="r"><code>frequencies_5.8S &lt;- function(x) {
+  df &lt;- readr::read_tsv(x, col_names = c(&quot;chrom&quot;, &quot;start&quot;, &quot;end&quot;, &quot;count&quot;,      &quot;normalized_count&quot;, &quot;dinuc&quot;))
+  df &lt;- aggregate(cbind(count) ~ dinuc, data = df, sum)
+  df &lt;- left_join(df_dinuc, df) %&gt;% 
+    replace_na(list(count = 0)) %&gt;% 
+    mutate(freq = count/sum(count)) 
+  df$name &lt;- basename(x)
+  df %&gt;% mutate(name = str_replace(name, &quot;.r5.8s.bg&quot;, &quot;&quot;)) %&gt;%
+  separate(name, into = c(&#39;cell&#39;, &#39;virus&#39;, &#39;time&#39;))
+}
+
+freq_5.8S &lt;- purrr::map_df(data_files_5.8S, frequencies_5.8S)</code></pre>
+<div id="graphing-dinucleotide-frequencies-for-all-cell-types-by-infection-status" class="section level2">
+<h2>Graphing dinucleotide frequencies for all cell types by infection status</h2>
+<pre class="r"><code>#18S dinuc freq plots 
+
+freq_18S_plot &lt;- freq_18S %&gt;%
+  ggplot(aes(x = dinuc,y = freq, fill = time)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() +
+  facet_grid(virus ~ cell) +  
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;18S dinucleotide frequency plots &quot;) 
+freq_18S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code>#28S dinuc freq plots 
+
+freq_28S_plot &lt;- freq_28S %&gt;%
+  ggplot(aes(x = dinuc,y = freq, fill = time)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;28S dinucleotide frequency plots &quot;) 
+freq_28S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<pre class="r"><code>#5.8S dinuc freq plots 
+
+freq_5.8S_plot &lt;- freq_5.8S %&gt;%
+  ggplot(aes(x = dinuc,y = freq, fill = time)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;5.8S dinucleotide frequency plots &quot;) 
+freq_5.8S_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-16-3.png" width="672" /></p>
+</div>
+<div id="rnase-l-substractive-dinucleotide-analysis-of-for-all-cell-types-by-viral-infection" class="section level2">
+<h2>RNase L substractive dinucleotide analysis of for all cell types by viral infection</h2>
+<p>This is similar to the previous coverage substractive analysis. These plots display dinucleotde cleavage frequencies dependent on RNase L by removing the frequencies detected in the abscence of RNase L.</p>
+<pre class="r"><code>#18S
+
+subtractive_18S &lt;- freq_18S %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(cell, freq) %&gt;% 
+  mutate(B6_RNaseL = B6 - RNaseL) %&gt;%
+  dplyr::select(dinuc:time, B6_RNaseL) %&gt;% 
+  gather(cell, freq, B6_RNaseL)
+
+sub18S_freq_plot &lt;- subtractive_18S %&gt;% 
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;,      &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  scale_y_continuous(limits = c(0.00, 0.04)) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;18S RNase L subtractive dinucleotide frequency plots &quot;) 
+sub18S_freq_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>#28S
+
+subtractive_28S &lt;- freq_28S %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(cell, freq) %&gt;% 
+  mutate(B6_RNaseL = B6 - RNaseL) %&gt;%
+  dplyr::select(dinuc:time, B6_RNaseL) %&gt;% 
+  gather(cell, freq, B6_RNaseL)
+
+sub28S_freq_plot &lt;- subtractive_28S %&gt;%
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;,      &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) + 
+  scale_y_continuous(limits = c(-0.0, 0.06)) +
+  ggtitle(&quot;28S RNase L subtractive dinucleotide frequency plots &quot;) 
+sub28S_freq_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<pre class="r"><code>#5.8S
+
+subtractive_5.8S &lt;- freq_5.8S %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(cell, freq) %&gt;% 
+  mutate(B6_RNaseL = B6 - RNaseL) %&gt;% 
+  dplyr::select(dinuc:time, B6_RNaseL) %&gt;% 
+  gather(cell, freq, B6_RNaseL)
+
+sub5.8S_freq_plot &lt;- subtractive_5.8S %&gt;%
+  ggplot(aes(x = dinuc , y = freq)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;, &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;,      &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+    facet_grid(virus ~ cell) + 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) + 
+    scale_y_continuous(limits = c(-0.0, 0.06)) +
+    ggtitle(&quot;5S RNase L subtractive dinucleotide frequency plots &quot;) 
+sub5.8S_freq_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-17-3.png" width="672" /></p>
+</div>
+<div id="nsp15-subtractive-dinucleotide-analysis-of-for-all-cell-types-by-viral-infection" class="section level2">
+<h2>Nsp15 subtractive dinucleotide analysis of for all cell types by viral infection</h2>
+<pre class="r"><code>#18S
+
+endoU_subtractive_18S &lt;- freq_18S %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(virus, freq) %&gt;% 
+  mutate(MHVV_nsp15 = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15 = ns2 - nsp15) %&gt;% 
+  mutate(mock_nsp15 = mock - nsp15) %&gt;% 
+  dplyr::select(dinuc:time, MHVV_nsp15:mock_nsp15) %&gt;% 
+  gather(virus, freq, MHVV_nsp15:mock_nsp15)
+
+endoU_sub18S_freq_plot &lt;- endoU_subtractive_18S %&gt;% 
+  ggplot(aes(x = dinuc , y = freq, fill = time)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;,      &quot;UU&quot;)) + 
+  geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  scale_y_continuous(limits = c(0.00, 0.06)) +
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;18S nsp15 subtractive dinucleotide frequency plots &quot;) 
+endoU_sub18S_freq_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code>#28S
+
+endoU_subtractive_28S &lt;- 
+  freq_28S %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(virus, freq) %&gt;% 
+  mutate(MHVV_nsp15 = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15 = ns2 - nsp15) %&gt;% 
+  mutate(mock_nsp15 = mock - nsp15) %&gt;% 
+  dplyr::select(dinuc:time, MHVV_nsp15:mock_nsp15) %&gt;% 
+  gather(virus, freq, MHVV_nsp15:mock_nsp15)
+
+endoU_sub28S_freq_plot &lt;- endoU_subtractive_28S %&gt;% 
+  ggplot(aes(x = dinuc , y = freq, fill = time)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  scale_y_continuous(limits = c(0.0, 0.06)) +
+  facet_grid(virus ~ cell) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;28S nsp15 subtractive dinucleotide frequency plots &quot;) 
+endoU_sub28S_freq_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+<pre class="r"><code>#5.8S
+
+endoU_subtractive_5.8S &lt;- freq_5.8S %&gt;% 
+  dplyr::select(dinuc, freq:time) %&gt;% 
+  spread(virus, freq) %&gt;% 
+  mutate(MHVV_nsp15 = MHVV - nsp15) %&gt;% 
+  mutate(ns2_nsp15 = ns2 - nsp15) %&gt;% 
+  mutate(mock_nsp15 = mock - nsp15) %&gt;% 
+  dplyr::select(dinuc:time, MHVV_nsp15:mock_nsp15) %&gt;% 
+  gather(virus, freq, MHVV_nsp15:mock_nsp15)
+
+endoU_sub5.8S_freq_plot &lt;- endoU_subtractive_5.8S %&gt;% 
+  ggplot(aes(x = dinuc , y = freq, fill = time)) + 
+  scale_fill_brewer(palette = &#39;Set1&#39;) + 
+  scale_x_discrete(limits=c(&quot;AA&quot;,&quot;GA&quot;, &quot;CA&quot;, &quot;UA&quot;,&quot;AC&quot;, &quot;CC&quot;, &quot;GC&quot;, &quot;UC&quot;, &quot;AG&quot;, &quot;CG&quot;, &quot;GG&quot;,     &quot;UG&quot;, &quot;AU&quot;, &quot;CU&quot;, &quot;GU&quot;, &quot;UU&quot;)) + 
+  geom_bar(aes(fill = time), stat = &quot;identity&quot;, position = &#39;dodge&#39;) + 
+  theme_cowplot() + 
+  scale_y_continuous(limits = c(0.0, 0.06)) +
+  facet_grid(cell ~ virus) + 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 8)) +
+  ggtitle(&quot;5S nsp15 subtractive dinucleotide frequency plots &quot;) 
+endoU_sub5.8S_freq_plot</code></pre>
+<p><img src="rRNA_endoU_analysis_exp2_final_files/figure-html/unnamed-chunk-18-3.png" width="672" /></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

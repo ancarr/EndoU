@@ -27,6 +27,7 @@ library(stringr)
 library(cowplot)
 library(RColorBrewer)
 library(purrr)
+library(DT)
 
 ```
 
@@ -50,6 +51,8 @@ read_file <- function(x) {
 U6_table <- purrr::map_df(data_files, read_file) %>%
   dplyr::mutate(name = str_replace(name, ".U6.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
+
+datatable(U6_table)
 
 plot_U6 <- ggplot(U6_table, aes(x = start, y = count)) +
     geom_bar(aes(fill = time), stat = "identity", position = 'dodge') +

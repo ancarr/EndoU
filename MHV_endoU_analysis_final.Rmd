@@ -64,6 +64,8 @@ neg_table <- purrr::map_df(data_files_neg, read_file) %>%
   mutate(name = str_replace(name, ".mhv.neg.dinuc.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
 
+datatable(neg_table)
+
 #neg_plot <- ggplot(neg_table, aes(x = start, y = normalized_count)) +
     #geom_line(aes(color = time)) +
     #scale_colour_brewer(palette="Set1") + 
@@ -94,6 +96,8 @@ data_files_pos = list.files(data_dir_pos, full.names = T)
 pos_table <- purrr::map_df(data_files_pos, read_file) %>%
   mutate(name = str_replace(name, ".mhv.pos.dinuc.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
+
+datatable(pos_table)
 
 pos_plot <- ggplot(pos_table, aes(x = start, y = normalized_count)) +
     geom_bar(aes(fill = time), stat = "identity", position = 'dodge') +

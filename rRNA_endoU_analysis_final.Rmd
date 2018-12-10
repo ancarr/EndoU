@@ -1,5 +1,5 @@
 ---
-title: "Analysis of rRNA to Detect EndoU Cleavage Sites from experiemnt 2"
+title: "Analysis of rRNA to Detect EndoU Cleavage Sites from experiemnt 1"
 author: "Rachel Ancar"
 date: "11/25/2018"
 output: 
@@ -61,6 +61,8 @@ table_18S <- purrr::map_df(data_files_18S, read_file) %>%
   mutate(name = str_replace(name, ".r18s.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
 
+datatable(table_18S)
+
 plot_18S <- ggplot(table_18S, aes(x = start, y = normalized_count, fill = time, width = 5)) +
     geom_bar(stat = "identity", position = 'identity') +
     scale_fill_brewer(palette="Set1") +
@@ -116,6 +118,8 @@ table_28S <- purrr::map_df(data_files_28S, read_file) %>%
   mutate(name = str_replace(name, ".r28s.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
 
+datatable(table_28S)
+
 plot_28S <- ggplot(table_28S, aes(x = end, y = normalized_count, fill = time, width = 10)) +
     geom_bar(stat = "identity", position = 'identity') +
     scale_fill_brewer(palette="Set1") +
@@ -147,6 +151,8 @@ table_5S <- purrr::map_df(data_files_5S, read_file) %>%
   mutate(name = str_replace(name, ".r5s.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
 
+datatable(table_5S)
+
 plot_5S <- ggplot(table_5S, aes(x = end, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'identity') +
     scale_fill_brewer(palette="Set1") + 
@@ -176,6 +182,8 @@ read_file <- function(x) {
 table_5.8S <- purrr::map_df(data_files_5.8S, read_file) %>%
   mutate(name = str_replace(name, ".r5.8s.bg", "")) %>%
   separate(name, into = c('cell', 'virus', 'time'), sep = '_')
+
+datatable(table_5.8S)
 
 plot_5.8S <- ggplot(table_5.8S, aes(x = end, y = normalized_count, fill = time)) +
     geom_bar(stat = "identity", position = 'identity') +
